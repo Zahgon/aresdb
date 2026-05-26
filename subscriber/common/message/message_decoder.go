@@ -55,52 +55,31 @@ type StringMessage struct {
 	msg   string
 }
 
-func NewStringMessage(topic, msg string) *StringMessage {
-	return &StringMessage{
-		topic: topic,
-		msg:   msg,
-	}
-}
+func NewStringMessage(topic, msg string) *StringMessage { _ = "STUB: not implemented"; return nil }
 
-func (m *StringMessage) Key() []byte {
-	return []byte("")
-}
+func (m *StringMessage) Key() []byte { _ = "STUB: not implemented"; return nil }
 
-func (m *StringMessage) Value() []byte {
-	return []byte(m.msg)
-}
+func (m *StringMessage) Value() []byte { _ = "STUB: not implemented"; return nil }
 
-func (m *StringMessage) Topic() string {
-	return m.topic
-}
+func (m *StringMessage) Topic() string { _ = "STUB: not implemented"; return "" }
 
-func (m *StringMessage) Partition() int32 {
-	return 0
-}
+func (m *StringMessage) Partition() int32 { _ = "STUB: not implemented"; return 0 }
 
-func (m *StringMessage) Offset() int64 {
-	return 0
-}
+func (m *StringMessage) Offset() int64 { _ = "STUB: not implemented"; return 0 }
 
-func (m *StringMessage) Ack() {
-	return
-}
+func (m *StringMessage) Ack() { _ = "STUB: not implemented"; return }
 
-func (m *StringMessage) Nack() {
-	return
-}
+func (m *StringMessage) Nack() { _ = "STUB: not implemented"; return }
 
 func (m *StringMessage) Cluster() string {
+	_ = "STUB: not implemented"
+
+	// NewDefaultDecoder will initialize the json decoder based on the job type
 	return ""
 }
 
-// NewDefaultDecoder will initialize the json decoder based on the job type
 func NewDefaultDecoder(
 	jobConfig *rules.JobConfig, serviceConfig config.ServiceConfig) (decoder Decoder, err error) {
-	switch jobConfig.StreamingConfig.TopicType {
-	default:
-		decoder = &JSONDecoder{}
-	}
-
-	return
+	_ = "STUB: not implemented"
+	return *new(Decoder), nil
 }

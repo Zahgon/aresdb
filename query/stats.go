@@ -15,15 +15,8 @@
 package query
 
 import (
-	"encoding/json"
-	"fmt"
-	"github.com/uber/aresdb/cgoutils"
-	"math"
-	"sort"
 	"time"
 	"unsafe"
-
-	"github.com/uber/aresdb/utils"
 )
 
 // stageName represents each query stage.
@@ -77,25 +70,24 @@ type oopkStageSummaryStats struct {
 
 // MarshalJSON marshals the message to JSON in a custom way.
 func (s *oopkStageSummaryStats) MarshalJSON() ([]byte, error) {
-	return json.Marshal(s.total)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 type stageSummaryStatsSlice []*oopkStageSummaryStats
 
 // Len implements sort.Sort interface for stageSummaryStatsSlice.
 func (s stageSummaryStatsSlice) Len() int {
-	return len(s)
+	_ = "STUB: not implemented"
+
+	// Swap implements sort.Sort interface for stageSummaryStatsSlice.
+	return 0
 }
 
-// Swap implements sort.Sort interface for stageSummaryStatsSlice.
-func (s stageSummaryStatsSlice) Swap(i, j int) {
-	s[i], s[j] = s[j], s[i]
-}
+func (s stageSummaryStatsSlice) Swap(i, j int) { _ = "STUB: not implemented"; return }
 
 // Less implements sort.Sort interface for stageSummaryStatsSlice.
-func (s stageSummaryStatsSlice) Less(i, j int) bool {
-	return s[i].total < s[j].total
-}
+func (s stageSummaryStatsSlice) Less(i, j int) bool { _ = "STUB: not implemented"; return false }
 
 // oopkQueryStats stores the overall stats for a query.
 type oopkQueryStats struct {
@@ -123,133 +115,52 @@ type oopkQueryStats struct {
 }
 
 // NumRows implements the utils.TableDataSource for stats.
-func (stats oopkQueryStats) NumRows() int {
-	return len(stats.stageStats)
-}
+func (stats oopkQueryStats) NumRows() int { _ = "STUB: not implemented"; return 0 }
 
 // GetValue implements the utils.TableDataSource for stats. **Notes** row boundary
 // are not checked!
 func (stats oopkQueryStats) GetValue(row, col int) interface{} {
-	rowValue := stats.stageStats[row]
-	switch col {
-	case 0:
-		return rowValue.name
-	case 1:
-		return rowValue.avg
-	case 2:
-		return rowValue.max
-	case 3:
-		return rowValue.min
-	case 4:
-		return rowValue.count
-	case 5:
-		return rowValue.total
-	case 6:
-		return fmt.Sprintf("%.2f%%", rowValue.percentage*100)
-	}
+	_ = "STUB: not implemented"
 	return nil
 }
 
 // ColumnHeaders implements the utils.TableDataSource for stats.
-func (stats oopkQueryStats) ColumnHeaders() []string {
-	return []string{"stage", "avg", "max", "minCallName", "count", "total", "percentage"}
-}
+func (stats oopkQueryStats) ColumnHeaders() []string { _ = "STUB: not implemented"; return nil }
 
 // reportTimingForCurrentBatch will first wait for current cuda stream if the debug mode is set and change the timing stat accordingly.
 // It will add to the total timing as well. Therefore this function should only be called one time for each stage.
 func (qc *AQLQueryContext) reportTimingForCurrentBatch(stream unsafe.Pointer, start *time.Time, name stageName) {
-	if qc.Debug {
-		cgoutils.WaitForCudaStream(stream, qc.Device)
-		now := utils.Now()
-		value := now.Sub(*start).Seconds() * 1000
-		qc.OOPK.currentBatch.stats.timings[name] = value
-		qc.OOPK.currentBatch.stats.totalTiming += value
-		*start = now
-	}
+	_ = "STUB: not implemented"
+	return
 }
 
 // reportTiming is similar to reportTimingForCurrentBatch except that it modifies the query stats for the
 // whole query. It's usually should be called once for each stage
 func (qc *AQLQueryContext) reportTiming(stream unsafe.Pointer, start *time.Time, name stageName) {
-	if qc.Debug {
-		if stream != nil {
-			cgoutils.WaitForCudaStream(stream, qc.Device)
-		}
-		now := utils.Now()
-		value := now.Sub(*start).Seconds() * 1000
-		queryStats := &qc.OOPK.LiveBatchStats
-		queryStats.applyStageStats(name, value)
-		*start = now
-	}
+	_ = "STUB: not implemented"
+	return
 }
 
 // applyStageStats applies the stage stats to the overall query stats and compute max,minCallName and total for that
 // stage.
 func (stats *oopkQueryStats) applyStageStats(name stageName, value float64) {
-	if _, ok := stats.Name2Stage[name]; !ok {
-		stats.Name2Stage[name] = &oopkStageSummaryStats{name: name, max: -1, min: math.MaxFloat64}
-	}
-	stageStats := stats.Name2Stage[name]
-	stageStats.max = math.Max(stageStats.max, value)
-	stageStats.min = math.Min(stageStats.max, value)
-	stageStats.count++
-	stageStats.total += value
-	stats.TotalTiming += value
+	_ = "STUB: not implemented"
+	return
 }
 
 // applyBatchStats applies the current batch stats onto the overall query stats. It computes information
 // like max, minCallName, average for each stage as well as the percentage.
 func (stats *oopkQueryStats) applyBatchStats(batchStats oopkBatchStats) {
-	for name, value := range batchStats.timings {
-		stats.applyStageStats(name, value)
-	}
-	stats.NumBatches++
-	stats.NumRecords += batchStats.batchSize
-	stats.BytesTransferred += batchStats.bytesTransferred
-	stats.NumTransferCalls += batchStats.numTransferCalls
+	_ = "STUB: not implemented"
+	return
 }
 
 // writeToLog writes the summary stats for this query in a tabular format to logger.
-func (stats *oopkQueryStats) writeToLog() {
-	if stats.NumBatches+stats.NumBatchSkipped > 0 {
-		// Compute average and percentage.
-		stats.stageStats = make([]*oopkStageSummaryStats, 0, len(stats.Name2Stage))
-		for _, oopkStageStats := range stats.Name2Stage {
-			oopkStageStats.avg = oopkStageStats.total / float64(stats.NumBatches)
-			oopkStageStats.percentage = oopkStageStats.total / stats.TotalTiming
-			stats.stageStats = append(stats.stageStats, oopkStageStats)
-		}
-		sort.Sort(sort.Reverse(stageSummaryStatsSlice(stats.stageStats)))
+func (stats *oopkQueryStats) writeToLog() { _ = "STUB: not implemented"; return }
 
-		utils.GetQueryLogger().Infof("Total timing: %f", stats.TotalTiming)
-		utils.GetQueryLogger().Infof("Num batches: %d", stats.NumBatches)
-		utils.GetQueryLogger().Infof("Num batches skipped: %d", stats.NumBatchSkipped)
-		// Create tabular output.
-		summary := utils.WriteTable(stats)
-		utils.GetQueryLogger().Info("\n" + summary)
-	}
-}
+// Compute average and percentage.
+
+// Create tabular output.
 
 // reportBatch will report OOPK batch related stats to the query logger.
-func (qc *AQLQueryContext) reportBatch(isArchiveBatch bool) {
-	if qc.Debug {
-		batchType := "live batch"
-		if isArchiveBatch {
-			batchType = "archive batch"
-		}
-		stats := qc.OOPK.currentBatch.stats
-		utils.GetQueryLogger().
-			With(
-				"timings", stats.timings,
-				"total", stats.totalTiming,
-				"batchID", stats.batchID,
-				"batchSize", stats.batchSize,
-				"batchType", batchType,
-			).Infof("Query stats")
-		if isArchiveBatch {
-			qc.OOPK.ArchiveBatchStats.applyBatchStats(stats)
-		} else {
-			qc.OOPK.LiveBatchStats.applyBatchStats(stats)
-		}
-	}
-}
+func (qc *AQLQueryContext) reportBatch(isArchiveBatch bool) { _ = "STUB: not implemented"; return }

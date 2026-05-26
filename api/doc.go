@@ -14,15 +14,15 @@
 
 // Package api provide the RESTful APIs to interact with AresDB.
 //
-//     Schemes: http
-//     BasePath: /
-//     Version: 0.0.1
+//	Schemes: http
+//	BasePath: /
+//	Version: 0.0.1
 //
-//     Consumes:
-//     - application/json
+//	Consumes:
+//	- application/json
 //
-//     Produces:
-//     - application/json
+//	Produces:
+//	- application/json
 //
 // swagger:meta
 package api

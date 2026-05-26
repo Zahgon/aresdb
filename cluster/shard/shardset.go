@@ -32,57 +32,31 @@ type shardSet struct {
 }
 
 // NewShardSet creates a new sharding scheme with a set of shards
-func NewShardSet(shards []shard.Shard) ShardSet {
-	ids := make([]uint32, len(shards))
-	shardMap := make(map[uint32]shard.Shard, len(shards))
-	for i, shard := range shards {
-		ids[i] = shard.ID()
-		shardMap[shard.ID()] = shard
-	}
-	return &shardSet{
-		shards:   shards,
-		ids:      ids,
-		shardMap: shardMap,
-	}
-}
+func NewShardSet(shards []shard.Shard) ShardSet { _ = "STUB: not implemented"; return *new(ShardSet) }
 
-func (s *shardSet) All() []shard.Shard {
-	return s.shards[:]
-}
+func (s *shardSet) All() []shard.Shard { _ = "STUB: not implemented"; return nil }
 
 func (s *shardSet) AllIDs() []uint32 {
-	return s.ids[:]
+	_ = "STUB: not implemented"
+
+	// NewShards returns a new slice of shards with a specified state
+	return nil
 }
 
-// NewShards returns a new slice of shards with a specified state
 func NewShards(ids []uint32, state shard.State) []shard.Shard {
-	shards := make([]shard.Shard, len(ids))
-	for i, id := range ids {
-		shards[i] = shard.NewShard(uint32(id)).SetState(state)
-	}
-	return shards
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // IDs returns a new slice of shard IDs for a set of shards
-func IDs(shards []shard.Shard) []uint32 {
-	ids := make([]uint32, len(shards))
-	for i := range ids {
-		ids[i] = shards[i].ID()
-	}
-	return ids
-}
+func IDs(shards []shard.Shard) []uint32 { _ = "STUB: not implemented"; return nil }
 
 // intRange returns a slice of all values between [from, to].
-func intRange(from, to uint32) []uint32 {
-	var ids []uint32
-	for i := from; i <= to; i++ {
-		ids = append(ids, i)
-	}
-	return ids
-}
+func intRange(from, to uint32) []uint32 { _ = "STUB: not implemented"; return nil }
 
 // ShardsRange returns a slice of shards for all ids between [from, to],
 // with shard state `s`.
 func ShardsRange(from, to uint32, s shard.State) []shard.Shard {
-	return NewShards(intRange(from, to), s)
+	_ = "STUB: not implemented"
+	return nil
 }

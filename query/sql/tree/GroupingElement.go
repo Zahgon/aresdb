@@ -28,12 +28,12 @@ type GroupingElement struct {
 
 // NewGroupingElement creates GroupingElement
 func NewGroupingElement(location *NodeLocation) *GroupingElement {
-	return &GroupingElement{
-		NewNode(location),
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Accept accepts visitor
 func (g *GroupingElement) Accept(visitor AstVisitor, ctx interface{}) interface{} {
-	return visitor.VisitGroupingElement(g, ctx)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -14,12 +14,6 @@
 
 package tree
 
-import (
-	"fmt"
-
-	"github.com/uber/aresdb/query/sql/util"
-)
-
 // Join is Join
 type Join struct {
 	// IRelation is interface
@@ -64,25 +58,12 @@ var JoinTypes = [...]string{
 
 // NewJoin creates Join
 func NewJoin(location *NodeLocation, joinType JoinType, left, right IRelation, criteria IJoinCriteria) *Join {
-	errMsg := fmt.Sprintf("left is null at (line:%d, col:%d)", location.Line, location.CharPosition)
-	util.RequireNonNull(left, errMsg)
-	errMsg = fmt.Sprintf("right is null at (line:%d, col:%d)", location.Line, location.CharPosition)
-	util.RequireNonNull(right, errMsg)
-
-	if joinType != LEFT {
-		panic(fmt.Errorf("only support left join at (line:%d, col:%d)", location.Line, location.CharPosition))
-	}
-
-	return &Join{
-		NewRelation(location),
-		joinType,
-		left,
-		right,
-		criteria,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Accept accepts visitor
 func (e *Join) Accept(visitor AstVisitor, ctx interface{}) interface{} {
-	return visitor.VisitJoin(e, ctx)
+	_ = "STUB: not implemented"
+	return nil
 }

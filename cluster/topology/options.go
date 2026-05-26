@@ -22,12 +22,12 @@ package topology
 
 import (
 	"errors"
-	"fmt"
+	"time"
+
 	"github.com/m3db/m3/src/cluster/client"
 	"github.com/m3db/m3/src/cluster/services"
 	"github.com/uber/aresdb/cluster/shard"
 	"github.com/uber/aresdb/utils"
-	"time"
 )
 
 const (
@@ -49,43 +49,37 @@ type staticOptions struct {
 }
 
 // NewStaticOptions creates a new set of static topology options
-func NewStaticOptions() StaticOptions {
-	return &staticOptions{
-		replicas: defaultReplicas,
-	}
-}
+func NewStaticOptions() StaticOptions { _ = "STUB: not implemented"; return *new(StaticOptions) }
 
 func (o *staticOptions) SetShardSet(value shard.ShardSet) StaticOptions {
-	opts := *o
-	opts.shardSet = value
-	return &opts
+	_ = "STUB: not implemented"
+	return *new(StaticOptions)
 }
 
 func (o *staticOptions) ShardSet() shard.ShardSet {
-	return o.shardSet
+	_ = "STUB: not implemented"
+	return *new(shard.ShardSet)
 }
 
 func (o *staticOptions) SetHostShardSets(value []HostShardSet) StaticOptions {
-	opts := *o
-	opts.hostShardSets = value
-	return &opts
+	_ = "STUB: not implemented"
+	return *new(StaticOptions)
 }
 
-func (o *staticOptions) HostShardSets() []HostShardSet {
-	return o.hostShardSets
-}
+func (o *staticOptions) HostShardSets() []HostShardSet { _ = "STUB: not implemented"; return nil }
 
 func (o *staticOptions) SetReplicas(value int) StaticOptions {
-	opts := *o
-	opts.replicas = value
-	return &opts
+	_ = "STUB: not implemented"
+	return *new(StaticOptions)
 }
 
 func (o *staticOptions) Replicas() int {
-	return o.replicas
+	_ = "STUB: not implemented"
+
+	// dynamicOptions is the implementation of the interface DynamicOptions
+	return 0
 }
 
-// dynamicOptions is the implementation of the interface DynamicOptions
 type dynamicOptions struct {
 	configServiceClient     client.Client
 	serviceID               services.ServiceID
@@ -96,95 +90,63 @@ type dynamicOptions struct {
 }
 
 // NewDynamicOptions creates a new set of dynamic topology options
-func NewDynamicOptions() DynamicOptions {
-	return &dynamicOptions{
-		serviceID:               services.NewServiceID().SetName(defaultServiceName),
-		servicesOverrideOptions: services.NewOverrideOptions(),
-		queryOptions:            services.NewQueryOptions(),
-		instrumentOptions:       utils.NewOptions(),
-		initTimeout:             defaultInitTimeout,
-	}
-}
+func NewDynamicOptions() DynamicOptions { _ = "STUB: not implemented"; return *new(DynamicOptions) }
 
-func (o *staticOptions) Validate() error {
-	if o.replicas < 1 {
-		return errInvalidReplicas
-	}
+func (o *staticOptions) Validate() error { _ = "STUB: not implemented"; return nil }
 
-	// Make a mapping of each shard to a set of hosts and check each
-	// shard has at least the required replicas mapped to
-	// NB(r): We allow greater than the required replicas in case
-	// node is streaming in and needs to take writes
-	totalShards := len(o.shardSet.AllIDs())
-	hostAddressesByShard := make([]map[string]struct{}, totalShards)
-	for i := range hostAddressesByShard {
-		hostAddressesByShard[i] = make(map[string]struct{}, o.replicas)
-	}
-	for _, hostShardSet := range o.hostShardSets {
-		hostAddress := hostShardSet.Host().Address()
-		for _, shard := range hostShardSet.ShardSet().AllIDs() {
-			hostAddressesByShard[shard][hostAddress] = struct{}{}
-		}
-	}
-	for shard, hosts := range hostAddressesByShard {
-		if len(hosts) < o.replicas {
-			errorFmt := "shard %d has %d replicas, less than the required %d replicas"
-			return fmt.Errorf(errorFmt, shard, len(hosts), o.replicas)
-		}
-	}
-
-	return nil
-}
+// Make a mapping of each shard to a set of hosts and check each
+// shard has at least the required replicas mapped to
+// NB(r): We allow greater than the required replicas in case
+// node is streaming in and needs to take writes
 
 func (o *dynamicOptions) SetConfigServiceClient(c client.Client) DynamicOptions {
-	o.configServiceClient = c
-	return o
+	_ = "STUB: not implemented"
+	return *new(DynamicOptions)
 }
 
 func (o *dynamicOptions) ConfigServiceClient() client.Client {
-	return o.configServiceClient
+	_ = "STUB: not implemented"
+	return *new(client.Client)
 }
 
 func (o *dynamicOptions) SetServiceID(s services.ServiceID) DynamicOptions {
-	o.serviceID = s
-	return o
+	_ = "STUB: not implemented"
+	return *new(DynamicOptions)
 }
 
 func (o *dynamicOptions) ServiceID() services.ServiceID {
-	return o.serviceID
+	_ = "STUB: not implemented"
+	return *new(services.ServiceID)
 }
 
 func (o *dynamicOptions) SetServicesOverrideOptions(opts services.OverrideOptions) DynamicOptions {
-	o.servicesOverrideOptions = opts
-	return o
+	_ = "STUB: not implemented"
+	return *new(DynamicOptions)
 }
 
 func (o *dynamicOptions) ServicesOverrideOptions() services.OverrideOptions {
-	return o.servicesOverrideOptions
+	_ = "STUB: not implemented"
+	return *new(services.OverrideOptions)
 }
 
 func (o *dynamicOptions) SetQueryOptions(qo services.QueryOptions) DynamicOptions {
-	o.queryOptions = qo
-	return o
+	_ = "STUB: not implemented"
+	return *new(DynamicOptions)
 }
 
 func (o *dynamicOptions) QueryOptions() services.QueryOptions {
-	return o.queryOptions
+	_ = "STUB: not implemented"
+	return *new(services.QueryOptions)
 }
 
 func (o *dynamicOptions) SetInstrumentOptions(io utils.Options) DynamicOptions {
-	o.instrumentOptions = io
-	return o
+	_ = "STUB: not implemented"
+	return *new(DynamicOptions)
 }
 
 func (o *dynamicOptions) InstrumentOptions() utils.Options {
-	return o.instrumentOptions
+	_ = "STUB: not implemented"
+	return *new(utils.Options)
 }
 
-func (o *dynamicOptions) Validate() error {
-	if o.ConfigServiceClient() == nil {
-		return errNoConfigServiceClient
-	}
-
-	return nil
-}
+func (o *dynamicOptions) Validate() error { _ = "STUB: not implemented"; return nil }

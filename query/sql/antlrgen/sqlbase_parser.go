@@ -461,17 +461,8 @@ type SqlBaseParser struct {
 }
 
 func NewSqlBaseParser(input antlr.TokenStream) *SqlBaseParser {
-	this := new(SqlBaseParser)
-
-	this.BaseParser = antlr.NewBaseParser(input)
-
-	this.Interpreter = antlr.NewParserATNSimulator(this, deserializedATN, decisionToDFA, antlr.NewPredictionContextCache())
-	this.RuleNames = ruleNames
-	this.LiteralNames = literalNames
-	this.SymbolicNames = symbolicNames
-	this.GrammarFileName = "SqlBase.g4"
-
-	return this
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // SqlBaseParser tokens.
@@ -757,38 +748,30 @@ type StatementContext struct {
 	parser antlr.Parser
 }
 
-func NewEmptyStatementContext() *StatementContext {
-	var p = new(StatementContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_statement
-	return p
-}
+func NewEmptyStatementContext() *StatementContext { _ = "STUB: not implemented"; return nil }
 
-func (*StatementContext) IsStatementContext() {}
+func (*StatementContext) IsStatementContext() { _ = "STUB: not implemented"; return }
 
 func NewStatementContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *StatementContext {
-	var p = new(StatementContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_statement
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *StatementContext) GetParser() antlr.Parser { return s.parser }
-
-func (s *StatementContext) CopyFrom(ctx *StatementContext) {
-	s.BaseParserRuleContext.CopyFrom(ctx.BaseParserRuleContext)
+func (s *StatementContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
 }
+
+func (s *StatementContext) CopyFrom(ctx *StatementContext) { _ = "STUB: not implemented"; return }
 
 func (s *StatementContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *StatementContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 type StatementDefaultContext struct {
@@ -796,67 +779,28 @@ type StatementDefaultContext struct {
 }
 
 func NewStatementDefaultContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *StatementDefaultContext {
-	var p = new(StatementDefaultContext)
-
-	p.StatementContext = NewEmptyStatementContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*StatementContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *StatementDefaultContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *StatementDefaultContext) Query() IQueryContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IQueryContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IQueryContext)
+	_ = "STUB: not implemented"
+	return *new(IQueryContext)
 }
 
 func (s *StatementDefaultContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitStatementDefault(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) Statement() (localctx IStatementContext) {
-	localctx = NewStatementContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 0, SqlBaseParserRULE_statement)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	localctx = NewStatementDefaultContext(p, localctx)
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(90)
-		p.Query()
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IStatementContext)
 }
 
 // IQueryContext is an interface to support dynamic dispatch.
@@ -875,105 +819,45 @@ type QueryContext struct {
 	parser antlr.Parser
 }
 
-func NewEmptyQueryContext() *QueryContext {
-	var p = new(QueryContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_query
-	return p
-}
+func NewEmptyQueryContext() *QueryContext { _ = "STUB: not implemented"; return nil }
 
-func (*QueryContext) IsQueryContext() {}
+func (*QueryContext) IsQueryContext() { _ = "STUB: not implemented"; return }
 
 func NewQueryContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *QueryContext {
-	var p = new(QueryContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_query
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *QueryContext) GetParser() antlr.Parser { return s.parser }
+func (s *QueryContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *QueryContext) QueryNoWith() IQueryNoWithContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IQueryNoWithContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IQueryNoWithContext)
+	_ = "STUB: not implemented"
+	return *new(IQueryNoWithContext)
 }
 
-func (s *QueryContext) With() IWithContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IWithContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IWithContext)
-}
+func (s *QueryContext) With() IWithContext { _ = "STUB: not implemented"; return *new(IWithContext) }
 
 func (s *QueryContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *QueryContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *QueryContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitQuery(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) Query() (localctx IQueryContext) {
-	localctx = NewQueryContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 2, SqlBaseParserRULE_query)
-	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.EnterOuterAlt(localctx, 1)
-	p.SetState(93)
-	p.GetErrorHandler().Sync(p)
-	_la = p.GetTokenStream().LA(1)
-
-	if _la == SqlBaseParserWITH {
-		{
-			p.SetState(92)
-			p.With()
-		}
-
-	}
-	{
-		p.SetState(95)
-		p.QueryNoWith()
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IQueryContext)
 }
 
 // IWithContext is an interface to support dynamic dispatch.
@@ -992,138 +876,55 @@ type WithContext struct {
 	parser antlr.Parser
 }
 
-func NewEmptyWithContext() *WithContext {
-	var p = new(WithContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_with
-	return p
-}
+func NewEmptyWithContext() *WithContext { _ = "STUB: not implemented"; return nil }
 
-func (*WithContext) IsWithContext() {}
+func (*WithContext) IsWithContext() { _ = "STUB: not implemented"; return }
 
 func NewWithContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *WithContext {
-	var p = new(WithContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_with
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *WithContext) GetParser() antlr.Parser { return s.parser }
+func (s *WithContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *WithContext) WITH() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserWITH, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
-func (s *WithContext) AllNamedQuery() []INamedQueryContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*INamedQueryContext)(nil)).Elem())
-	var tst = make([]INamedQueryContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(INamedQueryContext)
-		}
-	}
-
-	return tst
-}
+func (s *WithContext) AllNamedQuery() []INamedQueryContext { _ = "STUB: not implemented"; return nil }
 
 func (s *WithContext) NamedQuery(i int) INamedQueryContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*INamedQueryContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(INamedQueryContext)
+	_ = "STUB: not implemented"
+	return *new(INamedQueryContext)
 }
 
 func (s *WithContext) RECURSIVE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserRECURSIVE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *WithContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *WithContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *WithContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitWith(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) With() (localctx IWithContext) {
-	localctx = NewWithContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 4, SqlBaseParserRULE_with)
-	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(97)
-		p.Match(SqlBaseParserWITH)
-	}
-	p.SetState(99)
-	p.GetErrorHandler().Sync(p)
-	_la = p.GetTokenStream().LA(1)
-
-	if _la == SqlBaseParserRECURSIVE {
-		{
-			p.SetState(98)
-			p.Match(SqlBaseParserRECURSIVE)
-		}
-
-	}
-	{
-		p.SetState(101)
-		p.NamedQuery()
-	}
-	p.SetState(106)
-	p.GetErrorHandler().Sync(p)
-	_la = p.GetTokenStream().LA(1)
-
-	for _la == SqlBaseParserT__0 {
-		{
-			p.SetState(102)
-			p.Match(SqlBaseParserT__0)
-		}
-		{
-			p.SetState(103)
-			p.NamedQuery()
-		}
-
-		p.SetState(108)
-		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IWithContext)
 }
 
 // IQueryNoWithContext is an interface to support dynamic dispatch.
@@ -1149,197 +950,85 @@ type QueryNoWithContext struct {
 	limit  antlr.Token
 }
 
-func NewEmptyQueryNoWithContext() *QueryNoWithContext {
-	var p = new(QueryNoWithContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_queryNoWith
-	return p
-}
+func NewEmptyQueryNoWithContext() *QueryNoWithContext { _ = "STUB: not implemented"; return nil }
 
-func (*QueryNoWithContext) IsQueryNoWithContext() {}
+func (*QueryNoWithContext) IsQueryNoWithContext() { _ = "STUB: not implemented"; return }
 
 func NewQueryNoWithContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *QueryNoWithContext {
-	var p = new(QueryNoWithContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_queryNoWith
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *QueryNoWithContext) GetParser() antlr.Parser { return s.parser }
+func (s *QueryNoWithContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
-func (s *QueryNoWithContext) GetLimit() antlr.Token { return s.limit }
+func (s *QueryNoWithContext) GetLimit() antlr.Token {
+	_ = "STUB: not implemented"
+	return *new(antlr.Token)
+}
 
-func (s *QueryNoWithContext) SetLimit(v antlr.Token) { s.limit = v }
+func (s *QueryNoWithContext) SetLimit(v antlr.Token) { _ = "STUB: not implemented"; return }
 
 func (s *QueryNoWithContext) QueryTerm() IQueryTermContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IQueryTermContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IQueryTermContext)
+	_ = "STUB: not implemented"
+	return *new(IQueryTermContext)
 }
 
 func (s *QueryNoWithContext) ORDER() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserORDER, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *QueryNoWithContext) BY() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserBY, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *QueryNoWithContext) AllSortItem() []ISortItemContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*ISortItemContext)(nil)).Elem())
-	var tst = make([]ISortItemContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(ISortItemContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *QueryNoWithContext) SortItem(i int) ISortItemContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ISortItemContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(ISortItemContext)
+	_ = "STUB: not implemented"
+	return *new(ISortItemContext)
 }
 
 func (s *QueryNoWithContext) LIMIT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserLIMIT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *QueryNoWithContext) INTEGER_VALUE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserINTEGER_VALUE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *QueryNoWithContext) ALL() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserALL, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *QueryNoWithContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *QueryNoWithContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *QueryNoWithContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitQueryNoWith(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) QueryNoWith() (localctx IQueryNoWithContext) {
-	localctx = NewQueryNoWithContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 6, SqlBaseParserRULE_queryNoWith)
-	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(109)
-		p.queryTerm(0)
-	}
-	p.SetState(120)
-	p.GetErrorHandler().Sync(p)
-	_la = p.GetTokenStream().LA(1)
-
-	if _la == SqlBaseParserORDER {
-		{
-			p.SetState(110)
-			p.Match(SqlBaseParserORDER)
-		}
-		{
-			p.SetState(111)
-			p.Match(SqlBaseParserBY)
-		}
-		{
-			p.SetState(112)
-			p.SortItem()
-		}
-		p.SetState(117)
-		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
-
-		for _la == SqlBaseParserT__0 {
-			{
-				p.SetState(113)
-				p.Match(SqlBaseParserT__0)
-			}
-			{
-				p.SetState(114)
-				p.SortItem()
-			}
-
-			p.SetState(119)
-			p.GetErrorHandler().Sync(p)
-			_la = p.GetTokenStream().LA(1)
-		}
-
-	}
-	p.SetState(124)
-	p.GetErrorHandler().Sync(p)
-	_la = p.GetTokenStream().LA(1)
-
-	if _la == SqlBaseParserLIMIT {
-		{
-			p.SetState(122)
-			p.Match(SqlBaseParserLIMIT)
-		}
-		{
-			p.SetState(123)
-
-			var _lt = p.GetTokenStream().LT(1)
-
-			localctx.(*QueryNoWithContext).limit = _lt
-
-			_la = p.GetTokenStream().LA(1)
-
-			if !(_la == SqlBaseParserALL || _la == SqlBaseParserINTEGER_VALUE) {
-				var _ri = p.GetErrorHandler().RecoverInline(p)
-
-				localctx.(*QueryNoWithContext).limit = _ri
-			} else {
-				p.GetErrorHandler().ReportMatch(p)
-				p.Consume()
-			}
-		}
-
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IQueryNoWithContext)
 }
 
 // IQueryTermContext is an interface to support dynamic dispatch.
@@ -1358,38 +1047,30 @@ type QueryTermContext struct {
 	parser antlr.Parser
 }
 
-func NewEmptyQueryTermContext() *QueryTermContext {
-	var p = new(QueryTermContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_queryTerm
-	return p
-}
+func NewEmptyQueryTermContext() *QueryTermContext { _ = "STUB: not implemented"; return nil }
 
-func (*QueryTermContext) IsQueryTermContext() {}
+func (*QueryTermContext) IsQueryTermContext() { _ = "STUB: not implemented"; return }
 
 func NewQueryTermContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *QueryTermContext {
-	var p = new(QueryTermContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_queryTerm
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *QueryTermContext) GetParser() antlr.Parser { return s.parser }
-
-func (s *QueryTermContext) CopyFrom(ctx *QueryTermContext) {
-	s.BaseParserRuleContext.CopyFrom(ctx.BaseParserRuleContext)
+func (s *QueryTermContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
 }
+
+func (s *QueryTermContext) CopyFrom(ctx *QueryTermContext) { _ = "STUB: not implemented"; return }
 
 func (s *QueryTermContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *QueryTermContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 type QueryTermDefaultContext struct {
@@ -1397,37 +1078,23 @@ type QueryTermDefaultContext struct {
 }
 
 func NewQueryTermDefaultContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *QueryTermDefaultContext {
-	var p = new(QueryTermDefaultContext)
-
-	p.QueryTermContext = NewEmptyQueryTermContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*QueryTermContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *QueryTermDefaultContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *QueryTermDefaultContext) QueryPrimary() IQueryPrimaryContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IQueryPrimaryContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IQueryPrimaryContext)
+	_ = "STUB: not implemented"
+	return *new(IQueryPrimaryContext)
 }
 
 func (s *QueryTermDefaultContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitQueryTermDefault(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type SetOperationContext struct {
@@ -1438,235 +1105,82 @@ type SetOperationContext struct {
 }
 
 func NewSetOperationContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *SetOperationContext {
-	var p = new(SetOperationContext)
-
-	p.QueryTermContext = NewEmptyQueryTermContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*QueryTermContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *SetOperationContext) GetOperator() antlr.Token { return s.operator }
+func (s *SetOperationContext) GetOperator() antlr.Token {
+	_ = "STUB: not implemented"
+	return *new(antlr.Token)
+}
 
-func (s *SetOperationContext) SetOperator(v antlr.Token) { s.operator = v }
+func (s *SetOperationContext) SetOperator(v antlr.Token) { _ = "STUB: not implemented"; return }
 
-func (s *SetOperationContext) GetLeft() IQueryTermContext { return s.left }
+func (s *SetOperationContext) GetLeft() IQueryTermContext {
+	_ = "STUB: not implemented"
+	return *new(IQueryTermContext)
+}
 
-func (s *SetOperationContext) GetRight() IQueryTermContext { return s.right }
+func (s *SetOperationContext) GetRight() IQueryTermContext {
+	_ = "STUB: not implemented"
+	return *new(IQueryTermContext)
+}
 
-func (s *SetOperationContext) SetLeft(v IQueryTermContext) { s.left = v }
+func (s *SetOperationContext) SetLeft(v IQueryTermContext) { _ = "STUB: not implemented"; return }
 
-func (s *SetOperationContext) SetRight(v IQueryTermContext) { s.right = v }
+func (s *SetOperationContext) SetRight(v IQueryTermContext) { _ = "STUB: not implemented"; return }
 
 func (s *SetOperationContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *SetOperationContext) AllQueryTerm() []IQueryTermContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IQueryTermContext)(nil)).Elem())
-	var tst = make([]IQueryTermContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(IQueryTermContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *SetOperationContext) QueryTerm(i int) IQueryTermContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IQueryTermContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IQueryTermContext)
+	_ = "STUB: not implemented"
+	return *new(IQueryTermContext)
 }
 
 func (s *SetOperationContext) INTERSECT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserINTERSECT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *SetOperationContext) SetQuantifier() ISetQuantifierContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ISetQuantifierContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(ISetQuantifierContext)
+	_ = "STUB: not implemented"
+	return *new(ISetQuantifierContext)
 }
 
 func (s *SetOperationContext) UNION() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserUNION, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *SetOperationContext) EXCEPT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserEXCEPT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *SetOperationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitSetOperation(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) QueryTerm() (localctx IQueryTermContext) {
-	return p.queryTerm(0)
+	_ = "STUB: not implemented"
+	return *new(IQueryTermContext)
 }
 
 func (p *SqlBaseParser) queryTerm(_p int) (localctx IQueryTermContext) {
-	var _parentctx antlr.ParserRuleContext = p.GetParserRuleContext()
-	_parentState := p.GetState()
-	localctx = NewQueryTermContext(p, p.GetParserRuleContext(), _parentState)
-	var _prevctx IQueryTermContext = localctx
-	var _ antlr.ParserRuleContext = _prevctx // TODO: To prevent unused variable warning.
-	_startState := 8
-	p.EnterRecursionRule(localctx, 8, SqlBaseParserRULE_queryTerm, _p)
-	var _la int
-
-	defer func() {
-		p.UnrollRecursionContexts(_parentctx)
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	var _alt int
-
-	p.EnterOuterAlt(localctx, 1)
-	localctx = NewQueryTermDefaultContext(p, localctx)
-	p.SetParserRuleContext(localctx)
-	_prevctx = localctx
-
-	{
-		p.SetState(127)
-		p.QueryPrimary()
-	}
-
-	p.GetParserRuleContext().SetStop(p.GetTokenStream().LT(-1))
-	p.SetState(143)
-	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 9, p.GetParserRuleContext())
-
-	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
-		if _alt == 1 {
-			if p.GetParseListeners() != nil {
-				p.TriggerExitRuleEvent()
-			}
-			_prevctx = localctx
-			p.SetState(141)
-			p.GetErrorHandler().Sync(p)
-			switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 8, p.GetParserRuleContext()) {
-			case 1:
-				localctx = NewSetOperationContext(p, NewQueryTermContext(p, _parentctx, _parentState))
-				localctx.(*SetOperationContext).left = _prevctx
-
-				p.PushNewRecursionContext(localctx, _startState, SqlBaseParserRULE_queryTerm)
-				p.SetState(129)
-
-				if !(p.Precpred(p.GetParserRuleContext(), 2)) {
-					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 2)", ""))
-				}
-				{
-					p.SetState(130)
-
-					var _m = p.Match(SqlBaseParserINTERSECT)
-
-					localctx.(*SetOperationContext).operator = _m
-				}
-				p.SetState(132)
-				p.GetErrorHandler().Sync(p)
-				_la = p.GetTokenStream().LA(1)
-
-				if _la == SqlBaseParserALL || _la == SqlBaseParserDISTINCT {
-					{
-						p.SetState(131)
-						p.SetQuantifier()
-					}
-
-				}
-				{
-					p.SetState(134)
-
-					var _x = p.queryTerm(3)
-
-					localctx.(*SetOperationContext).right = _x
-				}
-
-			case 2:
-				localctx = NewSetOperationContext(p, NewQueryTermContext(p, _parentctx, _parentState))
-				localctx.(*SetOperationContext).left = _prevctx
-
-				p.PushNewRecursionContext(localctx, _startState, SqlBaseParserRULE_queryTerm)
-				p.SetState(135)
-
-				if !(p.Precpred(p.GetParserRuleContext(), 1)) {
-					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 1)", ""))
-				}
-				{
-					p.SetState(136)
-
-					var _lt = p.GetTokenStream().LT(1)
-
-					localctx.(*SetOperationContext).operator = _lt
-
-					_la = p.GetTokenStream().LA(1)
-
-					if !(_la == SqlBaseParserEXCEPT || _la == SqlBaseParserUNION) {
-						var _ri = p.GetErrorHandler().RecoverInline(p)
-
-						localctx.(*SetOperationContext).operator = _ri
-					} else {
-						p.GetErrorHandler().ReportMatch(p)
-						p.Consume()
-					}
-				}
-				p.SetState(138)
-				p.GetErrorHandler().Sync(p)
-				_la = p.GetTokenStream().LA(1)
-
-				if _la == SqlBaseParserALL || _la == SqlBaseParserDISTINCT {
-					{
-						p.SetState(137)
-						p.SetQuantifier()
-					}
-
-				}
-				{
-					p.SetState(140)
-
-					var _x = p.queryTerm(2)
-
-					localctx.(*SetOperationContext).right = _x
-				}
-
-			}
-
-		}
-		p.SetState(145)
-		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 9, p.GetParserRuleContext())
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IQueryTermContext)
 }
+
+// TODO: To prevent unused variable warning.
 
 // IQueryPrimaryContext is an interface to support dynamic dispatch.
 type IQueryPrimaryContext interface {
@@ -1684,38 +1198,30 @@ type QueryPrimaryContext struct {
 	parser antlr.Parser
 }
 
-func NewEmptyQueryPrimaryContext() *QueryPrimaryContext {
-	var p = new(QueryPrimaryContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_queryPrimary
-	return p
-}
+func NewEmptyQueryPrimaryContext() *QueryPrimaryContext { _ = "STUB: not implemented"; return nil }
 
-func (*QueryPrimaryContext) IsQueryPrimaryContext() {}
+func (*QueryPrimaryContext) IsQueryPrimaryContext() { _ = "STUB: not implemented"; return }
 
 func NewQueryPrimaryContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *QueryPrimaryContext {
-	var p = new(QueryPrimaryContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_queryPrimary
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *QueryPrimaryContext) GetParser() antlr.Parser { return s.parser }
-
-func (s *QueryPrimaryContext) CopyFrom(ctx *QueryPrimaryContext) {
-	s.BaseParserRuleContext.CopyFrom(ctx.BaseParserRuleContext)
+func (s *QueryPrimaryContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
 }
+
+func (s *QueryPrimaryContext) CopyFrom(ctx *QueryPrimaryContext) { _ = "STUB: not implemented"; return }
 
 func (s *QueryPrimaryContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *QueryPrimaryContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 type SubqueryContext struct {
@@ -1723,37 +1229,23 @@ type SubqueryContext struct {
 }
 
 func NewSubqueryContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *SubqueryContext {
-	var p = new(SubqueryContext)
-
-	p.QueryPrimaryContext = NewEmptyQueryPrimaryContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*QueryPrimaryContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *SubqueryContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *SubqueryContext) QueryNoWith() IQueryNoWithContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IQueryNoWithContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IQueryNoWithContext)
+	_ = "STUB: not implemented"
+	return *new(IQueryNoWithContext)
 }
 
 func (s *SubqueryContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitSubquery(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type QueryPrimaryDefaultContext struct {
@@ -1761,37 +1253,23 @@ type QueryPrimaryDefaultContext struct {
 }
 
 func NewQueryPrimaryDefaultContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *QueryPrimaryDefaultContext {
-	var p = new(QueryPrimaryDefaultContext)
-
-	p.QueryPrimaryContext = NewEmptyQueryPrimaryContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*QueryPrimaryContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *QueryPrimaryDefaultContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *QueryPrimaryDefaultContext) QuerySpecification() IQuerySpecificationContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IQuerySpecificationContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IQuerySpecificationContext)
+	_ = "STUB: not implemented"
+	return *new(IQuerySpecificationContext)
 }
 
 func (s *QueryPrimaryDefaultContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitQueryPrimaryDefault(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type TableContext struct {
@@ -1799,41 +1277,28 @@ type TableContext struct {
 }
 
 func NewTableContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *TableContext {
-	var p = new(TableContext)
-
-	p.QueryPrimaryContext = NewEmptyQueryPrimaryContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*QueryPrimaryContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *TableContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *TableContext) TABLE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserTABLE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *TableContext) QualifiedName() IQualifiedNameContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IQualifiedNameContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IQualifiedNameContext)
+	_ = "STUB: not implemented"
+	return *new(IQualifiedNameContext)
 }
 
 func (s *TableContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitTable(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type InlineTableContext struct {
@@ -1841,155 +1306,38 @@ type InlineTableContext struct {
 }
 
 func NewInlineTableContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *InlineTableContext {
-	var p = new(InlineTableContext)
-
-	p.QueryPrimaryContext = NewEmptyQueryPrimaryContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*QueryPrimaryContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *InlineTableContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *InlineTableContext) VALUES() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserVALUES, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *InlineTableContext) AllExpression() []IExpressionContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IExpressionContext)(nil)).Elem())
-	var tst = make([]IExpressionContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(IExpressionContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *InlineTableContext) Expression(i int) IExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IExpressionContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IExpressionContext)
 }
 
 func (s *InlineTableContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitInlineTable(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) QueryPrimary() (localctx IQueryPrimaryContext) {
-	localctx = NewQueryPrimaryContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 10, SqlBaseParserRULE_queryPrimary)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	var _alt int
-
-	p.SetState(162)
-	p.GetErrorHandler().Sync(p)
-
-	switch p.GetTokenStream().LA(1) {
-	case SqlBaseParserSELECT:
-		localctx = NewQueryPrimaryDefaultContext(p, localctx)
-		p.EnterOuterAlt(localctx, 1)
-		{
-			p.SetState(146)
-			p.QuerySpecification()
-		}
-
-	case SqlBaseParserTABLE:
-		localctx = NewTableContext(p, localctx)
-		p.EnterOuterAlt(localctx, 2)
-		{
-			p.SetState(147)
-			p.Match(SqlBaseParserTABLE)
-		}
-		{
-			p.SetState(148)
-			p.QualifiedName()
-		}
-
-	case SqlBaseParserVALUES:
-		localctx = NewInlineTableContext(p, localctx)
-		p.EnterOuterAlt(localctx, 3)
-		{
-			p.SetState(149)
-			p.Match(SqlBaseParserVALUES)
-		}
-		{
-			p.SetState(150)
-			p.Expression()
-		}
-		p.SetState(155)
-		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 10, p.GetParserRuleContext())
-
-		for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
-			if _alt == 1 {
-				{
-					p.SetState(151)
-					p.Match(SqlBaseParserT__0)
-				}
-				{
-					p.SetState(152)
-					p.Expression()
-				}
-
-			}
-			p.SetState(157)
-			p.GetErrorHandler().Sync(p)
-			_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 10, p.GetParserRuleContext())
-		}
-
-	case SqlBaseParserT__1:
-		localctx = NewSubqueryContext(p, localctx)
-		p.EnterOuterAlt(localctx, 4)
-		{
-			p.SetState(158)
-			p.Match(SqlBaseParserT__1)
-		}
-		{
-			p.SetState(159)
-			p.QueryNoWith()
-		}
-		{
-			p.SetState(160)
-			p.Match(SqlBaseParserT__2)
-		}
-
-	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IQueryPrimaryContext)
 }
 
 // ISortItemContext is an interface to support dynamic dispatch.
@@ -2022,166 +1370,82 @@ type SortItemContext struct {
 	nullOrdering antlr.Token
 }
 
-func NewEmptySortItemContext() *SortItemContext {
-	var p = new(SortItemContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_sortItem
-	return p
-}
+func NewEmptySortItemContext() *SortItemContext { _ = "STUB: not implemented"; return nil }
 
-func (*SortItemContext) IsSortItemContext() {}
+func (*SortItemContext) IsSortItemContext() { _ = "STUB: not implemented"; return }
 
 func NewSortItemContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *SortItemContext {
-	var p = new(SortItemContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_sortItem
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *SortItemContext) GetParser() antlr.Parser { return s.parser }
+func (s *SortItemContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
-func (s *SortItemContext) GetOrdering() antlr.Token { return s.ordering }
+func (s *SortItemContext) GetOrdering() antlr.Token {
+	_ = "STUB: not implemented"
+	return *new(antlr.Token)
+}
 
-func (s *SortItemContext) GetNullOrdering() antlr.Token { return s.nullOrdering }
+func (s *SortItemContext) GetNullOrdering() antlr.Token {
+	_ = "STUB: not implemented"
+	return *new(antlr.Token)
+}
 
-func (s *SortItemContext) SetOrdering(v antlr.Token) { s.ordering = v }
+func (s *SortItemContext) SetOrdering(v antlr.Token) { _ = "STUB: not implemented"; return }
 
-func (s *SortItemContext) SetNullOrdering(v antlr.Token) { s.nullOrdering = v }
+func (s *SortItemContext) SetNullOrdering(v antlr.Token) { _ = "STUB: not implemented"; return }
 
 func (s *SortItemContext) Expression() IExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IExpressionContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IExpressionContext)
 }
 
 func (s *SortItemContext) NULLS() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserNULLS, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *SortItemContext) ASC() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserASC, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *SortItemContext) DESC() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserDESC, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *SortItemContext) FIRST() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserFIRST, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *SortItemContext) LAST() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserLAST, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *SortItemContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *SortItemContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *SortItemContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitSortItem(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) SortItem() (localctx ISortItemContext) {
-	localctx = NewSortItemContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 12, SqlBaseParserRULE_sortItem)
-	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(164)
-		p.Expression()
-	}
-	p.SetState(166)
-	p.GetErrorHandler().Sync(p)
-	_la = p.GetTokenStream().LA(1)
-
-	if _la == SqlBaseParserASC || _la == SqlBaseParserDESC {
-		{
-			p.SetState(165)
-
-			var _lt = p.GetTokenStream().LT(1)
-
-			localctx.(*SortItemContext).ordering = _lt
-
-			_la = p.GetTokenStream().LA(1)
-
-			if !(_la == SqlBaseParserASC || _la == SqlBaseParserDESC) {
-				var _ri = p.GetErrorHandler().RecoverInline(p)
-
-				localctx.(*SortItemContext).ordering = _ri
-			} else {
-				p.GetErrorHandler().ReportMatch(p)
-				p.Consume()
-			}
-		}
-
-	}
-	p.SetState(170)
-	p.GetErrorHandler().Sync(p)
-	_la = p.GetTokenStream().LA(1)
-
-	if _la == SqlBaseParserNULLS {
-		{
-			p.SetState(168)
-			p.Match(SqlBaseParserNULLS)
-		}
-		{
-			p.SetState(169)
-
-			var _lt = p.GetTokenStream().LT(1)
-
-			localctx.(*SortItemContext).nullOrdering = _lt
-
-			_la = p.GetTokenStream().LA(1)
-
-			if !(_la == SqlBaseParserFIRST || _la == SqlBaseParserLAST) {
-				var _ri = p.GetErrorHandler().RecoverInline(p)
-
-				localctx.(*SortItemContext).nullOrdering = _ri
-			} else {
-				p.GetErrorHandler().ReportMatch(p)
-				p.Consume()
-			}
-		}
-
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(ISortItemContext)
 }
 
 // IQuerySpecificationContext is an interface to support dynamic dispatch.
@@ -2215,315 +1479,130 @@ type QuerySpecificationContext struct {
 }
 
 func NewEmptyQuerySpecificationContext() *QuerySpecificationContext {
-	var p = new(QuerySpecificationContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_querySpecification
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (*QuerySpecificationContext) IsQuerySpecificationContext() {}
+func (*QuerySpecificationContext) IsQuerySpecificationContext() { _ = "STUB: not implemented"; return }
 
 func NewQuerySpecificationContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *QuerySpecificationContext {
-	var p = new(QuerySpecificationContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_querySpecification
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *QuerySpecificationContext) GetParser() antlr.Parser { return s.parser }
+func (s *QuerySpecificationContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
-func (s *QuerySpecificationContext) GetWhere() IBooleanExpressionContext { return s.where }
+func (s *QuerySpecificationContext) GetWhere() IBooleanExpressionContext {
+	_ = "STUB: not implemented"
+	return *new(IBooleanExpressionContext)
+}
 
-func (s *QuerySpecificationContext) GetHaving() IBooleanExpressionContext { return s.having }
+func (s *QuerySpecificationContext) GetHaving() IBooleanExpressionContext {
+	_ = "STUB: not implemented"
+	return *new(IBooleanExpressionContext)
+}
 
-func (s *QuerySpecificationContext) SetWhere(v IBooleanExpressionContext) { s.where = v }
+func (s *QuerySpecificationContext) SetWhere(v IBooleanExpressionContext) {
+	_ = "STUB: not implemented"
+	return
+}
 
-func (s *QuerySpecificationContext) SetHaving(v IBooleanExpressionContext) { s.having = v }
+func (s *QuerySpecificationContext) SetHaving(v IBooleanExpressionContext) {
+	_ = "STUB: not implemented"
+	return
+}
 
 func (s *QuerySpecificationContext) SELECT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserSELECT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *QuerySpecificationContext) AllSelectItem() []ISelectItemContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*ISelectItemContext)(nil)).Elem())
-	var tst = make([]ISelectItemContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(ISelectItemContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *QuerySpecificationContext) SelectItem(i int) ISelectItemContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ISelectItemContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(ISelectItemContext)
+	_ = "STUB: not implemented"
+	return *new(ISelectItemContext)
 }
 
 func (s *QuerySpecificationContext) SetQuantifier() ISetQuantifierContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ISetQuantifierContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(ISetQuantifierContext)
+	_ = "STUB: not implemented"
+	return *new(ISetQuantifierContext)
 }
 
 func (s *QuerySpecificationContext) FROM() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserFROM, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *QuerySpecificationContext) AllRelation() []IRelationContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IRelationContext)(nil)).Elem())
-	var tst = make([]IRelationContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(IRelationContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *QuerySpecificationContext) Relation(i int) IRelationContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IRelationContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IRelationContext)
+	_ = "STUB: not implemented"
+	return *new(IRelationContext)
 }
 
 func (s *QuerySpecificationContext) WHERE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserWHERE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *QuerySpecificationContext) GROUP() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserGROUP, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *QuerySpecificationContext) BY() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserBY, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *QuerySpecificationContext) GroupBy() IGroupByContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IGroupByContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IGroupByContext)
+	_ = "STUB: not implemented"
+	return *new(IGroupByContext)
 }
 
 func (s *QuerySpecificationContext) HAVING() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserHAVING, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *QuerySpecificationContext) AllBooleanExpression() []IBooleanExpressionContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IBooleanExpressionContext)(nil)).Elem())
-	var tst = make([]IBooleanExpressionContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(IBooleanExpressionContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *QuerySpecificationContext) BooleanExpression(i int) IBooleanExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IBooleanExpressionContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IBooleanExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IBooleanExpressionContext)
 }
 
 func (s *QuerySpecificationContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *QuerySpecificationContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *QuerySpecificationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitQuerySpecification(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) QuerySpecification() (localctx IQuerySpecificationContext) {
-	localctx = NewQuerySpecificationContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 14, SqlBaseParserRULE_querySpecification)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	var _alt int
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(172)
-		p.Match(SqlBaseParserSELECT)
-	}
-	p.SetState(174)
-	p.GetErrorHandler().Sync(p)
-
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 14, p.GetParserRuleContext()) == 1 {
-		{
-			p.SetState(173)
-			p.SetQuantifier()
-		}
-
-	}
-	{
-		p.SetState(176)
-		p.SelectItem()
-	}
-	p.SetState(181)
-	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 15, p.GetParserRuleContext())
-
-	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
-		if _alt == 1 {
-			{
-				p.SetState(177)
-				p.Match(SqlBaseParserT__0)
-			}
-			{
-				p.SetState(178)
-				p.SelectItem()
-			}
-
-		}
-		p.SetState(183)
-		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 15, p.GetParserRuleContext())
-	}
-	p.SetState(193)
-	p.GetErrorHandler().Sync(p)
-
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 17, p.GetParserRuleContext()) == 1 {
-		{
-			p.SetState(184)
-			p.Match(SqlBaseParserFROM)
-		}
-		{
-			p.SetState(185)
-			p.relation(0)
-		}
-		p.SetState(190)
-		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 16, p.GetParserRuleContext())
-
-		for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
-			if _alt == 1 {
-				{
-					p.SetState(186)
-					p.Match(SqlBaseParserT__0)
-				}
-				{
-					p.SetState(187)
-					p.relation(0)
-				}
-
-			}
-			p.SetState(192)
-			p.GetErrorHandler().Sync(p)
-			_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 16, p.GetParserRuleContext())
-		}
-
-	}
-	p.SetState(197)
-	p.GetErrorHandler().Sync(p)
-
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 18, p.GetParserRuleContext()) == 1 {
-		{
-			p.SetState(195)
-			p.Match(SqlBaseParserWHERE)
-		}
-		{
-			p.SetState(196)
-
-			var _x = p.booleanExpression(0)
-
-			localctx.(*QuerySpecificationContext).where = _x
-		}
-
-	}
-	p.SetState(202)
-	p.GetErrorHandler().Sync(p)
-
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 19, p.GetParserRuleContext()) == 1 {
-		{
-			p.SetState(199)
-			p.Match(SqlBaseParserGROUP)
-		}
-		{
-			p.SetState(200)
-			p.Match(SqlBaseParserBY)
-		}
-		{
-			p.SetState(201)
-			p.GroupBy()
-		}
-
-	}
-	p.SetState(206)
-	p.GetErrorHandler().Sync(p)
-
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 20, p.GetParserRuleContext()) == 1 {
-		{
-			p.SetState(204)
-			p.Match(SqlBaseParserHAVING)
-		}
-		{
-			p.SetState(205)
-
-			var _x = p.booleanExpression(0)
-
-			localctx.(*QuerySpecificationContext).having = _x
-		}
-
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IQuerySpecificationContext)
 }
 
 // IGroupByContext is an interface to support dynamic dispatch.
@@ -2542,138 +1621,53 @@ type GroupByContext struct {
 	parser antlr.Parser
 }
 
-func NewEmptyGroupByContext() *GroupByContext {
-	var p = new(GroupByContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_groupBy
-	return p
-}
+func NewEmptyGroupByContext() *GroupByContext { _ = "STUB: not implemented"; return nil }
 
-func (*GroupByContext) IsGroupByContext() {}
+func (*GroupByContext) IsGroupByContext() { _ = "STUB: not implemented"; return }
 
 func NewGroupByContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *GroupByContext {
-	var p = new(GroupByContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_groupBy
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *GroupByContext) GetParser() antlr.Parser { return s.parser }
+func (s *GroupByContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *GroupByContext) AllGroupingElement() []IGroupingElementContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IGroupingElementContext)(nil)).Elem())
-	var tst = make([]IGroupingElementContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(IGroupingElementContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *GroupByContext) GroupingElement(i int) IGroupingElementContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IGroupingElementContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IGroupingElementContext)
+	_ = "STUB: not implemented"
+	return *new(IGroupingElementContext)
 }
 
 func (s *GroupByContext) SetQuantifier() ISetQuantifierContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ISetQuantifierContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(ISetQuantifierContext)
+	_ = "STUB: not implemented"
+	return *new(ISetQuantifierContext)
 }
 
 func (s *GroupByContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *GroupByContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *GroupByContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitGroupBy(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) GroupBy() (localctx IGroupByContext) {
-	localctx = NewGroupByContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 16, SqlBaseParserRULE_groupBy)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	var _alt int
-
-	p.EnterOuterAlt(localctx, 1)
-	p.SetState(209)
-	p.GetErrorHandler().Sync(p)
-
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 21, p.GetParserRuleContext()) == 1 {
-		{
-			p.SetState(208)
-			p.SetQuantifier()
-		}
-
-	}
-	{
-		p.SetState(211)
-		p.GroupingElement()
-	}
-	p.SetState(216)
-	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 22, p.GetParserRuleContext())
-
-	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
-		if _alt == 1 {
-			{
-				p.SetState(212)
-				p.Match(SqlBaseParserT__0)
-			}
-			{
-				p.SetState(213)
-				p.GroupingElement()
-			}
-
-		}
-		p.SetState(218)
-		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 22, p.GetParserRuleContext())
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IGroupByContext)
 }
 
 // IGroupingElementContext is an interface to support dynamic dispatch.
@@ -2693,37 +1687,35 @@ type GroupingElementContext struct {
 }
 
 func NewEmptyGroupingElementContext() *GroupingElementContext {
-	var p = new(GroupingElementContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_groupingElement
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (*GroupingElementContext) IsGroupingElementContext() {}
+func (*GroupingElementContext) IsGroupingElementContext() { _ = "STUB: not implemented"; return }
 
 func NewGroupingElementContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *GroupingElementContext {
-	var p = new(GroupingElementContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_groupingElement
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *GroupingElementContext) GetParser() antlr.Parser { return s.parser }
+func (s *GroupingElementContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *GroupingElementContext) CopyFrom(ctx *GroupingElementContext) {
-	s.BaseParserRuleContext.CopyFrom(ctx.BaseParserRuleContext)
+	_ = "STUB: not implemented"
+	return
 }
 
 func (s *GroupingElementContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *GroupingElementContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 type SingleGroupingSetContext struct {
@@ -2731,67 +1723,28 @@ type SingleGroupingSetContext struct {
 }
 
 func NewSingleGroupingSetContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *SingleGroupingSetContext {
-	var p = new(SingleGroupingSetContext)
-
-	p.GroupingElementContext = NewEmptyGroupingElementContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*GroupingElementContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *SingleGroupingSetContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *SingleGroupingSetContext) GroupingExpressions() IGroupingExpressionsContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IGroupingExpressionsContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IGroupingExpressionsContext)
+	_ = "STUB: not implemented"
+	return *new(IGroupingExpressionsContext)
 }
 
 func (s *SingleGroupingSetContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitSingleGroupingSet(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) GroupingElement() (localctx IGroupingElementContext) {
-	localctx = NewGroupingElementContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 18, SqlBaseParserRULE_groupingElement)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	localctx = NewSingleGroupingSetContext(p, localctx)
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(219)
-		p.GroupingExpressions()
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IGroupingElementContext)
 }
 
 // IGroupingExpressionsContext is an interface to support dynamic dispatch.
@@ -2811,142 +1764,53 @@ type GroupingExpressionsContext struct {
 }
 
 func NewEmptyGroupingExpressionsContext() *GroupingExpressionsContext {
-	var p = new(GroupingExpressionsContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_groupingExpressions
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (*GroupingExpressionsContext) IsGroupingExpressionsContext() {}
+func (*GroupingExpressionsContext) IsGroupingExpressionsContext() {
+	_ = "STUB: not implemented"
+	return
+}
 
 func NewGroupingExpressionsContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *GroupingExpressionsContext {
-	var p = new(GroupingExpressionsContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_groupingExpressions
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *GroupingExpressionsContext) GetParser() antlr.Parser { return s.parser }
+func (s *GroupingExpressionsContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *GroupingExpressionsContext) AllExpression() []IExpressionContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IExpressionContext)(nil)).Elem())
-	var tst = make([]IExpressionContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(IExpressionContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *GroupingExpressionsContext) Expression(i int) IExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IExpressionContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IExpressionContext)
 }
 
 func (s *GroupingExpressionsContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *GroupingExpressionsContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *GroupingExpressionsContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitGroupingExpressions(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) GroupingExpressions() (localctx IGroupingExpressionsContext) {
-	localctx = NewGroupingExpressionsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 20, SqlBaseParserRULE_groupingExpressions)
-	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.SetState(234)
-	p.GetErrorHandler().Sync(p)
-	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 25, p.GetParserRuleContext()) {
-	case 1:
-		p.EnterOuterAlt(localctx, 1)
-		{
-			p.SetState(221)
-			p.Match(SqlBaseParserT__1)
-		}
-		p.SetState(230)
-		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
-
-		if (((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<SqlBaseParserT__1)|(1<<SqlBaseParserADD)|(1<<SqlBaseParserALL)|(1<<SqlBaseParserANALYZE)|(1<<SqlBaseParserANY)|(1<<SqlBaseParserARRAY)|(1<<SqlBaseParserASC)|(1<<SqlBaseParserAT)|(1<<SqlBaseParserBERNOULLI)|(1<<SqlBaseParserCALL)|(1<<SqlBaseParserCASCADE)|(1<<SqlBaseParserCATALOGS)|(1<<SqlBaseParserCOALESCE)|(1<<SqlBaseParserCOLUMN)|(1<<SqlBaseParserCOLUMNS)|(1<<SqlBaseParserCOMMENT)|(1<<SqlBaseParserCOMMITTED))) != 0) || (((_la-33)&-(0x1f+1)) == 0 && ((1<<uint((_la-33)))&((1<<(SqlBaseParserCURRENT-33))|(1<<(SqlBaseParserCURRENT_DATE-33))|(1<<(SqlBaseParserCURRENT_TIME-33))|(1<<(SqlBaseParserCURRENT_TIMESTAMP-33))|(1<<(SqlBaseParserCURRENT_USER-33))|(1<<(SqlBaseParserDATA-33))|(1<<(SqlBaseParserDATE-33))|(1<<(SqlBaseParserDAY-33))|(1<<(SqlBaseParserDESC-33))|(1<<(SqlBaseParserDISTRIBUTED-33))|(1<<(SqlBaseParserEXCLUDING-33))|(1<<(SqlBaseParserEXPLAIN-33))|(1<<(SqlBaseParserFALSE-33))|(1<<(SqlBaseParserFILTER-33))|(1<<(SqlBaseParserFIRST-33))|(1<<(SqlBaseParserFOLLOWING-33))|(1<<(SqlBaseParserFORMAT-33)))) != 0) || (((_la-65)&-(0x1f+1)) == 0 && ((1<<uint((_la-65)))&((1<<(SqlBaseParserFUNCTIONS-65))|(1<<(SqlBaseParserGROUPING-65))|(1<<(SqlBaseParserHOUR-65))|(1<<(SqlBaseParserIF-65))|(1<<(SqlBaseParserINCLUDING-65))|(1<<(SqlBaseParserINPUT-65))|(1<<(SqlBaseParserINTEGER-65))|(1<<(SqlBaseParserINTERVAL-65))|(1<<(SqlBaseParserLAST-65))|(1<<(SqlBaseParserLATERAL-65))|(1<<(SqlBaseParserLEVEL-65))|(1<<(SqlBaseParserLIMIT-65))|(1<<(SqlBaseParserLOCALTIME-65))|(1<<(SqlBaseParserLOCALTIMESTAMP-65))|(1<<(SqlBaseParserLOGICAL-65))|(1<<(SqlBaseParserMAP-65))|(1<<(SqlBaseParserMINUTE-65))|(1<<(SqlBaseParserMONTH-65)))) != 0) || (((_la-98)&-(0x1f+1)) == 0 && ((1<<uint((_la-98)))&((1<<(SqlBaseParserNFC-98))|(1<<(SqlBaseParserNFD-98))|(1<<(SqlBaseParserNFKC-98))|(1<<(SqlBaseParserNFKD-98))|(1<<(SqlBaseParserNO-98))|(1<<(SqlBaseParserNOT-98))|(1<<(SqlBaseParserNULL-98))|(1<<(SqlBaseParserNULLIF-98))|(1<<(SqlBaseParserNULLS-98))|(1<<(SqlBaseParserONLY-98))|(1<<(SqlBaseParserOPTION-98))|(1<<(SqlBaseParserORDINALITY-98))|(1<<(SqlBaseParserOUTPUT-98))|(1<<(SqlBaseParserOVER-98))|(1<<(SqlBaseParserPARTITION-98))|(1<<(SqlBaseParserPARTITIONS-98))|(1<<(SqlBaseParserPOSITION-98))|(1<<(SqlBaseParserPRECEDING-98))|(1<<(SqlBaseParserPRIVILEGES-98))|(1<<(SqlBaseParserPROPERTIES-98))|(1<<(SqlBaseParserPUBLIC-98))|(1<<(SqlBaseParserRANGE-98))|(1<<(SqlBaseParserREAD-98))|(1<<(SqlBaseParserRENAME-98))|(1<<(SqlBaseParserREPEATABLE-98)))) != 0) || (((_la-130)&-(0x1f+1)) == 0 && ((1<<uint((_la-130)))&((1<<(SqlBaseParserREPLACE-130))|(1<<(SqlBaseParserRESET-130))|(1<<(SqlBaseParserRESTRICT-130))|(1<<(SqlBaseParserREVOKE-130))|(1<<(SqlBaseParserROLLBACK-130))|(1<<(SqlBaseParserROW-130))|(1<<(SqlBaseParserROWS-130))|(1<<(SqlBaseParserSCHEMA-130))|(1<<(SqlBaseParserSCHEMAS-130))|(1<<(SqlBaseParserSECOND-130))|(1<<(SqlBaseParserSERIALIZABLE-130))|(1<<(SqlBaseParserSESSION-130))|(1<<(SqlBaseParserSET-130))|(1<<(SqlBaseParserSETS-130))|(1<<(SqlBaseParserSHOW-130))|(1<<(SqlBaseParserSMALLINT-130))|(1<<(SqlBaseParserSOME-130))|(1<<(SqlBaseParserSTART-130))|(1<<(SqlBaseParserSTATS-130))|(1<<(SqlBaseParserSUBSTRING-130))|(1<<(SqlBaseParserSYSTEM-130))|(1<<(SqlBaseParserTABLES-130))|(1<<(SqlBaseParserTABLESAMPLE-130))|(1<<(SqlBaseParserTEXT-130))|(1<<(SqlBaseParserTIME-130))|(1<<(SqlBaseParserTIMESTAMP-130))|(1<<(SqlBaseParserTINYINT-130)))) != 0) || (((_la-162)&-(0x1f+1)) == 0 && ((1<<uint((_la-162)))&((1<<(SqlBaseParserTO-162))|(1<<(SqlBaseParserTRUE-162))|(1<<(SqlBaseParserTRY_CAST-162))|(1<<(SqlBaseParserTYPE-162))|(1<<(SqlBaseParserUNBOUNDED-162))|(1<<(SqlBaseParserUNCOMMITTED-162))|(1<<(SqlBaseParserUSE-162))|(1<<(SqlBaseParserVALIDATE-162))|(1<<(SqlBaseParserVERBOSE-162))|(1<<(SqlBaseParserVIEW-162))|(1<<(SqlBaseParserWORK-162))|(1<<(SqlBaseParserWRITE-162))|(1<<(SqlBaseParserYEAR-162))|(1<<(SqlBaseParserZONE-162))|(1<<(SqlBaseParserPLUS-162))|(1<<(SqlBaseParserMINUS-162)))) != 0) || (((_la-196)&-(0x1f+1)) == 0 && ((1<<uint((_la-196)))&((1<<(SqlBaseParserSTRING-196))|(1<<(SqlBaseParserUNICODE_STRING-196))|(1<<(SqlBaseParserBINARY_LITERAL-196))|(1<<(SqlBaseParserINTEGER_VALUE-196))|(1<<(SqlBaseParserDECIMAL_VALUE-196))|(1<<(SqlBaseParserDOUBLE_VALUE-196))|(1<<(SqlBaseParserIDENTIFIER-196))|(1<<(SqlBaseParserDIGIT_IDENTIFIER-196))|(1<<(SqlBaseParserQUOTED_IDENTIFIER-196))|(1<<(SqlBaseParserBACKQUOTED_IDENTIFIER-196))|(1<<(SqlBaseParserDOUBLE_PRECISION-196)))) != 0) {
-			{
-				p.SetState(222)
-				p.Expression()
-			}
-			p.SetState(227)
-			p.GetErrorHandler().Sync(p)
-			_la = p.GetTokenStream().LA(1)
-
-			for _la == SqlBaseParserT__0 {
-				{
-					p.SetState(223)
-					p.Match(SqlBaseParserT__0)
-				}
-				{
-					p.SetState(224)
-					p.Expression()
-				}
-
-				p.SetState(229)
-				p.GetErrorHandler().Sync(p)
-				_la = p.GetTokenStream().LA(1)
-			}
-
-		}
-		{
-			p.SetState(232)
-			p.Match(SqlBaseParserT__2)
-		}
-
-	case 2:
-		p.EnterOuterAlt(localctx, 2)
-		{
-			p.SetState(233)
-			p.Expression()
-		}
-
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IGroupingExpressionsContext)
 }
 
 // INamedQueryContext is an interface to support dynamic dispatch.
@@ -2972,142 +1836,65 @@ type NamedQueryContext struct {
 	name   IIdentifierContext
 }
 
-func NewEmptyNamedQueryContext() *NamedQueryContext {
-	var p = new(NamedQueryContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_namedQuery
-	return p
-}
+func NewEmptyNamedQueryContext() *NamedQueryContext { _ = "STUB: not implemented"; return nil }
 
-func (*NamedQueryContext) IsNamedQueryContext() {}
+func (*NamedQueryContext) IsNamedQueryContext() { _ = "STUB: not implemented"; return }
 
 func NewNamedQueryContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *NamedQueryContext {
-	var p = new(NamedQueryContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_namedQuery
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *NamedQueryContext) GetParser() antlr.Parser { return s.parser }
+func (s *NamedQueryContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
-func (s *NamedQueryContext) GetName() IIdentifierContext { return s.name }
+func (s *NamedQueryContext) GetName() IIdentifierContext {
+	_ = "STUB: not implemented"
+	return *new(IIdentifierContext)
+}
 
-func (s *NamedQueryContext) SetName(v IIdentifierContext) { s.name = v }
+func (s *NamedQueryContext) SetName(v IIdentifierContext) { _ = "STUB: not implemented"; return }
 
 func (s *NamedQueryContext) AS() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserAS, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NamedQueryContext) Query() IQueryContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IQueryContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IQueryContext)
+	_ = "STUB: not implemented"
+	return *new(IQueryContext)
 }
 
 func (s *NamedQueryContext) Identifier() IIdentifierContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IIdentifierContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IIdentifierContext)
+	_ = "STUB: not implemented"
+	return *new(IIdentifierContext)
 }
 
 func (s *NamedQueryContext) ColumnAliases() IColumnAliasesContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IColumnAliasesContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IColumnAliasesContext)
+	_ = "STUB: not implemented"
+	return *new(IColumnAliasesContext)
 }
 
 func (s *NamedQueryContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *NamedQueryContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *NamedQueryContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitNamedQuery(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) NamedQuery() (localctx INamedQueryContext) {
-	localctx = NewNamedQueryContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 22, SqlBaseParserRULE_namedQuery)
-	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(236)
-
-		var _x = p.Identifier()
-
-		localctx.(*NamedQueryContext).name = _x
-	}
-	p.SetState(238)
-	p.GetErrorHandler().Sync(p)
-	_la = p.GetTokenStream().LA(1)
-
-	if _la == SqlBaseParserT__1 {
-		{
-			p.SetState(237)
-			p.ColumnAliases()
-		}
-
-	}
-	{
-		p.SetState(240)
-		p.Match(SqlBaseParserAS)
-	}
-	{
-		p.SetState(241)
-		p.Match(SqlBaseParserT__1)
-	}
-	{
-		p.SetState(242)
-		p.Query()
-	}
-	{
-		p.SetState(243)
-		p.Match(SqlBaseParserT__2)
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(INamedQueryContext)
 }
 
 // ISetQuantifierContext is an interface to support dynamic dispatch.
@@ -3126,89 +1913,48 @@ type SetQuantifierContext struct {
 	parser antlr.Parser
 }
 
-func NewEmptySetQuantifierContext() *SetQuantifierContext {
-	var p = new(SetQuantifierContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_setQuantifier
-	return p
-}
+func NewEmptySetQuantifierContext() *SetQuantifierContext { _ = "STUB: not implemented"; return nil }
 
-func (*SetQuantifierContext) IsSetQuantifierContext() {}
+func (*SetQuantifierContext) IsSetQuantifierContext() { _ = "STUB: not implemented"; return }
 
 func NewSetQuantifierContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *SetQuantifierContext {
-	var p = new(SetQuantifierContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_setQuantifier
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *SetQuantifierContext) GetParser() antlr.Parser { return s.parser }
+func (s *SetQuantifierContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *SetQuantifierContext) DISTINCT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserDISTINCT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *SetQuantifierContext) ALL() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserALL, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *SetQuantifierContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *SetQuantifierContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *SetQuantifierContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitSetQuantifier(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) SetQuantifier() (localctx ISetQuantifierContext) {
-	localctx = NewSetQuantifierContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 24, SqlBaseParserRULE_setQuantifier)
-	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(245)
-		_la = p.GetTokenStream().LA(1)
-
-		if !(_la == SqlBaseParserALL || _la == SqlBaseParserDISTINCT) {
-			p.GetErrorHandler().RecoverInline(p)
-		} else {
-			p.GetErrorHandler().ReportMatch(p)
-			p.Consume()
-		}
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(ISetQuantifierContext)
 }
 
 // ISelectItemContext is an interface to support dynamic dispatch.
@@ -3227,38 +1973,30 @@ type SelectItemContext struct {
 	parser antlr.Parser
 }
 
-func NewEmptySelectItemContext() *SelectItemContext {
-	var p = new(SelectItemContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_selectItem
-	return p
-}
+func NewEmptySelectItemContext() *SelectItemContext { _ = "STUB: not implemented"; return nil }
 
-func (*SelectItemContext) IsSelectItemContext() {}
+func (*SelectItemContext) IsSelectItemContext() { _ = "STUB: not implemented"; return }
 
 func NewSelectItemContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *SelectItemContext {
-	var p = new(SelectItemContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_selectItem
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *SelectItemContext) GetParser() antlr.Parser { return s.parser }
-
-func (s *SelectItemContext) CopyFrom(ctx *SelectItemContext) {
-	s.BaseParserRuleContext.CopyFrom(ctx.BaseParserRuleContext)
+func (s *SelectItemContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
 }
+
+func (s *SelectItemContext) CopyFrom(ctx *SelectItemContext) { _ = "STUB: not implemented"; return }
 
 func (s *SelectItemContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *SelectItemContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 type SelectAllContext struct {
@@ -3266,41 +2004,28 @@ type SelectAllContext struct {
 }
 
 func NewSelectAllContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *SelectAllContext {
-	var p = new(SelectAllContext)
-
-	p.SelectItemContext = NewEmptySelectItemContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*SelectItemContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *SelectAllContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *SelectAllContext) QualifiedName() IQualifiedNameContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IQualifiedNameContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IQualifiedNameContext)
+	_ = "STUB: not implemented"
+	return *new(IQualifiedNameContext)
 }
 
 func (s *SelectAllContext) ASTERISK() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserASTERISK, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *SelectAllContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitSelectAll(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type SelectSingleContext struct {
@@ -3308,133 +2033,38 @@ type SelectSingleContext struct {
 }
 
 func NewSelectSingleContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *SelectSingleContext {
-	var p = new(SelectSingleContext)
-
-	p.SelectItemContext = NewEmptySelectItemContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*SelectItemContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *SelectSingleContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *SelectSingleContext) Expression() IExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IExpressionContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IExpressionContext)
 }
 
 func (s *SelectSingleContext) Identifier() IIdentifierContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IIdentifierContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IIdentifierContext)
+	_ = "STUB: not implemented"
+	return *new(IIdentifierContext)
 }
 
 func (s *SelectSingleContext) AS() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserAS, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *SelectSingleContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitSelectSingle(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) SelectItem() (localctx ISelectItemContext) {
-	localctx = NewSelectItemContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 26, SqlBaseParserRULE_selectItem)
-	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.SetState(259)
-	p.GetErrorHandler().Sync(p)
-	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 29, p.GetParserRuleContext()) {
-	case 1:
-		localctx = NewSelectSingleContext(p, localctx)
-		p.EnterOuterAlt(localctx, 1)
-		{
-			p.SetState(247)
-			p.Expression()
-		}
-		p.SetState(252)
-		p.GetErrorHandler().Sync(p)
-
-		if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 28, p.GetParserRuleContext()) == 1 {
-			p.SetState(249)
-			p.GetErrorHandler().Sync(p)
-			_la = p.GetTokenStream().LA(1)
-
-			if _la == SqlBaseParserAS {
-				{
-					p.SetState(248)
-					p.Match(SqlBaseParserAS)
-				}
-
-			}
-			{
-				p.SetState(251)
-				p.Identifier()
-			}
-
-		}
-
-	case 2:
-		localctx = NewSelectAllContext(p, localctx)
-		p.EnterOuterAlt(localctx, 2)
-		{
-			p.SetState(254)
-			p.QualifiedName()
-		}
-		{
-			p.SetState(255)
-			p.Match(SqlBaseParserT__3)
-		}
-		{
-			p.SetState(256)
-			p.Match(SqlBaseParserASTERISK)
-		}
-
-	case 3:
-		localctx = NewSelectAllContext(p, localctx)
-		p.EnterOuterAlt(localctx, 3)
-		{
-			p.SetState(258)
-			p.Match(SqlBaseParserASTERISK)
-		}
-
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(ISelectItemContext)
 }
 
 // IRelationContext is an interface to support dynamic dispatch.
@@ -3453,38 +2083,30 @@ type RelationContext struct {
 	parser antlr.Parser
 }
 
-func NewEmptyRelationContext() *RelationContext {
-	var p = new(RelationContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_relation
-	return p
-}
+func NewEmptyRelationContext() *RelationContext { _ = "STUB: not implemented"; return nil }
 
-func (*RelationContext) IsRelationContext() {}
+func (*RelationContext) IsRelationContext() { _ = "STUB: not implemented"; return }
 
 func NewRelationContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *RelationContext {
-	var p = new(RelationContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_relation
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *RelationContext) GetParser() antlr.Parser { return s.parser }
-
-func (s *RelationContext) CopyFrom(ctx *RelationContext) {
-	s.BaseParserRuleContext.CopyFrom(ctx.BaseParserRuleContext)
+func (s *RelationContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
 }
+
+func (s *RelationContext) CopyFrom(ctx *RelationContext) { _ = "STUB: not implemented"; return }
 
 func (s *RelationContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *RelationContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 type RelationDefaultContext struct {
@@ -3492,37 +2114,23 @@ type RelationDefaultContext struct {
 }
 
 func NewRelationDefaultContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *RelationDefaultContext {
-	var p = new(RelationDefaultContext)
-
-	p.RelationContext = NewEmptyRelationContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*RelationContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *RelationDefaultContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *RelationDefaultContext) SampledRelation() ISampledRelationContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ISampledRelationContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(ISampledRelationContext)
+	_ = "STUB: not implemented"
+	return *new(ISampledRelationContext)
 }
 
 func (s *RelationDefaultContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitRelationDefault(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type JoinRelationContext struct {
@@ -3533,242 +2141,98 @@ type JoinRelationContext struct {
 }
 
 func NewJoinRelationContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *JoinRelationContext {
-	var p = new(JoinRelationContext)
-
-	p.RelationContext = NewEmptyRelationContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*RelationContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *JoinRelationContext) GetLeft() IRelationContext { return s.left }
+func (s *JoinRelationContext) GetLeft() IRelationContext {
+	_ = "STUB: not implemented"
+	return *new(IRelationContext)
+}
 
-func (s *JoinRelationContext) GetRight() ISampledRelationContext { return s.right }
+func (s *JoinRelationContext) GetRight() ISampledRelationContext {
+	_ = "STUB: not implemented"
+	return *new(ISampledRelationContext)
+}
 
-func (s *JoinRelationContext) GetRightRelation() IRelationContext { return s.rightRelation }
+func (s *JoinRelationContext) GetRightRelation() IRelationContext {
+	_ = "STUB: not implemented"
+	return *new(IRelationContext)
+}
 
-func (s *JoinRelationContext) SetLeft(v IRelationContext) { s.left = v }
+func (s *JoinRelationContext) SetLeft(v IRelationContext) { _ = "STUB: not implemented"; return }
 
-func (s *JoinRelationContext) SetRight(v ISampledRelationContext) { s.right = v }
+func (s *JoinRelationContext) SetRight(v ISampledRelationContext) {
+	_ = "STUB: not implemented"
+	return
+}
 
-func (s *JoinRelationContext) SetRightRelation(v IRelationContext) { s.rightRelation = v }
+func (s *JoinRelationContext) SetRightRelation(v IRelationContext) {
+	_ = "STUB: not implemented"
+	return
+}
 
 func (s *JoinRelationContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *JoinRelationContext) AllRelation() []IRelationContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IRelationContext)(nil)).Elem())
-	var tst = make([]IRelationContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(IRelationContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *JoinRelationContext) Relation(i int) IRelationContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IRelationContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IRelationContext)
+	_ = "STUB: not implemented"
+	return *new(IRelationContext)
 }
 
 func (s *JoinRelationContext) CROSS() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserCROSS, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *JoinRelationContext) JOIN() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserJOIN, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *JoinRelationContext) JoinType() IJoinTypeContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IJoinTypeContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IJoinTypeContext)
+	_ = "STUB: not implemented"
+	return *new(IJoinTypeContext)
 }
 
 func (s *JoinRelationContext) JoinCriteria() IJoinCriteriaContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IJoinCriteriaContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IJoinCriteriaContext)
+	_ = "STUB: not implemented"
+	return *new(IJoinCriteriaContext)
 }
 
 func (s *JoinRelationContext) NATURAL() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserNATURAL, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *JoinRelationContext) SampledRelation() ISampledRelationContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ISampledRelationContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(ISampledRelationContext)
+	_ = "STUB: not implemented"
+	return *new(ISampledRelationContext)
 }
 
 func (s *JoinRelationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitJoinRelation(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) Relation() (localctx IRelationContext) {
-	return p.relation(0)
+	_ = "STUB: not implemented"
+	return *new(IRelationContext)
 }
 
 func (p *SqlBaseParser) relation(_p int) (localctx IRelationContext) {
-	var _parentctx antlr.ParserRuleContext = p.GetParserRuleContext()
-	_parentState := p.GetState()
-	localctx = NewRelationContext(p, p.GetParserRuleContext(), _parentState)
-	var _prevctx IRelationContext = localctx
-	var _ antlr.ParserRuleContext = _prevctx // TODO: To prevent unused variable warning.
-	_startState := 28
-	p.EnterRecursionRule(localctx, 28, SqlBaseParserRULE_relation, _p)
-
-	defer func() {
-		p.UnrollRecursionContexts(_parentctx)
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	var _alt int
-
-	p.EnterOuterAlt(localctx, 1)
-	localctx = NewRelationDefaultContext(p, localctx)
-	p.SetParserRuleContext(localctx)
-	_prevctx = localctx
-
-	{
-		p.SetState(262)
-		p.SampledRelation()
-	}
-
-	p.GetParserRuleContext().SetStop(p.GetTokenStream().LT(-1))
-	p.SetState(282)
-	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 31, p.GetParserRuleContext())
-
-	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
-		if _alt == 1 {
-			if p.GetParseListeners() != nil {
-				p.TriggerExitRuleEvent()
-			}
-			_prevctx = localctx
-			localctx = NewJoinRelationContext(p, NewRelationContext(p, _parentctx, _parentState))
-			localctx.(*JoinRelationContext).left = _prevctx
-
-			p.PushNewRecursionContext(localctx, _startState, SqlBaseParserRULE_relation)
-			p.SetState(264)
-
-			if !(p.Precpred(p.GetParserRuleContext(), 2)) {
-				panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 2)", ""))
-			}
-			p.SetState(278)
-			p.GetErrorHandler().Sync(p)
-
-			switch p.GetTokenStream().LA(1) {
-			case SqlBaseParserCROSS:
-				{
-					p.SetState(265)
-					p.Match(SqlBaseParserCROSS)
-				}
-				{
-					p.SetState(266)
-					p.Match(SqlBaseParserJOIN)
-				}
-				{
-					p.SetState(267)
-
-					var _x = p.SampledRelation()
-
-					localctx.(*JoinRelationContext).right = _x
-				}
-
-			case SqlBaseParserFULL, SqlBaseParserINNER, SqlBaseParserJOIN, SqlBaseParserLEFT, SqlBaseParserRIGHT:
-				{
-					p.SetState(268)
-					p.JoinType()
-				}
-				{
-					p.SetState(269)
-					p.Match(SqlBaseParserJOIN)
-				}
-				{
-					p.SetState(270)
-
-					var _x = p.relation(0)
-
-					localctx.(*JoinRelationContext).rightRelation = _x
-				}
-				{
-					p.SetState(271)
-					p.JoinCriteria()
-				}
-
-			case SqlBaseParserNATURAL:
-				{
-					p.SetState(273)
-					p.Match(SqlBaseParserNATURAL)
-				}
-				{
-					p.SetState(274)
-					p.JoinType()
-				}
-				{
-					p.SetState(275)
-					p.Match(SqlBaseParserJOIN)
-				}
-				{
-					p.SetState(276)
-
-					var _x = p.SampledRelation()
-
-					localctx.(*JoinRelationContext).right = _x
-				}
-
-			default:
-				panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
-			}
-
-		}
-		p.SetState(284)
-		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 31, p.GetParserRuleContext())
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IRelationContext)
 }
+
+// TODO: To prevent unused variable warning.
 
 // IJoinTypeContext is an interface to support dynamic dispatch.
 type IJoinTypeContext interface {
@@ -3786,164 +2250,63 @@ type JoinTypeContext struct {
 	parser antlr.Parser
 }
 
-func NewEmptyJoinTypeContext() *JoinTypeContext {
-	var p = new(JoinTypeContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_joinType
-	return p
-}
+func NewEmptyJoinTypeContext() *JoinTypeContext { _ = "STUB: not implemented"; return nil }
 
-func (*JoinTypeContext) IsJoinTypeContext() {}
+func (*JoinTypeContext) IsJoinTypeContext() { _ = "STUB: not implemented"; return }
 
 func NewJoinTypeContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *JoinTypeContext {
-	var p = new(JoinTypeContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_joinType
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *JoinTypeContext) GetParser() antlr.Parser { return s.parser }
+func (s *JoinTypeContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *JoinTypeContext) INNER() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserINNER, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *JoinTypeContext) LEFT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserLEFT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *JoinTypeContext) OUTER() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserOUTER, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *JoinTypeContext) RIGHT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserRIGHT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *JoinTypeContext) FULL() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserFULL, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *JoinTypeContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *JoinTypeContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *JoinTypeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitJoinType(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) JoinType() (localctx IJoinTypeContext) {
-	localctx = NewJoinTypeContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 30, SqlBaseParserRULE_joinType)
-	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.SetState(300)
-	p.GetErrorHandler().Sync(p)
-
-	switch p.GetTokenStream().LA(1) {
-	case SqlBaseParserINNER, SqlBaseParserJOIN:
-		p.EnterOuterAlt(localctx, 1)
-		p.SetState(286)
-		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
-
-		if _la == SqlBaseParserINNER {
-			{
-				p.SetState(285)
-				p.Match(SqlBaseParserINNER)
-			}
-
-		}
-
-	case SqlBaseParserLEFT:
-		p.EnterOuterAlt(localctx, 2)
-		{
-			p.SetState(288)
-			p.Match(SqlBaseParserLEFT)
-		}
-		p.SetState(290)
-		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
-
-		if _la == SqlBaseParserOUTER {
-			{
-				p.SetState(289)
-				p.Match(SqlBaseParserOUTER)
-			}
-
-		}
-
-	case SqlBaseParserRIGHT:
-		p.EnterOuterAlt(localctx, 3)
-		{
-			p.SetState(292)
-			p.Match(SqlBaseParserRIGHT)
-		}
-		p.SetState(294)
-		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
-
-		if _la == SqlBaseParserOUTER {
-			{
-				p.SetState(293)
-				p.Match(SqlBaseParserOUTER)
-			}
-
-		}
-
-	case SqlBaseParserFULL:
-		p.EnterOuterAlt(localctx, 4)
-		{
-			p.SetState(296)
-			p.Match(SqlBaseParserFULL)
-		}
-		p.SetState(298)
-		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
-
-		if _la == SqlBaseParserOUTER {
-			{
-				p.SetState(297)
-				p.Match(SqlBaseParserOUTER)
-			}
-
-		}
-
-	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IJoinTypeContext)
 }
 
 // IJoinCriteriaContext is an interface to support dynamic dispatch.
@@ -3962,165 +2325,63 @@ type JoinCriteriaContext struct {
 	parser antlr.Parser
 }
 
-func NewEmptyJoinCriteriaContext() *JoinCriteriaContext {
-	var p = new(JoinCriteriaContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_joinCriteria
-	return p
-}
+func NewEmptyJoinCriteriaContext() *JoinCriteriaContext { _ = "STUB: not implemented"; return nil }
 
-func (*JoinCriteriaContext) IsJoinCriteriaContext() {}
+func (*JoinCriteriaContext) IsJoinCriteriaContext() { _ = "STUB: not implemented"; return }
 
 func NewJoinCriteriaContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *JoinCriteriaContext {
-	var p = new(JoinCriteriaContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_joinCriteria
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *JoinCriteriaContext) GetParser() antlr.Parser { return s.parser }
+func (s *JoinCriteriaContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *JoinCriteriaContext) ON() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserON, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *JoinCriteriaContext) BooleanExpression() IBooleanExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IBooleanExpressionContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IBooleanExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IBooleanExpressionContext)
 }
 
 func (s *JoinCriteriaContext) USING() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserUSING, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *JoinCriteriaContext) AllIdentifier() []IIdentifierContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IIdentifierContext)(nil)).Elem())
-	var tst = make([]IIdentifierContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(IIdentifierContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *JoinCriteriaContext) Identifier(i int) IIdentifierContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IIdentifierContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IIdentifierContext)
+	_ = "STUB: not implemented"
+	return *new(IIdentifierContext)
 }
 
 func (s *JoinCriteriaContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *JoinCriteriaContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *JoinCriteriaContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitJoinCriteria(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) JoinCriteria() (localctx IJoinCriteriaContext) {
-	localctx = NewJoinCriteriaContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 32, SqlBaseParserRULE_joinCriteria)
-	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.SetState(316)
-	p.GetErrorHandler().Sync(p)
-
-	switch p.GetTokenStream().LA(1) {
-	case SqlBaseParserON:
-		p.EnterOuterAlt(localctx, 1)
-		{
-			p.SetState(302)
-			p.Match(SqlBaseParserON)
-		}
-		{
-			p.SetState(303)
-			p.booleanExpression(0)
-		}
-
-	case SqlBaseParserUSING:
-		p.EnterOuterAlt(localctx, 2)
-		{
-			p.SetState(304)
-			p.Match(SqlBaseParserUSING)
-		}
-		{
-			p.SetState(305)
-			p.Match(SqlBaseParserT__1)
-		}
-		{
-			p.SetState(306)
-			p.Identifier()
-		}
-		p.SetState(311)
-		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
-
-		for _la == SqlBaseParserT__0 {
-			{
-				p.SetState(307)
-				p.Match(SqlBaseParserT__0)
-			}
-			{
-				p.SetState(308)
-				p.Identifier()
-			}
-
-			p.SetState(313)
-			p.GetErrorHandler().Sync(p)
-			_la = p.GetTokenStream().LA(1)
-		}
-		{
-			p.SetState(314)
-			p.Match(SqlBaseParserT__2)
-		}
-
-	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IJoinCriteriaContext)
 }
 
 // ISampledRelationContext is an interface to support dynamic dispatch.
@@ -4147,139 +2408,70 @@ type SampledRelationContext struct {
 }
 
 func NewEmptySampledRelationContext() *SampledRelationContext {
-	var p = new(SampledRelationContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_sampledRelation
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (*SampledRelationContext) IsSampledRelationContext() {}
+func (*SampledRelationContext) IsSampledRelationContext() { _ = "STUB: not implemented"; return }
 
 func NewSampledRelationContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *SampledRelationContext {
-	var p = new(SampledRelationContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_sampledRelation
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *SampledRelationContext) GetParser() antlr.Parser { return s.parser }
+func (s *SampledRelationContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
-func (s *SampledRelationContext) GetPercentage() IExpressionContext { return s.percentage }
+func (s *SampledRelationContext) GetPercentage() IExpressionContext {
+	_ = "STUB: not implemented"
+	return *new(IExpressionContext)
+}
 
-func (s *SampledRelationContext) SetPercentage(v IExpressionContext) { s.percentage = v }
+func (s *SampledRelationContext) SetPercentage(v IExpressionContext) {
+	_ = "STUB: not implemented"
+	return
+}
 
 func (s *SampledRelationContext) AliasedRelation() IAliasedRelationContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IAliasedRelationContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IAliasedRelationContext)
+	_ = "STUB: not implemented"
+	return *new(IAliasedRelationContext)
 }
 
 func (s *SampledRelationContext) TABLESAMPLE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserTABLESAMPLE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *SampledRelationContext) SampleType() ISampleTypeContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ISampleTypeContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(ISampleTypeContext)
+	_ = "STUB: not implemented"
+	return *new(ISampleTypeContext)
 }
 
 func (s *SampledRelationContext) Expression() IExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IExpressionContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IExpressionContext)
 }
 
 func (s *SampledRelationContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *SampledRelationContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *SampledRelationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitSampledRelation(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) SampledRelation() (localctx ISampledRelationContext) {
-	localctx = NewSampledRelationContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 34, SqlBaseParserRULE_sampledRelation)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(318)
-		p.AliasedRelation()
-	}
-	p.SetState(325)
-	p.GetErrorHandler().Sync(p)
-
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 39, p.GetParserRuleContext()) == 1 {
-		{
-			p.SetState(319)
-			p.Match(SqlBaseParserTABLESAMPLE)
-		}
-		{
-			p.SetState(320)
-			p.SampleType()
-		}
-		{
-			p.SetState(321)
-			p.Match(SqlBaseParserT__1)
-		}
-		{
-			p.SetState(322)
-
-			var _x = p.Expression()
-
-			localctx.(*SampledRelationContext).percentage = _x
-		}
-		{
-			p.SetState(323)
-			p.Match(SqlBaseParserT__2)
-		}
-
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(ISampledRelationContext)
 }
 
 // ISampleTypeContext is an interface to support dynamic dispatch.
@@ -4298,89 +2490,48 @@ type SampleTypeContext struct {
 	parser antlr.Parser
 }
 
-func NewEmptySampleTypeContext() *SampleTypeContext {
-	var p = new(SampleTypeContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_sampleType
-	return p
-}
+func NewEmptySampleTypeContext() *SampleTypeContext { _ = "STUB: not implemented"; return nil }
 
-func (*SampleTypeContext) IsSampleTypeContext() {}
+func (*SampleTypeContext) IsSampleTypeContext() { _ = "STUB: not implemented"; return }
 
 func NewSampleTypeContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *SampleTypeContext {
-	var p = new(SampleTypeContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_sampleType
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *SampleTypeContext) GetParser() antlr.Parser { return s.parser }
+func (s *SampleTypeContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *SampleTypeContext) BERNOULLI() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserBERNOULLI, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *SampleTypeContext) SYSTEM() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserSYSTEM, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *SampleTypeContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *SampleTypeContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *SampleTypeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitSampleType(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) SampleType() (localctx ISampleTypeContext) {
-	localctx = NewSampleTypeContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 36, SqlBaseParserRULE_sampleType)
-	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(327)
-		_la = p.GetTokenStream().LA(1)
-
-		if !(_la == SqlBaseParserBERNOULLI || _la == SqlBaseParserSYSTEM) {
-			p.GetErrorHandler().RecoverInline(p)
-		} else {
-			p.GetErrorHandler().ReportMatch(p)
-			p.Consume()
-		}
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(ISampleTypeContext)
 }
 
 // IAliasedRelationContext is an interface to support dynamic dispatch.
@@ -4400,138 +2551,60 @@ type AliasedRelationContext struct {
 }
 
 func NewEmptyAliasedRelationContext() *AliasedRelationContext {
-	var p = new(AliasedRelationContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_aliasedRelation
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (*AliasedRelationContext) IsAliasedRelationContext() {}
+func (*AliasedRelationContext) IsAliasedRelationContext() { _ = "STUB: not implemented"; return }
 
 func NewAliasedRelationContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *AliasedRelationContext {
-	var p = new(AliasedRelationContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_aliasedRelation
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *AliasedRelationContext) GetParser() antlr.Parser { return s.parser }
+func (s *AliasedRelationContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *AliasedRelationContext) RelationPrimary() IRelationPrimaryContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IRelationPrimaryContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IRelationPrimaryContext)
+	_ = "STUB: not implemented"
+	return *new(IRelationPrimaryContext)
 }
 
 func (s *AliasedRelationContext) Identifier() IIdentifierContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IIdentifierContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IIdentifierContext)
+	_ = "STUB: not implemented"
+	return *new(IIdentifierContext)
 }
 
 func (s *AliasedRelationContext) AS() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserAS, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *AliasedRelationContext) ColumnAliases() IColumnAliasesContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IColumnAliasesContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IColumnAliasesContext)
+	_ = "STUB: not implemented"
+	return *new(IColumnAliasesContext)
 }
 
 func (s *AliasedRelationContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *AliasedRelationContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *AliasedRelationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitAliasedRelation(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) AliasedRelation() (localctx IAliasedRelationContext) {
-	localctx = NewAliasedRelationContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 38, SqlBaseParserRULE_aliasedRelation)
-	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(329)
-		p.RelationPrimary()
-	}
-	p.SetState(337)
-	p.GetErrorHandler().Sync(p)
-
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 42, p.GetParserRuleContext()) == 1 {
-		p.SetState(331)
-		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
-
-		if _la == SqlBaseParserAS {
-			{
-				p.SetState(330)
-				p.Match(SqlBaseParserAS)
-			}
-
-		}
-		{
-			p.SetState(333)
-			p.Identifier()
-		}
-		p.SetState(335)
-		p.GetErrorHandler().Sync(p)
-
-		if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 41, p.GetParserRuleContext()) == 1 {
-			{
-				p.SetState(334)
-				p.ColumnAliases()
-			}
-
-		}
-
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IAliasedRelationContext)
 }
 
 // IColumnAliasesContext is an interface to support dynamic dispatch.
@@ -4550,123 +2623,48 @@ type ColumnAliasesContext struct {
 	parser antlr.Parser
 }
 
-func NewEmptyColumnAliasesContext() *ColumnAliasesContext {
-	var p = new(ColumnAliasesContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_columnAliases
-	return p
-}
+func NewEmptyColumnAliasesContext() *ColumnAliasesContext { _ = "STUB: not implemented"; return nil }
 
-func (*ColumnAliasesContext) IsColumnAliasesContext() {}
+func (*ColumnAliasesContext) IsColumnAliasesContext() { _ = "STUB: not implemented"; return }
 
 func NewColumnAliasesContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ColumnAliasesContext {
-	var p = new(ColumnAliasesContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_columnAliases
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *ColumnAliasesContext) GetParser() antlr.Parser { return s.parser }
+func (s *ColumnAliasesContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *ColumnAliasesContext) AllIdentifier() []IIdentifierContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IIdentifierContext)(nil)).Elem())
-	var tst = make([]IIdentifierContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(IIdentifierContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *ColumnAliasesContext) Identifier(i int) IIdentifierContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IIdentifierContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IIdentifierContext)
+	_ = "STUB: not implemented"
+	return *new(IIdentifierContext)
 }
 
 func (s *ColumnAliasesContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *ColumnAliasesContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *ColumnAliasesContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitColumnAliases(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) ColumnAliases() (localctx IColumnAliasesContext) {
-	localctx = NewColumnAliasesContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 40, SqlBaseParserRULE_columnAliases)
-	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(339)
-		p.Match(SqlBaseParserT__1)
-	}
-	{
-		p.SetState(340)
-		p.Identifier()
-	}
-	p.SetState(345)
-	p.GetErrorHandler().Sync(p)
-	_la = p.GetTokenStream().LA(1)
-
-	for _la == SqlBaseParserT__0 {
-		{
-			p.SetState(341)
-			p.Match(SqlBaseParserT__0)
-		}
-		{
-			p.SetState(342)
-			p.Identifier()
-		}
-
-		p.SetState(347)
-		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
-	}
-	{
-		p.SetState(348)
-		p.Match(SqlBaseParserT__2)
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IColumnAliasesContext)
 }
 
 // IRelationPrimaryContext is an interface to support dynamic dispatch.
@@ -4686,37 +2684,35 @@ type RelationPrimaryContext struct {
 }
 
 func NewEmptyRelationPrimaryContext() *RelationPrimaryContext {
-	var p = new(RelationPrimaryContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_relationPrimary
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (*RelationPrimaryContext) IsRelationPrimaryContext() {}
+func (*RelationPrimaryContext) IsRelationPrimaryContext() { _ = "STUB: not implemented"; return }
 
 func NewRelationPrimaryContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *RelationPrimaryContext {
-	var p = new(RelationPrimaryContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_relationPrimary
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *RelationPrimaryContext) GetParser() antlr.Parser { return s.parser }
+func (s *RelationPrimaryContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *RelationPrimaryContext) CopyFrom(ctx *RelationPrimaryContext) {
-	s.BaseParserRuleContext.CopyFrom(ctx.BaseParserRuleContext)
+	_ = "STUB: not implemented"
+	return
 }
 
 func (s *RelationPrimaryContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *RelationPrimaryContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 type SubqueryRelationContext struct {
@@ -4724,37 +2720,23 @@ type SubqueryRelationContext struct {
 }
 
 func NewSubqueryRelationContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *SubqueryRelationContext {
-	var p = new(SubqueryRelationContext)
-
-	p.RelationPrimaryContext = NewEmptyRelationPrimaryContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*RelationPrimaryContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *SubqueryRelationContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *SubqueryRelationContext) Query() IQueryContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IQueryContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IQueryContext)
+	_ = "STUB: not implemented"
+	return *new(IQueryContext)
 }
 
 func (s *SubqueryRelationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitSubqueryRelation(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type ParenthesizedRelationContext struct {
@@ -4762,37 +2744,23 @@ type ParenthesizedRelationContext struct {
 }
 
 func NewParenthesizedRelationContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ParenthesizedRelationContext {
-	var p = new(ParenthesizedRelationContext)
-
-	p.RelationPrimaryContext = NewEmptyRelationPrimaryContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*RelationPrimaryContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *ParenthesizedRelationContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *ParenthesizedRelationContext) Relation() IRelationContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IRelationContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IRelationContext)
+	_ = "STUB: not implemented"
+	return *new(IRelationContext)
 }
 
 func (s *ParenthesizedRelationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitParenthesizedRelation(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type TableNameContext struct {
@@ -4800,105 +2768,28 @@ type TableNameContext struct {
 }
 
 func NewTableNameContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *TableNameContext {
-	var p = new(TableNameContext)
-
-	p.RelationPrimaryContext = NewEmptyRelationPrimaryContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*RelationPrimaryContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *TableNameContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *TableNameContext) QualifiedName() IQualifiedNameContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IQualifiedNameContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IQualifiedNameContext)
+	_ = "STUB: not implemented"
+	return *new(IQualifiedNameContext)
 }
 
 func (s *TableNameContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitTableName(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) RelationPrimary() (localctx IRelationPrimaryContext) {
-	localctx = NewRelationPrimaryContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 42, SqlBaseParserRULE_relationPrimary)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.SetState(359)
-	p.GetErrorHandler().Sync(p)
-	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 44, p.GetParserRuleContext()) {
-	case 1:
-		localctx = NewTableNameContext(p, localctx)
-		p.EnterOuterAlt(localctx, 1)
-		{
-			p.SetState(350)
-			p.QualifiedName()
-		}
-
-	case 2:
-		localctx = NewSubqueryRelationContext(p, localctx)
-		p.EnterOuterAlt(localctx, 2)
-		{
-			p.SetState(351)
-			p.Match(SqlBaseParserT__1)
-		}
-		{
-			p.SetState(352)
-			p.Query()
-		}
-		{
-			p.SetState(353)
-			p.Match(SqlBaseParserT__2)
-		}
-
-	case 3:
-		localctx = NewParenthesizedRelationContext(p, localctx)
-		p.EnterOuterAlt(localctx, 3)
-		{
-			p.SetState(355)
-			p.Match(SqlBaseParserT__1)
-		}
-		{
-			p.SetState(356)
-			p.relation(0)
-		}
-		{
-			p.SetState(357)
-			p.Match(SqlBaseParserT__2)
-		}
-
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IRelationPrimaryContext)
 }
 
 // IExpressionContext is an interface to support dynamic dispatch.
@@ -4917,83 +2808,43 @@ type ExpressionContext struct {
 	parser antlr.Parser
 }
 
-func NewEmptyExpressionContext() *ExpressionContext {
-	var p = new(ExpressionContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_expression
-	return p
-}
+func NewEmptyExpressionContext() *ExpressionContext { _ = "STUB: not implemented"; return nil }
 
-func (*ExpressionContext) IsExpressionContext() {}
+func (*ExpressionContext) IsExpressionContext() { _ = "STUB: not implemented"; return }
 
 func NewExpressionContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ExpressionContext {
-	var p = new(ExpressionContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_expression
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *ExpressionContext) GetParser() antlr.Parser { return s.parser }
+func (s *ExpressionContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *ExpressionContext) BooleanExpression() IBooleanExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IBooleanExpressionContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IBooleanExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IBooleanExpressionContext)
 }
 
 func (s *ExpressionContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *ExpressionContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *ExpressionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitExpression(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) Expression() (localctx IExpressionContext) {
-	localctx = NewExpressionContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 44, SqlBaseParserRULE_expression)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(361)
-		p.booleanExpression(0)
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IExpressionContext)
 }
 
 // IBooleanExpressionContext is an interface to support dynamic dispatch.
@@ -5013,37 +2864,35 @@ type BooleanExpressionContext struct {
 }
 
 func NewEmptyBooleanExpressionContext() *BooleanExpressionContext {
-	var p = new(BooleanExpressionContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_booleanExpression
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (*BooleanExpressionContext) IsBooleanExpressionContext() {}
+func (*BooleanExpressionContext) IsBooleanExpressionContext() { _ = "STUB: not implemented"; return }
 
 func NewBooleanExpressionContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *BooleanExpressionContext {
-	var p = new(BooleanExpressionContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_booleanExpression
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *BooleanExpressionContext) GetParser() antlr.Parser { return s.parser }
+func (s *BooleanExpressionContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *BooleanExpressionContext) CopyFrom(ctx *BooleanExpressionContext) {
-	s.BaseParserRuleContext.CopyFrom(ctx.BaseParserRuleContext)
+	_ = "STUB: not implemented"
+	return
 }
 
 func (s *BooleanExpressionContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *BooleanExpressionContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 type LogicalNotContext struct {
@@ -5051,41 +2900,28 @@ type LogicalNotContext struct {
 }
 
 func NewLogicalNotContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *LogicalNotContext {
-	var p = new(LogicalNotContext)
-
-	p.BooleanExpressionContext = NewEmptyBooleanExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*BooleanExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *LogicalNotContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *LogicalNotContext) NOT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserNOT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *LogicalNotContext) BooleanExpression() IBooleanExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IBooleanExpressionContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IBooleanExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IBooleanExpressionContext)
 }
 
 func (s *LogicalNotContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitLogicalNot(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type BooleanDefaultContext struct {
@@ -5093,37 +2929,23 @@ type BooleanDefaultContext struct {
 }
 
 func NewBooleanDefaultContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *BooleanDefaultContext {
-	var p = new(BooleanDefaultContext)
-
-	p.BooleanExpressionContext = NewEmptyBooleanExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*BooleanExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *BooleanDefaultContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *BooleanDefaultContext) Predicated() IPredicatedContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IPredicatedContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IPredicatedContext)
+	_ = "STUB: not implemented"
+	return *new(IPredicatedContext)
 }
 
 func (s *BooleanDefaultContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitBooleanDefault(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type LogicalBinaryContext struct {
@@ -5134,208 +2956,78 @@ type LogicalBinaryContext struct {
 }
 
 func NewLogicalBinaryContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *LogicalBinaryContext {
-	var p = new(LogicalBinaryContext)
-
-	p.BooleanExpressionContext = NewEmptyBooleanExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*BooleanExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *LogicalBinaryContext) GetOperator() antlr.Token { return s.operator }
+func (s *LogicalBinaryContext) GetOperator() antlr.Token {
+	_ = "STUB: not implemented"
+	return *new(antlr.Token)
+}
 
-func (s *LogicalBinaryContext) SetOperator(v antlr.Token) { s.operator = v }
+func (s *LogicalBinaryContext) SetOperator(v antlr.Token) { _ = "STUB: not implemented"; return }
 
-func (s *LogicalBinaryContext) GetLeft() IBooleanExpressionContext { return s.left }
+func (s *LogicalBinaryContext) GetLeft() IBooleanExpressionContext {
+	_ = "STUB: not implemented"
+	return *new(IBooleanExpressionContext)
+}
 
-func (s *LogicalBinaryContext) GetRight() IBooleanExpressionContext { return s.right }
+func (s *LogicalBinaryContext) GetRight() IBooleanExpressionContext {
+	_ = "STUB: not implemented"
+	return *new(IBooleanExpressionContext)
+}
 
-func (s *LogicalBinaryContext) SetLeft(v IBooleanExpressionContext) { s.left = v }
+func (s *LogicalBinaryContext) SetLeft(v IBooleanExpressionContext) {
+	_ = "STUB: not implemented"
+	return
+}
 
-func (s *LogicalBinaryContext) SetRight(v IBooleanExpressionContext) { s.right = v }
+func (s *LogicalBinaryContext) SetRight(v IBooleanExpressionContext) {
+	_ = "STUB: not implemented"
+	return
+}
 
 func (s *LogicalBinaryContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *LogicalBinaryContext) AllBooleanExpression() []IBooleanExpressionContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IBooleanExpressionContext)(nil)).Elem())
-	var tst = make([]IBooleanExpressionContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(IBooleanExpressionContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *LogicalBinaryContext) BooleanExpression(i int) IBooleanExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IBooleanExpressionContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IBooleanExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IBooleanExpressionContext)
 }
 
 func (s *LogicalBinaryContext) AND() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserAND, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *LogicalBinaryContext) OR() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserOR, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *LogicalBinaryContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitLogicalBinary(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) BooleanExpression() (localctx IBooleanExpressionContext) {
-	return p.booleanExpression(0)
+	_ = "STUB: not implemented"
+	return *new(IBooleanExpressionContext)
 }
 
 func (p *SqlBaseParser) booleanExpression(_p int) (localctx IBooleanExpressionContext) {
-	var _parentctx antlr.ParserRuleContext = p.GetParserRuleContext()
-	_parentState := p.GetState()
-	localctx = NewBooleanExpressionContext(p, p.GetParserRuleContext(), _parentState)
-	var _prevctx IBooleanExpressionContext = localctx
-	var _ antlr.ParserRuleContext = _prevctx // TODO: To prevent unused variable warning.
-	_startState := 46
-	p.EnterRecursionRule(localctx, 46, SqlBaseParserRULE_booleanExpression, _p)
-
-	defer func() {
-		p.UnrollRecursionContexts(_parentctx)
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	var _alt int
-
-	p.EnterOuterAlt(localctx, 1)
-	p.SetState(367)
-	p.GetErrorHandler().Sync(p)
-
-	switch p.GetTokenStream().LA(1) {
-	case SqlBaseParserT__1, SqlBaseParserADD, SqlBaseParserALL, SqlBaseParserANALYZE, SqlBaseParserANY, SqlBaseParserARRAY, SqlBaseParserASC, SqlBaseParserAT, SqlBaseParserBERNOULLI, SqlBaseParserCALL, SqlBaseParserCASCADE, SqlBaseParserCATALOGS, SqlBaseParserCOALESCE, SqlBaseParserCOLUMN, SqlBaseParserCOLUMNS, SqlBaseParserCOMMENT, SqlBaseParserCOMMITTED, SqlBaseParserCURRENT, SqlBaseParserCURRENT_DATE, SqlBaseParserCURRENT_TIME, SqlBaseParserCURRENT_TIMESTAMP, SqlBaseParserCURRENT_USER, SqlBaseParserDATA, SqlBaseParserDATE, SqlBaseParserDAY, SqlBaseParserDESC, SqlBaseParserDISTRIBUTED, SqlBaseParserEXCLUDING, SqlBaseParserEXPLAIN, SqlBaseParserFALSE, SqlBaseParserFILTER, SqlBaseParserFIRST, SqlBaseParserFOLLOWING, SqlBaseParserFORMAT, SqlBaseParserFUNCTIONS, SqlBaseParserGROUPING, SqlBaseParserHOUR, SqlBaseParserIF, SqlBaseParserINCLUDING, SqlBaseParserINPUT, SqlBaseParserINTEGER, SqlBaseParserINTERVAL, SqlBaseParserLAST, SqlBaseParserLATERAL, SqlBaseParserLEVEL, SqlBaseParserLIMIT, SqlBaseParserLOCALTIME, SqlBaseParserLOCALTIMESTAMP, SqlBaseParserLOGICAL, SqlBaseParserMAP, SqlBaseParserMINUTE, SqlBaseParserMONTH, SqlBaseParserNFC, SqlBaseParserNFD, SqlBaseParserNFKC, SqlBaseParserNFKD, SqlBaseParserNO, SqlBaseParserNULL, SqlBaseParserNULLIF, SqlBaseParserNULLS, SqlBaseParserONLY, SqlBaseParserOPTION, SqlBaseParserORDINALITY, SqlBaseParserOUTPUT, SqlBaseParserOVER, SqlBaseParserPARTITION, SqlBaseParserPARTITIONS, SqlBaseParserPOSITION, SqlBaseParserPRECEDING, SqlBaseParserPRIVILEGES, SqlBaseParserPROPERTIES, SqlBaseParserPUBLIC, SqlBaseParserRANGE, SqlBaseParserREAD, SqlBaseParserRENAME, SqlBaseParserREPEATABLE, SqlBaseParserREPLACE, SqlBaseParserRESET, SqlBaseParserRESTRICT, SqlBaseParserREVOKE, SqlBaseParserROLLBACK, SqlBaseParserROW, SqlBaseParserROWS, SqlBaseParserSCHEMA, SqlBaseParserSCHEMAS, SqlBaseParserSECOND, SqlBaseParserSERIALIZABLE, SqlBaseParserSESSION, SqlBaseParserSET, SqlBaseParserSETS, SqlBaseParserSHOW, SqlBaseParserSMALLINT, SqlBaseParserSOME, SqlBaseParserSTART, SqlBaseParserSTATS, SqlBaseParserSUBSTRING, SqlBaseParserSYSTEM, SqlBaseParserTABLES, SqlBaseParserTABLESAMPLE, SqlBaseParserTEXT, SqlBaseParserTIME, SqlBaseParserTIMESTAMP, SqlBaseParserTINYINT, SqlBaseParserTO, SqlBaseParserTRUE, SqlBaseParserTRY_CAST, SqlBaseParserTYPE, SqlBaseParserUNBOUNDED, SqlBaseParserUNCOMMITTED, SqlBaseParserUSE, SqlBaseParserVALIDATE, SqlBaseParserVERBOSE, SqlBaseParserVIEW, SqlBaseParserWORK, SqlBaseParserWRITE, SqlBaseParserYEAR, SqlBaseParserZONE, SqlBaseParserPLUS, SqlBaseParserMINUS, SqlBaseParserSTRING, SqlBaseParserUNICODE_STRING, SqlBaseParserBINARY_LITERAL, SqlBaseParserINTEGER_VALUE, SqlBaseParserDECIMAL_VALUE, SqlBaseParserDOUBLE_VALUE, SqlBaseParserIDENTIFIER, SqlBaseParserDIGIT_IDENTIFIER, SqlBaseParserQUOTED_IDENTIFIER, SqlBaseParserBACKQUOTED_IDENTIFIER, SqlBaseParserDOUBLE_PRECISION:
-		localctx = NewBooleanDefaultContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-
-		{
-			p.SetState(364)
-			p.Predicated()
-		}
-
-	case SqlBaseParserNOT:
-		localctx = NewLogicalNotContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-		{
-			p.SetState(365)
-			p.Match(SqlBaseParserNOT)
-		}
-		{
-			p.SetState(366)
-			p.booleanExpression(3)
-		}
-
-	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
-	}
-	p.GetParserRuleContext().SetStop(p.GetTokenStream().LT(-1))
-	p.SetState(377)
-	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 47, p.GetParserRuleContext())
-
-	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
-		if _alt == 1 {
-			if p.GetParseListeners() != nil {
-				p.TriggerExitRuleEvent()
-			}
-			_prevctx = localctx
-			p.SetState(375)
-			p.GetErrorHandler().Sync(p)
-			switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 46, p.GetParserRuleContext()) {
-			case 1:
-				localctx = NewLogicalBinaryContext(p, NewBooleanExpressionContext(p, _parentctx, _parentState))
-				localctx.(*LogicalBinaryContext).left = _prevctx
-
-				p.PushNewRecursionContext(localctx, _startState, SqlBaseParserRULE_booleanExpression)
-				p.SetState(369)
-
-				if !(p.Precpred(p.GetParserRuleContext(), 2)) {
-					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 2)", ""))
-				}
-				{
-					p.SetState(370)
-
-					var _m = p.Match(SqlBaseParserAND)
-
-					localctx.(*LogicalBinaryContext).operator = _m
-				}
-				{
-					p.SetState(371)
-
-					var _x = p.booleanExpression(3)
-
-					localctx.(*LogicalBinaryContext).right = _x
-				}
-
-			case 2:
-				localctx = NewLogicalBinaryContext(p, NewBooleanExpressionContext(p, _parentctx, _parentState))
-				localctx.(*LogicalBinaryContext).left = _prevctx
-
-				p.PushNewRecursionContext(localctx, _startState, SqlBaseParserRULE_booleanExpression)
-				p.SetState(372)
-
-				if !(p.Precpred(p.GetParserRuleContext(), 1)) {
-					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 1)", ""))
-				}
-				{
-					p.SetState(373)
-
-					var _m = p.Match(SqlBaseParserOR)
-
-					localctx.(*LogicalBinaryContext).operator = _m
-				}
-				{
-					p.SetState(374)
-
-					var _x = p.booleanExpression(2)
-
-					localctx.(*LogicalBinaryContext).right = _x
-				}
-
-			}
-
-		}
-		p.SetState(379)
-		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 47, p.GetParserRuleContext())
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IBooleanExpressionContext)
 }
+
+// TODO: To prevent unused variable warning.
 
 // IPredicatedContext is an interface to support dynamic dispatch.
 type IPredicatedContext interface {
@@ -5360,110 +3052,58 @@ type PredicatedContext struct {
 	_valueExpression IValueExpressionContext
 }
 
-func NewEmptyPredicatedContext() *PredicatedContext {
-	var p = new(PredicatedContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_predicated
-	return p
-}
+func NewEmptyPredicatedContext() *PredicatedContext { _ = "STUB: not implemented"; return nil }
 
-func (*PredicatedContext) IsPredicatedContext() {}
+func (*PredicatedContext) IsPredicatedContext() { _ = "STUB: not implemented"; return }
 
 func NewPredicatedContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *PredicatedContext {
-	var p = new(PredicatedContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_predicated
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *PredicatedContext) GetParser() antlr.Parser { return s.parser }
+func (s *PredicatedContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
-func (s *PredicatedContext) Get_valueExpression() IValueExpressionContext { return s._valueExpression }
+func (s *PredicatedContext) Get_valueExpression() IValueExpressionContext {
+	_ = "STUB: not implemented"
+	return *new(IValueExpressionContext)
+}
 
-func (s *PredicatedContext) Set_valueExpression(v IValueExpressionContext) { s._valueExpression = v }
+func (s *PredicatedContext) Set_valueExpression(v IValueExpressionContext) {
+	_ = "STUB: not implemented"
+	return
+}
 
 func (s *PredicatedContext) ValueExpression() IValueExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IValueExpressionContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IValueExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IValueExpressionContext)
 }
 
 func (s *PredicatedContext) Predicate() IPredicateContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IPredicateContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IPredicateContext)
+	_ = "STUB: not implemented"
+	return *new(IPredicateContext)
 }
 
 func (s *PredicatedContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *PredicatedContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *PredicatedContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitPredicated(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) Predicated() (localctx IPredicatedContext) {
-	localctx = NewPredicatedContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 48, SqlBaseParserRULE_predicated)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(380)
-
-		var _x = p.valueExpression(0)
-
-		localctx.(*PredicatedContext)._valueExpression = _x
-	}
-	p.SetState(382)
-	p.GetErrorHandler().Sync(p)
-
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 48, p.GetParserRuleContext()) == 1 {
-		{
-			p.SetState(381)
-			p.Predicate(localctx.(*PredicatedContext).Get_valueExpression())
-		}
-
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IPredicatedContext)
 }
 
 // IPredicateContext is an interface to support dynamic dispatch.
@@ -5489,45 +3129,37 @@ type PredicateContext struct {
 	value  antlr.ParserRuleContext
 }
 
-func NewEmptyPredicateContext() *PredicateContext {
-	var p = new(PredicateContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_predicate
-	return p
-}
+func NewEmptyPredicateContext() *PredicateContext { _ = "STUB: not implemented"; return nil }
 
-func (*PredicateContext) IsPredicateContext() {}
+func (*PredicateContext) IsPredicateContext() { _ = "STUB: not implemented"; return }
 
 func NewPredicateContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int, value antlr.ParserRuleContext) *PredicateContext {
-	var p = new(PredicateContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_predicate
-
-	p.value = value
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *PredicateContext) GetParser() antlr.Parser { return s.parser }
-
-func (s *PredicateContext) GetValue() antlr.ParserRuleContext { return s.value }
-
-func (s *PredicateContext) SetValue(v antlr.ParserRuleContext) { s.value = v }
-
-func (s *PredicateContext) CopyFrom(ctx *PredicateContext) {
-	s.BaseParserRuleContext.CopyFrom(ctx.BaseParserRuleContext)
-	s.value = ctx.value
+func (s *PredicateContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
 }
+
+func (s *PredicateContext) GetValue() antlr.ParserRuleContext {
+	_ = "STUB: not implemented"
+	return *new(antlr.ParserRuleContext)
+}
+
+func (s *PredicateContext) SetValue(v antlr.ParserRuleContext) { _ = "STUB: not implemented"; return }
+
+func (s *PredicateContext) CopyFrom(ctx *PredicateContext) { _ = "STUB: not implemented"; return }
 
 func (s *PredicateContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *PredicateContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 type ComparisonContext struct {
@@ -5536,51 +3168,35 @@ type ComparisonContext struct {
 }
 
 func NewComparisonContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ComparisonContext {
-	var p = new(ComparisonContext)
-
-	p.PredicateContext = NewEmptyPredicateContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*PredicateContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *ComparisonContext) GetRight() IValueExpressionContext { return s.right }
+func (s *ComparisonContext) GetRight() IValueExpressionContext {
+	_ = "STUB: not implemented"
+	return *new(IValueExpressionContext)
+}
 
-func (s *ComparisonContext) SetRight(v IValueExpressionContext) { s.right = v }
+func (s *ComparisonContext) SetRight(v IValueExpressionContext) { _ = "STUB: not implemented"; return }
 
 func (s *ComparisonContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *ComparisonContext) ComparisonOperator() IComparisonOperatorContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IComparisonOperatorContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IComparisonOperatorContext)
+	_ = "STUB: not implemented"
+	return *new(IComparisonOperatorContext)
 }
 
 func (s *ComparisonContext) ValueExpression() IValueExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IValueExpressionContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IValueExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IValueExpressionContext)
 }
 
 func (s *ComparisonContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitComparison(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type InSubqueryContext struct {
@@ -5588,45 +3204,33 @@ type InSubqueryContext struct {
 }
 
 func NewInSubqueryContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *InSubqueryContext {
-	var p = new(InSubqueryContext)
-
-	p.PredicateContext = NewEmptyPredicateContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*PredicateContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *InSubqueryContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *InSubqueryContext) IN() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserIN, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *InSubqueryContext) Query() IQueryContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IQueryContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IQueryContext)
+	_ = "STUB: not implemented"
+	return *new(IQueryContext)
 }
 
 func (s *InSubqueryContext) NOT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserNOT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *InSubqueryContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitInSubquery(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type InListContext struct {
@@ -5634,58 +3238,35 @@ type InListContext struct {
 }
 
 func NewInListContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *InListContext {
-	var p = new(InListContext)
-
-	p.PredicateContext = NewEmptyPredicateContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*PredicateContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *InListContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *InListContext) IN() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserIN, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
-func (s *InListContext) AllExpression() []IExpressionContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IExpressionContext)(nil)).Elem())
-	var tst = make([]IExpressionContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(IExpressionContext)
-		}
-	}
-
-	return tst
-}
+func (s *InListContext) AllExpression() []IExpressionContext { _ = "STUB: not implemented"; return nil }
 
 func (s *InListContext) Expression(i int) IExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IExpressionContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IExpressionContext)
 }
 
 func (s *InListContext) NOT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserNOT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *InListContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitInList(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type BetweenContext struct {
@@ -5695,70 +3276,57 @@ type BetweenContext struct {
 }
 
 func NewBetweenContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *BetweenContext {
-	var p = new(BetweenContext)
-
-	p.PredicateContext = NewEmptyPredicateContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*PredicateContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *BetweenContext) GetLower() IValueExpressionContext { return s.lower }
+func (s *BetweenContext) GetLower() IValueExpressionContext {
+	_ = "STUB: not implemented"
+	return *new(IValueExpressionContext)
+}
 
-func (s *BetweenContext) GetUpper() IValueExpressionContext { return s.upper }
+func (s *BetweenContext) GetUpper() IValueExpressionContext {
+	_ = "STUB: not implemented"
+	return *new(IValueExpressionContext)
+}
 
-func (s *BetweenContext) SetLower(v IValueExpressionContext) { s.lower = v }
+func (s *BetweenContext) SetLower(v IValueExpressionContext) { _ = "STUB: not implemented"; return }
 
-func (s *BetweenContext) SetUpper(v IValueExpressionContext) { s.upper = v }
+func (s *BetweenContext) SetUpper(v IValueExpressionContext) { _ = "STUB: not implemented"; return }
 
 func (s *BetweenContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *BetweenContext) BETWEEN() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserBETWEEN, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *BetweenContext) AND() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserAND, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *BetweenContext) AllValueExpression() []IValueExpressionContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IValueExpressionContext)(nil)).Elem())
-	var tst = make([]IValueExpressionContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(IValueExpressionContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *BetweenContext) ValueExpression(i int) IValueExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IValueExpressionContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IValueExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IValueExpressionContext)
 }
 
 func (s *BetweenContext) NOT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserNOT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *BetweenContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitBetween(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type QuantifiedComparisonContext struct {
@@ -5766,242 +3334,38 @@ type QuantifiedComparisonContext struct {
 }
 
 func NewQuantifiedComparisonContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *QuantifiedComparisonContext {
-	var p = new(QuantifiedComparisonContext)
-
-	p.PredicateContext = NewEmptyPredicateContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*PredicateContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *QuantifiedComparisonContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *QuantifiedComparisonContext) ComparisonOperator() IComparisonOperatorContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IComparisonOperatorContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IComparisonOperatorContext)
+	_ = "STUB: not implemented"
+	return *new(IComparisonOperatorContext)
 }
 
 func (s *QuantifiedComparisonContext) ComparisonQuantifier() IComparisonQuantifierContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IComparisonQuantifierContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IComparisonQuantifierContext)
+	_ = "STUB: not implemented"
+	return *new(IComparisonQuantifierContext)
 }
 
 func (s *QuantifiedComparisonContext) Query() IQueryContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IQueryContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IQueryContext)
+	_ = "STUB: not implemented"
+	return *new(IQueryContext)
 }
 
 func (s *QuantifiedComparisonContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitQuantifiedComparison(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) Predicate(value antlr.ParserRuleContext) (localctx IPredicateContext) {
-	localctx = NewPredicateContext(p, p.GetParserRuleContext(), p.GetState(), value)
-	p.EnterRule(localctx, 50, SqlBaseParserRULE_predicate)
-	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.SetState(424)
-	p.GetErrorHandler().Sync(p)
-	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 53, p.GetParserRuleContext()) {
-	case 1:
-		localctx = NewComparisonContext(p, localctx)
-		p.EnterOuterAlt(localctx, 1)
-		{
-			p.SetState(384)
-			p.ComparisonOperator()
-		}
-		{
-			p.SetState(385)
-
-			var _x = p.valueExpression(0)
-
-			localctx.(*ComparisonContext).right = _x
-		}
-
-	case 2:
-		localctx = NewQuantifiedComparisonContext(p, localctx)
-		p.EnterOuterAlt(localctx, 2)
-		{
-			p.SetState(387)
-			p.ComparisonOperator()
-		}
-		{
-			p.SetState(388)
-			p.ComparisonQuantifier()
-		}
-		{
-			p.SetState(389)
-			p.Match(SqlBaseParserT__1)
-		}
-		{
-			p.SetState(390)
-			p.Query()
-		}
-		{
-			p.SetState(391)
-			p.Match(SqlBaseParserT__2)
-		}
-
-	case 3:
-		localctx = NewBetweenContext(p, localctx)
-		p.EnterOuterAlt(localctx, 3)
-		p.SetState(394)
-		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
-
-		if _la == SqlBaseParserNOT {
-			{
-				p.SetState(393)
-				p.Match(SqlBaseParserNOT)
-			}
-
-		}
-		{
-			p.SetState(396)
-			p.Match(SqlBaseParserBETWEEN)
-		}
-		{
-			p.SetState(397)
-
-			var _x = p.valueExpression(0)
-
-			localctx.(*BetweenContext).lower = _x
-		}
-		{
-			p.SetState(398)
-			p.Match(SqlBaseParserAND)
-		}
-		{
-			p.SetState(399)
-
-			var _x = p.valueExpression(0)
-
-			localctx.(*BetweenContext).upper = _x
-		}
-
-	case 4:
-		localctx = NewInListContext(p, localctx)
-		p.EnterOuterAlt(localctx, 4)
-		p.SetState(402)
-		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
-
-		if _la == SqlBaseParserNOT {
-			{
-				p.SetState(401)
-				p.Match(SqlBaseParserNOT)
-			}
-
-		}
-		{
-			p.SetState(404)
-			p.Match(SqlBaseParserIN)
-		}
-		{
-			p.SetState(405)
-			p.Match(SqlBaseParserT__1)
-		}
-		{
-			p.SetState(406)
-			p.Expression()
-		}
-		p.SetState(411)
-		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
-
-		for _la == SqlBaseParserT__0 {
-			{
-				p.SetState(407)
-				p.Match(SqlBaseParserT__0)
-			}
-			{
-				p.SetState(408)
-				p.Expression()
-			}
-
-			p.SetState(413)
-			p.GetErrorHandler().Sync(p)
-			_la = p.GetTokenStream().LA(1)
-		}
-		{
-			p.SetState(414)
-			p.Match(SqlBaseParserT__2)
-		}
-
-	case 5:
-		localctx = NewInSubqueryContext(p, localctx)
-		p.EnterOuterAlt(localctx, 5)
-		p.SetState(417)
-		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
-
-		if _la == SqlBaseParserNOT {
-			{
-				p.SetState(416)
-				p.Match(SqlBaseParserNOT)
-			}
-
-		}
-		{
-			p.SetState(419)
-			p.Match(SqlBaseParserIN)
-		}
-		{
-			p.SetState(420)
-			p.Match(SqlBaseParserT__1)
-		}
-		{
-			p.SetState(421)
-			p.Query()
-		}
-		{
-			p.SetState(422)
-			p.Match(SqlBaseParserT__2)
-		}
-
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IPredicateContext)
 }
 
 // IValueExpressionContext is an interface to support dynamic dispatch.
@@ -6021,37 +3385,35 @@ type ValueExpressionContext struct {
 }
 
 func NewEmptyValueExpressionContext() *ValueExpressionContext {
-	var p = new(ValueExpressionContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_valueExpression
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (*ValueExpressionContext) IsValueExpressionContext() {}
+func (*ValueExpressionContext) IsValueExpressionContext() { _ = "STUB: not implemented"; return }
 
 func NewValueExpressionContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ValueExpressionContext {
-	var p = new(ValueExpressionContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_valueExpression
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *ValueExpressionContext) GetParser() antlr.Parser { return s.parser }
+func (s *ValueExpressionContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *ValueExpressionContext) CopyFrom(ctx *ValueExpressionContext) {
-	s.BaseParserRuleContext.CopyFrom(ctx.BaseParserRuleContext)
+	_ = "STUB: not implemented"
+	return
 }
 
 func (s *ValueExpressionContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *ValueExpressionContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 type ValueExpressionDefaultContext struct {
@@ -6059,37 +3421,23 @@ type ValueExpressionDefaultContext struct {
 }
 
 func NewValueExpressionDefaultContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ValueExpressionDefaultContext {
-	var p = new(ValueExpressionDefaultContext)
-
-	p.ValueExpressionContext = NewEmptyValueExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*ValueExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *ValueExpressionDefaultContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *ValueExpressionDefaultContext) PrimaryExpression() IPrimaryExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IPrimaryExpressionContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IPrimaryExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IPrimaryExpressionContext)
 }
 
 func (s *ValueExpressionDefaultContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitValueExpressionDefault(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type ConcatenationContext struct {
@@ -6099,62 +3447,53 @@ type ConcatenationContext struct {
 }
 
 func NewConcatenationContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ConcatenationContext {
-	var p = new(ConcatenationContext)
-
-	p.ValueExpressionContext = NewEmptyValueExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*ValueExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *ConcatenationContext) GetLeft() IValueExpressionContext { return s.left }
+func (s *ConcatenationContext) GetLeft() IValueExpressionContext {
+	_ = "STUB: not implemented"
+	return *new(IValueExpressionContext)
+}
 
-func (s *ConcatenationContext) GetRight() IValueExpressionContext { return s.right }
+func (s *ConcatenationContext) GetRight() IValueExpressionContext {
+	_ = "STUB: not implemented"
+	return *new(IValueExpressionContext)
+}
 
-func (s *ConcatenationContext) SetLeft(v IValueExpressionContext) { s.left = v }
+func (s *ConcatenationContext) SetLeft(v IValueExpressionContext) {
+	_ = "STUB: not implemented"
+	return
+}
 
-func (s *ConcatenationContext) SetRight(v IValueExpressionContext) { s.right = v }
+func (s *ConcatenationContext) SetRight(v IValueExpressionContext) {
+	_ = "STUB: not implemented"
+	return
+}
 
 func (s *ConcatenationContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *ConcatenationContext) CONCAT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserCONCAT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *ConcatenationContext) AllValueExpression() []IValueExpressionContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IValueExpressionContext)(nil)).Elem())
-	var tst = make([]IValueExpressionContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(IValueExpressionContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *ConcatenationContext) ValueExpression(i int) IValueExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IValueExpressionContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IValueExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IValueExpressionContext)
 }
 
 func (s *ConcatenationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitConcatenation(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type ArithmeticBinaryContext struct {
@@ -6165,82 +3504,80 @@ type ArithmeticBinaryContext struct {
 }
 
 func NewArithmeticBinaryContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ArithmeticBinaryContext {
-	var p = new(ArithmeticBinaryContext)
-
-	p.ValueExpressionContext = NewEmptyValueExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*ValueExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *ArithmeticBinaryContext) GetOperator() antlr.Token { return s.operator }
+func (s *ArithmeticBinaryContext) GetOperator() antlr.Token {
+	_ = "STUB: not implemented"
+	return *new(antlr.Token)
+}
 
-func (s *ArithmeticBinaryContext) SetOperator(v antlr.Token) { s.operator = v }
+func (s *ArithmeticBinaryContext) SetOperator(v antlr.Token) { _ = "STUB: not implemented"; return }
 
-func (s *ArithmeticBinaryContext) GetLeft() IValueExpressionContext { return s.left }
+func (s *ArithmeticBinaryContext) GetLeft() IValueExpressionContext {
+	_ = "STUB: not implemented"
+	return *new(IValueExpressionContext)
+}
 
-func (s *ArithmeticBinaryContext) GetRight() IValueExpressionContext { return s.right }
+func (s *ArithmeticBinaryContext) GetRight() IValueExpressionContext {
+	_ = "STUB: not implemented"
+	return *new(IValueExpressionContext)
+}
 
-func (s *ArithmeticBinaryContext) SetLeft(v IValueExpressionContext) { s.left = v }
+func (s *ArithmeticBinaryContext) SetLeft(v IValueExpressionContext) {
+	_ = "STUB: not implemented"
+	return
+}
 
-func (s *ArithmeticBinaryContext) SetRight(v IValueExpressionContext) { s.right = v }
+func (s *ArithmeticBinaryContext) SetRight(v IValueExpressionContext) {
+	_ = "STUB: not implemented"
+	return
+}
 
 func (s *ArithmeticBinaryContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *ArithmeticBinaryContext) AllValueExpression() []IValueExpressionContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IValueExpressionContext)(nil)).Elem())
-	var tst = make([]IValueExpressionContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(IValueExpressionContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *ArithmeticBinaryContext) ValueExpression(i int) IValueExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IValueExpressionContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IValueExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IValueExpressionContext)
 }
 
 func (s *ArithmeticBinaryContext) ASTERISK() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserASTERISK, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *ArithmeticBinaryContext) SLASH() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserSLASH, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *ArithmeticBinaryContext) PERCENT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserPERCENT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *ArithmeticBinaryContext) PLUS() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserPLUS, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *ArithmeticBinaryContext) MINUS() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserMINUS, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *ArithmeticBinaryContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitArithmeticBinary(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type ArithmeticUnaryContext struct {
@@ -6249,49 +3586,40 @@ type ArithmeticUnaryContext struct {
 }
 
 func NewArithmeticUnaryContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ArithmeticUnaryContext {
-	var p = new(ArithmeticUnaryContext)
-
-	p.ValueExpressionContext = NewEmptyValueExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*ValueExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *ArithmeticUnaryContext) GetOperator() antlr.Token { return s.operator }
+func (s *ArithmeticUnaryContext) GetOperator() antlr.Token {
+	_ = "STUB: not implemented"
+	return *new(antlr.Token)
+}
 
-func (s *ArithmeticUnaryContext) SetOperator(v antlr.Token) { s.operator = v }
+func (s *ArithmeticUnaryContext) SetOperator(v antlr.Token) { _ = "STUB: not implemented"; return }
 
 func (s *ArithmeticUnaryContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *ArithmeticUnaryContext) ValueExpression() IValueExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IValueExpressionContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IValueExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IValueExpressionContext)
 }
 
 func (s *ArithmeticUnaryContext) MINUS() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserMINUS, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *ArithmeticUnaryContext) PLUS() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserPLUS, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *ArithmeticUnaryContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitArithmeticUnary(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type AtTimeZoneContext struct {
@@ -6299,265 +3627,46 @@ type AtTimeZoneContext struct {
 }
 
 func NewAtTimeZoneContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *AtTimeZoneContext {
-	var p = new(AtTimeZoneContext)
-
-	p.ValueExpressionContext = NewEmptyValueExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*ValueExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *AtTimeZoneContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *AtTimeZoneContext) ValueExpression() IValueExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IValueExpressionContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IValueExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IValueExpressionContext)
 }
 
 func (s *AtTimeZoneContext) AT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserAT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *AtTimeZoneContext) TimeZoneSpecifier() ITimeZoneSpecifierContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ITimeZoneSpecifierContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(ITimeZoneSpecifierContext)
+	_ = "STUB: not implemented"
+	return *new(ITimeZoneSpecifierContext)
 }
 
 func (s *AtTimeZoneContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitAtTimeZone(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) ValueExpression() (localctx IValueExpressionContext) {
-	return p.valueExpression(0)
+	_ = "STUB: not implemented"
+	return *new(IValueExpressionContext)
 }
 
 func (p *SqlBaseParser) valueExpression(_p int) (localctx IValueExpressionContext) {
-	var _parentctx antlr.ParserRuleContext = p.GetParserRuleContext()
-	_parentState := p.GetState()
-	localctx = NewValueExpressionContext(p, p.GetParserRuleContext(), _parentState)
-	var _prevctx IValueExpressionContext = localctx
-	var _ antlr.ParserRuleContext = _prevctx // TODO: To prevent unused variable warning.
-	_startState := 52
-	p.EnterRecursionRule(localctx, 52, SqlBaseParserRULE_valueExpression, _p)
-	var _la int
-
-	defer func() {
-		p.UnrollRecursionContexts(_parentctx)
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	var _alt int
-
-	p.EnterOuterAlt(localctx, 1)
-	p.SetState(430)
-	p.GetErrorHandler().Sync(p)
-
-	switch p.GetTokenStream().LA(1) {
-	case SqlBaseParserT__1, SqlBaseParserADD, SqlBaseParserALL, SqlBaseParserANALYZE, SqlBaseParserANY, SqlBaseParserARRAY, SqlBaseParserASC, SqlBaseParserAT, SqlBaseParserBERNOULLI, SqlBaseParserCALL, SqlBaseParserCASCADE, SqlBaseParserCATALOGS, SqlBaseParserCOALESCE, SqlBaseParserCOLUMN, SqlBaseParserCOLUMNS, SqlBaseParserCOMMENT, SqlBaseParserCOMMITTED, SqlBaseParserCURRENT, SqlBaseParserCURRENT_DATE, SqlBaseParserCURRENT_TIME, SqlBaseParserCURRENT_TIMESTAMP, SqlBaseParserCURRENT_USER, SqlBaseParserDATA, SqlBaseParserDATE, SqlBaseParserDAY, SqlBaseParserDESC, SqlBaseParserDISTRIBUTED, SqlBaseParserEXCLUDING, SqlBaseParserEXPLAIN, SqlBaseParserFALSE, SqlBaseParserFILTER, SqlBaseParserFIRST, SqlBaseParserFOLLOWING, SqlBaseParserFORMAT, SqlBaseParserFUNCTIONS, SqlBaseParserGROUPING, SqlBaseParserHOUR, SqlBaseParserIF, SqlBaseParserINCLUDING, SqlBaseParserINPUT, SqlBaseParserINTEGER, SqlBaseParserINTERVAL, SqlBaseParserLAST, SqlBaseParserLATERAL, SqlBaseParserLEVEL, SqlBaseParserLIMIT, SqlBaseParserLOCALTIME, SqlBaseParserLOCALTIMESTAMP, SqlBaseParserLOGICAL, SqlBaseParserMAP, SqlBaseParserMINUTE, SqlBaseParserMONTH, SqlBaseParserNFC, SqlBaseParserNFD, SqlBaseParserNFKC, SqlBaseParserNFKD, SqlBaseParserNO, SqlBaseParserNULL, SqlBaseParserNULLIF, SqlBaseParserNULLS, SqlBaseParserONLY, SqlBaseParserOPTION, SqlBaseParserORDINALITY, SqlBaseParserOUTPUT, SqlBaseParserOVER, SqlBaseParserPARTITION, SqlBaseParserPARTITIONS, SqlBaseParserPOSITION, SqlBaseParserPRECEDING, SqlBaseParserPRIVILEGES, SqlBaseParserPROPERTIES, SqlBaseParserPUBLIC, SqlBaseParserRANGE, SqlBaseParserREAD, SqlBaseParserRENAME, SqlBaseParserREPEATABLE, SqlBaseParserREPLACE, SqlBaseParserRESET, SqlBaseParserRESTRICT, SqlBaseParserREVOKE, SqlBaseParserROLLBACK, SqlBaseParserROW, SqlBaseParserROWS, SqlBaseParserSCHEMA, SqlBaseParserSCHEMAS, SqlBaseParserSECOND, SqlBaseParserSERIALIZABLE, SqlBaseParserSESSION, SqlBaseParserSET, SqlBaseParserSETS, SqlBaseParserSHOW, SqlBaseParserSMALLINT, SqlBaseParserSOME, SqlBaseParserSTART, SqlBaseParserSTATS, SqlBaseParserSUBSTRING, SqlBaseParserSYSTEM, SqlBaseParserTABLES, SqlBaseParserTABLESAMPLE, SqlBaseParserTEXT, SqlBaseParserTIME, SqlBaseParserTIMESTAMP, SqlBaseParserTINYINT, SqlBaseParserTO, SqlBaseParserTRUE, SqlBaseParserTRY_CAST, SqlBaseParserTYPE, SqlBaseParserUNBOUNDED, SqlBaseParserUNCOMMITTED, SqlBaseParserUSE, SqlBaseParserVALIDATE, SqlBaseParserVERBOSE, SqlBaseParserVIEW, SqlBaseParserWORK, SqlBaseParserWRITE, SqlBaseParserYEAR, SqlBaseParserZONE, SqlBaseParserSTRING, SqlBaseParserUNICODE_STRING, SqlBaseParserBINARY_LITERAL, SqlBaseParserINTEGER_VALUE, SqlBaseParserDECIMAL_VALUE, SqlBaseParserDOUBLE_VALUE, SqlBaseParserIDENTIFIER, SqlBaseParserDIGIT_IDENTIFIER, SqlBaseParserQUOTED_IDENTIFIER, SqlBaseParserBACKQUOTED_IDENTIFIER, SqlBaseParserDOUBLE_PRECISION:
-		localctx = NewValueExpressionDefaultContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-
-		{
-			p.SetState(427)
-			p.primaryExpression(0)
-		}
-
-	case SqlBaseParserPLUS, SqlBaseParserMINUS:
-		localctx = NewArithmeticUnaryContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-		{
-			p.SetState(428)
-
-			var _lt = p.GetTokenStream().LT(1)
-
-			localctx.(*ArithmeticUnaryContext).operator = _lt
-
-			_la = p.GetTokenStream().LA(1)
-
-			if !(_la == SqlBaseParserPLUS || _la == SqlBaseParserMINUS) {
-				var _ri = p.GetErrorHandler().RecoverInline(p)
-
-				localctx.(*ArithmeticUnaryContext).operator = _ri
-			} else {
-				p.GetErrorHandler().ReportMatch(p)
-				p.Consume()
-			}
-		}
-		{
-			p.SetState(429)
-			p.valueExpression(4)
-		}
-
-	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
-	}
-	p.GetParserRuleContext().SetStop(p.GetTokenStream().LT(-1))
-	p.SetState(446)
-	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 56, p.GetParserRuleContext())
-
-	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
-		if _alt == 1 {
-			if p.GetParseListeners() != nil {
-				p.TriggerExitRuleEvent()
-			}
-			_prevctx = localctx
-			p.SetState(444)
-			p.GetErrorHandler().Sync(p)
-			switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 55, p.GetParserRuleContext()) {
-			case 1:
-				localctx = NewArithmeticBinaryContext(p, NewValueExpressionContext(p, _parentctx, _parentState))
-				localctx.(*ArithmeticBinaryContext).left = _prevctx
-
-				p.PushNewRecursionContext(localctx, _startState, SqlBaseParserRULE_valueExpression)
-				p.SetState(432)
-
-				if !(p.Precpred(p.GetParserRuleContext(), 3)) {
-					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 3)", ""))
-				}
-				{
-					p.SetState(433)
-
-					var _lt = p.GetTokenStream().LT(1)
-
-					localctx.(*ArithmeticBinaryContext).operator = _lt
-
-					_la = p.GetTokenStream().LA(1)
-
-					if !(((_la-192)&-(0x1f+1)) == 0 && ((1<<uint((_la-192)))&((1<<(SqlBaseParserASTERISK-192))|(1<<(SqlBaseParserSLASH-192))|(1<<(SqlBaseParserPERCENT-192)))) != 0) {
-						var _ri = p.GetErrorHandler().RecoverInline(p)
-
-						localctx.(*ArithmeticBinaryContext).operator = _ri
-					} else {
-						p.GetErrorHandler().ReportMatch(p)
-						p.Consume()
-					}
-				}
-				{
-					p.SetState(434)
-
-					var _x = p.valueExpression(4)
-
-					localctx.(*ArithmeticBinaryContext).right = _x
-				}
-
-			case 2:
-				localctx = NewArithmeticBinaryContext(p, NewValueExpressionContext(p, _parentctx, _parentState))
-				localctx.(*ArithmeticBinaryContext).left = _prevctx
-
-				p.PushNewRecursionContext(localctx, _startState, SqlBaseParserRULE_valueExpression)
-				p.SetState(435)
-
-				if !(p.Precpred(p.GetParserRuleContext(), 2)) {
-					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 2)", ""))
-				}
-				{
-					p.SetState(436)
-
-					var _lt = p.GetTokenStream().LT(1)
-
-					localctx.(*ArithmeticBinaryContext).operator = _lt
-
-					_la = p.GetTokenStream().LA(1)
-
-					if !(_la == SqlBaseParserPLUS || _la == SqlBaseParserMINUS) {
-						var _ri = p.GetErrorHandler().RecoverInline(p)
-
-						localctx.(*ArithmeticBinaryContext).operator = _ri
-					} else {
-						p.GetErrorHandler().ReportMatch(p)
-						p.Consume()
-					}
-				}
-				{
-					p.SetState(437)
-
-					var _x = p.valueExpression(3)
-
-					localctx.(*ArithmeticBinaryContext).right = _x
-				}
-
-			case 3:
-				localctx = NewConcatenationContext(p, NewValueExpressionContext(p, _parentctx, _parentState))
-				localctx.(*ConcatenationContext).left = _prevctx
-
-				p.PushNewRecursionContext(localctx, _startState, SqlBaseParserRULE_valueExpression)
-				p.SetState(438)
-
-				if !(p.Precpred(p.GetParserRuleContext(), 1)) {
-					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 1)", ""))
-				}
-				{
-					p.SetState(439)
-					p.Match(SqlBaseParserCONCAT)
-				}
-				{
-					p.SetState(440)
-
-					var _x = p.valueExpression(2)
-
-					localctx.(*ConcatenationContext).right = _x
-				}
-
-			case 4:
-				localctx = NewAtTimeZoneContext(p, NewValueExpressionContext(p, _parentctx, _parentState))
-				p.PushNewRecursionContext(localctx, _startState, SqlBaseParserRULE_valueExpression)
-				p.SetState(441)
-
-				if !(p.Precpred(p.GetParserRuleContext(), 5)) {
-					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 5)", ""))
-				}
-				{
-					p.SetState(442)
-					p.Match(SqlBaseParserAT)
-				}
-				{
-					p.SetState(443)
-					p.TimeZoneSpecifier()
-				}
-
-			}
-
-		}
-		p.SetState(448)
-		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 56, p.GetParserRuleContext())
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IValueExpressionContext)
 }
+
+// TODO: To prevent unused variable warning.
 
 // IPrimaryExpressionContext is an interface to support dynamic dispatch.
 type IPrimaryExpressionContext interface {
@@ -6576,37 +3685,35 @@ type PrimaryExpressionContext struct {
 }
 
 func NewEmptyPrimaryExpressionContext() *PrimaryExpressionContext {
-	var p = new(PrimaryExpressionContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_primaryExpression
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (*PrimaryExpressionContext) IsPrimaryExpressionContext() {}
+func (*PrimaryExpressionContext) IsPrimaryExpressionContext() { _ = "STUB: not implemented"; return }
 
 func NewPrimaryExpressionContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *PrimaryExpressionContext {
-	var p = new(PrimaryExpressionContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_primaryExpression
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *PrimaryExpressionContext) GetParser() antlr.Parser { return s.parser }
+func (s *PrimaryExpressionContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *PrimaryExpressionContext) CopyFrom(ctx *PrimaryExpressionContext) {
-	s.BaseParserRuleContext.CopyFrom(ctx.BaseParserRuleContext)
+	_ = "STUB: not implemented"
+	return
 }
 
 func (s *PrimaryExpressionContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *PrimaryExpressionContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 type DereferenceContext struct {
@@ -6616,55 +3723,45 @@ type DereferenceContext struct {
 }
 
 func NewDereferenceContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *DereferenceContext {
-	var p = new(DereferenceContext)
-
-	p.PrimaryExpressionContext = NewEmptyPrimaryExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*PrimaryExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *DereferenceContext) GetBase() IPrimaryExpressionContext { return s.base }
+func (s *DereferenceContext) GetBase() IPrimaryExpressionContext {
+	_ = "STUB: not implemented"
+	return *new(IPrimaryExpressionContext)
+}
 
-func (s *DereferenceContext) GetFieldName() IIdentifierContext { return s.fieldName }
+func (s *DereferenceContext) GetFieldName() IIdentifierContext {
+	_ = "STUB: not implemented"
+	return *new(IIdentifierContext)
+}
 
-func (s *DereferenceContext) SetBase(v IPrimaryExpressionContext) { s.base = v }
+func (s *DereferenceContext) SetBase(v IPrimaryExpressionContext) {
+	_ = "STUB: not implemented"
+	return
+}
 
-func (s *DereferenceContext) SetFieldName(v IIdentifierContext) { s.fieldName = v }
+func (s *DereferenceContext) SetFieldName(v IIdentifierContext) { _ = "STUB: not implemented"; return }
 
 func (s *DereferenceContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *DereferenceContext) PrimaryExpression() IPrimaryExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IPrimaryExpressionContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IPrimaryExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IPrimaryExpressionContext)
 }
 
 func (s *DereferenceContext) Identifier() IIdentifierContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IIdentifierContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IIdentifierContext)
+	_ = "STUB: not implemented"
+	return *new(IIdentifierContext)
 }
 
 func (s *DereferenceContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitDereference(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type ColumnReferenceContext struct {
@@ -6672,37 +3769,23 @@ type ColumnReferenceContext struct {
 }
 
 func NewColumnReferenceContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ColumnReferenceContext {
-	var p = new(ColumnReferenceContext)
-
-	p.PrimaryExpressionContext = NewEmptyPrimaryExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*PrimaryExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *ColumnReferenceContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *ColumnReferenceContext) Identifier() IIdentifierContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IIdentifierContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IIdentifierContext)
+	_ = "STUB: not implemented"
+	return *new(IIdentifierContext)
 }
 
 func (s *ColumnReferenceContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitColumnReference(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type NullLiteralContext struct {
@@ -6710,31 +3793,23 @@ type NullLiteralContext struct {
 }
 
 func NewNullLiteralContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *NullLiteralContext {
-	var p = new(NullLiteralContext)
-
-	p.PrimaryExpressionContext = NewEmptyPrimaryExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*PrimaryExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *NullLiteralContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *NullLiteralContext) NULL() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserNULL, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NullLiteralContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitNullLiteral(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type RowConstructorContext struct {
@@ -6742,54 +3817,33 @@ type RowConstructorContext struct {
 }
 
 func NewRowConstructorContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *RowConstructorContext {
-	var p = new(RowConstructorContext)
-
-	p.PrimaryExpressionContext = NewEmptyPrimaryExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*PrimaryExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *RowConstructorContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *RowConstructorContext) AllExpression() []IExpressionContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IExpressionContext)(nil)).Elem())
-	var tst = make([]IExpressionContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(IExpressionContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *RowConstructorContext) Expression(i int) IExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IExpressionContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IExpressionContext)
 }
 
 func (s *RowConstructorContext) ROW() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserROW, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *RowConstructorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitRowConstructor(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type SubscriptContext struct {
@@ -6799,55 +3853,42 @@ type SubscriptContext struct {
 }
 
 func NewSubscriptContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *SubscriptContext {
-	var p = new(SubscriptContext)
-
-	p.PrimaryExpressionContext = NewEmptyPrimaryExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*PrimaryExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *SubscriptContext) GetValue() IPrimaryExpressionContext { return s.value }
+func (s *SubscriptContext) GetValue() IPrimaryExpressionContext {
+	_ = "STUB: not implemented"
+	return *new(IPrimaryExpressionContext)
+}
 
-func (s *SubscriptContext) GetIndex() IValueExpressionContext { return s.index }
+func (s *SubscriptContext) GetIndex() IValueExpressionContext {
+	_ = "STUB: not implemented"
+	return *new(IValueExpressionContext)
+}
 
-func (s *SubscriptContext) SetValue(v IPrimaryExpressionContext) { s.value = v }
+func (s *SubscriptContext) SetValue(v IPrimaryExpressionContext) { _ = "STUB: not implemented"; return }
 
-func (s *SubscriptContext) SetIndex(v IValueExpressionContext) { s.index = v }
+func (s *SubscriptContext) SetIndex(v IValueExpressionContext) { _ = "STUB: not implemented"; return }
 
 func (s *SubscriptContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *SubscriptContext) PrimaryExpression() IPrimaryExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IPrimaryExpressionContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IPrimaryExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IPrimaryExpressionContext)
 }
 
 func (s *SubscriptContext) ValueExpression() IValueExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IValueExpressionContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IValueExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IValueExpressionContext)
 }
 
 func (s *SubscriptContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitSubscript(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type TypeConstructorContext struct {
@@ -6855,51 +3896,33 @@ type TypeConstructorContext struct {
 }
 
 func NewTypeConstructorContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *TypeConstructorContext {
-	var p = new(TypeConstructorContext)
-
-	p.PrimaryExpressionContext = NewEmptyPrimaryExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*PrimaryExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *TypeConstructorContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *TypeConstructorContext) Identifier() IIdentifierContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IIdentifierContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IIdentifierContext)
+	_ = "STUB: not implemented"
+	return *new(IIdentifierContext)
 }
 
 func (s *TypeConstructorContext) Sql_string() ISql_stringContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ISql_stringContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(ISql_stringContext)
+	_ = "STUB: not implemented"
+	return *new(ISql_stringContext)
 }
 
 func (s *TypeConstructorContext) DOUBLE_PRECISION() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserDOUBLE_PRECISION, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *TypeConstructorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitTypeConstructor(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type SpecialDateTimeFunctionContext struct {
@@ -6909,59 +3932,65 @@ type SpecialDateTimeFunctionContext struct {
 }
 
 func NewSpecialDateTimeFunctionContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *SpecialDateTimeFunctionContext {
-	var p = new(SpecialDateTimeFunctionContext)
-
-	p.PrimaryExpressionContext = NewEmptyPrimaryExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*PrimaryExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *SpecialDateTimeFunctionContext) GetName() antlr.Token { return s.name }
+func (s *SpecialDateTimeFunctionContext) GetName() antlr.Token {
+	_ = "STUB: not implemented"
+	return *new(antlr.Token)
+}
 
-func (s *SpecialDateTimeFunctionContext) GetPrecision() antlr.Token { return s.precision }
+func (s *SpecialDateTimeFunctionContext) GetPrecision() antlr.Token {
+	_ = "STUB: not implemented"
+	return *new(antlr.Token)
+}
 
-func (s *SpecialDateTimeFunctionContext) SetName(v antlr.Token) { s.name = v }
+func (s *SpecialDateTimeFunctionContext) SetName(v antlr.Token) { _ = "STUB: not implemented"; return }
 
-func (s *SpecialDateTimeFunctionContext) SetPrecision(v antlr.Token) { s.precision = v }
+func (s *SpecialDateTimeFunctionContext) SetPrecision(v antlr.Token) {
+	_ = "STUB: not implemented"
+	return
+}
 
 func (s *SpecialDateTimeFunctionContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *SpecialDateTimeFunctionContext) CURRENT_DATE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserCURRENT_DATE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *SpecialDateTimeFunctionContext) CURRENT_TIME() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserCURRENT_TIME, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *SpecialDateTimeFunctionContext) INTEGER_VALUE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserINTEGER_VALUE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *SpecialDateTimeFunctionContext) CURRENT_TIMESTAMP() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserCURRENT_TIMESTAMP, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *SpecialDateTimeFunctionContext) LOCALTIME() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserLOCALTIME, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *SpecialDateTimeFunctionContext) LOCALTIMESTAMP() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserLOCALTIMESTAMP, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *SpecialDateTimeFunctionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitSpecialDateTimeFunction(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type SubqueryExpressionContext struct {
@@ -6969,37 +3998,23 @@ type SubqueryExpressionContext struct {
 }
 
 func NewSubqueryExpressionContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *SubqueryExpressionContext {
-	var p = new(SubqueryExpressionContext)
-
-	p.PrimaryExpressionContext = NewEmptyPrimaryExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*PrimaryExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *SubqueryExpressionContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *SubqueryExpressionContext) Query() IQueryContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IQueryContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IQueryContext)
+	_ = "STUB: not implemented"
+	return *new(IQueryContext)
 }
 
 func (s *SubqueryExpressionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitSubqueryExpression(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type BinaryLiteralContext struct {
@@ -7007,31 +4022,23 @@ type BinaryLiteralContext struct {
 }
 
 func NewBinaryLiteralContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *BinaryLiteralContext {
-	var p = new(BinaryLiteralContext)
-
-	p.PrimaryExpressionContext = NewEmptyPrimaryExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*PrimaryExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *BinaryLiteralContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *BinaryLiteralContext) BINARY_LITERAL() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserBINARY_LITERAL, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *BinaryLiteralContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitBinaryLiteral(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type CurrentUserContext struct {
@@ -7040,35 +4047,30 @@ type CurrentUserContext struct {
 }
 
 func NewCurrentUserContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *CurrentUserContext {
-	var p = new(CurrentUserContext)
-
-	p.PrimaryExpressionContext = NewEmptyPrimaryExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*PrimaryExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *CurrentUserContext) GetName() antlr.Token { return s.name }
+func (s *CurrentUserContext) GetName() antlr.Token {
+	_ = "STUB: not implemented"
+	return *new(antlr.Token)
+}
 
-func (s *CurrentUserContext) SetName(v antlr.Token) { s.name = v }
+func (s *CurrentUserContext) SetName(v antlr.Token) { _ = "STUB: not implemented"; return }
 
 func (s *CurrentUserContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *CurrentUserContext) CURRENT_USER() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserCURRENT_USER, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *CurrentUserContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitCurrentUser(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type ParenthesizedExpressionContext struct {
@@ -7076,37 +4078,23 @@ type ParenthesizedExpressionContext struct {
 }
 
 func NewParenthesizedExpressionContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ParenthesizedExpressionContext {
-	var p = new(ParenthesizedExpressionContext)
-
-	p.PrimaryExpressionContext = NewEmptyPrimaryExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*PrimaryExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *ParenthesizedExpressionContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *ParenthesizedExpressionContext) Expression() IExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IExpressionContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IExpressionContext)
 }
 
 func (s *ParenthesizedExpressionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitParenthesizedExpression(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type StringLiteralContext struct {
@@ -7114,37 +4102,23 @@ type StringLiteralContext struct {
 }
 
 func NewStringLiteralContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *StringLiteralContext {
-	var p = new(StringLiteralContext)
-
-	p.PrimaryExpressionContext = NewEmptyPrimaryExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*PrimaryExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *StringLiteralContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *StringLiteralContext) Sql_string() ISql_stringContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ISql_stringContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(ISql_stringContext)
+	_ = "STUB: not implemented"
+	return *new(ISql_stringContext)
 }
 
 func (s *StringLiteralContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitStringLiteral(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type ArrayConstructorContext struct {
@@ -7152,54 +4126,33 @@ type ArrayConstructorContext struct {
 }
 
 func NewArrayConstructorContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ArrayConstructorContext {
-	var p = new(ArrayConstructorContext)
-
-	p.PrimaryExpressionContext = NewEmptyPrimaryExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*PrimaryExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *ArrayConstructorContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *ArrayConstructorContext) ARRAY() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserARRAY, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *ArrayConstructorContext) AllExpression() []IExpressionContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IExpressionContext)(nil)).Elem())
-	var tst = make([]IExpressionContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(IExpressionContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *ArrayConstructorContext) Expression(i int) IExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IExpressionContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IExpressionContext)
 }
 
 func (s *ArrayConstructorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitArrayConstructor(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type FunctionCallContext struct {
@@ -7207,115 +4160,68 @@ type FunctionCallContext struct {
 }
 
 func NewFunctionCallContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *FunctionCallContext {
-	var p = new(FunctionCallContext)
-
-	p.PrimaryExpressionContext = NewEmptyPrimaryExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*PrimaryExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *FunctionCallContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *FunctionCallContext) QualifiedName() IQualifiedNameContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IQualifiedNameContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IQualifiedNameContext)
+	_ = "STUB: not implemented"
+	return *new(IQualifiedNameContext)
 }
 
 func (s *FunctionCallContext) ASTERISK() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserASTERISK, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *FunctionCallContext) Filter() IFilterContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IFilterContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IFilterContext)
+	_ = "STUB: not implemented"
+	return *new(IFilterContext)
 }
 
 func (s *FunctionCallContext) AllExpression() []IExpressionContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IExpressionContext)(nil)).Elem())
-	var tst = make([]IExpressionContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(IExpressionContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *FunctionCallContext) Expression(i int) IExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IExpressionContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IExpressionContext)
 }
 
 func (s *FunctionCallContext) ORDER() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserORDER, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *FunctionCallContext) BY() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserBY, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *FunctionCallContext) AllSortItem() []ISortItemContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*ISortItemContext)(nil)).Elem())
-	var tst = make([]ISortItemContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(ISortItemContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *FunctionCallContext) SortItem(i int) ISortItemContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ISortItemContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(ISortItemContext)
+	_ = "STUB: not implemented"
+	return *new(ISortItemContext)
 }
 
 func (s *FunctionCallContext) SetQuantifier() ISetQuantifierContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ISetQuantifierContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(ISetQuantifierContext)
+	_ = "STUB: not implemented"
+	return *new(ISetQuantifierContext)
 }
 
 func (s *FunctionCallContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitFunctionCall(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type IntervalLiteralContext struct {
@@ -7323,37 +4229,23 @@ type IntervalLiteralContext struct {
 }
 
 func NewIntervalLiteralContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *IntervalLiteralContext {
-	var p = new(IntervalLiteralContext)
-
-	p.PrimaryExpressionContext = NewEmptyPrimaryExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*PrimaryExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *IntervalLiteralContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *IntervalLiteralContext) Interval() IIntervalContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IIntervalContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IIntervalContext)
+	_ = "STUB: not implemented"
+	return *new(IIntervalContext)
 }
 
 func (s *IntervalLiteralContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitIntervalLiteral(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type NumericLiteralContext struct {
@@ -7361,37 +4253,23 @@ type NumericLiteralContext struct {
 }
 
 func NewNumericLiteralContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *NumericLiteralContext {
-	var p = new(NumericLiteralContext)
-
-	p.PrimaryExpressionContext = NewEmptyPrimaryExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*PrimaryExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *NumericLiteralContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *NumericLiteralContext) Number() INumberContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*INumberContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(INumberContext)
+	_ = "STUB: not implemented"
+	return *new(INumberContext)
 }
 
 func (s *NumericLiteralContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitNumericLiteral(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type BooleanLiteralContext struct {
@@ -7399,37 +4277,23 @@ type BooleanLiteralContext struct {
 }
 
 func NewBooleanLiteralContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *BooleanLiteralContext {
-	var p = new(BooleanLiteralContext)
-
-	p.PrimaryExpressionContext = NewEmptyPrimaryExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*PrimaryExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *BooleanLiteralContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *BooleanLiteralContext) BooleanValue() IBooleanValueContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IBooleanValueContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IBooleanValueContext)
+	_ = "STUB: not implemented"
+	return *new(IBooleanValueContext)
 }
 
 func (s *BooleanLiteralContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitBooleanLiteral(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type GroupingOperationContext struct {
@@ -7437,745 +4301,46 @@ type GroupingOperationContext struct {
 }
 
 func NewGroupingOperationContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *GroupingOperationContext {
-	var p = new(GroupingOperationContext)
-
-	p.PrimaryExpressionContext = NewEmptyPrimaryExpressionContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*PrimaryExpressionContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *GroupingOperationContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *GroupingOperationContext) GROUPING() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserGROUPING, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *GroupingOperationContext) AllQualifiedName() []IQualifiedNameContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IQualifiedNameContext)(nil)).Elem())
-	var tst = make([]IQualifiedNameContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(IQualifiedNameContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *GroupingOperationContext) QualifiedName(i int) IQualifiedNameContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IQualifiedNameContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IQualifiedNameContext)
+	_ = "STUB: not implemented"
+	return *new(IQualifiedNameContext)
 }
 
 func (s *GroupingOperationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitGroupingOperation(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) PrimaryExpression() (localctx IPrimaryExpressionContext) {
-	return p.primaryExpression(0)
+	_ = "STUB: not implemented"
+	return *new(IPrimaryExpressionContext)
 }
 
 func (p *SqlBaseParser) primaryExpression(_p int) (localctx IPrimaryExpressionContext) {
-	var _parentctx antlr.ParserRuleContext = p.GetParserRuleContext()
-	_parentState := p.GetState()
-	localctx = NewPrimaryExpressionContext(p, p.GetParserRuleContext(), _parentState)
-	var _prevctx IPrimaryExpressionContext = localctx
-	var _ antlr.ParserRuleContext = _prevctx // TODO: To prevent unused variable warning.
-	_startState := 54
-	p.EnterRecursionRule(localctx, 54, SqlBaseParserRULE_primaryExpression, _p)
-	var _la int
-
-	defer func() {
-		p.UnrollRecursionContexts(_parentctx)
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	var _alt int
-
-	p.EnterOuterAlt(localctx, 1)
-	p.SetState(582)
-	p.GetErrorHandler().Sync(p)
-	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 74, p.GetParserRuleContext()) {
-	case 1:
-		localctx = NewNullLiteralContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-
-		{
-			p.SetState(450)
-			p.Match(SqlBaseParserNULL)
-		}
-
-	case 2:
-		localctx = NewIntervalLiteralContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-		{
-			p.SetState(451)
-			p.Interval()
-		}
-
-	case 3:
-		localctx = NewTypeConstructorContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-		{
-			p.SetState(452)
-			p.Identifier()
-		}
-		{
-			p.SetState(453)
-			p.Sql_string()
-		}
-
-	case 4:
-		localctx = NewTypeConstructorContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-		{
-			p.SetState(455)
-			p.Match(SqlBaseParserDOUBLE_PRECISION)
-		}
-		{
-			p.SetState(456)
-			p.Sql_string()
-		}
-
-	case 5:
-		localctx = NewNumericLiteralContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-		{
-			p.SetState(457)
-			p.Number()
-		}
-
-	case 6:
-		localctx = NewBooleanLiteralContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-		{
-			p.SetState(458)
-			p.BooleanValue()
-		}
-
-	case 7:
-		localctx = NewStringLiteralContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-		{
-			p.SetState(459)
-			p.Sql_string()
-		}
-
-	case 8:
-		localctx = NewBinaryLiteralContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-		{
-			p.SetState(460)
-			p.Match(SqlBaseParserBINARY_LITERAL)
-		}
-
-	case 9:
-		localctx = NewRowConstructorContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-		{
-			p.SetState(461)
-			p.Match(SqlBaseParserT__1)
-		}
-		{
-			p.SetState(462)
-			p.Expression()
-		}
-		p.SetState(465)
-		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
-
-		for ok := true; ok; ok = _la == SqlBaseParserT__0 {
-			{
-				p.SetState(463)
-				p.Match(SqlBaseParserT__0)
-			}
-			{
-				p.SetState(464)
-				p.Expression()
-			}
-
-			p.SetState(467)
-			p.GetErrorHandler().Sync(p)
-			_la = p.GetTokenStream().LA(1)
-		}
-		{
-			p.SetState(469)
-			p.Match(SqlBaseParserT__2)
-		}
-
-	case 10:
-		localctx = NewRowConstructorContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-		{
-			p.SetState(471)
-			p.Match(SqlBaseParserROW)
-		}
-		{
-			p.SetState(472)
-			p.Match(SqlBaseParserT__1)
-		}
-		{
-			p.SetState(473)
-			p.Expression()
-		}
-		p.SetState(478)
-		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
-
-		for _la == SqlBaseParserT__0 {
-			{
-				p.SetState(474)
-				p.Match(SqlBaseParserT__0)
-			}
-			{
-				p.SetState(475)
-				p.Expression()
-			}
-
-			p.SetState(480)
-			p.GetErrorHandler().Sync(p)
-			_la = p.GetTokenStream().LA(1)
-		}
-		{
-			p.SetState(481)
-			p.Match(SqlBaseParserT__2)
-		}
-
-	case 11:
-		localctx = NewFunctionCallContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-		{
-			p.SetState(483)
-			p.QualifiedName()
-		}
-		{
-			p.SetState(484)
-			p.Match(SqlBaseParserT__1)
-		}
-		{
-			p.SetState(485)
-			p.Match(SqlBaseParserASTERISK)
-		}
-		{
-			p.SetState(486)
-			p.Match(SqlBaseParserT__2)
-		}
-		p.SetState(488)
-		p.GetErrorHandler().Sync(p)
-
-		if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 59, p.GetParserRuleContext()) == 1 {
-			{
-				p.SetState(487)
-				p.Filter()
-			}
-
-		}
-
-	case 12:
-		localctx = NewFunctionCallContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-		{
-			p.SetState(490)
-			p.QualifiedName()
-		}
-		{
-			p.SetState(491)
-			p.Match(SqlBaseParserT__1)
-		}
-		p.SetState(503)
-		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
-
-		if (((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<SqlBaseParserT__1)|(1<<SqlBaseParserADD)|(1<<SqlBaseParserALL)|(1<<SqlBaseParserANALYZE)|(1<<SqlBaseParserANY)|(1<<SqlBaseParserARRAY)|(1<<SqlBaseParserASC)|(1<<SqlBaseParserAT)|(1<<SqlBaseParserBERNOULLI)|(1<<SqlBaseParserCALL)|(1<<SqlBaseParserCASCADE)|(1<<SqlBaseParserCATALOGS)|(1<<SqlBaseParserCOALESCE)|(1<<SqlBaseParserCOLUMN)|(1<<SqlBaseParserCOLUMNS)|(1<<SqlBaseParserCOMMENT)|(1<<SqlBaseParserCOMMITTED))) != 0) || (((_la-33)&-(0x1f+1)) == 0 && ((1<<uint((_la-33)))&((1<<(SqlBaseParserCURRENT-33))|(1<<(SqlBaseParserCURRENT_DATE-33))|(1<<(SqlBaseParserCURRENT_TIME-33))|(1<<(SqlBaseParserCURRENT_TIMESTAMP-33))|(1<<(SqlBaseParserCURRENT_USER-33))|(1<<(SqlBaseParserDATA-33))|(1<<(SqlBaseParserDATE-33))|(1<<(SqlBaseParserDAY-33))|(1<<(SqlBaseParserDESC-33))|(1<<(SqlBaseParserDISTINCT-33))|(1<<(SqlBaseParserDISTRIBUTED-33))|(1<<(SqlBaseParserEXCLUDING-33))|(1<<(SqlBaseParserEXPLAIN-33))|(1<<(SqlBaseParserFALSE-33))|(1<<(SqlBaseParserFILTER-33))|(1<<(SqlBaseParserFIRST-33))|(1<<(SqlBaseParserFOLLOWING-33))|(1<<(SqlBaseParserFORMAT-33)))) != 0) || (((_la-65)&-(0x1f+1)) == 0 && ((1<<uint((_la-65)))&((1<<(SqlBaseParserFUNCTIONS-65))|(1<<(SqlBaseParserGROUPING-65))|(1<<(SqlBaseParserHOUR-65))|(1<<(SqlBaseParserIF-65))|(1<<(SqlBaseParserINCLUDING-65))|(1<<(SqlBaseParserINPUT-65))|(1<<(SqlBaseParserINTEGER-65))|(1<<(SqlBaseParserINTERVAL-65))|(1<<(SqlBaseParserLAST-65))|(1<<(SqlBaseParserLATERAL-65))|(1<<(SqlBaseParserLEVEL-65))|(1<<(SqlBaseParserLIMIT-65))|(1<<(SqlBaseParserLOCALTIME-65))|(1<<(SqlBaseParserLOCALTIMESTAMP-65))|(1<<(SqlBaseParserLOGICAL-65))|(1<<(SqlBaseParserMAP-65))|(1<<(SqlBaseParserMINUTE-65))|(1<<(SqlBaseParserMONTH-65)))) != 0) || (((_la-98)&-(0x1f+1)) == 0 && ((1<<uint((_la-98)))&((1<<(SqlBaseParserNFC-98))|(1<<(SqlBaseParserNFD-98))|(1<<(SqlBaseParserNFKC-98))|(1<<(SqlBaseParserNFKD-98))|(1<<(SqlBaseParserNO-98))|(1<<(SqlBaseParserNOT-98))|(1<<(SqlBaseParserNULL-98))|(1<<(SqlBaseParserNULLIF-98))|(1<<(SqlBaseParserNULLS-98))|(1<<(SqlBaseParserONLY-98))|(1<<(SqlBaseParserOPTION-98))|(1<<(SqlBaseParserORDINALITY-98))|(1<<(SqlBaseParserOUTPUT-98))|(1<<(SqlBaseParserOVER-98))|(1<<(SqlBaseParserPARTITION-98))|(1<<(SqlBaseParserPARTITIONS-98))|(1<<(SqlBaseParserPOSITION-98))|(1<<(SqlBaseParserPRECEDING-98))|(1<<(SqlBaseParserPRIVILEGES-98))|(1<<(SqlBaseParserPROPERTIES-98))|(1<<(SqlBaseParserPUBLIC-98))|(1<<(SqlBaseParserRANGE-98))|(1<<(SqlBaseParserREAD-98))|(1<<(SqlBaseParserRENAME-98))|(1<<(SqlBaseParserREPEATABLE-98)))) != 0) || (((_la-130)&-(0x1f+1)) == 0 && ((1<<uint((_la-130)))&((1<<(SqlBaseParserREPLACE-130))|(1<<(SqlBaseParserRESET-130))|(1<<(SqlBaseParserRESTRICT-130))|(1<<(SqlBaseParserREVOKE-130))|(1<<(SqlBaseParserROLLBACK-130))|(1<<(SqlBaseParserROW-130))|(1<<(SqlBaseParserROWS-130))|(1<<(SqlBaseParserSCHEMA-130))|(1<<(SqlBaseParserSCHEMAS-130))|(1<<(SqlBaseParserSECOND-130))|(1<<(SqlBaseParserSERIALIZABLE-130))|(1<<(SqlBaseParserSESSION-130))|(1<<(SqlBaseParserSET-130))|(1<<(SqlBaseParserSETS-130))|(1<<(SqlBaseParserSHOW-130))|(1<<(SqlBaseParserSMALLINT-130))|(1<<(SqlBaseParserSOME-130))|(1<<(SqlBaseParserSTART-130))|(1<<(SqlBaseParserSTATS-130))|(1<<(SqlBaseParserSUBSTRING-130))|(1<<(SqlBaseParserSYSTEM-130))|(1<<(SqlBaseParserTABLES-130))|(1<<(SqlBaseParserTABLESAMPLE-130))|(1<<(SqlBaseParserTEXT-130))|(1<<(SqlBaseParserTIME-130))|(1<<(SqlBaseParserTIMESTAMP-130))|(1<<(SqlBaseParserTINYINT-130)))) != 0) || (((_la-162)&-(0x1f+1)) == 0 && ((1<<uint((_la-162)))&((1<<(SqlBaseParserTO-162))|(1<<(SqlBaseParserTRUE-162))|(1<<(SqlBaseParserTRY_CAST-162))|(1<<(SqlBaseParserTYPE-162))|(1<<(SqlBaseParserUNBOUNDED-162))|(1<<(SqlBaseParserUNCOMMITTED-162))|(1<<(SqlBaseParserUSE-162))|(1<<(SqlBaseParserVALIDATE-162))|(1<<(SqlBaseParserVERBOSE-162))|(1<<(SqlBaseParserVIEW-162))|(1<<(SqlBaseParserWORK-162))|(1<<(SqlBaseParserWRITE-162))|(1<<(SqlBaseParserYEAR-162))|(1<<(SqlBaseParserZONE-162))|(1<<(SqlBaseParserPLUS-162))|(1<<(SqlBaseParserMINUS-162)))) != 0) || (((_la-196)&-(0x1f+1)) == 0 && ((1<<uint((_la-196)))&((1<<(SqlBaseParserSTRING-196))|(1<<(SqlBaseParserUNICODE_STRING-196))|(1<<(SqlBaseParserBINARY_LITERAL-196))|(1<<(SqlBaseParserINTEGER_VALUE-196))|(1<<(SqlBaseParserDECIMAL_VALUE-196))|(1<<(SqlBaseParserDOUBLE_VALUE-196))|(1<<(SqlBaseParserIDENTIFIER-196))|(1<<(SqlBaseParserDIGIT_IDENTIFIER-196))|(1<<(SqlBaseParserQUOTED_IDENTIFIER-196))|(1<<(SqlBaseParserBACKQUOTED_IDENTIFIER-196))|(1<<(SqlBaseParserDOUBLE_PRECISION-196)))) != 0) {
-			p.SetState(493)
-			p.GetErrorHandler().Sync(p)
-
-			if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 60, p.GetParserRuleContext()) == 1 {
-				{
-					p.SetState(492)
-					p.SetQuantifier()
-				}
-
-			}
-			{
-				p.SetState(495)
-				p.Expression()
-			}
-			p.SetState(500)
-			p.GetErrorHandler().Sync(p)
-			_la = p.GetTokenStream().LA(1)
-
-			for _la == SqlBaseParserT__0 {
-				{
-					p.SetState(496)
-					p.Match(SqlBaseParserT__0)
-				}
-				{
-					p.SetState(497)
-					p.Expression()
-				}
-
-				p.SetState(502)
-				p.GetErrorHandler().Sync(p)
-				_la = p.GetTokenStream().LA(1)
-			}
-
-		}
-		p.SetState(515)
-		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
-
-		if _la == SqlBaseParserORDER {
-			{
-				p.SetState(505)
-				p.Match(SqlBaseParserORDER)
-			}
-			{
-				p.SetState(506)
-				p.Match(SqlBaseParserBY)
-			}
-			{
-				p.SetState(507)
-				p.SortItem()
-			}
-			p.SetState(512)
-			p.GetErrorHandler().Sync(p)
-			_la = p.GetTokenStream().LA(1)
-
-			for _la == SqlBaseParserT__0 {
-				{
-					p.SetState(508)
-					p.Match(SqlBaseParserT__0)
-				}
-				{
-					p.SetState(509)
-					p.SortItem()
-				}
-
-				p.SetState(514)
-				p.GetErrorHandler().Sync(p)
-				_la = p.GetTokenStream().LA(1)
-			}
-
-		}
-		{
-			p.SetState(517)
-			p.Match(SqlBaseParserT__2)
-		}
-		p.SetState(519)
-		p.GetErrorHandler().Sync(p)
-
-		if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 65, p.GetParserRuleContext()) == 1 {
-			{
-				p.SetState(518)
-				p.Filter()
-			}
-
-		}
-
-	case 13:
-		localctx = NewSubqueryExpressionContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-		{
-			p.SetState(521)
-			p.Match(SqlBaseParserT__1)
-		}
-		{
-			p.SetState(522)
-			p.Query()
-		}
-		{
-			p.SetState(523)
-			p.Match(SqlBaseParserT__2)
-		}
-
-	case 14:
-		localctx = NewArrayConstructorContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-		{
-			p.SetState(525)
-			p.Match(SqlBaseParserARRAY)
-		}
-		{
-			p.SetState(526)
-			p.Match(SqlBaseParserT__4)
-		}
-		p.SetState(535)
-		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
-
-		if (((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<SqlBaseParserT__1)|(1<<SqlBaseParserADD)|(1<<SqlBaseParserALL)|(1<<SqlBaseParserANALYZE)|(1<<SqlBaseParserANY)|(1<<SqlBaseParserARRAY)|(1<<SqlBaseParserASC)|(1<<SqlBaseParserAT)|(1<<SqlBaseParserBERNOULLI)|(1<<SqlBaseParserCALL)|(1<<SqlBaseParserCASCADE)|(1<<SqlBaseParserCATALOGS)|(1<<SqlBaseParserCOALESCE)|(1<<SqlBaseParserCOLUMN)|(1<<SqlBaseParserCOLUMNS)|(1<<SqlBaseParserCOMMENT)|(1<<SqlBaseParserCOMMITTED))) != 0) || (((_la-33)&-(0x1f+1)) == 0 && ((1<<uint((_la-33)))&((1<<(SqlBaseParserCURRENT-33))|(1<<(SqlBaseParserCURRENT_DATE-33))|(1<<(SqlBaseParserCURRENT_TIME-33))|(1<<(SqlBaseParserCURRENT_TIMESTAMP-33))|(1<<(SqlBaseParserCURRENT_USER-33))|(1<<(SqlBaseParserDATA-33))|(1<<(SqlBaseParserDATE-33))|(1<<(SqlBaseParserDAY-33))|(1<<(SqlBaseParserDESC-33))|(1<<(SqlBaseParserDISTRIBUTED-33))|(1<<(SqlBaseParserEXCLUDING-33))|(1<<(SqlBaseParserEXPLAIN-33))|(1<<(SqlBaseParserFALSE-33))|(1<<(SqlBaseParserFILTER-33))|(1<<(SqlBaseParserFIRST-33))|(1<<(SqlBaseParserFOLLOWING-33))|(1<<(SqlBaseParserFORMAT-33)))) != 0) || (((_la-65)&-(0x1f+1)) == 0 && ((1<<uint((_la-65)))&((1<<(SqlBaseParserFUNCTIONS-65))|(1<<(SqlBaseParserGROUPING-65))|(1<<(SqlBaseParserHOUR-65))|(1<<(SqlBaseParserIF-65))|(1<<(SqlBaseParserINCLUDING-65))|(1<<(SqlBaseParserINPUT-65))|(1<<(SqlBaseParserINTEGER-65))|(1<<(SqlBaseParserINTERVAL-65))|(1<<(SqlBaseParserLAST-65))|(1<<(SqlBaseParserLATERAL-65))|(1<<(SqlBaseParserLEVEL-65))|(1<<(SqlBaseParserLIMIT-65))|(1<<(SqlBaseParserLOCALTIME-65))|(1<<(SqlBaseParserLOCALTIMESTAMP-65))|(1<<(SqlBaseParserLOGICAL-65))|(1<<(SqlBaseParserMAP-65))|(1<<(SqlBaseParserMINUTE-65))|(1<<(SqlBaseParserMONTH-65)))) != 0) || (((_la-98)&-(0x1f+1)) == 0 && ((1<<uint((_la-98)))&((1<<(SqlBaseParserNFC-98))|(1<<(SqlBaseParserNFD-98))|(1<<(SqlBaseParserNFKC-98))|(1<<(SqlBaseParserNFKD-98))|(1<<(SqlBaseParserNO-98))|(1<<(SqlBaseParserNOT-98))|(1<<(SqlBaseParserNULL-98))|(1<<(SqlBaseParserNULLIF-98))|(1<<(SqlBaseParserNULLS-98))|(1<<(SqlBaseParserONLY-98))|(1<<(SqlBaseParserOPTION-98))|(1<<(SqlBaseParserORDINALITY-98))|(1<<(SqlBaseParserOUTPUT-98))|(1<<(SqlBaseParserOVER-98))|(1<<(SqlBaseParserPARTITION-98))|(1<<(SqlBaseParserPARTITIONS-98))|(1<<(SqlBaseParserPOSITION-98))|(1<<(SqlBaseParserPRECEDING-98))|(1<<(SqlBaseParserPRIVILEGES-98))|(1<<(SqlBaseParserPROPERTIES-98))|(1<<(SqlBaseParserPUBLIC-98))|(1<<(SqlBaseParserRANGE-98))|(1<<(SqlBaseParserREAD-98))|(1<<(SqlBaseParserRENAME-98))|(1<<(SqlBaseParserREPEATABLE-98)))) != 0) || (((_la-130)&-(0x1f+1)) == 0 && ((1<<uint((_la-130)))&((1<<(SqlBaseParserREPLACE-130))|(1<<(SqlBaseParserRESET-130))|(1<<(SqlBaseParserRESTRICT-130))|(1<<(SqlBaseParserREVOKE-130))|(1<<(SqlBaseParserROLLBACK-130))|(1<<(SqlBaseParserROW-130))|(1<<(SqlBaseParserROWS-130))|(1<<(SqlBaseParserSCHEMA-130))|(1<<(SqlBaseParserSCHEMAS-130))|(1<<(SqlBaseParserSECOND-130))|(1<<(SqlBaseParserSERIALIZABLE-130))|(1<<(SqlBaseParserSESSION-130))|(1<<(SqlBaseParserSET-130))|(1<<(SqlBaseParserSETS-130))|(1<<(SqlBaseParserSHOW-130))|(1<<(SqlBaseParserSMALLINT-130))|(1<<(SqlBaseParserSOME-130))|(1<<(SqlBaseParserSTART-130))|(1<<(SqlBaseParserSTATS-130))|(1<<(SqlBaseParserSUBSTRING-130))|(1<<(SqlBaseParserSYSTEM-130))|(1<<(SqlBaseParserTABLES-130))|(1<<(SqlBaseParserTABLESAMPLE-130))|(1<<(SqlBaseParserTEXT-130))|(1<<(SqlBaseParserTIME-130))|(1<<(SqlBaseParserTIMESTAMP-130))|(1<<(SqlBaseParserTINYINT-130)))) != 0) || (((_la-162)&-(0x1f+1)) == 0 && ((1<<uint((_la-162)))&((1<<(SqlBaseParserTO-162))|(1<<(SqlBaseParserTRUE-162))|(1<<(SqlBaseParserTRY_CAST-162))|(1<<(SqlBaseParserTYPE-162))|(1<<(SqlBaseParserUNBOUNDED-162))|(1<<(SqlBaseParserUNCOMMITTED-162))|(1<<(SqlBaseParserUSE-162))|(1<<(SqlBaseParserVALIDATE-162))|(1<<(SqlBaseParserVERBOSE-162))|(1<<(SqlBaseParserVIEW-162))|(1<<(SqlBaseParserWORK-162))|(1<<(SqlBaseParserWRITE-162))|(1<<(SqlBaseParserYEAR-162))|(1<<(SqlBaseParserZONE-162))|(1<<(SqlBaseParserPLUS-162))|(1<<(SqlBaseParserMINUS-162)))) != 0) || (((_la-196)&-(0x1f+1)) == 0 && ((1<<uint((_la-196)))&((1<<(SqlBaseParserSTRING-196))|(1<<(SqlBaseParserUNICODE_STRING-196))|(1<<(SqlBaseParserBINARY_LITERAL-196))|(1<<(SqlBaseParserINTEGER_VALUE-196))|(1<<(SqlBaseParserDECIMAL_VALUE-196))|(1<<(SqlBaseParserDOUBLE_VALUE-196))|(1<<(SqlBaseParserIDENTIFIER-196))|(1<<(SqlBaseParserDIGIT_IDENTIFIER-196))|(1<<(SqlBaseParserQUOTED_IDENTIFIER-196))|(1<<(SqlBaseParserBACKQUOTED_IDENTIFIER-196))|(1<<(SqlBaseParserDOUBLE_PRECISION-196)))) != 0) {
-			{
-				p.SetState(527)
-				p.Expression()
-			}
-			p.SetState(532)
-			p.GetErrorHandler().Sync(p)
-			_la = p.GetTokenStream().LA(1)
-
-			for _la == SqlBaseParserT__0 {
-				{
-					p.SetState(528)
-					p.Match(SqlBaseParserT__0)
-				}
-				{
-					p.SetState(529)
-					p.Expression()
-				}
-
-				p.SetState(534)
-				p.GetErrorHandler().Sync(p)
-				_la = p.GetTokenStream().LA(1)
-			}
-
-		}
-		{
-			p.SetState(537)
-			p.Match(SqlBaseParserT__5)
-		}
-
-	case 15:
-		localctx = NewColumnReferenceContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-		{
-			p.SetState(538)
-			p.Identifier()
-		}
-
-	case 16:
-		localctx = NewSpecialDateTimeFunctionContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-		{
-			p.SetState(539)
-
-			var _m = p.Match(SqlBaseParserCURRENT_DATE)
-
-			localctx.(*SpecialDateTimeFunctionContext).name = _m
-		}
-
-	case 17:
-		localctx = NewSpecialDateTimeFunctionContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-		{
-			p.SetState(540)
-
-			var _m = p.Match(SqlBaseParserCURRENT_TIME)
-
-			localctx.(*SpecialDateTimeFunctionContext).name = _m
-		}
-		p.SetState(544)
-		p.GetErrorHandler().Sync(p)
-
-		if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 68, p.GetParserRuleContext()) == 1 {
-			{
-				p.SetState(541)
-				p.Match(SqlBaseParserT__1)
-			}
-			{
-				p.SetState(542)
-
-				var _m = p.Match(SqlBaseParserINTEGER_VALUE)
-
-				localctx.(*SpecialDateTimeFunctionContext).precision = _m
-			}
-			{
-				p.SetState(543)
-				p.Match(SqlBaseParserT__2)
-			}
-
-		}
-
-	case 18:
-		localctx = NewSpecialDateTimeFunctionContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-		{
-			p.SetState(546)
-
-			var _m = p.Match(SqlBaseParserCURRENT_TIMESTAMP)
-
-			localctx.(*SpecialDateTimeFunctionContext).name = _m
-		}
-		p.SetState(550)
-		p.GetErrorHandler().Sync(p)
-
-		if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 69, p.GetParserRuleContext()) == 1 {
-			{
-				p.SetState(547)
-				p.Match(SqlBaseParserT__1)
-			}
-			{
-				p.SetState(548)
-
-				var _m = p.Match(SqlBaseParserINTEGER_VALUE)
-
-				localctx.(*SpecialDateTimeFunctionContext).precision = _m
-			}
-			{
-				p.SetState(549)
-				p.Match(SqlBaseParserT__2)
-			}
-
-		}
-
-	case 19:
-		localctx = NewSpecialDateTimeFunctionContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-		{
-			p.SetState(552)
-
-			var _m = p.Match(SqlBaseParserLOCALTIME)
-
-			localctx.(*SpecialDateTimeFunctionContext).name = _m
-		}
-		p.SetState(556)
-		p.GetErrorHandler().Sync(p)
-
-		if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 70, p.GetParserRuleContext()) == 1 {
-			{
-				p.SetState(553)
-				p.Match(SqlBaseParserT__1)
-			}
-			{
-				p.SetState(554)
-
-				var _m = p.Match(SqlBaseParserINTEGER_VALUE)
-
-				localctx.(*SpecialDateTimeFunctionContext).precision = _m
-			}
-			{
-				p.SetState(555)
-				p.Match(SqlBaseParserT__2)
-			}
-
-		}
-
-	case 20:
-		localctx = NewSpecialDateTimeFunctionContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-		{
-			p.SetState(558)
-
-			var _m = p.Match(SqlBaseParserLOCALTIMESTAMP)
-
-			localctx.(*SpecialDateTimeFunctionContext).name = _m
-		}
-		p.SetState(562)
-		p.GetErrorHandler().Sync(p)
-
-		if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 71, p.GetParserRuleContext()) == 1 {
-			{
-				p.SetState(559)
-				p.Match(SqlBaseParserT__1)
-			}
-			{
-				p.SetState(560)
-
-				var _m = p.Match(SqlBaseParserINTEGER_VALUE)
-
-				localctx.(*SpecialDateTimeFunctionContext).precision = _m
-			}
-			{
-				p.SetState(561)
-				p.Match(SqlBaseParserT__2)
-			}
-
-		}
-
-	case 21:
-		localctx = NewCurrentUserContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-		{
-			p.SetState(564)
-
-			var _m = p.Match(SqlBaseParserCURRENT_USER)
-
-			localctx.(*CurrentUserContext).name = _m
-		}
-
-	case 22:
-		localctx = NewParenthesizedExpressionContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-		{
-			p.SetState(565)
-			p.Match(SqlBaseParserT__1)
-		}
-		{
-			p.SetState(566)
-			p.Expression()
-		}
-		{
-			p.SetState(567)
-			p.Match(SqlBaseParserT__2)
-		}
-
-	case 23:
-		localctx = NewGroupingOperationContext(p, localctx)
-		p.SetParserRuleContext(localctx)
-		_prevctx = localctx
-		{
-			p.SetState(569)
-			p.Match(SqlBaseParserGROUPING)
-		}
-		{
-			p.SetState(570)
-			p.Match(SqlBaseParserT__1)
-		}
-		p.SetState(579)
-		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
-
-		if (((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<SqlBaseParserADD)|(1<<SqlBaseParserALL)|(1<<SqlBaseParserANALYZE)|(1<<SqlBaseParserANY)|(1<<SqlBaseParserARRAY)|(1<<SqlBaseParserASC)|(1<<SqlBaseParserAT)|(1<<SqlBaseParserBERNOULLI)|(1<<SqlBaseParserCALL)|(1<<SqlBaseParserCASCADE)|(1<<SqlBaseParserCATALOGS)|(1<<SqlBaseParserCOALESCE)|(1<<SqlBaseParserCOLUMN)|(1<<SqlBaseParserCOLUMNS)|(1<<SqlBaseParserCOMMENT)|(1<<SqlBaseParserCOMMITTED))) != 0) || (((_la-33)&-(0x1f+1)) == 0 && ((1<<uint((_la-33)))&((1<<(SqlBaseParserCURRENT-33))|(1<<(SqlBaseParserDATA-33))|(1<<(SqlBaseParserDATE-33))|(1<<(SqlBaseParserDAY-33))|(1<<(SqlBaseParserDESC-33))|(1<<(SqlBaseParserDISTRIBUTED-33))|(1<<(SqlBaseParserEXCLUDING-33))|(1<<(SqlBaseParserEXPLAIN-33))|(1<<(SqlBaseParserFILTER-33))|(1<<(SqlBaseParserFIRST-33))|(1<<(SqlBaseParserFOLLOWING-33))|(1<<(SqlBaseParserFORMAT-33)))) != 0) || (((_la-65)&-(0x1f+1)) == 0 && ((1<<uint((_la-65)))&((1<<(SqlBaseParserFUNCTIONS-65))|(1<<(SqlBaseParserHOUR-65))|(1<<(SqlBaseParserIF-65))|(1<<(SqlBaseParserINCLUDING-65))|(1<<(SqlBaseParserINPUT-65))|(1<<(SqlBaseParserINTEGER-65))|(1<<(SqlBaseParserINTERVAL-65))|(1<<(SqlBaseParserLAST-65))|(1<<(SqlBaseParserLATERAL-65))|(1<<(SqlBaseParserLEVEL-65))|(1<<(SqlBaseParserLIMIT-65))|(1<<(SqlBaseParserLOGICAL-65))|(1<<(SqlBaseParserMAP-65))|(1<<(SqlBaseParserMINUTE-65))|(1<<(SqlBaseParserMONTH-65)))) != 0) || (((_la-98)&-(0x1f+1)) == 0 && ((1<<uint((_la-98)))&((1<<(SqlBaseParserNFC-98))|(1<<(SqlBaseParserNFD-98))|(1<<(SqlBaseParserNFKC-98))|(1<<(SqlBaseParserNFKD-98))|(1<<(SqlBaseParserNO-98))|(1<<(SqlBaseParserNULLIF-98))|(1<<(SqlBaseParserNULLS-98))|(1<<(SqlBaseParserONLY-98))|(1<<(SqlBaseParserOPTION-98))|(1<<(SqlBaseParserORDINALITY-98))|(1<<(SqlBaseParserOUTPUT-98))|(1<<(SqlBaseParserOVER-98))|(1<<(SqlBaseParserPARTITION-98))|(1<<(SqlBaseParserPARTITIONS-98))|(1<<(SqlBaseParserPOSITION-98))|(1<<(SqlBaseParserPRECEDING-98))|(1<<(SqlBaseParserPRIVILEGES-98))|(1<<(SqlBaseParserPROPERTIES-98))|(1<<(SqlBaseParserPUBLIC-98))|(1<<(SqlBaseParserRANGE-98))|(1<<(SqlBaseParserREAD-98))|(1<<(SqlBaseParserRENAME-98))|(1<<(SqlBaseParserREPEATABLE-98)))) != 0) || (((_la-130)&-(0x1f+1)) == 0 && ((1<<uint((_la-130)))&((1<<(SqlBaseParserREPLACE-130))|(1<<(SqlBaseParserRESET-130))|(1<<(SqlBaseParserRESTRICT-130))|(1<<(SqlBaseParserREVOKE-130))|(1<<(SqlBaseParserROLLBACK-130))|(1<<(SqlBaseParserROW-130))|(1<<(SqlBaseParserROWS-130))|(1<<(SqlBaseParserSCHEMA-130))|(1<<(SqlBaseParserSCHEMAS-130))|(1<<(SqlBaseParserSECOND-130))|(1<<(SqlBaseParserSERIALIZABLE-130))|(1<<(SqlBaseParserSESSION-130))|(1<<(SqlBaseParserSET-130))|(1<<(SqlBaseParserSETS-130))|(1<<(SqlBaseParserSHOW-130))|(1<<(SqlBaseParserSMALLINT-130))|(1<<(SqlBaseParserSOME-130))|(1<<(SqlBaseParserSTART-130))|(1<<(SqlBaseParserSTATS-130))|(1<<(SqlBaseParserSUBSTRING-130))|(1<<(SqlBaseParserSYSTEM-130))|(1<<(SqlBaseParserTABLES-130))|(1<<(SqlBaseParserTABLESAMPLE-130))|(1<<(SqlBaseParserTEXT-130))|(1<<(SqlBaseParserTIME-130))|(1<<(SqlBaseParserTIMESTAMP-130))|(1<<(SqlBaseParserTINYINT-130)))) != 0) || (((_la-162)&-(0x1f+1)) == 0 && ((1<<uint((_la-162)))&((1<<(SqlBaseParserTO-162))|(1<<(SqlBaseParserTRY_CAST-162))|(1<<(SqlBaseParserTYPE-162))|(1<<(SqlBaseParserUNBOUNDED-162))|(1<<(SqlBaseParserUNCOMMITTED-162))|(1<<(SqlBaseParserUSE-162))|(1<<(SqlBaseParserVALIDATE-162))|(1<<(SqlBaseParserVERBOSE-162))|(1<<(SqlBaseParserVIEW-162))|(1<<(SqlBaseParserWORK-162))|(1<<(SqlBaseParserWRITE-162))|(1<<(SqlBaseParserYEAR-162))|(1<<(SqlBaseParserZONE-162)))) != 0) || (((_la-202)&-(0x1f+1)) == 0 && ((1<<uint((_la-202)))&((1<<(SqlBaseParserIDENTIFIER-202))|(1<<(SqlBaseParserDIGIT_IDENTIFIER-202))|(1<<(SqlBaseParserQUOTED_IDENTIFIER-202))|(1<<(SqlBaseParserBACKQUOTED_IDENTIFIER-202)))) != 0) {
-			{
-				p.SetState(571)
-				p.QualifiedName()
-			}
-			p.SetState(576)
-			p.GetErrorHandler().Sync(p)
-			_la = p.GetTokenStream().LA(1)
-
-			for _la == SqlBaseParserT__0 {
-				{
-					p.SetState(572)
-					p.Match(SqlBaseParserT__0)
-				}
-				{
-					p.SetState(573)
-					p.QualifiedName()
-				}
-
-				p.SetState(578)
-				p.GetErrorHandler().Sync(p)
-				_la = p.GetTokenStream().LA(1)
-			}
-
-		}
-		{
-			p.SetState(581)
-			p.Match(SqlBaseParserT__2)
-		}
-
-	}
-	p.GetParserRuleContext().SetStop(p.GetTokenStream().LT(-1))
-	p.SetState(594)
-	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 76, p.GetParserRuleContext())
-
-	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
-		if _alt == 1 {
-			if p.GetParseListeners() != nil {
-				p.TriggerExitRuleEvent()
-			}
-			_prevctx = localctx
-			p.SetState(592)
-			p.GetErrorHandler().Sync(p)
-			switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 75, p.GetParserRuleContext()) {
-			case 1:
-				localctx = NewSubscriptContext(p, NewPrimaryExpressionContext(p, _parentctx, _parentState))
-				localctx.(*SubscriptContext).value = _prevctx
-
-				p.PushNewRecursionContext(localctx, _startState, SqlBaseParserRULE_primaryExpression)
-				p.SetState(584)
-
-				if !(p.Precpred(p.GetParserRuleContext(), 11)) {
-					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 11)", ""))
-				}
-				{
-					p.SetState(585)
-					p.Match(SqlBaseParserT__4)
-				}
-				{
-					p.SetState(586)
-
-					var _x = p.valueExpression(0)
-
-					localctx.(*SubscriptContext).index = _x
-				}
-				{
-					p.SetState(587)
-					p.Match(SqlBaseParserT__5)
-				}
-
-			case 2:
-				localctx = NewDereferenceContext(p, NewPrimaryExpressionContext(p, _parentctx, _parentState))
-				localctx.(*DereferenceContext).base = _prevctx
-
-				p.PushNewRecursionContext(localctx, _startState, SqlBaseParserRULE_primaryExpression)
-				p.SetState(589)
-
-				if !(p.Precpred(p.GetParserRuleContext(), 9)) {
-					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 9)", ""))
-				}
-				{
-					p.SetState(590)
-					p.Match(SqlBaseParserT__3)
-				}
-				{
-					p.SetState(591)
-
-					var _x = p.Identifier()
-
-					localctx.(*DereferenceContext).fieldName = _x
-				}
-
-			}
-
-		}
-		p.SetState(596)
-		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 76, p.GetParserRuleContext())
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IPrimaryExpressionContext)
 }
+
+// TODO: To prevent unused variable warning.
 
 // ISql_stringContext is an interface to support dynamic dispatch.
 type ISql_stringContext interface {
@@ -8193,38 +4358,30 @@ type Sql_stringContext struct {
 	parser antlr.Parser
 }
 
-func NewEmptySql_stringContext() *Sql_stringContext {
-	var p = new(Sql_stringContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_sql_string
-	return p
-}
+func NewEmptySql_stringContext() *Sql_stringContext { _ = "STUB: not implemented"; return nil }
 
-func (*Sql_stringContext) IsSql_stringContext() {}
+func (*Sql_stringContext) IsSql_stringContext() { _ = "STUB: not implemented"; return }
 
 func NewSql_stringContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *Sql_stringContext {
-	var p = new(Sql_stringContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_sql_string
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *Sql_stringContext) GetParser() antlr.Parser { return s.parser }
-
-func (s *Sql_stringContext) CopyFrom(ctx *Sql_stringContext) {
-	s.BaseParserRuleContext.CopyFrom(ctx.BaseParserRuleContext)
+func (s *Sql_stringContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
 }
+
+func (s *Sql_stringContext) CopyFrom(ctx *Sql_stringContext) { _ = "STUB: not implemented"; return }
 
 func (s *Sql_stringContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *Sql_stringContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 type UnicodeStringLiteralContext struct {
@@ -8232,39 +4389,33 @@ type UnicodeStringLiteralContext struct {
 }
 
 func NewUnicodeStringLiteralContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *UnicodeStringLiteralContext {
-	var p = new(UnicodeStringLiteralContext)
-
-	p.Sql_stringContext = NewEmptySql_stringContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*Sql_stringContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *UnicodeStringLiteralContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *UnicodeStringLiteralContext) UNICODE_STRING() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserUNICODE_STRING, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *UnicodeStringLiteralContext) UESCAPE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserUESCAPE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *UnicodeStringLiteralContext) STRING() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserSTRING, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *UnicodeStringLiteralContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitUnicodeStringLiteral(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type BasicStringLiteralContext struct {
@@ -8272,92 +4423,28 @@ type BasicStringLiteralContext struct {
 }
 
 func NewBasicStringLiteralContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *BasicStringLiteralContext {
-	var p = new(BasicStringLiteralContext)
-
-	p.Sql_stringContext = NewEmptySql_stringContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*Sql_stringContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *BasicStringLiteralContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *BasicStringLiteralContext) STRING() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserSTRING, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *BasicStringLiteralContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitBasicStringLiteral(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) Sql_string() (localctx ISql_stringContext) {
-	localctx = NewSql_stringContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 56, SqlBaseParserRULE_sql_string)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.SetState(603)
-	p.GetErrorHandler().Sync(p)
-
-	switch p.GetTokenStream().LA(1) {
-	case SqlBaseParserSTRING:
-		localctx = NewBasicStringLiteralContext(p, localctx)
-		p.EnterOuterAlt(localctx, 1)
-		{
-			p.SetState(597)
-			p.Match(SqlBaseParserSTRING)
-		}
-
-	case SqlBaseParserUNICODE_STRING:
-		localctx = NewUnicodeStringLiteralContext(p, localctx)
-		p.EnterOuterAlt(localctx, 2)
-		{
-			p.SetState(598)
-			p.Match(SqlBaseParserUNICODE_STRING)
-		}
-		p.SetState(601)
-		p.GetErrorHandler().Sync(p)
-
-		if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 77, p.GetParserRuleContext()) == 1 {
-			{
-				p.SetState(599)
-				p.Match(SqlBaseParserUESCAPE)
-			}
-			{
-				p.SetState(600)
-				p.Match(SqlBaseParserSTRING)
-			}
-
-		}
-
-	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(ISql_stringContext)
 }
 
 // ITimeZoneSpecifierContext is an interface to support dynamic dispatch.
@@ -8377,37 +4464,35 @@ type TimeZoneSpecifierContext struct {
 }
 
 func NewEmptyTimeZoneSpecifierContext() *TimeZoneSpecifierContext {
-	var p = new(TimeZoneSpecifierContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_timeZoneSpecifier
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (*TimeZoneSpecifierContext) IsTimeZoneSpecifierContext() {}
+func (*TimeZoneSpecifierContext) IsTimeZoneSpecifierContext() { _ = "STUB: not implemented"; return }
 
 func NewTimeZoneSpecifierContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *TimeZoneSpecifierContext {
-	var p = new(TimeZoneSpecifierContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_timeZoneSpecifier
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *TimeZoneSpecifierContext) GetParser() antlr.Parser { return s.parser }
+func (s *TimeZoneSpecifierContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *TimeZoneSpecifierContext) CopyFrom(ctx *TimeZoneSpecifierContext) {
-	s.BaseParserRuleContext.CopyFrom(ctx.BaseParserRuleContext)
+	_ = "STUB: not implemented"
+	return
 }
 
 func (s *TimeZoneSpecifierContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *TimeZoneSpecifierContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 type TimeZoneIntervalContext struct {
@@ -8415,45 +4500,33 @@ type TimeZoneIntervalContext struct {
 }
 
 func NewTimeZoneIntervalContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *TimeZoneIntervalContext {
-	var p = new(TimeZoneIntervalContext)
-
-	p.TimeZoneSpecifierContext = NewEmptyTimeZoneSpecifierContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*TimeZoneSpecifierContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *TimeZoneIntervalContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *TimeZoneIntervalContext) TIME() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserTIME, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *TimeZoneIntervalContext) ZONE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserZONE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *TimeZoneIntervalContext) Interval() IIntervalContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IIntervalContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IIntervalContext)
+	_ = "STUB: not implemented"
+	return *new(IIntervalContext)
 }
 
 func (s *TimeZoneIntervalContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitTimeZoneInterval(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type TimeZoneStringContext struct {
@@ -8461,105 +4534,38 @@ type TimeZoneStringContext struct {
 }
 
 func NewTimeZoneStringContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *TimeZoneStringContext {
-	var p = new(TimeZoneStringContext)
-
-	p.TimeZoneSpecifierContext = NewEmptyTimeZoneSpecifierContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*TimeZoneSpecifierContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *TimeZoneStringContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *TimeZoneStringContext) TIME() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserTIME, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *TimeZoneStringContext) ZONE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserZONE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *TimeZoneStringContext) Sql_string() ISql_stringContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ISql_stringContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(ISql_stringContext)
+	_ = "STUB: not implemented"
+	return *new(ISql_stringContext)
 }
 
 func (s *TimeZoneStringContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitTimeZoneString(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) TimeZoneSpecifier() (localctx ITimeZoneSpecifierContext) {
-	localctx = NewTimeZoneSpecifierContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 58, SqlBaseParserRULE_timeZoneSpecifier)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.SetState(611)
-	p.GetErrorHandler().Sync(p)
-	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 79, p.GetParserRuleContext()) {
-	case 1:
-		localctx = NewTimeZoneIntervalContext(p, localctx)
-		p.EnterOuterAlt(localctx, 1)
-		{
-			p.SetState(605)
-			p.Match(SqlBaseParserTIME)
-		}
-		{
-			p.SetState(606)
-			p.Match(SqlBaseParserZONE)
-		}
-		{
-			p.SetState(607)
-			p.Interval()
-		}
-
-	case 2:
-		localctx = NewTimeZoneStringContext(p, localctx)
-		p.EnterOuterAlt(localctx, 2)
-		{
-			p.SetState(608)
-			p.Match(SqlBaseParserTIME)
-		}
-		{
-			p.SetState(609)
-			p.Match(SqlBaseParserZONE)
-		}
-		{
-			p.SetState(610)
-			p.Sql_string()
-		}
-
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(ITimeZoneSpecifierContext)
 }
 
 // IComparisonOperatorContext is an interface to support dynamic dispatch.
@@ -8579,104 +4585,70 @@ type ComparisonOperatorContext struct {
 }
 
 func NewEmptyComparisonOperatorContext() *ComparisonOperatorContext {
-	var p = new(ComparisonOperatorContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_comparisonOperator
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (*ComparisonOperatorContext) IsComparisonOperatorContext() {}
+func (*ComparisonOperatorContext) IsComparisonOperatorContext() { _ = "STUB: not implemented"; return }
 
 func NewComparisonOperatorContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ComparisonOperatorContext {
-	var p = new(ComparisonOperatorContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_comparisonOperator
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *ComparisonOperatorContext) GetParser() antlr.Parser { return s.parser }
+func (s *ComparisonOperatorContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *ComparisonOperatorContext) EQ() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserEQ, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *ComparisonOperatorContext) NEQ() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserNEQ, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *ComparisonOperatorContext) LT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserLT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *ComparisonOperatorContext) LTE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserLTE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *ComparisonOperatorContext) GT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserGT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *ComparisonOperatorContext) GTE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserGTE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *ComparisonOperatorContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *ComparisonOperatorContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *ComparisonOperatorContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitComparisonOperator(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) ComparisonOperator() (localctx IComparisonOperatorContext) {
-	localctx = NewComparisonOperatorContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 60, SqlBaseParserRULE_comparisonOperator)
-	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(613)
-		_la = p.GetTokenStream().LA(1)
-
-		if !(((_la-184)&-(0x1f+1)) == 0 && ((1<<uint((_la-184)))&((1<<(SqlBaseParserEQ-184))|(1<<(SqlBaseParserNEQ-184))|(1<<(SqlBaseParserLT-184))|(1<<(SqlBaseParserLTE-184))|(1<<(SqlBaseParserGT-184))|(1<<(SqlBaseParserGTE-184)))) != 0) {
-			p.GetErrorHandler().RecoverInline(p)
-		} else {
-			p.GetErrorHandler().ReportMatch(p)
-			p.Consume()
-		}
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IComparisonOperatorContext)
 }
 
 // IComparisonQuantifierContext is an interface to support dynamic dispatch.
@@ -8696,92 +4668,58 @@ type ComparisonQuantifierContext struct {
 }
 
 func NewEmptyComparisonQuantifierContext() *ComparisonQuantifierContext {
-	var p = new(ComparisonQuantifierContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_comparisonQuantifier
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (*ComparisonQuantifierContext) IsComparisonQuantifierContext() {}
+func (*ComparisonQuantifierContext) IsComparisonQuantifierContext() {
+	_ = "STUB: not implemented"
+	return
+}
 
 func NewComparisonQuantifierContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ComparisonQuantifierContext {
-	var p = new(ComparisonQuantifierContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_comparisonQuantifier
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *ComparisonQuantifierContext) GetParser() antlr.Parser { return s.parser }
+func (s *ComparisonQuantifierContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *ComparisonQuantifierContext) ALL() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserALL, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *ComparisonQuantifierContext) SOME() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserSOME, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *ComparisonQuantifierContext) ANY() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserANY, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *ComparisonQuantifierContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *ComparisonQuantifierContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *ComparisonQuantifierContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitComparisonQuantifier(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) ComparisonQuantifier() (localctx IComparisonQuantifierContext) {
-	localctx = NewComparisonQuantifierContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 62, SqlBaseParserRULE_comparisonQuantifier)
-	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(615)
-		_la = p.GetTokenStream().LA(1)
-
-		if !(_la == SqlBaseParserALL || _la == SqlBaseParserANY || _la == SqlBaseParserSOME) {
-			p.GetErrorHandler().RecoverInline(p)
-		} else {
-			p.GetErrorHandler().ReportMatch(p)
-			p.Consume()
-		}
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IComparisonQuantifierContext)
 }
 
 // IBooleanValueContext is an interface to support dynamic dispatch.
@@ -8800,89 +4738,48 @@ type BooleanValueContext struct {
 	parser antlr.Parser
 }
 
-func NewEmptyBooleanValueContext() *BooleanValueContext {
-	var p = new(BooleanValueContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_booleanValue
-	return p
-}
+func NewEmptyBooleanValueContext() *BooleanValueContext { _ = "STUB: not implemented"; return nil }
 
-func (*BooleanValueContext) IsBooleanValueContext() {}
+func (*BooleanValueContext) IsBooleanValueContext() { _ = "STUB: not implemented"; return }
 
 func NewBooleanValueContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *BooleanValueContext {
-	var p = new(BooleanValueContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_booleanValue
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *BooleanValueContext) GetParser() antlr.Parser { return s.parser }
+func (s *BooleanValueContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *BooleanValueContext) TRUE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserTRUE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *BooleanValueContext) FALSE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserFALSE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *BooleanValueContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *BooleanValueContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *BooleanValueContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitBooleanValue(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) BooleanValue() (localctx IBooleanValueContext) {
-	localctx = NewBooleanValueContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 64, SqlBaseParserRULE_booleanValue)
-	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(617)
-		_la = p.GetTokenStream().LA(1)
-
-		if !(_la == SqlBaseParserFALSE || _la == SqlBaseParserTRUE) {
-			p.GetErrorHandler().RecoverInline(p)
-		} else {
-			p.GetErrorHandler().ReportMatch(p)
-			p.Consume()
-		}
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IBooleanValueContext)
 }
 
 // IIntervalContext is an interface to support dynamic dispatch.
@@ -8922,188 +4819,94 @@ type IntervalContext struct {
 	to     IIntervalFieldContext
 }
 
-func NewEmptyIntervalContext() *IntervalContext {
-	var p = new(IntervalContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_interval
-	return p
-}
+func NewEmptyIntervalContext() *IntervalContext { _ = "STUB: not implemented"; return nil }
 
-func (*IntervalContext) IsIntervalContext() {}
+func (*IntervalContext) IsIntervalContext() { _ = "STUB: not implemented"; return }
 
 func NewIntervalContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *IntervalContext {
-	var p = new(IntervalContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_interval
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *IntervalContext) GetParser() antlr.Parser { return s.parser }
+func (s *IntervalContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
-func (s *IntervalContext) GetSign() antlr.Token { return s.sign }
+func (s *IntervalContext) GetSign() antlr.Token {
+	_ = "STUB: not implemented"
+	return *new(antlr.Token)
+}
 
-func (s *IntervalContext) SetSign(v antlr.Token) { s.sign = v }
+func (s *IntervalContext) SetSign(v antlr.Token) { _ = "STUB: not implemented"; return }
 
-func (s *IntervalContext) GetFrom() IIntervalFieldContext { return s.from }
+func (s *IntervalContext) GetFrom() IIntervalFieldContext {
+	_ = "STUB: not implemented"
+	return *new(IIntervalFieldContext)
+}
 
-func (s *IntervalContext) GetTo() IIntervalFieldContext { return s.to }
+func (s *IntervalContext) GetTo() IIntervalFieldContext {
+	_ = "STUB: not implemented"
+	return *new(IIntervalFieldContext)
+}
 
-func (s *IntervalContext) SetFrom(v IIntervalFieldContext) { s.from = v }
+func (s *IntervalContext) SetFrom(v IIntervalFieldContext) { _ = "STUB: not implemented"; return }
 
-func (s *IntervalContext) SetTo(v IIntervalFieldContext) { s.to = v }
+func (s *IntervalContext) SetTo(v IIntervalFieldContext) { _ = "STUB: not implemented"; return }
 
 func (s *IntervalContext) INTERVAL() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserINTERVAL, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *IntervalContext) Sql_string() ISql_stringContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ISql_stringContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(ISql_stringContext)
+	_ = "STUB: not implemented"
+	return *new(ISql_stringContext)
 }
 
 func (s *IntervalContext) AllIntervalField() []IIntervalFieldContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IIntervalFieldContext)(nil)).Elem())
-	var tst = make([]IIntervalFieldContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(IIntervalFieldContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *IntervalContext) IntervalField(i int) IIntervalFieldContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IIntervalFieldContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IIntervalFieldContext)
+	_ = "STUB: not implemented"
+	return *new(IIntervalFieldContext)
 }
 
 func (s *IntervalContext) TO() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserTO, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *IntervalContext) PLUS() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserPLUS, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *IntervalContext) MINUS() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserMINUS, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *IntervalContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *IntervalContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *IntervalContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitInterval(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) Interval() (localctx IIntervalContext) {
-	localctx = NewIntervalContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 66, SqlBaseParserRULE_interval)
-	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(619)
-		p.Match(SqlBaseParserINTERVAL)
-	}
-	p.SetState(621)
-	p.GetErrorHandler().Sync(p)
-	_la = p.GetTokenStream().LA(1)
-
-	if _la == SqlBaseParserPLUS || _la == SqlBaseParserMINUS {
-		{
-			p.SetState(620)
-
-			var _lt = p.GetTokenStream().LT(1)
-
-			localctx.(*IntervalContext).sign = _lt
-
-			_la = p.GetTokenStream().LA(1)
-
-			if !(_la == SqlBaseParserPLUS || _la == SqlBaseParserMINUS) {
-				var _ri = p.GetErrorHandler().RecoverInline(p)
-
-				localctx.(*IntervalContext).sign = _ri
-			} else {
-				p.GetErrorHandler().ReportMatch(p)
-				p.Consume()
-			}
-		}
-
-	}
-	{
-		p.SetState(623)
-		p.Sql_string()
-	}
-	{
-		p.SetState(624)
-
-		var _x = p.IntervalField()
-
-		localctx.(*IntervalContext).from = _x
-	}
-	p.SetState(627)
-	p.GetErrorHandler().Sync(p)
-
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 81, p.GetParserRuleContext()) == 1 {
-		{
-			p.SetState(625)
-			p.Match(SqlBaseParserTO)
-		}
-		{
-			p.SetState(626)
-
-			var _x = p.IntervalField()
-
-			localctx.(*IntervalContext).to = _x
-		}
-
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IIntervalContext)
 }
 
 // IIntervalFieldContext is an interface to support dynamic dispatch.
@@ -9122,105 +4925,68 @@ type IntervalFieldContext struct {
 	parser antlr.Parser
 }
 
-func NewEmptyIntervalFieldContext() *IntervalFieldContext {
-	var p = new(IntervalFieldContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_intervalField
-	return p
-}
+func NewEmptyIntervalFieldContext() *IntervalFieldContext { _ = "STUB: not implemented"; return nil }
 
-func (*IntervalFieldContext) IsIntervalFieldContext() {}
+func (*IntervalFieldContext) IsIntervalFieldContext() { _ = "STUB: not implemented"; return }
 
 func NewIntervalFieldContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *IntervalFieldContext {
-	var p = new(IntervalFieldContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_intervalField
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *IntervalFieldContext) GetParser() antlr.Parser { return s.parser }
+func (s *IntervalFieldContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *IntervalFieldContext) YEAR() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserYEAR, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *IntervalFieldContext) MONTH() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserMONTH, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *IntervalFieldContext) DAY() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserDAY, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *IntervalFieldContext) HOUR() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserHOUR, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *IntervalFieldContext) MINUTE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserMINUTE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *IntervalFieldContext) SECOND() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserSECOND, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *IntervalFieldContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *IntervalFieldContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *IntervalFieldContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitIntervalField(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) IntervalField() (localctx IIntervalFieldContext) {
-	localctx = NewIntervalFieldContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 68, SqlBaseParserRULE_intervalField)
-	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(629)
-		_la = p.GetTokenStream().LA(1)
-
-		if !(_la == SqlBaseParserDAY || (((_la-72)&-(0x1f+1)) == 0 && ((1<<uint((_la-72)))&((1<<(SqlBaseParserHOUR-72))|(1<<(SqlBaseParserMINUTE-72))|(1<<(SqlBaseParserMONTH-72)))) != 0) || _la == SqlBaseParserSECOND || _la == SqlBaseParserYEAR) {
-			p.GetErrorHandler().RecoverInline(p)
-		} else {
-			p.GetErrorHandler().ReportMatch(p)
-			p.Consume()
-		}
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IIntervalFieldContext)
 }
 
 // INormalFormContext is an interface to support dynamic dispatch.
@@ -9239,97 +5005,58 @@ type NormalFormContext struct {
 	parser antlr.Parser
 }
 
-func NewEmptyNormalFormContext() *NormalFormContext {
-	var p = new(NormalFormContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_normalForm
-	return p
-}
+func NewEmptyNormalFormContext() *NormalFormContext { _ = "STUB: not implemented"; return nil }
 
-func (*NormalFormContext) IsNormalFormContext() {}
+func (*NormalFormContext) IsNormalFormContext() { _ = "STUB: not implemented"; return }
 
 func NewNormalFormContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *NormalFormContext {
-	var p = new(NormalFormContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_normalForm
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *NormalFormContext) GetParser() antlr.Parser { return s.parser }
+func (s *NormalFormContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *NormalFormContext) NFD() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserNFD, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NormalFormContext) NFC() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserNFC, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NormalFormContext) NFKD() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserNFKD, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NormalFormContext) NFKC() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserNFKC, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NormalFormContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *NormalFormContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *NormalFormContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitNormalForm(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) NormalForm() (localctx INormalFormContext) {
-	localctx = NewNormalFormContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 70, SqlBaseParserRULE_normalForm)
-	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(631)
-		_la = p.GetTokenStream().LA(1)
-
-		if !(((_la-98)&-(0x1f+1)) == 0 && ((1<<uint((_la-98)))&((1<<(SqlBaseParserNFC-98))|(1<<(SqlBaseParserNFD-98))|(1<<(SqlBaseParserNFKC-98))|(1<<(SqlBaseParserNFKD-98)))) != 0) {
-			p.GetErrorHandler().RecoverInline(p)
-		} else {
-			p.GetErrorHandler().ReportMatch(p)
-			p.Consume()
-		}
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(INormalFormContext)
 }
 
 // ISqltypeContext is an interface to support dynamic dispatch.
@@ -9362,398 +5089,127 @@ type SqltypeContext struct {
 	to     IIntervalFieldContext
 }
 
-func NewEmptySqltypeContext() *SqltypeContext {
-	var p = new(SqltypeContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_sqltype
-	return p
-}
+func NewEmptySqltypeContext() *SqltypeContext { _ = "STUB: not implemented"; return nil }
 
-func (*SqltypeContext) IsSqltypeContext() {}
+func (*SqltypeContext) IsSqltypeContext() { _ = "STUB: not implemented"; return }
 
 func NewSqltypeContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *SqltypeContext {
-	var p = new(SqltypeContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_sqltype
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *SqltypeContext) GetParser() antlr.Parser { return s.parser }
+func (s *SqltypeContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
-func (s *SqltypeContext) GetFrom() IIntervalFieldContext { return s.from }
+func (s *SqltypeContext) GetFrom() IIntervalFieldContext {
+	_ = "STUB: not implemented"
+	return *new(IIntervalFieldContext)
+}
 
-func (s *SqltypeContext) GetTo() IIntervalFieldContext { return s.to }
+func (s *SqltypeContext) GetTo() IIntervalFieldContext {
+	_ = "STUB: not implemented"
+	return *new(IIntervalFieldContext)
+}
 
-func (s *SqltypeContext) SetFrom(v IIntervalFieldContext) { s.from = v }
+func (s *SqltypeContext) SetFrom(v IIntervalFieldContext) { _ = "STUB: not implemented"; return }
 
-func (s *SqltypeContext) SetTo(v IIntervalFieldContext) { s.to = v }
+func (s *SqltypeContext) SetTo(v IIntervalFieldContext) { _ = "STUB: not implemented"; return }
 
 func (s *SqltypeContext) ARRAY() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserARRAY, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
-func (s *SqltypeContext) AllSqltype() []ISqltypeContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*ISqltypeContext)(nil)).Elem())
-	var tst = make([]ISqltypeContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(ISqltypeContext)
-		}
-	}
-
-	return tst
-}
+func (s *SqltypeContext) AllSqltype() []ISqltypeContext { _ = "STUB: not implemented"; return nil }
 
 func (s *SqltypeContext) Sqltype(i int) ISqltypeContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ISqltypeContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(ISqltypeContext)
+	_ = "STUB: not implemented"
+	return *new(ISqltypeContext)
 }
 
 func (s *SqltypeContext) MAP() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserMAP, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *SqltypeContext) ROW() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserROW, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *SqltypeContext) AllIdentifier() []IIdentifierContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IIdentifierContext)(nil)).Elem())
-	var tst = make([]IIdentifierContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(IIdentifierContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *SqltypeContext) Identifier(i int) IIdentifierContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IIdentifierContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IIdentifierContext)
+	_ = "STUB: not implemented"
+	return *new(IIdentifierContext)
 }
 
 func (s *SqltypeContext) BaseType() IBaseTypeContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IBaseTypeContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IBaseTypeContext)
+	_ = "STUB: not implemented"
+	return *new(IBaseTypeContext)
 }
 
 func (s *SqltypeContext) AllTypeParameter() []ITypeParameterContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*ITypeParameterContext)(nil)).Elem())
-	var tst = make([]ITypeParameterContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(ITypeParameterContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *SqltypeContext) TypeParameter(i int) ITypeParameterContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ITypeParameterContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(ITypeParameterContext)
+	_ = "STUB: not implemented"
+	return *new(ITypeParameterContext)
 }
 
 func (s *SqltypeContext) INTERVAL() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserINTERVAL, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *SqltypeContext) TO() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserTO, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *SqltypeContext) AllIntervalField() []IIntervalFieldContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IIntervalFieldContext)(nil)).Elem())
-	var tst = make([]IIntervalFieldContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(IIntervalFieldContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *SqltypeContext) IntervalField(i int) IIntervalFieldContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IIntervalFieldContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IIntervalFieldContext)
+	_ = "STUB: not implemented"
+	return *new(IIntervalFieldContext)
 }
 
 func (s *SqltypeContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *SqltypeContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *SqltypeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitSqltype(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) Sqltype() (localctx ISqltypeContext) {
-	return p.sqltype(0)
+	_ = "STUB: not implemented"
+	return *new(ISqltypeContext)
 }
 
 func (p *SqlBaseParser) sqltype(_p int) (localctx ISqltypeContext) {
-	var _parentctx antlr.ParserRuleContext = p.GetParserRuleContext()
-	_parentState := p.GetState()
-	localctx = NewSqltypeContext(p, p.GetParserRuleContext(), _parentState)
-	var _prevctx ISqltypeContext = localctx
-	var _ antlr.ParserRuleContext = _prevctx // TODO: To prevent unused variable warning.
-	_startState := 72
-	p.EnterRecursionRule(localctx, 72, SqlBaseParserRULE_sqltype, _p)
-	var _la int
-
-	defer func() {
-		p.UnrollRecursionContexts(_parentctx)
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	var _alt int
-
-	p.EnterOuterAlt(localctx, 1)
-	p.SetState(680)
-	p.GetErrorHandler().Sync(p)
-	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 85, p.GetParserRuleContext()) {
-	case 1:
-		{
-			p.SetState(634)
-			p.Match(SqlBaseParserARRAY)
-		}
-		{
-			p.SetState(635)
-			p.Match(SqlBaseParserLT)
-		}
-		{
-			p.SetState(636)
-			p.sqltype(0)
-		}
-		{
-			p.SetState(637)
-			p.Match(SqlBaseParserGT)
-		}
-
-	case 2:
-		{
-			p.SetState(639)
-			p.Match(SqlBaseParserMAP)
-		}
-		{
-			p.SetState(640)
-			p.Match(SqlBaseParserLT)
-		}
-		{
-			p.SetState(641)
-			p.sqltype(0)
-		}
-		{
-			p.SetState(642)
-			p.Match(SqlBaseParserT__0)
-		}
-		{
-			p.SetState(643)
-			p.sqltype(0)
-		}
-		{
-			p.SetState(644)
-			p.Match(SqlBaseParserGT)
-		}
-
-	case 3:
-		{
-			p.SetState(646)
-			p.Match(SqlBaseParserROW)
-		}
-		{
-			p.SetState(647)
-			p.Match(SqlBaseParserT__1)
-		}
-		{
-			p.SetState(648)
-			p.Identifier()
-		}
-		{
-			p.SetState(649)
-			p.sqltype(0)
-		}
-		p.SetState(656)
-		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
-
-		for _la == SqlBaseParserT__0 {
-			{
-				p.SetState(650)
-				p.Match(SqlBaseParserT__0)
-			}
-			{
-				p.SetState(651)
-				p.Identifier()
-			}
-			{
-				p.SetState(652)
-				p.sqltype(0)
-			}
-
-			p.SetState(658)
-			p.GetErrorHandler().Sync(p)
-			_la = p.GetTokenStream().LA(1)
-		}
-		{
-			p.SetState(659)
-			p.Match(SqlBaseParserT__2)
-		}
-
-	case 4:
-		{
-			p.SetState(661)
-			p.BaseType()
-		}
-		p.SetState(673)
-		p.GetErrorHandler().Sync(p)
-
-		if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 84, p.GetParserRuleContext()) == 1 {
-			{
-				p.SetState(662)
-				p.Match(SqlBaseParserT__1)
-			}
-			{
-				p.SetState(663)
-				p.TypeParameter()
-			}
-			p.SetState(668)
-			p.GetErrorHandler().Sync(p)
-			_la = p.GetTokenStream().LA(1)
-
-			for _la == SqlBaseParserT__0 {
-				{
-					p.SetState(664)
-					p.Match(SqlBaseParserT__0)
-				}
-				{
-					p.SetState(665)
-					p.TypeParameter()
-				}
-
-				p.SetState(670)
-				p.GetErrorHandler().Sync(p)
-				_la = p.GetTokenStream().LA(1)
-			}
-			{
-				p.SetState(671)
-				p.Match(SqlBaseParserT__2)
-			}
-
-		}
-
-	case 5:
-		{
-			p.SetState(675)
-			p.Match(SqlBaseParserINTERVAL)
-		}
-		{
-			p.SetState(676)
-
-			var _x = p.IntervalField()
-
-			localctx.(*SqltypeContext).from = _x
-		}
-		{
-			p.SetState(677)
-			p.Match(SqlBaseParserTO)
-		}
-		{
-			p.SetState(678)
-
-			var _x = p.IntervalField()
-
-			localctx.(*SqltypeContext).to = _x
-		}
-
-	}
-	p.GetParserRuleContext().SetStop(p.GetTokenStream().LT(-1))
-	p.SetState(686)
-	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 86, p.GetParserRuleContext())
-
-	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
-		if _alt == 1 {
-			if p.GetParseListeners() != nil {
-				p.TriggerExitRuleEvent()
-			}
-			_prevctx = localctx
-			localctx = NewSqltypeContext(p, _parentctx, _parentState)
-			p.PushNewRecursionContext(localctx, _startState, SqlBaseParserRULE_sqltype)
-			p.SetState(682)
-
-			if !(p.Precpred(p.GetParserRuleContext(), 6)) {
-				panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 6)", ""))
-			}
-			{
-				p.SetState(683)
-				p.Match(SqlBaseParserARRAY)
-			}
-
-		}
-		p.SetState(688)
-		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 86, p.GetParserRuleContext())
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(ISqltypeContext)
 }
+
+// TODO: To prevent unused variable warning.
 
 // ITypeParameterContext is an interface to support dynamic dispatch.
 type ITypeParameterContext interface {
@@ -9771,103 +5227,48 @@ type TypeParameterContext struct {
 	parser antlr.Parser
 }
 
-func NewEmptyTypeParameterContext() *TypeParameterContext {
-	var p = new(TypeParameterContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_typeParameter
-	return p
-}
+func NewEmptyTypeParameterContext() *TypeParameterContext { _ = "STUB: not implemented"; return nil }
 
-func (*TypeParameterContext) IsTypeParameterContext() {}
+func (*TypeParameterContext) IsTypeParameterContext() { _ = "STUB: not implemented"; return }
 
 func NewTypeParameterContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *TypeParameterContext {
-	var p = new(TypeParameterContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_typeParameter
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *TypeParameterContext) GetParser() antlr.Parser { return s.parser }
+func (s *TypeParameterContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *TypeParameterContext) INTEGER_VALUE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserINTEGER_VALUE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *TypeParameterContext) Sqltype() ISqltypeContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ISqltypeContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(ISqltypeContext)
+	_ = "STUB: not implemented"
+	return *new(ISqltypeContext)
 }
 
 func (s *TypeParameterContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *TypeParameterContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *TypeParameterContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitTypeParameter(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) TypeParameter() (localctx ITypeParameterContext) {
-	localctx = NewTypeParameterContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 74, SqlBaseParserRULE_typeParameter)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.SetState(691)
-	p.GetErrorHandler().Sync(p)
-
-	switch p.GetTokenStream().LA(1) {
-	case SqlBaseParserINTEGER_VALUE:
-		p.EnterOuterAlt(localctx, 1)
-		{
-			p.SetState(689)
-			p.Match(SqlBaseParserINTEGER_VALUE)
-		}
-
-	case SqlBaseParserADD, SqlBaseParserALL, SqlBaseParserANALYZE, SqlBaseParserANY, SqlBaseParserARRAY, SqlBaseParserASC, SqlBaseParserAT, SqlBaseParserBERNOULLI, SqlBaseParserCALL, SqlBaseParserCASCADE, SqlBaseParserCATALOGS, SqlBaseParserCOALESCE, SqlBaseParserCOLUMN, SqlBaseParserCOLUMNS, SqlBaseParserCOMMENT, SqlBaseParserCOMMITTED, SqlBaseParserCURRENT, SqlBaseParserDATA, SqlBaseParserDATE, SqlBaseParserDAY, SqlBaseParserDESC, SqlBaseParserDISTRIBUTED, SqlBaseParserEXCLUDING, SqlBaseParserEXPLAIN, SqlBaseParserFILTER, SqlBaseParserFIRST, SqlBaseParserFOLLOWING, SqlBaseParserFORMAT, SqlBaseParserFUNCTIONS, SqlBaseParserHOUR, SqlBaseParserIF, SqlBaseParserINCLUDING, SqlBaseParserINPUT, SqlBaseParserINTEGER, SqlBaseParserINTERVAL, SqlBaseParserLAST, SqlBaseParserLATERAL, SqlBaseParserLEVEL, SqlBaseParserLIMIT, SqlBaseParserLOGICAL, SqlBaseParserMAP, SqlBaseParserMINUTE, SqlBaseParserMONTH, SqlBaseParserNFC, SqlBaseParserNFD, SqlBaseParserNFKC, SqlBaseParserNFKD, SqlBaseParserNO, SqlBaseParserNULLIF, SqlBaseParserNULLS, SqlBaseParserONLY, SqlBaseParserOPTION, SqlBaseParserORDINALITY, SqlBaseParserOUTPUT, SqlBaseParserOVER, SqlBaseParserPARTITION, SqlBaseParserPARTITIONS, SqlBaseParserPOSITION, SqlBaseParserPRECEDING, SqlBaseParserPRIVILEGES, SqlBaseParserPROPERTIES, SqlBaseParserPUBLIC, SqlBaseParserRANGE, SqlBaseParserREAD, SqlBaseParserRENAME, SqlBaseParserREPEATABLE, SqlBaseParserREPLACE, SqlBaseParserRESET, SqlBaseParserRESTRICT, SqlBaseParserREVOKE, SqlBaseParserROLLBACK, SqlBaseParserROW, SqlBaseParserROWS, SqlBaseParserSCHEMA, SqlBaseParserSCHEMAS, SqlBaseParserSECOND, SqlBaseParserSERIALIZABLE, SqlBaseParserSESSION, SqlBaseParserSET, SqlBaseParserSETS, SqlBaseParserSHOW, SqlBaseParserSMALLINT, SqlBaseParserSOME, SqlBaseParserSTART, SqlBaseParserSTATS, SqlBaseParserSUBSTRING, SqlBaseParserSYSTEM, SqlBaseParserTABLES, SqlBaseParserTABLESAMPLE, SqlBaseParserTEXT, SqlBaseParserTIME, SqlBaseParserTIMESTAMP, SqlBaseParserTINYINT, SqlBaseParserTO, SqlBaseParserTRY_CAST, SqlBaseParserTYPE, SqlBaseParserUNBOUNDED, SqlBaseParserUNCOMMITTED, SqlBaseParserUSE, SqlBaseParserVALIDATE, SqlBaseParserVERBOSE, SqlBaseParserVIEW, SqlBaseParserWORK, SqlBaseParserWRITE, SqlBaseParserYEAR, SqlBaseParserZONE, SqlBaseParserIDENTIFIER, SqlBaseParserDIGIT_IDENTIFIER, SqlBaseParserQUOTED_IDENTIFIER, SqlBaseParserBACKQUOTED_IDENTIFIER, SqlBaseParserTIME_WITH_TIME_ZONE, SqlBaseParserTIMESTAMP_WITH_TIME_ZONE, SqlBaseParserDOUBLE_PRECISION:
-		p.EnterOuterAlt(localctx, 2)
-		{
-			p.SetState(690)
-			p.sqltype(0)
-		}
-
-	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(ITypeParameterContext)
 }
 
 // IBaseTypeContext is an interface to support dynamic dispatch.
@@ -9886,125 +5287,58 @@ type BaseTypeContext struct {
 	parser antlr.Parser
 }
 
-func NewEmptyBaseTypeContext() *BaseTypeContext {
-	var p = new(BaseTypeContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_baseType
-	return p
-}
+func NewEmptyBaseTypeContext() *BaseTypeContext { _ = "STUB: not implemented"; return nil }
 
-func (*BaseTypeContext) IsBaseTypeContext() {}
+func (*BaseTypeContext) IsBaseTypeContext() { _ = "STUB: not implemented"; return }
 
 func NewBaseTypeContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *BaseTypeContext {
-	var p = new(BaseTypeContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_baseType
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *BaseTypeContext) GetParser() antlr.Parser { return s.parser }
+func (s *BaseTypeContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *BaseTypeContext) TIME_WITH_TIME_ZONE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserTIME_WITH_TIME_ZONE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *BaseTypeContext) TIMESTAMP_WITH_TIME_ZONE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserTIMESTAMP_WITH_TIME_ZONE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *BaseTypeContext) DOUBLE_PRECISION() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserDOUBLE_PRECISION, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *BaseTypeContext) Identifier() IIdentifierContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IIdentifierContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IIdentifierContext)
+	_ = "STUB: not implemented"
+	return *new(IIdentifierContext)
 }
 
 func (s *BaseTypeContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *BaseTypeContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *BaseTypeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitBaseType(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) BaseType() (localctx IBaseTypeContext) {
-	localctx = NewBaseTypeContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 76, SqlBaseParserRULE_baseType)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.SetState(697)
-	p.GetErrorHandler().Sync(p)
-
-	switch p.GetTokenStream().LA(1) {
-	case SqlBaseParserTIME_WITH_TIME_ZONE:
-		p.EnterOuterAlt(localctx, 1)
-		{
-			p.SetState(693)
-			p.Match(SqlBaseParserTIME_WITH_TIME_ZONE)
-		}
-
-	case SqlBaseParserTIMESTAMP_WITH_TIME_ZONE:
-		p.EnterOuterAlt(localctx, 2)
-		{
-			p.SetState(694)
-			p.Match(SqlBaseParserTIMESTAMP_WITH_TIME_ZONE)
-		}
-
-	case SqlBaseParserDOUBLE_PRECISION:
-		p.EnterOuterAlt(localctx, 3)
-		{
-			p.SetState(695)
-			p.Match(SqlBaseParserDOUBLE_PRECISION)
-		}
-
-	case SqlBaseParserADD, SqlBaseParserALL, SqlBaseParserANALYZE, SqlBaseParserANY, SqlBaseParserARRAY, SqlBaseParserASC, SqlBaseParserAT, SqlBaseParserBERNOULLI, SqlBaseParserCALL, SqlBaseParserCASCADE, SqlBaseParserCATALOGS, SqlBaseParserCOALESCE, SqlBaseParserCOLUMN, SqlBaseParserCOLUMNS, SqlBaseParserCOMMENT, SqlBaseParserCOMMITTED, SqlBaseParserCURRENT, SqlBaseParserDATA, SqlBaseParserDATE, SqlBaseParserDAY, SqlBaseParserDESC, SqlBaseParserDISTRIBUTED, SqlBaseParserEXCLUDING, SqlBaseParserEXPLAIN, SqlBaseParserFILTER, SqlBaseParserFIRST, SqlBaseParserFOLLOWING, SqlBaseParserFORMAT, SqlBaseParserFUNCTIONS, SqlBaseParserHOUR, SqlBaseParserIF, SqlBaseParserINCLUDING, SqlBaseParserINPUT, SqlBaseParserINTEGER, SqlBaseParserINTERVAL, SqlBaseParserLAST, SqlBaseParserLATERAL, SqlBaseParserLEVEL, SqlBaseParserLIMIT, SqlBaseParserLOGICAL, SqlBaseParserMAP, SqlBaseParserMINUTE, SqlBaseParserMONTH, SqlBaseParserNFC, SqlBaseParserNFD, SqlBaseParserNFKC, SqlBaseParserNFKD, SqlBaseParserNO, SqlBaseParserNULLIF, SqlBaseParserNULLS, SqlBaseParserONLY, SqlBaseParserOPTION, SqlBaseParserORDINALITY, SqlBaseParserOUTPUT, SqlBaseParserOVER, SqlBaseParserPARTITION, SqlBaseParserPARTITIONS, SqlBaseParserPOSITION, SqlBaseParserPRECEDING, SqlBaseParserPRIVILEGES, SqlBaseParserPROPERTIES, SqlBaseParserPUBLIC, SqlBaseParserRANGE, SqlBaseParserREAD, SqlBaseParserRENAME, SqlBaseParserREPEATABLE, SqlBaseParserREPLACE, SqlBaseParserRESET, SqlBaseParserRESTRICT, SqlBaseParserREVOKE, SqlBaseParserROLLBACK, SqlBaseParserROW, SqlBaseParserROWS, SqlBaseParserSCHEMA, SqlBaseParserSCHEMAS, SqlBaseParserSECOND, SqlBaseParserSERIALIZABLE, SqlBaseParserSESSION, SqlBaseParserSET, SqlBaseParserSETS, SqlBaseParserSHOW, SqlBaseParserSMALLINT, SqlBaseParserSOME, SqlBaseParserSTART, SqlBaseParserSTATS, SqlBaseParserSUBSTRING, SqlBaseParserSYSTEM, SqlBaseParserTABLES, SqlBaseParserTABLESAMPLE, SqlBaseParserTEXT, SqlBaseParserTIME, SqlBaseParserTIMESTAMP, SqlBaseParserTINYINT, SqlBaseParserTO, SqlBaseParserTRY_CAST, SqlBaseParserTYPE, SqlBaseParserUNBOUNDED, SqlBaseParserUNCOMMITTED, SqlBaseParserUSE, SqlBaseParserVALIDATE, SqlBaseParserVERBOSE, SqlBaseParserVIEW, SqlBaseParserWORK, SqlBaseParserWRITE, SqlBaseParserYEAR, SqlBaseParserZONE, SqlBaseParserIDENTIFIER, SqlBaseParserDIGIT_IDENTIFIER, SqlBaseParserQUOTED_IDENTIFIER, SqlBaseParserBACKQUOTED_IDENTIFIER:
-		p.EnterOuterAlt(localctx, 4)
-		{
-			p.SetState(696)
-			p.Identifier()
-		}
-
-	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IBaseTypeContext)
 }
 
 // IWhenClauseContext is an interface to support dynamic dispatch.
@@ -10037,130 +5371,72 @@ type WhenClauseContext struct {
 	result    IExpressionContext
 }
 
-func NewEmptyWhenClauseContext() *WhenClauseContext {
-	var p = new(WhenClauseContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_whenClause
-	return p
-}
+func NewEmptyWhenClauseContext() *WhenClauseContext { _ = "STUB: not implemented"; return nil }
 
-func (*WhenClauseContext) IsWhenClauseContext() {}
+func (*WhenClauseContext) IsWhenClauseContext() { _ = "STUB: not implemented"; return }
 
 func NewWhenClauseContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *WhenClauseContext {
-	var p = new(WhenClauseContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_whenClause
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *WhenClauseContext) GetParser() antlr.Parser { return s.parser }
+func (s *WhenClauseContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
-func (s *WhenClauseContext) GetCondition() IExpressionContext { return s.condition }
+func (s *WhenClauseContext) GetCondition() IExpressionContext {
+	_ = "STUB: not implemented"
+	return *new(IExpressionContext)
+}
 
-func (s *WhenClauseContext) GetResult() IExpressionContext { return s.result }
+func (s *WhenClauseContext) GetResult() IExpressionContext {
+	_ = "STUB: not implemented"
+	return *new(IExpressionContext)
+}
 
-func (s *WhenClauseContext) SetCondition(v IExpressionContext) { s.condition = v }
+func (s *WhenClauseContext) SetCondition(v IExpressionContext) { _ = "STUB: not implemented"; return }
 
-func (s *WhenClauseContext) SetResult(v IExpressionContext) { s.result = v }
+func (s *WhenClauseContext) SetResult(v IExpressionContext) { _ = "STUB: not implemented"; return }
 
 func (s *WhenClauseContext) WHEN() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserWHEN, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *WhenClauseContext) THEN() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserTHEN, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *WhenClauseContext) AllExpression() []IExpressionContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IExpressionContext)(nil)).Elem())
-	var tst = make([]IExpressionContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(IExpressionContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *WhenClauseContext) Expression(i int) IExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IExpressionContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IExpressionContext)
 }
 
 func (s *WhenClauseContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *WhenClauseContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *WhenClauseContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitWhenClause(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) WhenClause() (localctx IWhenClauseContext) {
-	localctx = NewWhenClauseContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 78, SqlBaseParserRULE_whenClause)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(699)
-		p.Match(SqlBaseParserWHEN)
-	}
-	{
-		p.SetState(700)
-
-		var _x = p.Expression()
-
-		localctx.(*WhenClauseContext).condition = _x
-	}
-	{
-		p.SetState(701)
-		p.Match(SqlBaseParserTHEN)
-	}
-	{
-		p.SetState(702)
-
-		var _x = p.Expression()
-
-		localctx.(*WhenClauseContext).result = _x
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IWhenClauseContext)
 }
 
 // IFilterContext is an interface to support dynamic dispatch.
@@ -10179,107 +5455,53 @@ type FilterContext struct {
 	parser antlr.Parser
 }
 
-func NewEmptyFilterContext() *FilterContext {
-	var p = new(FilterContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_filter
-	return p
-}
+func NewEmptyFilterContext() *FilterContext { _ = "STUB: not implemented"; return nil }
 
-func (*FilterContext) IsFilterContext() {}
+func (*FilterContext) IsFilterContext() { _ = "STUB: not implemented"; return }
 
 func NewFilterContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *FilterContext {
-	var p = new(FilterContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_filter
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *FilterContext) GetParser() antlr.Parser { return s.parser }
+func (s *FilterContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *FilterContext) FILTER() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserFILTER, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *FilterContext) WHERE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserWHERE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *FilterContext) BooleanExpression() IBooleanExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IBooleanExpressionContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IBooleanExpressionContext)
+	_ = "STUB: not implemented"
+	return *new(IBooleanExpressionContext)
 }
 
 func (s *FilterContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *FilterContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *FilterContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitFilter(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) Filter() (localctx IFilterContext) {
-	localctx = NewFilterContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 80, SqlBaseParserRULE_filter)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(704)
-		p.Match(SqlBaseParserFILTER)
-	}
-	{
-		p.SetState(705)
-		p.Match(SqlBaseParserT__1)
-	}
-	{
-		p.SetState(706)
-		p.Match(SqlBaseParserWHERE)
-	}
-	{
-		p.SetState(707)
-		p.booleanExpression(0)
-	}
-	{
-		p.SetState(708)
-		p.Match(SqlBaseParserT__2)
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IFilterContext)
 }
 
 // IQualifiedNameContext is an interface to support dynamic dispatch.
@@ -10298,118 +5520,48 @@ type QualifiedNameContext struct {
 	parser antlr.Parser
 }
 
-func NewEmptyQualifiedNameContext() *QualifiedNameContext {
-	var p = new(QualifiedNameContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_qualifiedName
-	return p
-}
+func NewEmptyQualifiedNameContext() *QualifiedNameContext { _ = "STUB: not implemented"; return nil }
 
-func (*QualifiedNameContext) IsQualifiedNameContext() {}
+func (*QualifiedNameContext) IsQualifiedNameContext() { _ = "STUB: not implemented"; return }
 
 func NewQualifiedNameContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *QualifiedNameContext {
-	var p = new(QualifiedNameContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_qualifiedName
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *QualifiedNameContext) GetParser() antlr.Parser { return s.parser }
+func (s *QualifiedNameContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *QualifiedNameContext) AllIdentifier() []IIdentifierContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IIdentifierContext)(nil)).Elem())
-	var tst = make([]IIdentifierContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(IIdentifierContext)
-		}
-	}
-
-	return tst
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *QualifiedNameContext) Identifier(i int) IIdentifierContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IIdentifierContext)(nil)).Elem(), i)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IIdentifierContext)
+	_ = "STUB: not implemented"
+	return *new(IIdentifierContext)
 }
 
 func (s *QualifiedNameContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *QualifiedNameContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *QualifiedNameContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitQualifiedName(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) QualifiedName() (localctx IQualifiedNameContext) {
-	localctx = NewQualifiedNameContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 82, SqlBaseParserRULE_qualifiedName)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	var _alt int
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(710)
-		p.Identifier()
-	}
-	p.SetState(715)
-	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 89, p.GetParserRuleContext())
-
-	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
-		if _alt == 1 {
-			{
-				p.SetState(711)
-				p.Match(SqlBaseParserT__3)
-			}
-			{
-				p.SetState(712)
-				p.Identifier()
-			}
-
-		}
-		p.SetState(717)
-		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 89, p.GetParserRuleContext())
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IQualifiedNameContext)
 }
 
 // IIdentifierContext is an interface to support dynamic dispatch.
@@ -10428,38 +5580,30 @@ type IdentifierContext struct {
 	parser antlr.Parser
 }
 
-func NewEmptyIdentifierContext() *IdentifierContext {
-	var p = new(IdentifierContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_identifier
-	return p
-}
+func NewEmptyIdentifierContext() *IdentifierContext { _ = "STUB: not implemented"; return nil }
 
-func (*IdentifierContext) IsIdentifierContext() {}
+func (*IdentifierContext) IsIdentifierContext() { _ = "STUB: not implemented"; return }
 
 func NewIdentifierContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *IdentifierContext {
-	var p = new(IdentifierContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_identifier
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *IdentifierContext) GetParser() antlr.Parser { return s.parser }
-
-func (s *IdentifierContext) CopyFrom(ctx *IdentifierContext) {
-	s.BaseParserRuleContext.CopyFrom(ctx.BaseParserRuleContext)
+func (s *IdentifierContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
 }
+
+func (s *IdentifierContext) CopyFrom(ctx *IdentifierContext) { _ = "STUB: not implemented"; return }
 
 func (s *IdentifierContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *IdentifierContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 type BackQuotedIdentifierContext struct {
@@ -10467,31 +5611,23 @@ type BackQuotedIdentifierContext struct {
 }
 
 func NewBackQuotedIdentifierContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *BackQuotedIdentifierContext {
-	var p = new(BackQuotedIdentifierContext)
-
-	p.IdentifierContext = NewEmptyIdentifierContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*IdentifierContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *BackQuotedIdentifierContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *BackQuotedIdentifierContext) BACKQUOTED_IDENTIFIER() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserBACKQUOTED_IDENTIFIER, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *BackQuotedIdentifierContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitBackQuotedIdentifier(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type QuotedIdentifierContext struct {
@@ -10499,31 +5635,23 @@ type QuotedIdentifierContext struct {
 }
 
 func NewQuotedIdentifierContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *QuotedIdentifierContext {
-	var p = new(QuotedIdentifierContext)
-
-	p.IdentifierContext = NewEmptyIdentifierContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*IdentifierContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *QuotedIdentifierContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *QuotedIdentifierContext) QUOTED_IDENTIFIER() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserQUOTED_IDENTIFIER, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *QuotedIdentifierContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitQuotedIdentifier(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type DigitIdentifierContext struct {
@@ -10531,31 +5659,23 @@ type DigitIdentifierContext struct {
 }
 
 func NewDigitIdentifierContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *DigitIdentifierContext {
-	var p = new(DigitIdentifierContext)
-
-	p.IdentifierContext = NewEmptyIdentifierContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*IdentifierContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *DigitIdentifierContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *DigitIdentifierContext) DIGIT_IDENTIFIER() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserDIGIT_IDENTIFIER, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *DigitIdentifierContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitDigitIdentifier(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type UnquotedIdentifierContext struct {
@@ -10563,112 +5683,33 @@ type UnquotedIdentifierContext struct {
 }
 
 func NewUnquotedIdentifierContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *UnquotedIdentifierContext {
-	var p = new(UnquotedIdentifierContext)
-
-	p.IdentifierContext = NewEmptyIdentifierContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*IdentifierContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *UnquotedIdentifierContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *UnquotedIdentifierContext) IDENTIFIER() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserIDENTIFIER, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *UnquotedIdentifierContext) NonReserved() INonReservedContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*INonReservedContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(INonReservedContext)
+	_ = "STUB: not implemented"
+	return *new(INonReservedContext)
 }
 
 func (s *UnquotedIdentifierContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitUnquotedIdentifier(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) Identifier() (localctx IIdentifierContext) {
-	localctx = NewIdentifierContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 84, SqlBaseParserRULE_identifier)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.SetState(723)
-	p.GetErrorHandler().Sync(p)
-
-	switch p.GetTokenStream().LA(1) {
-	case SqlBaseParserIDENTIFIER:
-		localctx = NewUnquotedIdentifierContext(p, localctx)
-		p.EnterOuterAlt(localctx, 1)
-		{
-			p.SetState(718)
-			p.Match(SqlBaseParserIDENTIFIER)
-		}
-
-	case SqlBaseParserQUOTED_IDENTIFIER:
-		localctx = NewQuotedIdentifierContext(p, localctx)
-		p.EnterOuterAlt(localctx, 2)
-		{
-			p.SetState(719)
-			p.Match(SqlBaseParserQUOTED_IDENTIFIER)
-		}
-
-	case SqlBaseParserADD, SqlBaseParserALL, SqlBaseParserANALYZE, SqlBaseParserANY, SqlBaseParserARRAY, SqlBaseParserASC, SqlBaseParserAT, SqlBaseParserBERNOULLI, SqlBaseParserCALL, SqlBaseParserCASCADE, SqlBaseParserCATALOGS, SqlBaseParserCOALESCE, SqlBaseParserCOLUMN, SqlBaseParserCOLUMNS, SqlBaseParserCOMMENT, SqlBaseParserCOMMITTED, SqlBaseParserCURRENT, SqlBaseParserDATA, SqlBaseParserDATE, SqlBaseParserDAY, SqlBaseParserDESC, SqlBaseParserDISTRIBUTED, SqlBaseParserEXCLUDING, SqlBaseParserEXPLAIN, SqlBaseParserFILTER, SqlBaseParserFIRST, SqlBaseParserFOLLOWING, SqlBaseParserFORMAT, SqlBaseParserFUNCTIONS, SqlBaseParserHOUR, SqlBaseParserIF, SqlBaseParserINCLUDING, SqlBaseParserINPUT, SqlBaseParserINTEGER, SqlBaseParserINTERVAL, SqlBaseParserLAST, SqlBaseParserLATERAL, SqlBaseParserLEVEL, SqlBaseParserLIMIT, SqlBaseParserLOGICAL, SqlBaseParserMAP, SqlBaseParserMINUTE, SqlBaseParserMONTH, SqlBaseParserNFC, SqlBaseParserNFD, SqlBaseParserNFKC, SqlBaseParserNFKD, SqlBaseParserNO, SqlBaseParserNULLIF, SqlBaseParserNULLS, SqlBaseParserONLY, SqlBaseParserOPTION, SqlBaseParserORDINALITY, SqlBaseParserOUTPUT, SqlBaseParserOVER, SqlBaseParserPARTITION, SqlBaseParserPARTITIONS, SqlBaseParserPOSITION, SqlBaseParserPRECEDING, SqlBaseParserPRIVILEGES, SqlBaseParserPROPERTIES, SqlBaseParserPUBLIC, SqlBaseParserRANGE, SqlBaseParserREAD, SqlBaseParserRENAME, SqlBaseParserREPEATABLE, SqlBaseParserREPLACE, SqlBaseParserRESET, SqlBaseParserRESTRICT, SqlBaseParserREVOKE, SqlBaseParserROLLBACK, SqlBaseParserROW, SqlBaseParserROWS, SqlBaseParserSCHEMA, SqlBaseParserSCHEMAS, SqlBaseParserSECOND, SqlBaseParserSERIALIZABLE, SqlBaseParserSESSION, SqlBaseParserSET, SqlBaseParserSETS, SqlBaseParserSHOW, SqlBaseParserSMALLINT, SqlBaseParserSOME, SqlBaseParserSTART, SqlBaseParserSTATS, SqlBaseParserSUBSTRING, SqlBaseParserSYSTEM, SqlBaseParserTABLES, SqlBaseParserTABLESAMPLE, SqlBaseParserTEXT, SqlBaseParserTIME, SqlBaseParserTIMESTAMP, SqlBaseParserTINYINT, SqlBaseParserTO, SqlBaseParserTRY_CAST, SqlBaseParserTYPE, SqlBaseParserUNBOUNDED, SqlBaseParserUNCOMMITTED, SqlBaseParserUSE, SqlBaseParserVALIDATE, SqlBaseParserVERBOSE, SqlBaseParserVIEW, SqlBaseParserWORK, SqlBaseParserWRITE, SqlBaseParserYEAR, SqlBaseParserZONE:
-		localctx = NewUnquotedIdentifierContext(p, localctx)
-		p.EnterOuterAlt(localctx, 3)
-		{
-			p.SetState(720)
-			p.NonReserved()
-		}
-
-	case SqlBaseParserBACKQUOTED_IDENTIFIER:
-		localctx = NewBackQuotedIdentifierContext(p, localctx)
-		p.EnterOuterAlt(localctx, 4)
-		{
-			p.SetState(721)
-			p.Match(SqlBaseParserBACKQUOTED_IDENTIFIER)
-		}
-
-	case SqlBaseParserDIGIT_IDENTIFIER:
-		localctx = NewDigitIdentifierContext(p, localctx)
-		p.EnterOuterAlt(localctx, 5)
-		{
-			p.SetState(722)
-			p.Match(SqlBaseParserDIGIT_IDENTIFIER)
-		}
-
-	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(IIdentifierContext)
 }
 
 // INumberContext is an interface to support dynamic dispatch.
@@ -10687,38 +5728,30 @@ type NumberContext struct {
 	parser antlr.Parser
 }
 
-func NewEmptyNumberContext() *NumberContext {
-	var p = new(NumberContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_number
-	return p
-}
+func NewEmptyNumberContext() *NumberContext { _ = "STUB: not implemented"; return nil }
 
-func (*NumberContext) IsNumberContext() {}
+func (*NumberContext) IsNumberContext() { _ = "STUB: not implemented"; return }
 
 func NewNumberContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *NumberContext {
-	var p = new(NumberContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_number
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *NumberContext) GetParser() antlr.Parser { return s.parser }
-
-func (s *NumberContext) CopyFrom(ctx *NumberContext) {
-	s.BaseParserRuleContext.CopyFrom(ctx.BaseParserRuleContext)
+func (s *NumberContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
 }
+
+func (s *NumberContext) CopyFrom(ctx *NumberContext) { _ = "STUB: not implemented"; return }
 
 func (s *NumberContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *NumberContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 type DecimalLiteralContext struct {
@@ -10726,31 +5759,23 @@ type DecimalLiteralContext struct {
 }
 
 func NewDecimalLiteralContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *DecimalLiteralContext {
-	var p = new(DecimalLiteralContext)
-
-	p.NumberContext = NewEmptyNumberContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*NumberContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *DecimalLiteralContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *DecimalLiteralContext) DECIMAL_VALUE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserDECIMAL_VALUE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *DecimalLiteralContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitDecimalLiteral(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type DoubleLiteralContext struct {
@@ -10758,31 +5783,23 @@ type DoubleLiteralContext struct {
 }
 
 func NewDoubleLiteralContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *DoubleLiteralContext {
-	var p = new(DoubleLiteralContext)
-
-	p.NumberContext = NewEmptyNumberContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*NumberContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *DoubleLiteralContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *DoubleLiteralContext) DOUBLE_VALUE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserDOUBLE_VALUE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *DoubleLiteralContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitDoubleLiteral(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type IntegerLiteralContext struct {
@@ -10790,86 +5807,28 @@ type IntegerLiteralContext struct {
 }
 
 func NewIntegerLiteralContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *IntegerLiteralContext {
-	var p = new(IntegerLiteralContext)
-
-	p.NumberContext = NewEmptyNumberContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*NumberContext))
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (s *IntegerLiteralContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *IntegerLiteralContext) INTEGER_VALUE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserINTEGER_VALUE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *IntegerLiteralContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitIntegerLiteral(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) Number() (localctx INumberContext) {
-	localctx = NewNumberContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 86, SqlBaseParserRULE_number)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.SetState(728)
-	p.GetErrorHandler().Sync(p)
-
-	switch p.GetTokenStream().LA(1) {
-	case SqlBaseParserDECIMAL_VALUE:
-		localctx = NewDecimalLiteralContext(p, localctx)
-		p.EnterOuterAlt(localctx, 1)
-		{
-			p.SetState(725)
-			p.Match(SqlBaseParserDECIMAL_VALUE)
-		}
-
-	case SqlBaseParserDOUBLE_VALUE:
-		localctx = NewDoubleLiteralContext(p, localctx)
-		p.EnterOuterAlt(localctx, 2)
-		{
-			p.SetState(726)
-			p.Match(SqlBaseParserDOUBLE_VALUE)
-		}
-
-	case SqlBaseParserINTEGER_VALUE:
-		localctx = NewIntegerLiteralContext(p, localctx)
-		p.EnterOuterAlt(localctx, 3)
-		{
-			p.SetState(727)
-			p.Match(SqlBaseParserINTEGER_VALUE)
-		}
-
-	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(INumberContext)
 }
 
 // INonReservedContext is an interface to support dynamic dispatch.
@@ -10888,630 +5847,601 @@ type NonReservedContext struct {
 	parser antlr.Parser
 }
 
-func NewEmptyNonReservedContext() *NonReservedContext {
-	var p = new(NonReservedContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = SqlBaseParserRULE_nonReserved
-	return p
-}
+func NewEmptyNonReservedContext() *NonReservedContext { _ = "STUB: not implemented"; return nil }
 
-func (*NonReservedContext) IsNonReservedContext() {}
+func (*NonReservedContext) IsNonReservedContext() { _ = "STUB: not implemented"; return }
 
 func NewNonReservedContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *NonReservedContext {
-	var p = new(NonReservedContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = SqlBaseParserRULE_nonReserved
-
-	return p
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *NonReservedContext) GetParser() antlr.Parser { return s.parser }
+func (s *NonReservedContext) GetParser() antlr.Parser {
+	_ = "STUB: not implemented"
+	return *new(antlr.Parser)
+}
 
 func (s *NonReservedContext) ADD() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserADD, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) ALL() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserALL, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) ANALYZE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserANALYZE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) ANY() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserANY, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) ARRAY() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserARRAY, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) ASC() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserASC, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) AT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserAT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) BERNOULLI() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserBERNOULLI, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) CALL() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserCALL, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) CASCADE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserCASCADE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) CATALOGS() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserCATALOGS, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) COALESCE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserCOALESCE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) COLUMN() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserCOLUMN, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) COLUMNS() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserCOLUMNS, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) COMMENT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserCOMMENT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) COMMITTED() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserCOMMITTED, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) CURRENT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserCURRENT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) DATA() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserDATA, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) DATE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserDATE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) DAY() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserDAY, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) DESC() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserDESC, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) DISTRIBUTED() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserDISTRIBUTED, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) EXCLUDING() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserEXCLUDING, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) EXPLAIN() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserEXPLAIN, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) FILTER() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserFILTER, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) FIRST() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserFIRST, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) FOLLOWING() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserFOLLOWING, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) FORMAT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserFORMAT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) FUNCTIONS() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserFUNCTIONS, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) HOUR() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserHOUR, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) IF() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserIF, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) INCLUDING() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserINCLUDING, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) INPUT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserINPUT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) INTEGER() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserINTEGER, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) INTERVAL() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserINTERVAL, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) LAST() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserLAST, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) LATERAL() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserLATERAL, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) LEVEL() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserLEVEL, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) LIMIT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserLIMIT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) LOGICAL() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserLOGICAL, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) MAP() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserMAP, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) MINUTE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserMINUTE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) MONTH() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserMONTH, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) NFC() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserNFC, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) NFD() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserNFD, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) NFKC() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserNFKC, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) NFKD() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserNFKD, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) NO() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserNO, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) NULLIF() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserNULLIF, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) NULLS() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserNULLS, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) ONLY() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserONLY, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) OPTION() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserOPTION, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) ORDINALITY() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserORDINALITY, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) OUTPUT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserOUTPUT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) OVER() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserOVER, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) PARTITION() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserPARTITION, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) PARTITIONS() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserPARTITIONS, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) POSITION() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserPOSITION, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) PRECEDING() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserPRECEDING, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) PRIVILEGES() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserPRIVILEGES, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) PROPERTIES() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserPROPERTIES, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) PUBLIC() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserPUBLIC, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) RANGE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserRANGE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) READ() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserREAD, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) RENAME() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserRENAME, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) REPEATABLE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserREPEATABLE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) REPLACE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserREPLACE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) RESET() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserRESET, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) RESTRICT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserRESTRICT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) REVOKE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserREVOKE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) ROLLBACK() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserROLLBACK, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) ROW() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserROW, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) ROWS() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserROWS, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) SCHEMA() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserSCHEMA, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) SCHEMAS() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserSCHEMAS, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) SECOND() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserSECOND, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) SERIALIZABLE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserSERIALIZABLE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) SESSION() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserSESSION, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) SET() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserSET, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) SETS() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserSETS, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) SHOW() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserSHOW, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) SMALLINT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserSMALLINT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) SOME() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserSOME, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) START() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserSTART, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) STATS() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserSTATS, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) SUBSTRING() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserSUBSTRING, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) SYSTEM() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserSYSTEM, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) TABLES() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserTABLES, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) TABLESAMPLE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserTABLESAMPLE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) TEXT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserTEXT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) TIME() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserTIME, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) TIMESTAMP() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserTIMESTAMP, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) TINYINT() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserTINYINT, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) TO() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserTO, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) TRY_CAST() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserTRY_CAST, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) TYPE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserTYPE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) UNBOUNDED() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserUNBOUNDED, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) UNCOMMITTED() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserUNCOMMITTED, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) USE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserUSE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) VALIDATE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserVALIDATE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) VERBOSE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserVERBOSE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) VIEW() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserVIEW, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) WORK() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserWORK, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) WRITE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserWRITE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) YEAR() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserYEAR, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) ZONE() antlr.TerminalNode {
-	return s.GetToken(SqlBaseParserZONE, 0)
+	_ = "STUB: not implemented"
+	return *new(antlr.TerminalNode)
 }
 
 func (s *NonReservedContext) GetRuleContext() antlr.RuleContext {
-	return s
+	_ = "STUB: not implemented"
+	return *new(antlr.RuleContext)
 }
 
 func (s *NonReservedContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 func (s *NonReservedContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
-	switch t := visitor.(type) {
-	case SqlBaseVisitor:
-		return t.VisitNonReserved(s)
-
-	default:
-		return t.VisitChildren(s)
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (p *SqlBaseParser) NonReserved() (localctx INonReservedContext) {
-	localctx = NewNonReservedContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 88, SqlBaseParserRULE_nonReserved)
-	var _la int
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(730)
-		_la = p.GetTokenStream().LA(1)
-
-		if !((((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<SqlBaseParserADD)|(1<<SqlBaseParserALL)|(1<<SqlBaseParserANALYZE)|(1<<SqlBaseParserANY)|(1<<SqlBaseParserARRAY)|(1<<SqlBaseParserASC)|(1<<SqlBaseParserAT)|(1<<SqlBaseParserBERNOULLI)|(1<<SqlBaseParserCALL)|(1<<SqlBaseParserCASCADE)|(1<<SqlBaseParserCATALOGS)|(1<<SqlBaseParserCOALESCE)|(1<<SqlBaseParserCOLUMN)|(1<<SqlBaseParserCOLUMNS)|(1<<SqlBaseParserCOMMENT)|(1<<SqlBaseParserCOMMITTED))) != 0) || (((_la-33)&-(0x1f+1)) == 0 && ((1<<uint((_la-33)))&((1<<(SqlBaseParserCURRENT-33))|(1<<(SqlBaseParserDATA-33))|(1<<(SqlBaseParserDATE-33))|(1<<(SqlBaseParserDAY-33))|(1<<(SqlBaseParserDESC-33))|(1<<(SqlBaseParserDISTRIBUTED-33))|(1<<(SqlBaseParserEXCLUDING-33))|(1<<(SqlBaseParserEXPLAIN-33))|(1<<(SqlBaseParserFILTER-33))|(1<<(SqlBaseParserFIRST-33))|(1<<(SqlBaseParserFOLLOWING-33))|(1<<(SqlBaseParserFORMAT-33)))) != 0) || (((_la-65)&-(0x1f+1)) == 0 && ((1<<uint((_la-65)))&((1<<(SqlBaseParserFUNCTIONS-65))|(1<<(SqlBaseParserHOUR-65))|(1<<(SqlBaseParserIF-65))|(1<<(SqlBaseParserINCLUDING-65))|(1<<(SqlBaseParserINPUT-65))|(1<<(SqlBaseParserINTEGER-65))|(1<<(SqlBaseParserINTERVAL-65))|(1<<(SqlBaseParserLAST-65))|(1<<(SqlBaseParserLATERAL-65))|(1<<(SqlBaseParserLEVEL-65))|(1<<(SqlBaseParserLIMIT-65))|(1<<(SqlBaseParserLOGICAL-65))|(1<<(SqlBaseParserMAP-65))|(1<<(SqlBaseParserMINUTE-65))|(1<<(SqlBaseParserMONTH-65)))) != 0) || (((_la-98)&-(0x1f+1)) == 0 && ((1<<uint((_la-98)))&((1<<(SqlBaseParserNFC-98))|(1<<(SqlBaseParserNFD-98))|(1<<(SqlBaseParserNFKC-98))|(1<<(SqlBaseParserNFKD-98))|(1<<(SqlBaseParserNO-98))|(1<<(SqlBaseParserNULLIF-98))|(1<<(SqlBaseParserNULLS-98))|(1<<(SqlBaseParserONLY-98))|(1<<(SqlBaseParserOPTION-98))|(1<<(SqlBaseParserORDINALITY-98))|(1<<(SqlBaseParserOUTPUT-98))|(1<<(SqlBaseParserOVER-98))|(1<<(SqlBaseParserPARTITION-98))|(1<<(SqlBaseParserPARTITIONS-98))|(1<<(SqlBaseParserPOSITION-98))|(1<<(SqlBaseParserPRECEDING-98))|(1<<(SqlBaseParserPRIVILEGES-98))|(1<<(SqlBaseParserPROPERTIES-98))|(1<<(SqlBaseParserPUBLIC-98))|(1<<(SqlBaseParserRANGE-98))|(1<<(SqlBaseParserREAD-98))|(1<<(SqlBaseParserRENAME-98))|(1<<(SqlBaseParserREPEATABLE-98)))) != 0) || (((_la-130)&-(0x1f+1)) == 0 && ((1<<uint((_la-130)))&((1<<(SqlBaseParserREPLACE-130))|(1<<(SqlBaseParserRESET-130))|(1<<(SqlBaseParserRESTRICT-130))|(1<<(SqlBaseParserREVOKE-130))|(1<<(SqlBaseParserROLLBACK-130))|(1<<(SqlBaseParserROW-130))|(1<<(SqlBaseParserROWS-130))|(1<<(SqlBaseParserSCHEMA-130))|(1<<(SqlBaseParserSCHEMAS-130))|(1<<(SqlBaseParserSECOND-130))|(1<<(SqlBaseParserSERIALIZABLE-130))|(1<<(SqlBaseParserSESSION-130))|(1<<(SqlBaseParserSET-130))|(1<<(SqlBaseParserSETS-130))|(1<<(SqlBaseParserSHOW-130))|(1<<(SqlBaseParserSMALLINT-130))|(1<<(SqlBaseParserSOME-130))|(1<<(SqlBaseParserSTART-130))|(1<<(SqlBaseParserSTATS-130))|(1<<(SqlBaseParserSUBSTRING-130))|(1<<(SqlBaseParserSYSTEM-130))|(1<<(SqlBaseParserTABLES-130))|(1<<(SqlBaseParserTABLESAMPLE-130))|(1<<(SqlBaseParserTEXT-130))|(1<<(SqlBaseParserTIME-130))|(1<<(SqlBaseParserTIMESTAMP-130))|(1<<(SqlBaseParserTINYINT-130)))) != 0) || (((_la-162)&-(0x1f+1)) == 0 && ((1<<uint((_la-162)))&((1<<(SqlBaseParserTO-162))|(1<<(SqlBaseParserTRY_CAST-162))|(1<<(SqlBaseParserTYPE-162))|(1<<(SqlBaseParserUNBOUNDED-162))|(1<<(SqlBaseParserUNCOMMITTED-162))|(1<<(SqlBaseParserUSE-162))|(1<<(SqlBaseParserVALIDATE-162))|(1<<(SqlBaseParserVERBOSE-162))|(1<<(SqlBaseParserVIEW-162))|(1<<(SqlBaseParserWORK-162))|(1<<(SqlBaseParserWRITE-162))|(1<<(SqlBaseParserYEAR-162))|(1<<(SqlBaseParserZONE-162)))) != 0)) {
-			p.GetErrorHandler().RecoverInline(p)
-		} else {
-			p.GetErrorHandler().ReportMatch(p)
-			p.Consume()
-		}
-	}
-
-	return localctx
+	_ = "STUB: not implemented"
+	return *new(INonReservedContext)
 }
 
 func (p *SqlBaseParser) Sempred(localctx antlr.RuleContext, ruleIndex, predIndex int) bool {
-	switch ruleIndex {
-	case 4:
-		var t *QueryTermContext = nil
-		if localctx != nil {
-			t = localctx.(*QueryTermContext)
-		}
-		return p.QueryTerm_Sempred(t, predIndex)
-
-	case 14:
-		var t *RelationContext = nil
-		if localctx != nil {
-			t = localctx.(*RelationContext)
-		}
-		return p.Relation_Sempred(t, predIndex)
-
-	case 23:
-		var t *BooleanExpressionContext = nil
-		if localctx != nil {
-			t = localctx.(*BooleanExpressionContext)
-		}
-		return p.BooleanExpression_Sempred(t, predIndex)
-
-	case 26:
-		var t *ValueExpressionContext = nil
-		if localctx != nil {
-			t = localctx.(*ValueExpressionContext)
-		}
-		return p.ValueExpression_Sempred(t, predIndex)
-
-	case 27:
-		var t *PrimaryExpressionContext = nil
-		if localctx != nil {
-			t = localctx.(*PrimaryExpressionContext)
-		}
-		return p.PrimaryExpression_Sempred(t, predIndex)
-
-	case 36:
-		var t *SqltypeContext = nil
-		if localctx != nil {
-			t = localctx.(*SqltypeContext)
-		}
-		return p.Sqltype_Sempred(t, predIndex)
-
-	default:
-		panic("No predicate with index: " + fmt.Sprint(ruleIndex))
-	}
+	_ = "STUB: not implemented"
+	return false
 }
 
 func (p *SqlBaseParser) QueryTerm_Sempred(localctx antlr.RuleContext, predIndex int) bool {
-	switch predIndex {
-	case 0:
-		return p.Precpred(p.GetParserRuleContext(), 2)
-
-	case 1:
-		return p.Precpred(p.GetParserRuleContext(), 1)
-
-	default:
-		panic("No predicate with index: " + fmt.Sprint(predIndex))
-	}
+	_ = "STUB: not implemented"
+	return false
 }
 
 func (p *SqlBaseParser) Relation_Sempred(localctx antlr.RuleContext, predIndex int) bool {
-	switch predIndex {
-	case 2:
-		return p.Precpred(p.GetParserRuleContext(), 2)
-
-	default:
-		panic("No predicate with index: " + fmt.Sprint(predIndex))
-	}
+	_ = "STUB: not implemented"
+	return false
 }
 
 func (p *SqlBaseParser) BooleanExpression_Sempred(localctx antlr.RuleContext, predIndex int) bool {
-	switch predIndex {
-	case 3:
-		return p.Precpred(p.GetParserRuleContext(), 2)
-
-	case 4:
-		return p.Precpred(p.GetParserRuleContext(), 1)
-
-	default:
-		panic("No predicate with index: " + fmt.Sprint(predIndex))
-	}
+	_ = "STUB: not implemented"
+	return false
 }
 
 func (p *SqlBaseParser) ValueExpression_Sempred(localctx antlr.RuleContext, predIndex int) bool {
-	switch predIndex {
-	case 5:
-		return p.Precpred(p.GetParserRuleContext(), 3)
-
-	case 6:
-		return p.Precpred(p.GetParserRuleContext(), 2)
-
-	case 7:
-		return p.Precpred(p.GetParserRuleContext(), 1)
-
-	case 8:
-		return p.Precpred(p.GetParserRuleContext(), 5)
-
-	default:
-		panic("No predicate with index: " + fmt.Sprint(predIndex))
-	}
+	_ = "STUB: not implemented"
+	return false
 }
 
 func (p *SqlBaseParser) PrimaryExpression_Sempred(localctx antlr.RuleContext, predIndex int) bool {
-	switch predIndex {
-	case 9:
-		return p.Precpred(p.GetParserRuleContext(), 11)
-
-	case 10:
-		return p.Precpred(p.GetParserRuleContext(), 9)
-
-	default:
-		panic("No predicate with index: " + fmt.Sprint(predIndex))
-	}
+	_ = "STUB: not implemented"
+	return false
 }
 
 func (p *SqlBaseParser) Sqltype_Sempred(localctx antlr.RuleContext, predIndex int) bool {
-	switch predIndex {
-	case 11:
-		return p.Precpred(p.GetParserRuleContext(), 6)
-
-	default:
-		panic("No predicate with index: " + fmt.Sprint(predIndex))
-	}
+	_ = "STUB: not implemented"
+	return false
 }

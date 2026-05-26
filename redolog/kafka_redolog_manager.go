@@ -15,12 +15,10 @@
 package redolog
 
 import (
-	"encoding/json"
+	"sync"
+
 	"github.com/Shopify/sarama"
 	"github.com/uber/aresdb/memstore/common"
-	"github.com/uber/aresdb/utils"
-	"math"
-	"sync"
 )
 
 const maxBatchesPerFile = 5000
@@ -68,265 +66,82 @@ func newKafkaRedoLogManager(namespace, table, suffix string, shard int, consumer
 	checkPointFunc func(string, int, int64) error,
 	getCommitOffsetFunc func(string, int) (int64, error),
 	getCheckpointOffsetFunc func(string, int) (int64, error)) *kafkaRedoLogManager {
-	topic := utils.GetTopicFromTable(namespace, table, suffix)
-	return &kafkaRedoLogManager{
-		TableName:               table,
-		Shard:                   shard,
-		Topic:                   topic,
-		consumer:                consumer,
-		includeRecovery:         includeRecovery,
-		recoveryDone:            !includeRecovery,
-		commitFunc:              commitFunc,
-		checkPointFunc:          checkPointFunc,
-		getCommitOffsetFunc:     getCommitOffsetFunc,
-		getCheckpointOffsetFunc: getCheckpointOffsetFunc,
-		MaxEventTimePerFile:     make(map[int64]uint32),
-		FirstKafkaOffsetPerFile: make(map[int64]int64),
-		SizePerFile:             make(map[int64]int),
-		recoveryChan:            make(chan bool, 1),
-		done:                    make(chan struct{}),
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // IsAppendEnabled returns whether appending is enabled
 func (k *kafkaRedoLogManager) IsAppendEnabled() bool {
+	_ = "STUB: not implemented"
+
+	// AppendToRedoLog to record upsertbatch info as redolog
 	return false
 }
 
-// AppendToRedoLog to record upsertbatch info as redolog
 func (k *kafkaRedoLogManager) AppendToRedoLog(upsertBatch *common.UpsertBatch) (int64, uint32) {
-	panic("WriteUpsertBatch to kafka redolog manager is disabled")
+	_ = "STUB: not implemented"
+	return 0, 0
 }
 
 func (k *kafkaRedoLogManager) UpdateMaxEventTime(eventTime uint32, fileID int64) {
-	k.Lock()
-	defer k.Unlock()
-	if _, ok := k.MaxEventTimePerFile[fileID]; ok && eventTime <= k.MaxEventTimePerFile[fileID] {
-		return
-	}
-	k.MaxEventTimePerFile[fileID] = eventTime
+	_ = "STUB: not implemented"
+	return
 }
 
 func (k *kafkaRedoLogManager) getFileOffset(kafkaOffset int64) (int64, uint32) {
-	return kafkaOffset / maxBatchesPerFile, uint32(kafkaOffset % maxBatchesPerFile)
+	_ = "STUB: not implemented"
+	return 0, 0
 }
 
 func (k *kafkaRedoLogManager) CheckpointRedolog(eventTimeCutoff uint32, fileIDCheckpointed int64, batchOffset uint32) error {
-	k.RLock()
-	var firstUnpurgeableFileID int64 = math.MaxInt64
-	var firstKafkaOffset int64 = math.MaxInt64
-	for fileID, maxEventTime := range k.MaxEventTimePerFile {
-		if maxEventTime >= eventTimeCutoff ||
-			fileID > fileIDCheckpointed ||
-			(fileID == fileIDCheckpointed && batchOffset != maxBatchesPerFile-1) {
-			// file not purgeable
-			if fileID < firstUnpurgeableFileID {
-				firstUnpurgeableFileID = fileID
-				// fileID existing in MaxEventTimePerFile should always have entry in FirstKafkaOffsetPerFile
-				firstKafkaOffset = k.FirstKafkaOffsetPerFile[fileID]
-			}
-		}
-	}
-	k.RUnlock()
-
-	if firstUnpurgeableFileID < math.MaxInt64 {
-		err := k.checkPointFunc(k.TableName, k.Shard, firstKafkaOffset)
-		if err != nil {
-			return err
-		}
-
-		k.Lock()
-		for fileID := range k.MaxEventTimePerFile {
-			if fileID < firstUnpurgeableFileID {
-				delete(k.MaxEventTimePerFile, fileID)
-				delete(k.FirstKafkaOffsetPerFile, fileID)
-				k.TotalRedologSize -= k.SizePerFile[fileID]
-				delete(k.SizePerFile, fileID)
-			}
-		}
-		k.Unlock()
-	}
+	_ = "STUB: not implemented"
 	return nil
 }
 
+// file not purgeable
+
+// fileID existing in MaxEventTimePerFile should always have entry in FirstKafkaOffsetPerFile
+
 func (k *kafkaRedoLogManager) addMessage(fileID int64, kafkaOffset int64, size int) {
-	k.Lock()
-	defer k.Unlock()
-
-	if currentFirstOffset, ok := k.FirstKafkaOffsetPerFile[fileID]; !ok || currentFirstOffset > kafkaOffset {
-		k.FirstKafkaOffsetPerFile[fileID] = kafkaOffset
-	}
-
-	if _, exist := k.SizePerFile[fileID]; !exist {
-		k.SizePerFile[fileID] = 0
-	} else {
-		k.SizePerFile[fileID] += size
-	}
-	k.TotalRedologSize += size
-
-	if k.recoveryDone {
-		k.batchReceived++
-	} else {
-		k.batchRecovered++
-	}
-	if k.batchReceived%commitInterval == (commitInterval - 1) {
-		k.commitFunc(k.TableName, k.Shard, kafkaOffset)
-	}
+	_ = "STUB: not implemented"
+	return
 }
 
 func (k *kafkaRedoLogManager) getKafkaOffsets() (int64, int64) {
-	var offsetFrom, offsetTo int64
-	var err error
-	if k.includeRecovery {
-		offsetFrom, err = k.getCheckpointOffsetFunc(k.TableName, k.Shard)
-		if err != nil {
-			utils.GetLogger().Fatal(err)
-		}
-		offsetTo, err = k.getCommitOffsetFunc(k.TableName, k.Shard)
-		if err != nil {
-			utils.GetLogger().Fatal(err)
-		}
-	} else {
-		offsetFrom, err = k.getCommitOffsetFunc(k.TableName, k.Shard)
-		offsetTo = offsetFrom
-	}
-
-	if offsetFrom == 0 {
-		offsetFrom = sarama.OffsetNewest
-	}
-	if offsetTo < offsetFrom {
-		offsetTo = offsetFrom
-	}
-	return offsetFrom, offsetTo
+	_ = "STUB: not implemented"
+	return 0, 0
 }
 
 func (k *kafkaRedoLogManager) Iterator() (NextUpsertFunc, error) {
-	if k.partitionConsumer != nil {
-		// close previous created partition consumer
-		k.partitionConsumer.Close()
-	}
-	offsetFrom, offsetTo := k.getKafkaOffsets()
-	var err error
-	k.partitionConsumer, err = k.consumer.ConsumePartition(k.Topic, int32(k.Shard), offsetFrom)
-	if err != nil {
-		utils.GetLogger().Panic("Failed to consumer kafka partition", err)
-	}
-
-	if k.includeRecovery {
-		utils.GetLogger().With("action", "recover", "table", k.TableName, "shard", k.Shard, "offsetFrom", offsetFrom, "offsetTo", offsetTo).
-			Info("start recover from kafka")
-	} else {
-		utils.GetLogger().With("action", "ingestion", "table", k.TableName, "shard", k.Shard, "offsetFrom", offsetFrom).
-			Info("start play redolog from kafka")
-	}
-
-	return func() *NextUpsertBatchInfo {
-		if k.partitionConsumer == nil {
-			// partition consumer closed
-			return nil
-		}
-		if !k.recoveryDone && (offsetTo == 0 || offsetTo <= offsetFrom) {
-			k.setRecoveryDone()
-		}
-		for {
-			select {
-			case msg, ok := <-k.partitionConsumer.Messages():
-				if !ok {
-					// consumer closed
-					utils.GetLogger().With(
-						"table", k.TableName,
-						"shard", k.Shard).Error("partition consumer channel closed")
-					return nil
-				}
-				if msg != nil {
-					upsertBatch, err := common.NewUpsertBatch(msg.Value)
-					if err != nil {
-						utils.GetLogger().With(
-							"table", k.TableName,
-							"shard", k.Shard, "error", err.Error()).Error("failed to create upsert batch from msg")
-					}
-					if !k.recoveryDone && msg.Offset > offsetTo {
-						k.setRecoveryDone()
-					}
-
-					fileID, fileOffset := k.getFileOffset(msg.Offset)
-					k.addMessage(fileID, msg.Offset, len(upsertBatch.GetBuffer()))
-					return &NextUpsertBatchInfo{
-						Batch:       upsertBatch,
-						RedoLogFile: fileID,
-						BatchOffset: fileOffset,
-						Recovery:    !k.recoveryDone,
-					}
-				}
-			case err, ok := <-k.partitionConsumer.Errors():
-				if !ok {
-					// consumer closed
-					utils.GetLogger().With(
-						"table", k.TableName,
-						"shard", k.Shard).Error("partition consumer error channel closed")
-					return nil
-				} else {
-					utils.GetLogger().With("table", k.TableName, "shard", k.Shard, "error", err.Error()).
-						Error("received consumer error")
-				}
-			case <-k.done:
-				return nil
-			}
-		}
-	}, nil
+	_ = "STUB: not implemented"
+	return *new(NextUpsertFunc), nil
 }
 
-func (k *kafkaRedoLogManager) setRecoveryDone() {
-	k.Lock()
-	defer k.Unlock()
+// close previous created partition consumer
 
-	k.recoveryDone = true
-	k.recoveryChan <- true
+// partition consumer closed
 
-	utils.GetLogger().With("action", "recover", "table", k.TableName, "shard", k.Shard,
-		"batchRecovered", k.batchRecovered).Info("Finished recovery from kafka")
-}
+// consumer closed
 
-func (k *kafkaRedoLogManager) WaitForRecoveryDone() {
-	<-k.recoveryChan
-}
+// consumer closed
 
-func (k *kafkaRedoLogManager) GetTotalSize() int {
-	k.RLock()
-	defer k.RUnlock()
-	return int(k.TotalRedologSize)
-}
+func (k *kafkaRedoLogManager) setRecoveryDone() { _ = "STUB: not implemented"; return }
 
-func (k *kafkaRedoLogManager) GetNumFiles() int {
-	k.RLock()
-	defer k.RUnlock()
-	return len(k.SizePerFile)
-}
+func (k *kafkaRedoLogManager) WaitForRecoveryDone() { _ = "STUB: not implemented"; return }
 
-func (k *kafkaRedoLogManager) GetBatchReceived() int {
-	return k.batchReceived
-}
+func (k *kafkaRedoLogManager) GetTotalSize() int { _ = "STUB: not implemented"; return 0 }
 
-func (k *kafkaRedoLogManager) GetBatchRecovered() int {
-	return k.batchRecovered
-}
+func (k *kafkaRedoLogManager) GetNumFiles() int { _ = "STUB: not implemented"; return 0 }
 
-func (k *kafkaRedoLogManager) Close() {
-	k.Lock()
-	defer k.Unlock()
+func (k *kafkaRedoLogManager) GetBatchReceived() int { _ = "STUB: not implemented"; return 0 }
 
-	close(k.done)
-	if k.partitionConsumer != nil {
-		k.partitionConsumer.Close()
-		k.partitionConsumer = nil
-	}
-}
+func (k *kafkaRedoLogManager) GetBatchRecovered() int { _ = "STUB: not implemented"; return 0 }
+
+func (k *kafkaRedoLogManager) Close() { _ = "STUB: not implemented"; return }
 
 // MarshalJSON marshals a kafkaRedoLogManager into json.
 func (k *kafkaRedoLogManager) MarshalJSON() ([]byte, error) {
+	_ = "STUB: not implemented"
 	// Avoid json.Marshal loop calls.
-	type alias kafkaRedoLogManager
-	k.RLock()
-	defer k.RUnlock()
-	return json.Marshal((*alias)(k))
+	return nil, nil
 }

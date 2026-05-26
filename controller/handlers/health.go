@@ -25,16 +25,17 @@ type HealthHandler struct{}
 
 // NewHealthHandler returns a new health handler
 func NewHealthHandler() HealthHandler {
-	return HealthHandler{}
+	_ = "STUB: not implemented"
+	return *
+
+	// Register adds paths to router
+	new(HealthHandler)
 }
 
-// Register adds paths to router
-func (h HealthHandler) Register(router *mux.Router) {
-	router.HandleFunc("/health", h.Health)
-}
+func (h HealthHandler) Register(router *mux.Router) { _ = "STUB: not implemented"; return }
 
 // Health serves health requests
 func (h HealthHandler) Health(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusOK)
-	_, _ = w.Write([]byte("ok"))
+	_ = "STUB: not implemented"
+	return
 }

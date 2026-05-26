@@ -15,16 +15,12 @@
 package broker
 
 import (
-	"context"
-	"fmt"
+	"net/http"
+
 	"github.com/gorilla/mux"
-	apiCom "github.com/uber/aresdb/api/common"
 	"github.com/uber/aresdb/broker/common"
 	queryCom "github.com/uber/aresdb/query/common"
-	"github.com/uber/aresdb/query/sql"
 	"github.com/uber/aresdb/utils"
-	"net/http"
-	"sync/atomic"
 )
 
 type QueryHandler struct {
@@ -34,98 +30,26 @@ type QueryHandler struct {
 }
 
 func NewQueryHandler(executor common.QueryExecutor, instanceID string) QueryHandler {
-	return QueryHandler{
-		exec:       executor,
-		instanceID: instanceID,
-	}
+	_ = "STUB: not implemented"
+	return *new(QueryHandler)
 }
 
 func (handler *QueryHandler) Register(router *mux.Router, wrappers ...utils.HTTPHandlerWrapper) {
-	router.HandleFunc("/sql", utils.ApplyHTTPWrappers(handler.HandleSQL, wrappers...)).Methods(http.MethodPost)
-	router.HandleFunc("/aql", utils.ApplyHTTPWrappers(handler.HandleAQL, wrappers...)).Methods(http.MethodPost)
+	_ = "STUB: not implemented"
+	return
 }
 
 func (handler *QueryHandler) HandleSQL(w *utils.ResponseWriter, r *http.Request) {
-	utils.GetRootReporter().GetCounter(utils.SQLQueryReceivedBroker).Inc(1)
-	var queryReqeust BrokerSQLRequest
-
-	start := utils.Now()
-	var err error
-	defer func() {
-		duration := utils.Now().Sub(start)
-		utils.GetRootReporter().GetTimer(utils.QueryLatencyBroker).Record(duration)
-		if err != nil {
-			utils.GetRootReporter().GetCounter(utils.QueryFailedBroker).Inc(1)
-			utils.GetLogger().With(
-				"error", err,
-				"request", queryReqeust).Error("Error happened when processing request")
-		} else {
-			utils.GetRootReporter().GetCounter(utils.QuerySucceededBroker).Inc(1)
-			utils.GetLogger().With("request", queryReqeust).Info("Request succeeded")
-		}
-	}()
-
-	err = apiCom.ReadRequest(r, &queryReqeust)
-	if err != nil {
-		w.WriteError(err)
-		return
-	}
-
-	sqlParseStart := utils.Now()
-	var aql *queryCom.AQLQuery
-	aql, err = sql.Parse(queryReqeust.Body.Query, utils.GetLogger())
-	utils.GetRootReporter().GetTimer(utils.SQLParsingLatencyBroker).Record(utils.Now().Sub(sqlParseStart))
-	if err != nil {
-		w.WriteError(err)
-		return
-	}
-
-	err = handler.exec.Execute(context.Background(), handler.getReqestID(), aql, queryReqeust.Accept == utils.HTTPContentTypeHyperLogLog, w)
-	if err != nil {
-		w.WriteError(err)
-		return
-	}
+	_ = "STUB: not implemented"
 	return
 }
 
 func (handler *QueryHandler) HandleAQL(w *utils.ResponseWriter, r *http.Request) {
-	var queryReqeust BrokerAQLRequest
-	utils.GetRootReporter().GetCounter(utils.AQLQueryReceivedBroker).Inc(1)
-
-	start := utils.Now()
-	var err error
-	defer func() {
-		duration := utils.Now().Sub(start)
-		utils.GetRootReporter().GetTimer(utils.QueryLatencyBroker).Record(duration)
-		if err != nil {
-			utils.GetRootReporter().GetCounter(utils.QueryFailedBroker).Inc(1)
-			utils.GetLogger().With(
-				"error", err,
-				"request", queryReqeust).Error("Error happened when processing request")
-		} else {
-			utils.GetRootReporter().GetCounter(utils.QuerySucceededBroker).Inc(1)
-			utils.GetLogger().With("request", queryReqeust).Info("Request succeeded")
-		}
-	}()
-
-	err = apiCom.ReadRequest(r, &queryReqeust)
-	if err != nil {
-		w.WriteError(err)
-		return
-	}
-
-	err = handler.exec.Execute(context.TODO(), handler.getReqestID(), &queryReqeust.Body.Query, queryReqeust.Accept == utils.HTTPContentTypeHyperLogLog, w)
-	if err != nil {
-		w.WriteError(err)
-		return
-	}
+	_ = "STUB: not implemented"
 	return
 }
 
-func (handler *QueryHandler) getReqestID() string {
-	newID := atomic.AddInt64(&handler.nextRequestID, 1)
-	return fmt.Sprintf("%s_%d", handler.instanceID, newID)
-}
+func (handler *QueryHandler) getReqestID() string { _ = "STUB: not implemented"; return "" }
 
 // BrokerSQLRequest represents SQL query request. Debug mode will
 // run **each batch** in synchronized mode and report time

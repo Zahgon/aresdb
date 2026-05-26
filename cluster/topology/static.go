@@ -30,19 +30,19 @@ type staticInitializer struct {
 
 // NewStaticInitializer creates a static topology initializer.
 func NewStaticInitializer(opts StaticOptions) Initializer {
-	return staticInitializer{opts}
+	_ = "STUB: not implemented"
+	return *new(Initializer)
 }
 
 func (i staticInitializer) Init() (Topology, error) {
-	if err := i.opts.Validate(); err != nil {
-		return nil, err
-	}
-	return NewStaticTopology(i.opts), nil
+	_ = "STUB: not implemented"
+	return *new(Topology), nil
 }
 
 func (i staticInitializer) TopologyIsSet() (bool, error) {
+	_ = "STUB: not implemented"
 	// Always has the specified static topology ready.
-	return true, nil
+	return false, nil
 }
 
 type staticTopology struct {
@@ -51,22 +51,16 @@ type staticTopology struct {
 
 // NewStaticTopology creates a static topology.
 func NewStaticTopology(opts StaticOptions) Topology {
-	w := xwatch.NewWatchable()
-	w.Update(NewStaticMap(opts))
-	return &staticTopology{w: w}
+	_ = "STUB: not implemented"
+	return *new(Topology)
 }
 
-func (t *staticTopology) Get() Map {
-	return t.w.Get().(Map)
-}
+func (t *staticTopology) Get() Map { _ = "STUB: not implemented"; return *new(Map) }
 
 func (t *staticTopology) Watch() (MapWatch, error) {
+	_ = "STUB: not implemented"
 	// Topology is static, the returned watch will not receive any updates.
-	_, w, err := t.w.Watch()
-	if err != nil {
-		return nil, err
-	}
-	return NewMapWatch(w), nil
+	return *new(MapWatch), nil
 }
 
-func (t *staticTopology) Close() {}
+func (t *staticTopology) Close() { _ = "STUB: not implemented"; return }

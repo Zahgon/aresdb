@@ -17,10 +17,9 @@ package memstore
 import (
 	"sync"
 
-	"encoding/json"
-	"github.com/uber/aresdb/memstore/common"
-	"github.com/uber/aresdb/utils"
 	"time"
+
+	"github.com/uber/aresdb/memstore/common"
 )
 
 // SnapshotManager manages the snapshot related stats and progress.
@@ -65,88 +64,51 @@ type SnapshotManager struct {
 }
 
 // NewSnapshotManager creates a new SnapshotManager instance.
-func NewSnapshotManager(shard *TableShard) *SnapshotManager {
-	return &SnapshotManager{
-		shard:             shard,
-		SnapshotThreshold: shard.Schema.Schema.Config.SnapshotThreshold,
-		SnapshotInterval:  time.Duration(shard.Schema.Schema.Config.SnapshotIntervalMinutes) * time.Minute,
-		LastSnapshotTime:  utils.Now(),
-	}
-}
+func NewSnapshotManager(shard *TableShard) *SnapshotManager { _ = "STUB: not implemented"; return nil }
 
 // StartSnapshot returns current redo log file ,offset
 func (s *SnapshotManager) StartSnapshot() (int64, uint32, int, common.RecordID) {
-	s.RLock()
-	defer s.RUnlock()
-	return s.CurrentRedoFile, s.CurrentBatchOffset, s.NumMutations, s.CurrentRecord
+	_ = "STUB: not implemented"
+	return 0, 0, 0, *new(common.RecordID)
 }
 
 // ApplyUpsertBatch advances CurrentRedoLogFile and CurrentBatchOffset and increments NumMutations after applying
 // an upsert batch to live store.
 func (s *SnapshotManager) ApplyUpsertBatch(redoFile int64, offset uint32, numMutations int, currentRecord common.RecordID) {
-	s.Lock()
-	defer s.Unlock()
-	s.CurrentRedoFile = redoFile
-	s.CurrentBatchOffset = offset
-	s.NumMutations += numMutations
-	s.CurrentRecord = currentRecord
+	_ = "STUB: not implemented"
+	return
 }
 
 // QualifyForSnapshot tells whether we can trigger a snapshot job.
-func (s *SnapshotManager) QualifyForSnapshot() bool {
-	s.RLock()
-	defer s.RUnlock()
-	now := utils.Now()
-	return s.NumMutations >= s.SnapshotThreshold || (now.Sub(s.LastSnapshotTime) >= s.SnapshotInterval && s.NumMutations > 0)
-}
+func (s *SnapshotManager) QualifyForSnapshot() bool { _ = "STUB: not implemented"; return false }
 
 // updateSnapshotProgress updates snapshot progress in memory. It also subtracts NumMutations by lastNumMutations to reflect correct
 // number of mutations since last snapshot.
 func (s *SnapshotManager) updateSnapshotProgress(redoFile int64, offset uint32, lastNumMutations int, record common.RecordID) {
-	s.LastRedoFile = redoFile
-	s.LastBatchOffset = offset
-	s.NumMutations -= lastNumMutations
-	s.LastRecord = record
+	_ = "STUB: not implemented"
+	return
 }
 
 // Done updates the snapshot progress both in memory and in metastore and updates number of mutations
 // accordingly.
 func (s *SnapshotManager) Done(currentRedoFile int64, currentBatchOffset uint32, lastNumMutations int, currentRecord common.RecordID) error {
-	s.Lock()
-	defer s.Unlock()
-	// we should always record last snapshot time
-	s.LastSnapshotTime = utils.Now()
-	if currentRedoFile > s.LastRedoFile ||
-		currentRedoFile == s.LastRedoFile && currentBatchOffset > s.LastBatchOffset {
-		if err := s.shard.metaStore.UpdateSnapshotProgress(s.shard.Schema.Schema.Name, s.shard.ShardID,
-			currentRedoFile, currentBatchOffset, currentRecord.BatchID, currentRecord.Index); err != nil {
-			return err
-		}
-		s.updateSnapshotProgress(currentRedoFile, currentBatchOffset, lastNumMutations, currentRecord)
-	}
+	_ = "STUB: not implemented"
 	return nil
+
+	// we should always record last snapshot time
 }
 
 // GetLastSnapshotInfo get last snapshot redolog file, offset and timestamp, lastRecord
 func (s *SnapshotManager) GetLastSnapshotInfo() (int64, uint32, time.Time, common.RecordID) {
-	s.Lock()
-	defer s.Unlock()
-	return s.LastRedoFile, s.LastBatchOffset, s.LastSnapshotTime, s.LastRecord
+	_ = "STUB: not implemented"
+	return 0, 0, *new(time.Time), *new(common.RecordID)
 }
 
 // SetLastSnapshotInfo update last snapshot redolog file, offset and timestamp, lastRecord
 func (s *SnapshotManager) SetLastSnapshotInfo(redoLogFile int64, offset uint32, record common.RecordID) {
-	s.Lock()
-	defer s.Unlock()
-	s.LastRedoFile = redoLogFile
-	s.LastBatchOffset = offset
-	s.LastRecord = record
+	_ = "STUB: not implemented"
+	return
 }
 
 // MarshalJSON marshals a BackfillManager into json.
-func (s *SnapshotManager) MarshalJSON() ([]byte, error) {
-	type alias SnapshotManager
-	s.RLock()
-	defer s.RUnlock()
-	return json.Marshal((*alias)(s))
-}
+func (s *SnapshotManager) MarshalJSON() ([]byte, error) { _ = "STUB: not implemented"; return nil, nil }

@@ -43,19 +43,12 @@ func NewQuerySpecification(location *NodeLocation,
 	having IExpression,
 	orderBy *OrderBy,
 	limit string) *QuerySpecification {
-	return &QuerySpecification{
-		NewQueryBody(location),
-		sel,
-		from,
-		where,
-		groupBy,
-		having,
-		orderBy,
-		limit,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Accept accepts visitor
 func (e *QuerySpecification) Accept(visitor AstVisitor, ctx interface{}) interface{} {
-	return visitor.VisitQuerySpecification(e, ctx)
+	_ = "STUB: not implemented"
+	return nil
 }

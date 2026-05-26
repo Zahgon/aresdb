@@ -26,14 +26,10 @@ type QueryBody struct {
 }
 
 // NewQueryBody creates QueryBody
-func NewQueryBody(location *NodeLocation) *QueryBody {
-	relation := NewRelation(location)
-	return &QueryBody{
-		relation,
-	}
-}
+func NewQueryBody(location *NodeLocation) *QueryBody { _ = "STUB: not implemented"; return nil }
 
 // Accept accepts visitor
 func (q *QueryBody) Accept(visitor AstVisitor, ctx interface{}) interface{} {
-	return visitor.VisitQueryBody(q, ctx)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -14,10 +14,6 @@
 
 package tree
 
-import (
-	"github.com/uber/aresdb/query/sql/util"
-)
-
 // JoinUsing is natural join
 type JoinUsing struct {
 	// IJoinCriteria is interface
@@ -26,14 +22,7 @@ type JoinUsing struct {
 }
 
 // NewJoinUsing creates JoinUsing
-func NewJoinUsing(columns []*Identifier) *JoinUsing {
-	util.RequireNonNull(columns, "columns is null")
-	return &JoinUsing{
-		Columns: columns,
-	}
-}
+func NewJoinUsing(columns []*Identifier) *JoinUsing { _ = "STUB: not implemented"; return nil }
 
 // GetNodes returns empty
-func (j *JoinUsing) GetNodes() []INode {
-	return []INode{}
-}
+func (j *JoinUsing) GetNodes() []INode { _ = "STUB: not implemented"; return nil }

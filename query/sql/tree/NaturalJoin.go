@@ -21,11 +21,7 @@ type NaturalJoin struct {
 }
 
 // NewNaturalJoin creates NaturalJoin
-func NewNaturalJoin() *NaturalJoin {
-	return &NaturalJoin{}
-}
+func NewNaturalJoin() *NaturalJoin { _ = "STUB: not implemented"; return nil }
 
 // GetNodes returns empty
-func (n *NaturalJoin) GetNodes() []INode {
-	return nil
-}
+func (n *NaturalJoin) GetNodes() []INode { _ = "STUB: not implemented"; return nil }

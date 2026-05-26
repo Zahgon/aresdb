@@ -75,148 +75,163 @@ type ZapLoggerFactory struct {
 
 // NewZapLoggerFactory creates ZapLoggerFactory
 func NewZapLoggerFactory(logger *zap.SugaredLogger) LoggerFactory {
-	if logger == nil  {
-		logger = zap.NewExample().Sugar()
-	}
-
-	return &ZapLoggerFactory{
-		&ZapLogger{
-			sugaredLogger: logger,
-		},
-	}
+	_ = "STUB: not implemented"
+	return *new(LoggerFactory)
 }
 
 // NewLoggerFactory creates a default zap LoggerFactory implementation.
-func NewLoggerFactory() LoggerFactory {
-	return &ZapLoggerFactory{
-		&ZapLogger{
-			zap.NewExample().Sugar(),
-		},
-	}
-}
+func NewLoggerFactory() LoggerFactory { _ = "STUB: not implemented"; return *new(LoggerFactory) }
 
 // GetDefaultLogger returns the default zap logger.
 func (r *ZapLoggerFactory) GetDefaultLogger() Logger {
-	return r.logger
+	_ = "STUB: not implemented"
+
+	// GetLogger of ZapLoggerFactory ignores the given name and just return the default logger.
+	return *new(Logger)
 }
 
-// GetLogger of ZapLoggerFactory ignores the given name and just return the default logger.
 func (r *ZapLoggerFactory) GetLogger(name string) Logger {
-	return r.logger
+	_ = "STUB: not implemented"
+
+	// ZapLogger is wrapper of zap
+	return *new(Logger)
 }
 
-// ZapLogger is wrapper of zap
 type ZapLogger struct {
 	sugaredLogger *zap.SugaredLogger
 }
 
 // Debug is log at debug level
-func (z *ZapLogger) Debug(args ...interface{}) {
-	z.sugaredLogger.Debug(args...)
-}
+func (z *ZapLogger) Debug(args ...interface{}) { _ = "STUB: not implemented"; return }
 
 // Debugf is log at debug level with fmt.Printf-like formatting
-func (z *ZapLogger) Debugf(format string, args ...interface{}) {
-	z.sugaredLogger.Debugf(format, args...)
-}
+func (z *ZapLogger) Debugf(format string, args ...interface{}) { _ = "STUB: not implemented"; return }
 
 // Info is log at info level
-func (z *ZapLogger) Info(args ...interface{}) {
-	z.sugaredLogger.Info(args...)
-}
+func (z *ZapLogger) Info(args ...interface{}) { _ = "STUB: not implemented"; return }
 
 // Infof is log at info level with fmt.Printf-like formatting
-func (z *ZapLogger) Infof(format string, args ...interface{}) {
-	z.sugaredLogger.Infof(format, args...)
-}
+func (z *ZapLogger) Infof(format string, args ...interface{}) { _ = "STUB: not implemented"; return }
 
 // Warn is log at warning level
-func (z *ZapLogger) Warn(args ...interface{}) {
-	z.sugaredLogger.Warn(args...)
-}
+func (z *ZapLogger) Warn(args ...interface{}) { _ = "STUB: not implemented"; return }
 
 // Warnf is log at warning level with fmt.Printf-like formatting
-func (z *ZapLogger) Warnf(format string, args ...interface{}) {
-	z.sugaredLogger.Warnf(format, args...)
-}
+func (z *ZapLogger) Warnf(format string, args ...interface{}) { _ = "STUB: not implemented"; return }
 
 // Error is log at error level
-func (z *ZapLogger) Error(args ...interface{}) {
-	z.sugaredLogger.Error(args...)
-}
+func (z *ZapLogger) Error(args ...interface{}) { _ = "STUB: not implemented"; return }
 
 // Errorf is log at error level with fmt.Printf-like formatting
-func (z *ZapLogger) Errorf(format string, args ...interface{}) {
-	z.sugaredLogger.Errorf(format, args...)
-}
+func (z *ZapLogger) Errorf(format string, args ...interface{}) { _ = "STUB: not implemented"; return }
 
 // Fatal is log at fatal level, then terminate process (irrecoverable)
-func (z *ZapLogger) Fatal(args ...interface{}) {
-	z.sugaredLogger.Fatal(args...)
-}
+func (z *ZapLogger) Fatal(args ...interface{}) { _ = "STUB: not implemented"; return }
 
 // Fatalf is log at fatal level with fmt.Printf-like formatting, then terminate process (irrecoverable)
-func (z *ZapLogger) Fatalf(format string, args ...interface{}) {
-	z.sugaredLogger.Fatalf(format, args...)
-}
+func (z *ZapLogger) Fatalf(format string, args ...interface{}) { _ = "STUB: not implemented"; return }
 
 // Panic is log at panic level, then panic (recoverable)
-func (z *ZapLogger) Panic(args ...interface{}) {
-	z.sugaredLogger.Panic(args...)
-}
+func (z *ZapLogger) Panic(args ...interface{}) { _ = "STUB: not implemented"; return }
 
 // Panicf is log at panic level with fmt.Printf-like formatting, then panic (recoverable)
-func (z *ZapLogger) Panicf(format string, args ...interface{}) {
-	z.sugaredLogger.Panicf(format, args...)
-}
+func (z *ZapLogger) Panicf(format string, args ...interface{}) { _ = "STUB: not implemented"; return }
 
 // With returns a logger with the specified key-value pair set, to be logged in a subsequent normal logging call
 func (z *ZapLogger) With(args ...interface{}) Logger {
-	return &ZapLogger{
-		z.sugaredLogger.With(args...),
-	}
+	_ = "STUB: not implemented"
+	return *new(Logger)
 }
 
 // NoopLogger is wrapper of noop logger
 type NoopLogger struct{}
 
 // Debug is log at debug level
-func (z *NoopLogger) Debug(args ...interface{}) {}
+func (z *NoopLogger) Debug(args ...interface{}) {
+	_ = "STUB: not implemented"
 
-// Debugf is log at debug level with fmt.Printf-like formatting
-func (z *NoopLogger) Debugf(format string, args ...interface{}) {}
+	// Debugf is log at debug level with fmt.Printf-like formatting
+	return
+}
 
-// Info is log at info level
-func (z *NoopLogger) Info(args ...interface{}) {}
+func (z *NoopLogger) Debugf(format string, args ...interface{}) {
+	_ = "STUB: not implemented"
 
-// Infof is log at info level with fmt.Printf-like formatting
-func (z *NoopLogger) Infof(format string, args ...interface{}) {}
+	// Info is log at info level
+	return
+}
 
-// Warn is log at warning level
-func (z *NoopLogger) Warn(args ...interface{}) {}
+func (z *NoopLogger) Info(args ...interface{}) {
+	_ = "STUB: not implemented"
 
-// Warnf is log at warning level with fmt.Printf-like formatting
-func (z *NoopLogger) Warnf(format string, args ...interface{}) {}
+	// Infof is log at info level with fmt.Printf-like formatting
+	return
+}
 
-// Error is log at error level
-func (z *NoopLogger) Error(args ...interface{}) {}
+func (z *NoopLogger) Infof(format string, args ...interface{}) {
+	_ = "STUB: not implemented"
 
-// Errorf is log at error level with fmt.Printf-like formatting
-func (z *NoopLogger) Errorf(format string, args ...interface{}) {}
+	// Warn is log at warning level
+	return
+}
 
-// Fatal is log at fatal level, then terminate process (irrecoverable)
-func (z *NoopLogger) Fatal(args ...interface{}) {}
+func (z *NoopLogger) Warn(args ...interface{}) {
+	_ = "STUB: not implemented"
 
-// Fatalf is log at fatal level with fmt.Printf-like formatting, then terminate process (irrecoverable)
-func (z *NoopLogger) Fatalf(format string, args ...interface{}) {}
+	// Warnf is log at warning level with fmt.Printf-like formatting
+	return
+}
 
-// Panic is log at panic level, then panic (recoverable)
-func (z *NoopLogger) Panic(args ...interface{}) {}
+func (z *NoopLogger) Warnf(format string, args ...interface{}) {
+	_ = "STUB: not implemented"
 
-// Panicf is log at panic level with fmt.Printf-like formatting, then panic (recoverable)
-func (z *NoopLogger) Panicf(format string, args ...interface{}) {}
+	// Error is log at error level
+	return
+}
 
-// With returns a logger with the specified key-value pair set, to be logged in a subsequent normal logging call
+func (z *NoopLogger) Error(args ...interface{}) {
+	_ = "STUB: not implemented"
+
+	// Errorf is log at error level with fmt.Printf-like formatting
+	return
+}
+
+func (z *NoopLogger) Errorf(format string, args ...interface{}) {
+	_ = "STUB: not implemented"
+
+	// Fatal is log at fatal level, then terminate process (irrecoverable)
+	return
+}
+
+func (z *NoopLogger) Fatal(args ...interface{}) {
+	_ = "STUB: not implemented"
+
+	// Fatalf is log at fatal level with fmt.Printf-like formatting, then terminate process (irrecoverable)
+	return
+}
+
+func (z *NoopLogger) Fatalf(format string, args ...interface{}) {
+	_ = "STUB: not implemented"
+
+	// Panic is log at panic level, then panic (recoverable)
+	return
+}
+
+func (z *NoopLogger) Panic(args ...interface{}) {
+	_ = "STUB: not implemented"
+
+	// Panicf is log at panic level with fmt.Printf-like formatting, then panic (recoverable)
+	return
+}
+
+func (z *NoopLogger) Panicf(format string, args ...interface{}) {
+	_ = "STUB: not implemented"
+
+	// With returns a logger with the specified key-value pair set, to be logged in a subsequent normal logging call
+	return
+}
+
 func (z *NoopLogger) With(args ...interface{}) Logger {
-	return &NoopLogger{}
+	_ = "STUB: not implemented"
+	return *new(Logger)
 }

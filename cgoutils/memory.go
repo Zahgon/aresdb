@@ -19,99 +19,56 @@ package cgoutils
 // #include "memory.h"
 import "C"
 import (
-	"reflect"
 	"unsafe"
 )
 
 // GetFlags return flags about the memory management.
-func GetFlags() C.DeviceMemoryFlags {
-	return C.GetFlags()
-}
+func GetFlags() C.DeviceMemoryFlags { _ = "STUB: not implemented"; return *new(C.DeviceMemoryFlags) }
 
-func IsDeviceMemoryImplementation() bool {
-	return (GetFlags() & C.DEVICE_MEMORY_IMPLEMENTATION_FLAG) != 0
-}
+func IsDeviceMemoryImplementation() bool { _ = "STUB: not implemented"; return false }
 
-func IsPooledMemory() bool {
-	return (GetFlags() & C.POOLED_MEMORY_FLAG) != 0
-}
+func IsPooledMemory() bool { _ = "STUB: not implemented"; return false }
 
-func SupportHashReduction() bool {
-	return (GetFlags() & C.HASH_REDUCTION_SUPPORT) != 0
-}
+func SupportHashReduction() bool { _ = "STUB: not implemented"; return false }
 
 // HostAlloc allocates memory in C.
-func HostAlloc(bytes int) unsafe.Pointer {
-	return unsafe.Pointer(doCGoCall(func() C.CGoCallResHandle {
-		return C.HostAlloc(C.size_t(bytes))
-	}))
-}
+func HostAlloc(bytes int) unsafe.Pointer { _ = "STUB: not implemented"; return *new(unsafe.Pointer) }
 
 // HostFree frees memory allocated in C.
-func HostFree(p unsafe.Pointer) {
-	doCGoCall(func() C.CGoCallResHandle {
-		return C.HostFree(p)
-	})
-}
+func HostFree(p unsafe.Pointer) { _ = "STUB: not implemented"; return }
 
 // HostMemCpy copies memory between two host addresses
 func HostMemCpy(dst unsafe.Pointer, src unsafe.Pointer, bytes int) {
-	doCGoCall(func() C.CGoCallResHandle {
-		return C.HostMemCpy(dst, src, C.size_t(bytes))
-	})
+	_ = "STUB: not implemented"
+	return
 }
 
 // MakeSliceFromCPtr make a slice that points to data that cptr points to.
 // cptr must be a c-allocated pointer as the garbage collector will not update
 // that uintptr's value if the golang object movee.
-func MakeSliceFromCPtr(cptr uintptr, length int) []byte {
-	h := reflect.SliceHeader{
-		Data: cptr,
-		Len:  length,
-		Cap:  length,
-	}
-	return *(*[]byte)(unsafe.Pointer(&h))
-}
+func MakeSliceFromCPtr(cptr uintptr, length int) []byte { _ = "STUB: not implemented"; return nil }
 
 // CreateCudaStream creates a Cuda stream.
 func CreateCudaStream(device int) unsafe.Pointer {
-	return unsafe.Pointer(doCGoCall(func() C.CGoCallResHandle {
-		return C.CreateCudaStream(C.int(device))
-	}))
+	_ = "STUB: not implemented"
+	return *new(unsafe.Pointer)
 }
 
 // WaitForCudaStream block waits until all pending operations are finished on
 // the specified Cuda stream.
-func WaitForCudaStream(stream unsafe.Pointer, device int) {
-	if stream != nil {
-		doCGoCall(func() C.CGoCallResHandle {
-			return C.WaitForCudaStream(stream, C.int(device))
-		})
-	}
-}
+func WaitForCudaStream(stream unsafe.Pointer, device int) { _ = "STUB: not implemented"; return }
 
 // DestroyCudaStream destroys the specified Cuda stream.
-func DestroyCudaStream(stream unsafe.Pointer, device int) {
-	if stream != nil {
-		doCGoCall(func() C.CGoCallResHandle {
-			return C.DestroyCudaStream(stream, C.int(device))
-		})
-	}
-}
+func DestroyCudaStream(stream unsafe.Pointer, device int) { _ = "STUB: not implemented"; return }
 
 // DeviceAllocate allocates the specified amount of memory on the device.
 func DeviceAllocate(bytes, device int) unsafe.Pointer {
-	return unsafe.Pointer(doCGoCall(func() C.CGoCallResHandle {
-		return C.DeviceAllocate(C.size_t(bytes), C.int(device))
-	}))
+	_ = "STUB: not implemented"
+	return *new(unsafe.Pointer)
 }
 
 // DeviceFree frees the specified memory from the device.
-func DeviceFree(ptr unsafe.Pointer, device int) {
-	doCGoCall(func() C.CGoCallResHandle {
-		return C.DeviceFree(ptr, C.int(device))
-	})
-}
+func DeviceFree(ptr unsafe.Pointer, device int) { _ = "STUB: not implemented"; return }
 
 // AsyncMemCopyFunc is a abstraction of DeviceToDevice, DeviceToHost, HostToDevice memcopy functions
 type AsyncMemCopyFunc func(dst, src unsafe.Pointer, bytes int, stream unsafe.Pointer, device int)
@@ -120,73 +77,43 @@ type AsyncMemCopyFunc func(dst, src unsafe.Pointer, bytes int, stream unsafe.Poi
 // buffer on the specified stream.
 func AsyncCopyHostToDevice(
 	dst, src unsafe.Pointer, bytes int, stream unsafe.Pointer, device int) {
-	doCGoCall(func() C.CGoCallResHandle {
-		return C.AsyncCopyHostToDevice(dst, src, C.size_t(bytes), stream, C.int(device))
-	})
+	_ = "STUB: not implemented"
+	return
 }
 
 // AsyncCopyDeviceToDevice asynchronously copies the src device buffer to the
 // dst device buffer buffer on the specified stream.
 func AsyncCopyDeviceToDevice(
 	dst, src unsafe.Pointer, bytes int, stream unsafe.Pointer, device int) {
-	doCGoCall(func() C.CGoCallResHandle {
-		return C.AsyncCopyDeviceToDevice(dst, src, C.size_t(bytes), stream, C.int(device))
-	})
+	_ = "STUB: not implemented"
+	return
 }
 
 // AsyncCopyDeviceToHost asynchronously copies the device buffer to the host
 // buffer on the specified stream.
 func AsyncCopyDeviceToHost(
 	dst, src unsafe.Pointer, bytes int, stream unsafe.Pointer, device int) {
-	doCGoCall(func() C.CGoCallResHandle {
-		return C.AsyncCopyDeviceToHost(dst, src, C.size_t(bytes), stream, C.int(device))
-	})
+	_ = "STUB: not implemented"
+	return
 }
 
 // GetDeviceCount returns the number of GPU devices
-func GetDeviceCount() int {
-	return int(doCGoCall(func() C.CGoCallResHandle {
-		return C.GetDeviceCount()
-	}))
-}
+func GetDeviceCount() int { _ = "STUB: not implemented"; return 0 }
 
 // GetDeviceGlobalMemoryInMB returns the total global memory(MB) for a given device
-func GetDeviceGlobalMemoryInMB(device int) int {
-	return int(doCGoCall(func() C.CGoCallResHandle {
-		return C.GetDeviceGlobalMemoryInMB(C.int(device))
-	}))
-}
+func GetDeviceGlobalMemoryInMB(device int) int { _ = "STUB: not implemented"; return 0 }
 
 // CudaProfilerStart starts/resumes the profiler.
-func CudaProfilerStart() {
-	doCGoCall(func() C.CGoCallResHandle {
-		return C.CudaProfilerStart()
-	})
-}
+func CudaProfilerStart() { _ = "STUB: not implemented"; return }
 
 // CudaProfilerStop stops/pauses the profiler.
-func CudaProfilerStop() {
-	doCGoCall(func() C.CGoCallResHandle {
-		return C.CudaProfilerStop()
-	})
-}
+func CudaProfilerStop() { _ = "STUB: not implemented"; return }
 
 // GetDeviceMemoryInfo returns information about total size and free size of device memory in bytes for a specfic
 // device.
-func GetDeviceMemoryInfo(device int) (int, int) {
-	var freeSize, totalSize C.size_t
-	doCGoCall(func() C.CGoCallResHandle {
-		return C.GetDeviceMemoryInfo(&freeSize, &totalSize, C.int(device))
-	})
-	return int(freeSize), int(totalSize)
-}
+func GetDeviceMemoryInfo(device int) (int, int) { _ = "STUB: not implemented"; return 0, 0 }
 
 // doCGoCall does the cgo call by converting CGoCallResHandle to C.int and *C.char and calls doCGoCall.
 // The reason to have this wrapper is because CGo types are bound to package name, thereby even C.int are different types
 // under different packages.
-func doCGoCall(f func() C.CGoCallResHandle) uintptr {
-	return DoCGoCall(func() (uintptr, unsafe.Pointer) {
-		ret := f()
-		return uintptr(ret.res), unsafe.Pointer(ret.pStrErr)
-	})
-}
+func doCGoCall(f func() C.CGoCallResHandle) uintptr { _ = "STUB: not implemented"; return 0 }

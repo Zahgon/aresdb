@@ -1,10 +1,10 @@
-//  Copyright (c) 2017-2018 Uber Technologies, Inc.
+//	Copyright (c) 2017-2018 Uber Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//     http://www.apache.org/licenses/LICENSE-2.0
+//	http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,7 +15,6 @@ package etcd
 
 import (
 	"github.com/m3db/m3/src/cluster/services"
-	"github.com/m3db/m3/src/cluster/services/leader/campaign"
 	xwatch "github.com/m3db/m3/src/x/watch"
 )
 
@@ -51,60 +50,21 @@ type leaderElector struct {
 	watch           xwatch.Watch
 }
 
-func (l *leaderElector) C() <-chan struct{} {
-	return l.watch.C()
-}
+func (l *leaderElector) C() <-chan struct{} { _ = "STUB: not implemented"; return nil }
 
-func (l *leaderElector) Start() error {
-	campaignOpts, err := services.NewCampaignOptions()
-	if err != nil {
-		return err
-	}
-	statusCh, err := l.leaderService.Campaign("", campaignOpts)
-	if err != nil {
-		return err
-	}
-
-	_, l.watch, err = l.statusWatchable.Watch()
-	if err != nil {
-		return err
-	}
-
-	go func() {
-		for status := range statusCh {
-			_ = l.statusWatchable.Update(status)
-		}
-	}()
-	return nil
-}
+func (l *leaderElector) Start() error { _ = "STUB: not implemented"; return nil }
 
 func (l *leaderElector) Status() ElectionStatus {
-	state := l.statusWatchable.Get()
-	if state == nil {
-		return Unknown
-	}
-	switch state.(campaign.Status).State {
-	case campaign.Follower:
-		return Follower
-	case campaign.Leader:
-		return Leader
-	default:
-		return Unknown
-	}
+	_ = "STUB: not implemented"
+	return *new(ElectionStatus)
 }
 
-func (l *leaderElector) Close() error {
-	return l.leaderService.Close()
-}
+func (l *leaderElector) Close() error { _ = "STUB: not implemented"; return nil }
 
-func (l *leaderElector) Resign() error {
-	return l.leaderService.Resign("")
-}
+func (l *leaderElector) Resign() error { _ = "STUB: not implemented"; return nil }
 
 // NewLeaderElector creates a leader elector
 func NewLeaderElector(service services.LeaderService) LeaderElector {
-	return &leaderElector{
-		leaderService:   service,
-		statusWatchable: xwatch.NewWatchable(),
-	}
+	_ = "STUB: not implemented"
+	return *new(LeaderElector)
 }

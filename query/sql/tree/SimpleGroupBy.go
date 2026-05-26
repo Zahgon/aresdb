@@ -14,12 +14,6 @@
 
 package tree
 
-import (
-	"fmt"
-
-	"github.com/uber/aresdb/query/sql/util"
-)
-
 // SimpleGroupBy is group by
 type SimpleGroupBy struct {
 	IGroupingElement
@@ -29,15 +23,12 @@ type SimpleGroupBy struct {
 
 // NewSimpleGroupBy creates SimpleGroupBy
 func NewSimpleGroupBy(location *NodeLocation, expressions []IExpression) *SimpleGroupBy {
-	errMsg := fmt.Sprintf("simpleGroupByExpressions is null at (line:%d, col:%d)", location.Line, location.CharPosition)
-	util.RequireNonNull(expressions, errMsg)
-	return &SimpleGroupBy{
-		NewGroupingElement(location),
-		expressions,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Accept accepts visitor
 func (q *SimpleGroupBy) Accept(visitor AstVisitor, ctx interface{}) interface{} {
-	return visitor.VisitSimpleGroupBy(q, ctx)
+	_ = "STUB: not implemented"
+	return nil
 }

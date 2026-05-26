@@ -1,10 +1,10 @@
-//  Copyright (c) 2017-2018 Uber Technologies, Inc.
+//	Copyright (c) 2017-2018 Uber Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//     http://www.apache.org/licenses/LICENSE-2.0
+//	http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,25 +19,15 @@ import (
 
 // Validate check job config should be valid
 func Validate(newJobConfig, oldJobConfig *models.JobConfig) (err error) {
-	err = validateJobConfig(newJobConfig)
-	if err != nil {
-		return
-	}
-	if oldJobConfig != nil {
-		err = validateJobUpdate(newJobConfig, oldJobConfig)
-	}
-	return
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // check job config should contains all fields
-func validateJobConfig(job *models.JobConfig) (err error) {
-	if job.Name == "" || job.StreamingConfig.Cluster == "" || job.StreamingConfig.Topic == "" || job.AresTableConfig.Name == "" {
-		err = ErrInvalidJobConfig
-	}
-	return
-}
+func validateJobConfig(job *models.JobConfig) (err error) { _ = "STUB: not implemented"; return nil }
 
 func validateJobUpdate(newJobConfig, oldJobConfig *models.JobConfig) (err error) {
+	_ = "STUB: not implemented"
 	// TODO
-	return
+	return nil
 }

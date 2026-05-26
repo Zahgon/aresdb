@@ -24,85 +24,18 @@ type RedoLogBrowser struct {
 
 // ListLogFiles provides a mock function with given fields:
 func (_m *RedoLogBrowser) ListLogFiles() ([]int64, error) {
-	ret := _m.Called()
-
-	var r0 []int64
-	if rf, ok := ret.Get(0).(func() []int64); ok {
-		r0 = rf()
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).([]int64)
-		}
-	}
-
-	var r1 error
-	if rf, ok := ret.Get(1).(func() error); ok {
-		r1 = rf()
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // ListUpsertBatch provides a mock function with given fields: creationTime
 func (_m *RedoLogBrowser) ListUpsertBatch(creationTime int64) ([]int64, error) {
-	ret := _m.Called(creationTime)
-
-	var r0 []int64
-	if rf, ok := ret.Get(0).(func(int64) []int64); ok {
-		r0 = rf(creationTime)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).([]int64)
-		}
-	}
-
-	var r1 error
-	if rf, ok := ret.Get(1).(func(int64) error); ok {
-		r1 = rf(creationTime)
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // ReadData provides a mock function with given fields: creationTime, upsertBatchOffset, start, length
 func (_m *RedoLogBrowser) ReadData(creationTime int64, upsertBatchOffset int64, start int, length int) ([][]interface{}, []string, int, error) {
-	ret := _m.Called(creationTime, upsertBatchOffset, start, length)
-
-	var r0 [][]interface{}
-	if rf, ok := ret.Get(0).(func(int64, int64, int, int) [][]interface{}); ok {
-		r0 = rf(creationTime, upsertBatchOffset, start, length)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).([][]interface{})
-		}
-	}
-
-	var r1 []string
-	if rf, ok := ret.Get(1).(func(int64, int64, int, int) []string); ok {
-		r1 = rf(creationTime, upsertBatchOffset, start, length)
-	} else {
-		if ret.Get(1) != nil {
-			r1 = ret.Get(1).([]string)
-		}
-	}
-
-	var r2 int
-	if rf, ok := ret.Get(2).(func(int64, int64, int, int) int); ok {
-		r2 = rf(creationTime, upsertBatchOffset, start, length)
-	} else {
-		r2 = ret.Get(2).(int)
-	}
-
-	var r3 error
-	if rf, ok := ret.Get(3).(func(int64, int64, int, int) error); ok {
-		r3 = rf(creationTime, upsertBatchOffset, start, length)
-	} else {
-		r3 = ret.Error(3)
-	}
-
-	return r0, r1, r2, r3
+	_ = "STUB: not implemented"
+	return nil, nil, 0, nil
 }

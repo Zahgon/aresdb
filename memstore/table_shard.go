@@ -15,12 +15,12 @@
 package memstore
 
 import (
+	"sync"
+
 	"github.com/uber/aresdb/datanode/bootstrap"
 	"github.com/uber/aresdb/diskstore"
 	"github.com/uber/aresdb/memstore/common"
 	metaCom "github.com/uber/aresdb/metastore/common"
-	"github.com/uber/aresdb/utils"
-	"sync"
 )
 
 // TableShard stores the data for one table shard in memory.
@@ -72,106 +72,34 @@ func NewTableShard(schema *common.TableSchema,
 	totalShardsInCluster int,
 	options Options,
 ) *TableShard {
-	tableShard := &TableShard{
-		ShardID:           shard,
-		Schema:            schema,
-		diskStore:         diskStore,
-		metaStore:         metaStore,
-		HostMemoryManager: hostMemoryManager,
-		options:           options,
-		BootstrapDetails:  bootstrap.NewBootstrapDetails(),
-	}
-
-	archiveStore := NewArchiveStore(tableShard)
-	tableShard.ArchiveStore = archiveStore
-	tableShard.LiveStore = NewLiveStore(schema.Schema.Config.BatchSize, totalShardsInCluster, tableShard)
-	return tableShard
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Destruct destructs the table shard.
 // Caller must detach the shard from memstore first.
 func (shard *TableShard) Destruct() {
+	_ = "STUB: not implemented"
 	// TODO: if this blocks on archiving for too long, figure out a way to cancel it.
-	shard.Users.Wait()
-
-	shard.options.redoLogMaster.Close(shard.Schema.Schema.Name, shard.ShardID)
-
-	shard.LiveStore.Destruct()
-
-	if shard.Schema.Schema.IsFactTable {
-		shard.ArchiveStore.Destruct()
-	}
+	return
 }
 
 // DeleteColumn deletes the data for the specified column.
-func (shard *TableShard) DeleteColumn(columnID int) error {
-	shard.columnDeletion.Lock()
-	defer shard.columnDeletion.Unlock()
+func (shard *TableShard) DeleteColumn(columnID int) error { _ = "STUB: not implemented"; return nil }
 
-	// Delete from live store
-	shard.LiveStore.WriterLock.Lock()
-	batchIDs, _ := shard.LiveStore.GetBatchIDs()
-	for _, batchID := range batchIDs {
-		batch := shard.LiveStore.GetBatchForWrite(batchID)
-		if batch == nil {
-			continue
-		}
-		if columnID < len(batch.Columns) {
-			vp := batch.Columns[columnID]
-			if vp != nil {
-				bytes := vp.GetBytes()
-				batch.Columns[columnID] = nil
-				vp.SafeDestruct()
-				shard.HostMemoryManager.ReportUnmanagedSpaceUsageChange(int64(-bytes))
-			}
-		}
-		batch.Unlock()
-	}
-	shard.LiveStore.WriterLock.Unlock()
+// Delete from live store
 
-	if !shard.Schema.Schema.IsFactTable {
-		return nil
-	}
+// Delete from disk store
+// Schema cannot be changed while this function is called.
+// Only delete unsorted columns from disk.
 
-	// Delete from disk store
-	// Schema cannot be changed while this function is called.
-	// Only delete unsorted columns from disk.
-	if utils.IndexOfInt(shard.Schema.Schema.ArchivingSortColumns, columnID) < 0 {
-		err := shard.diskStore.DeleteColumn(shard.Schema.Schema.Name, columnID, shard.ShardID)
-		if err != nil {
-			return err
-		}
-	}
-
-	// Delete from archive store
-	currentVersion := shard.ArchiveStore.GetCurrentVersion()
-	defer currentVersion.Users.Done()
-
-	var batches []*ArchiveBatch
-	currentVersion.RLock()
-	for _, batch := range currentVersion.Batches {
-		batches = append(batches, batch)
-	}
-	currentVersion.RUnlock()
-
-	for _, batch := range batches {
-		batch.BlockingDelete(columnID)
-	}
-	return nil
-}
+// Delete from archive store
 
 // PreloadColumn loads the column into memory and wait for completion of loading
 // within (startDay, endDay]. Note endDay is inclusive but startDay is exclusive.
 func (shard *TableShard) PreloadColumn(columnID int, startDay int, endDay int) {
-	archiveStoreVersion := shard.ArchiveStore.GetCurrentVersion()
-	for batchID := endDay; batchID > startDay; batchID-- {
-		batch := archiveStoreVersion.RequestBatch(int32(batchID))
-		// Only do loading if this batch does not have any data yet.
-		if batch.Size > 0 {
-			vp := batch.RequestVectorParty(columnID)
-			vp.WaitForDiskLoad()
-			vp.Release()
-		}
-	}
-	archiveStoreVersion.Users.Done()
+	_ = "STUB: not implemented"
+	return
 }
+
+// Only do loading if this batch does not have any data yet.

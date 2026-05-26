@@ -1016,23 +1016,9 @@ func init() {
 	}
 }
 
-func NewSqlBaseLexer(input antlr.CharStream) *SqlBaseLexer {
+func NewSqlBaseLexer(input antlr.CharStream) *SqlBaseLexer { _ = "STUB: not implemented"; return nil }
 
-	l := new(SqlBaseLexer)
-
-	l.BaseLexer = antlr.NewBaseLexer(input)
-	l.Interpreter = antlr.NewLexerATNSimulator(l, lexerAtn, lexerDecisionToDFA, antlr.NewPredictionContextCache())
-
-	l.channelNames = lexerChannelNames
-	l.modeNames = lexerModeNames
-	l.RuleNames = lexerRuleNames
-	l.LiteralNames = lexerLiteralNames
-	l.SymbolicNames = lexerSymbolicNames
-	l.GrammarFileName = "SqlBase.g4"
-	// TODO: l.EOF = antlr.TokenEOF
-
-	return l
-}
+// TODO: l.EOF = antlr.TokenEOF
 
 // SqlBaseLexer tokens.
 const (

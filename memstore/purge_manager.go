@@ -15,7 +15,6 @@
 package memstore
 
 import (
-	"github.com/uber/aresdb/utils"
 	"sync"
 	"time"
 )
@@ -35,18 +34,7 @@ type PurgeManager struct {
 }
 
 // NewPurgeManager creates a new PurgeManager instance.
-func NewPurgeManager(shard *TableShard) *PurgeManager {
-	return &PurgeManager{
-		shard:         shard,
-		PurgeInterval: 24 * time.Hour,
-		LastPurgeTime: utils.Now(),
-	}
-}
+func NewPurgeManager(shard *TableShard) *PurgeManager { _ = "STUB: not implemented"; return nil }
 
 // QualifyForPurge tells whether we can trigger a purge job.
-func (p *PurgeManager) QualifyForPurge() bool {
-	p.RLock()
-	defer p.RUnlock()
-	now := utils.Now()
-	return now.After(p.LastPurgeTime.Add(p.PurgeInterval))
-}
+func (p *PurgeManager) QualifyForPurge() bool { _ = "STUB: not implemented"; return false }

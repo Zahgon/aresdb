@@ -15,10 +15,6 @@
 package common
 
 import (
-	"fmt"
-	"github.com/uber/aresdb/utils"
-	"strconv"
-	"strings"
 	"time"
 )
 
@@ -77,61 +73,16 @@ var bucketSizeToNormalized = map[string]string{
 // Unit) pair, reports error if input is invalid/unsupported.
 // e.g. "3m" -> (3, "m")  "4 hours" -> (4, "h")
 func ParseRegularTimeBucketizer(timeBucketizerString string) (TimeSeriesBucketizer, error) {
+	_ = "STUB: not implemented"
 	// hack to support quarter-hour
-	if timeBucketizerString == "quarter-hour" {
-		timeBucketizerString = "15m"
-	}
-
-	result := TimeSeriesBucketizer{}
-
-	timeBucketizerString = strings.ToLower(timeBucketizerString)
-	segments := strings.SplitN(timeBucketizerString, " ", 2)
-	if len(segments) == 2 { // "N minutes" "N hours"
-		if unit, ok := bucketSizeToNormalized[segments[1]]; ok {
-			result.Unit = unit
-			size, err := parseSize(segments[0], unit)
-			if err != nil {
-				return result, utils.StackError(err, fmt.Sprintf(parseErrorString, timeBucketizerString))
-			}
-			result.Size = size
-		} else {
-			return result, utils.StackError(nil, fmt.Sprintf(parseErrorString, timeBucketizerString))
-		}
-	} else {
-		if normalized, ok := bucketSizeToNormalized[timeBucketizerString]; ok { // "day", "minute", "hour"
-			timeBucketizerString = normalized
-		}
-
-		// "3m", "2h"
-		unit := timeBucketizerString[len(timeBucketizerString)-1:]
-		if _, ok := BucketSizeToseconds[unit]; !ok {
-			return result, utils.StackError(nil, fmt.Sprintf(parseErrorString, timeBucketizerString))
-		}
-		result.Unit = unit
-
-		if len(timeBucketizerString) > 1 {
-			size, err := parseSize(timeBucketizerString[:len(timeBucketizerString)-1], unit)
-			if err != nil {
-				return result, utils.StackError(err, fmt.Sprintf(parseErrorString, timeBucketizerString))
-			}
-			result.Size = size
-		} else {
-			result.Size = 1
-		}
-	}
-	return result, nil
+	return *new(TimeSeriesBucketizer), nil
 }
+
+// "N minutes" "N hours"
+
+// "day", "minute", "hour"
+
+// "3m", "2h"
 
 // parseSize parses input string into integer time bucketizer Size, and validates it with given Unit
-func parseSize(s, unit string) (int, error) {
-	if unit == "m" || unit == "h" {
-		size, err := strconv.Atoi(s)
-		if err != nil {
-			return 0, utils.StackError(err, fmt.Sprintf(parseErrorString, s))
-		}
-		if size > 0 && size < 60 && ((unit == "m" && (60%size) == 0) || (unit == "h" && (24%size) == 0)) {
-			return size, nil
-		}
-	}
-	return 0, utils.StackError(nil, fmt.Sprintf(parseErrorString, s), fmt.Sprintf("invalid bucket Size for %s", unit))
-}
+func parseSize(s, unit string) (int, error) { _ = "STUB: not implemented"; return 0, nil }

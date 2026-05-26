@@ -1,14 +1,8 @@
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
-	"path/filepath"
-	"strings"
-
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	"github.com/uber/aresdb/examples/utils"
 )
 
 const (
@@ -21,54 +15,11 @@ const (
 	portKeyName    = "port"
 )
 
-func queryDataSet() {
-	dataSetName := viper.GetString(dataSetKeyName)
-	dataSetQueriesDir := fmt.Sprintf("%s/%s", dataSetName, queriesDir)
-	queriesDirInfo, err := ioutil.ReadDir(dataSetQueriesDir)
-	utils.PanicIfErr(err)
-	host := viper.GetString(hostKeyName)
-	port := viper.GetInt(portKeyName)
+func queryDataSet() { _ = "STUB: not implemented"; return }
 
-	for _, queryInfo := range queriesDirInfo {
-		baseName := queryInfo.Name()
-		queryName := strings.TrimSuffix(baseName, filepath.Ext(baseName))
-		queryType := filepath.Ext(baseName)
-		queryPath := fmt.Sprintf("%s/%s/%s", dataSetName, queriesDir, baseName)
-		utils.MakeQuery(host, port, queryName, queryType, queryPath)
-	}
-}
+func createTablesForDataSet() { _ = "STUB: not implemented"; return }
 
-func createTablesForDataSet() {
-	dataSetName := viper.GetString(dataSetKeyName)
-	dataSetSchemaDir := fmt.Sprintf("%s/%s", dataSetName, schemaDir)
-	schemaDirInfo, err := ioutil.ReadDir(dataSetSchemaDir)
-	utils.PanicIfErr(err)
-	host := viper.GetString(hostKeyName)
-	port := viper.GetInt(portKeyName)
-
-	for _, schemaInfo := range schemaDirInfo {
-		baseName := schemaInfo.Name()
-		tableName := strings.TrimSuffix(baseName, filepath.Ext(baseName))
-		tableSchemaPath := fmt.Sprintf("%s/%s/%s", dataSetName, schemaDir, baseName)
-		utils.CreateTable(host, port, tableName, tableSchemaPath)
-	}
-}
-
-func ingestDataForDataSet() {
-	dataSetName := viper.GetString(dataSetKeyName)
-	dataFileDir := fmt.Sprintf("./%s/%s", dataSetName, dataDir)
-	dataFiles, err := ioutil.ReadDir(dataFileDir)
-	utils.PanicIfErr(err)
-	host := viper.GetString(hostKeyName)
-	port := viper.GetInt(portKeyName)
-
-	for _, dataFileInfo := range dataFiles {
-		baseName := dataFileInfo.Name()
-		dataFilePath := fmt.Sprintf("./%s/%s/%s", dataSetName, dataDir, baseName)
-		tableName := strings.TrimSuffix(baseName, filepath.Ext(baseName))
-		utils.IngestDataForTable(host, port, tableName, dataFilePath)
-	}
-}
+func ingestDataForDataSet() { _ = "STUB: not implemented"; return }
 
 func main() {
 	rootCmd := &cobra.Command{

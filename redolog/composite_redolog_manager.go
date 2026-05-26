@@ -15,12 +15,12 @@
 package redolog
 
 import (
-	"encoding/json"
+	"sync"
+
 	"github.com/Shopify/sarama"
 	"github.com/uber/aresdb/diskstore"
 	"github.com/uber/aresdb/memstore/common"
 	metaCom "github.com/uber/aresdb/metastore/common"
-	"sync"
 )
 
 // compositeRedologManager is the class to take data ingestion from all data source (kafka, http, etc.), write to local redolog when necessary,
@@ -44,105 +44,57 @@ func newCompositeRedoLogManager(namespace, table, suffix string, shard int, tabl
 	checkPointFunc func(string, int, int64) error,
 	getCommitOffsetFunc func(string, int) (int64, error),
 	getCheckpointOffsetFunc func(string, int) (int64, error)) *compositeRedoLogManager {
-
-	fileRedoLogManager := newFileRedoLogManager(int64(tableConfig.RedoLogRotationInterval), int64(tableConfig.MaxRedoLogFileSize), diskStore, table, shard)
-
-	kafkaReader := newKafkaRedoLogManager(namespace, table, suffix, shard, consumer, false, commitFunc, checkPointFunc, getCommitOffsetFunc, getCheckpointOffsetFunc)
-
-	manager := &compositeRedoLogManager{
-		Table:               table,
-		Shard:               shard,
-		fileRedoLogManager:  fileRedoLogManager,
-		kafkaRedoLogManager: kafkaReader,
-	}
-
-	return manager
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Iterator walk through redolog batch from both file and kafka
 func (s *compositeRedoLogManager) Iterator() (NextUpsertFunc, error) {
-	fileNext, err := s.fileRedoLogManager.Iterator()
-	if err != nil {
-		return nil, err
-	}
-	kafkaNext, _ := s.kafkaRedoLogManager.Iterator()
-	if err != nil {
-		return nil, err
-	}
-
-	return func() *NextUpsertBatchInfo {
-		var res *NextUpsertBatchInfo
-		if !s.fileRedoLogManager.recoveryDone {
-			res = fileNext()
-		}
-		if res == nil {
-			res = kafkaNext()
-		}
-		return res
-	}, nil
+	_ = "STUB: not implemented"
+	return *new(NextUpsertFunc), nil
 }
 
 // WaitForRecoveryDone block call to wait for recovery finish
-func (s *compositeRedoLogManager) WaitForRecoveryDone() {
-	s.fileRedoLogManager.WaitForRecoveryDone()
-}
+func (s *compositeRedoLogManager) WaitForRecoveryDone() { _ = "STUB: not implemented"; return }
 
 // IsAppendEnabled returns whether appending is enabled
 func (s *compositeRedoLogManager) IsAppendEnabled() bool {
-	return true
+	_ = "STUB: not implemented"
+
+	// AppendToRedoLog append upsert batch into redolog file or commit offset
+	return false
 }
 
-// AppendToRedoLog append upsert batch into redolog file or commit offset
 func (s *compositeRedoLogManager) AppendToRedoLog(upsertBatch *common.UpsertBatch) (int64, uint32) {
-	return s.fileRedoLogManager.AppendToRedoLog(upsertBatch)
+	_ = "STUB: not implemented"
+	return 0, 0
 }
 
 // UpdateMaxEventTime update max event time for related redolog file
 func (s *compositeRedoLogManager) UpdateMaxEventTime(eventTime uint32, redoFile int64) {
-	s.fileRedoLogManager.UpdateMaxEventTime(eventTime, redoFile)
+	_ = "STUB: not implemented"
+	return
 }
 
 // CheckpointRedolog clean up obsolete redolog files and save checkpoint offset
 func (s *compositeRedoLogManager) CheckpointRedolog(cutoff uint32, redoFileCheckpointed int64, batchOffset uint32) error {
-	return s.fileRedoLogManager.CheckpointRedolog(cutoff, redoFileCheckpointed, batchOffset)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (s *compositeRedoLogManager) GetTotalSize() int {
-	return s.fileRedoLogManager.GetTotalSize()
-}
+func (s *compositeRedoLogManager) GetTotalSize() int { _ = "STUB: not implemented"; return 0 }
 
-func (s *compositeRedoLogManager) GetNumFiles() int {
-	return s.fileRedoLogManager.GetNumFiles()
-}
+func (s *compositeRedoLogManager) GetNumFiles() int { _ = "STUB: not implemented"; return 0 }
 
-func (s *compositeRedoLogManager) GetBatchReceived() int {
-	return s.kafkaRedoLogManager.batchReceived
-}
+func (s *compositeRedoLogManager) GetBatchReceived() int { _ = "STUB: not implemented"; return 0 }
 
-func (s *compositeRedoLogManager) GetBatchRecovered() int {
-	return s.fileRedoLogManager.batchRecovered
-}
+func (s *compositeRedoLogManager) GetBatchRecovered() int { _ = "STUB: not implemented"; return 0 }
 
-func (s *compositeRedoLogManager) Close() {
-	s.Lock()
-	defer s.Unlock()
-
-	if s.kafkaRedoLogManager != nil {
-		s.kafkaRedoLogManager.Close()
-		s.kafkaRedoLogManager = nil
-	}
-
-	if s.fileRedoLogManager != nil {
-		s.fileRedoLogManager.Close()
-		s.fileRedoLogManager = nil
-	}
-}
+func (s *compositeRedoLogManager) Close() { _ = "STUB: not implemented"; return }
 
 // MarshalJSON marshals a fileRedologManager into json.
 func (s *compositeRedoLogManager) MarshalJSON() ([]byte, error) {
+	_ = "STUB: not implemented"
 	// Avoid json.Marshal loop calls.
-	type alias compositeRedoLogManager
-	s.RLock()
-	defer s.RUnlock()
-	return json.Marshal((*alias)(s))
+	return nil, nil
 }

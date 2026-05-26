@@ -15,46 +15,17 @@
 package util
 
 import (
-	"fmt"
 	"github.com/uber/aresdb/cluster/topology"
-	"github.com/uber/aresdb/utils"
 )
 
 // CalculateShardAssignment maps shards to hosts
 func CalculateShardAssignment(topo topology.Topology) (as map[topology.Host][]uint32, err error) {
-	m := topo.Get()
-	hosts := m.Hosts()
-	shardIDs := m.ShardSet().AllIDs()
-
-	// initialize host map
-	as = make(map[topology.Host][]uint32)
-	for _, host := range hosts {
-		as[host] = []uint32{}
-	}
-
-	for _, shardID := range shardIDs {
-		var shardHosts []topology.Host
-		// get routable hosts for current shard
-		shardHosts, err = m.RouteShard(shardID)
-		if err != nil {
-			err = utils.StackError(err, fmt.Sprintf("failed to route shard %d", shardID))
-			return
-		}
-		// pick host with lowest load to route current shard
-		var pick topology.Host
-		minLoad := len(shardIDs) + 1
-		for _, shardHost := range shardHosts {
-			load := len(as[shardHost])
-			if load < minLoad {
-				minLoad = load
-				pick = shardHost
-			}
-		}
-		if pick == nil {
-			err = utils.StackError(nil, "failed to assign host for shard %d", shardID)
-			return
-		}
-		as[pick] = append(as[pick], shardID)
-	}
-	return
+	_ = "STUB: not implemented"
+	return nil, nil
 }
+
+// initialize host map
+
+// get routable hosts for current shard
+
+// pick host with lowest load to route current shard

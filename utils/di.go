@@ -15,7 +15,6 @@
 package utils
 
 import (
-	"github.com/spf13/viper"
 	"github.com/uber-go/tally"
 	"github.com/uber/aresdb/common"
 )
@@ -34,61 +33,45 @@ func init() {
 }
 
 // ResetDefaults reset default config, logger and metrics settings
-func ResetDefaults() {
-	logger = common.NewLoggerFactory().GetDefaultLogger()
-	queryLogger = common.NewLoggerFactory().GetDefaultLogger()
-	scope := tally.NewTestScope("test", nil)
-	reporterFactory = NewReporterFactory(scope)
-
-	BindEnvironments(viper.GetViper())
-	viper.ReadInConfig()
-
-	config = common.AresServerConfig{}
-	viper.Unmarshal(&config)
-}
+func ResetDefaults() { _ = "STUB: not implemented"; return }
 
 // Init loads application specific common components settings.
 func Init(c common.AresServerConfig, l common.Logger, ql common.Logger, s tally.Scope) {
-	config = c
-	logger = l
-	queryLogger = ql
-	reporterFactory = NewReporterFactory(s)
+	_ = "STUB: not implemented"
+	return
 }
 
 // GetLogger returns the logger.
 func GetLogger() common.Logger {
-	return logger
+	_ = "STUB: not implemented"
+
+	// GetQueryLogger returns the logger for query.
+	return *new(common.Logger)
 }
 
-// GetQueryLogger returns the logger for query.
 func GetQueryLogger() common.Logger {
-	return queryLogger
+	_ = "STUB: not implemented"
+
+	// GetRootReporter returns the root metrics reporter.
+	return *new(common.Logger)
 }
 
-// GetRootReporter returns the root metrics reporter.
-func GetRootReporter() *Reporter {
-	return reporterFactory.GetRootReporter()
-}
+func GetRootReporter() *Reporter { _ = "STUB: not implemented"; return nil }
 
 // GetReporter returns reporter given tableName and shardID. If the corresponding
 // reporter cannot be found. It will return the root scope.
-func GetReporter(tableName string, shardID int) *Reporter {
-	return reporterFactory.GetReporter(tableName, shardID)
-}
+func GetReporter(tableName string, shardID int) *Reporter { _ = "STUB: not implemented"; return nil }
 
 // AddTableShardReporter adds a reporter for the given table and shards. It should
 // be called when bootstrap the table shards or shard ownership changes.
-func AddTableShardReporter(tableName string, shardID int) {
-	reporterFactory.AddTableShard(tableName, shardID)
-}
+func AddTableShardReporter(tableName string, shardID int) { _ = "STUB: not implemented"; return }
 
 // DeleteTableShardReporter deletes the reporter for the given table and shards. It should
 // be called when the table shard no longer belongs to current node.
-func DeleteTableShardReporter(tableName string, shardID int) {
-	reporterFactory.DeleteTableShard(tableName, shardID)
-}
+func DeleteTableShardReporter(tableName string, shardID int) { _ = "STUB: not implemented"; return }
 
 // GetConfig returns the application config.
 func GetConfig() common.AresServerConfig {
-	return config
+	_ = "STUB: not implemented"
+	return *new(common.AresServerConfig)
 }

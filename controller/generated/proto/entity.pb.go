@@ -18,8 +18,9 @@ package proto
 
 import (
 	fmt "fmt"
-	proto "github.com/golang/protobuf/proto"
 	math "math"
+
+	proto "github.com/golang/protobuf/proto"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -42,51 +43,31 @@ type EntityConfig struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *EntityConfig) Reset()         { *m = EntityConfig{} }
-func (m *EntityConfig) String() string { return proto.CompactTextString(m) }
-func (*EntityConfig) ProtoMessage()    {}
-func (*EntityConfig) Descriptor() ([]byte, []int) {
-	return fileDescriptor_cf50d946d740d100, []int{0}
+func (m *EntityConfig) Reset()                    { _ = "STUB: not implemented"; return }
+func (m *EntityConfig) String() string            { _ = "STUB: not implemented"; return "" }
+func (*EntityConfig) ProtoMessage()               { _ = "STUB: not implemented"; return }
+func (*EntityConfig) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
+
+func (m *EntityConfig) XXX_Unmarshal(b []byte) error { _ = "STUB: not implemented"; return nil }
+
+func (m *EntityConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (m *EntityConfig) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_EntityConfig.Unmarshal(m, b)
-}
-func (m *EntityConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_EntityConfig.Marshal(b, m, deterministic)
-}
-func (m *EntityConfig) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_EntityConfig.Merge(m, src)
-}
-func (m *EntityConfig) XXX_Size() int {
-	return xxx_messageInfo_EntityConfig.Size(m)
-}
-func (m *EntityConfig) XXX_DiscardUnknown() {
-	xxx_messageInfo_EntityConfig.DiscardUnknown(m)
-}
+func (m *EntityConfig) XXX_Merge(src proto.Message) { _ = "STUB: not implemented"; return }
+
+func (m *EntityConfig) XXX_Size() int { _ = "STUB: not implemented"; return 0 }
+
+func (m *EntityConfig) XXX_DiscardUnknown() { _ = "STUB: not implemented"; return }
 
 var xxx_messageInfo_EntityConfig proto.InternalMessageInfo
 
-func (m *EntityConfig) GetName() string {
-	if m != nil {
-		return m.Name
-	}
-	return ""
-}
+func (m *EntityConfig) GetName() string { _ = "STUB: not implemented"; return "" }
 
-func (m *EntityConfig) GetTomstoned() bool {
-	if m != nil {
-		return m.Tomstoned
-	}
-	return false
-}
+func (m *EntityConfig) GetTomstoned() bool { _ = "STUB: not implemented"; return false }
 
-func (m *EntityConfig) GetConfig() []byte {
-	if m != nil {
-		return m.Config
-	}
-	return nil
-}
+func (m *EntityConfig) GetConfig() []byte { _ = "STUB: not implemented"; return nil }
 
 type EntityName struct {
 	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
@@ -98,58 +79,33 @@ type EntityName struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *EntityName) Reset()         { *m = EntityName{} }
-func (m *EntityName) String() string { return proto.CompactTextString(m) }
-func (*EntityName) ProtoMessage()    {}
-func (*EntityName) Descriptor() ([]byte, []int) {
-	return fileDescriptor_cf50d946d740d100, []int{1}
+func (m *EntityName) Reset()                    { _ = "STUB: not implemented"; return }
+func (m *EntityName) String() string            { _ = "STUB: not implemented"; return "" }
+func (*EntityName) ProtoMessage()               { _ = "STUB: not implemented"; return }
+func (*EntityName) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
+
+func (m *EntityName) XXX_Unmarshal(b []byte) error { _ = "STUB: not implemented"; return nil }
+
+func (m *EntityName) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (m *EntityName) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_EntityName.Unmarshal(m, b)
-}
-func (m *EntityName) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_EntityName.Marshal(b, m, deterministic)
-}
-func (m *EntityName) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_EntityName.Merge(m, src)
-}
-func (m *EntityName) XXX_Size() int {
-	return xxx_messageInfo_EntityName.Size(m)
-}
-func (m *EntityName) XXX_DiscardUnknown() {
-	xxx_messageInfo_EntityName.DiscardUnknown(m)
-}
+func (m *EntityName) XXX_Merge(src proto.Message) { _ = "STUB: not implemented"; return }
+
+func (m *EntityName) XXX_Size() int { _ = "STUB: not implemented"; return 0 }
+
+func (m *EntityName) XXX_DiscardUnknown() { _ = "STUB: not implemented"; return }
 
 var xxx_messageInfo_EntityName proto.InternalMessageInfo
 
-func (m *EntityName) GetName() string {
-	if m != nil {
-		return m.Name
-	}
-	return ""
-}
+func (m *EntityName) GetName() string { _ = "STUB: not implemented"; return "" }
 
-func (m *EntityName) GetTomstoned() bool {
-	if m != nil {
-		return m.Tomstoned
-	}
-	return false
-}
+func (m *EntityName) GetTomstoned() bool { _ = "STUB: not implemented"; return false }
 
-func (m *EntityName) GetIncarnation() int32 {
-	if m != nil {
-		return m.Incarnation
-	}
-	return 0
-}
+func (m *EntityName) GetIncarnation() int32 { _ = "STUB: not implemented"; return 0 }
 
-func (m *EntityName) GetLastUpdatedAt() int64 {
-	if m != nil {
-		return m.LastUpdatedAt
-	}
-	return 0
-}
+func (m *EntityName) GetLastUpdatedAt() int64 { _ = "STUB: not implemented"; return 0 }
 
 type EntityList struct {
 	LastUpdatedAt        int64         `protobuf:"varint,1,opt,name=last_updated_at,json=lastUpdatedAt,proto3" json:"last_updated_at,omitempty"`
@@ -159,44 +115,29 @@ type EntityList struct {
 	XXX_sizecache        int32         `json:"-"`
 }
 
-func (m *EntityList) Reset()         { *m = EntityList{} }
-func (m *EntityList) String() string { return proto.CompactTextString(m) }
-func (*EntityList) ProtoMessage()    {}
-func (*EntityList) Descriptor() ([]byte, []int) {
-	return fileDescriptor_cf50d946d740d100, []int{2}
+func (m *EntityList) Reset()                    { _ = "STUB: not implemented"; return }
+func (m *EntityList) String() string            { _ = "STUB: not implemented"; return "" }
+func (*EntityList) ProtoMessage()               { _ = "STUB: not implemented"; return }
+func (*EntityList) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
+
+func (m *EntityList) XXX_Unmarshal(b []byte) error { _ = "STUB: not implemented"; return nil }
+
+func (m *EntityList) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (m *EntityList) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_EntityList.Unmarshal(m, b)
-}
-func (m *EntityList) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_EntityList.Marshal(b, m, deterministic)
-}
-func (m *EntityList) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_EntityList.Merge(m, src)
-}
-func (m *EntityList) XXX_Size() int {
-	return xxx_messageInfo_EntityList.Size(m)
-}
-func (m *EntityList) XXX_DiscardUnknown() {
-	xxx_messageInfo_EntityList.DiscardUnknown(m)
-}
+func (m *EntityList) XXX_Merge(src proto.Message) { _ = "STUB: not implemented"; return }
+
+func (m *EntityList) XXX_Size() int { _ = "STUB: not implemented"; return 0 }
+
+func (m *EntityList) XXX_DiscardUnknown() { _ = "STUB: not implemented"; return }
 
 var xxx_messageInfo_EntityList proto.InternalMessageInfo
 
-func (m *EntityList) GetLastUpdatedAt() int64 {
-	if m != nil {
-		return m.LastUpdatedAt
-	}
-	return 0
-}
+func (m *EntityList) GetLastUpdatedAt() int64 { _ = "STUB: not implemented"; return 0 }
 
-func (m *EntityList) GetEntities() []*EntityName {
-	if m != nil {
-		return m.Entities
-	}
-	return nil
-}
+func (m *EntityList) GetEntities() []*EntityName { _ = "STUB: not implemented"; return nil }
 
 func init() {
 	proto.RegisterType((*EntityConfig)(nil), "proto.EntityConfig")

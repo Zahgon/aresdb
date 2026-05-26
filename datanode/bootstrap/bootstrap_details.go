@@ -1,8 +1,6 @@
 package bootstrap
 
 import (
-	"encoding/json"
-	"github.com/uber/aresdb/utils"
 	"sync"
 )
 
@@ -26,69 +24,32 @@ type bootstrapDetails struct {
 }
 
 func NewBootstrapDetails() BootstrapDetails {
-	return &bootstrapDetails{
-		RWMutex:        &sync.RWMutex{},
-		BootstrapStage: Waiting,
-		Batches:        make(map[int32][]status),
-	}
+	_ = "STUB: not implemented"
+	return *new(BootstrapDetails)
 }
 
-func (b *bootstrapDetails) SetSource(source string) {
-	b.Lock()
-	defer b.Unlock()
-	b.Source = source
-}
+func (b *bootstrapDetails) SetSource(source string) { _ = "STUB: not implemented"; return }
 
-func (b *bootstrapDetails) SetNumColumns(numColumns int) {
-	b.Lock()
-	defer b.Unlock()
-	b.NumColumns = numColumns
-}
+func (b *bootstrapDetails) SetNumColumns(numColumns int) { _ = "STUB: not implemented"; return }
 
 func (b *bootstrapDetails) AddVPToCopy(batchID int32, columnID uint32) {
-	b.Lock()
-	defer b.Unlock()
-
-	if _, ok := b.Batches[batchID]; !ok {
-		b.Batches[batchID] = make([]status, b.NumColumns)
-	}
-
-	if int(columnID) < b.NumColumns {
-		b.Batches[batchID][columnID] = copyNeeded
-	}
+	_ = "STUB: not implemented"
+	return
 }
 
 func (b *bootstrapDetails) SetBootstrapStage(stage BootstrapStage) {
-	b.Lock()
-	defer b.Unlock()
-	b.BootstrapStage = stage
-	b.StartedAt = utils.Now().Unix()
+	_ = "STUB: not implemented"
+	return
 }
 
 func (b *bootstrapDetails) MarkVPFinished(batchID int32, columnID uint32) {
-	b.Lock()
-	defer b.Unlock()
-
-	if _, ok := b.Batches[batchID]; !ok {
-		b.Batches[batchID] = make([]status, b.NumColumns)
-	}
-
-	if int(columnID) < b.NumColumns {
-		b.Batches[batchID][columnID] = copyFinished
-	}
+	_ = "STUB: not implemented"
+	return
 }
 
-func (b *bootstrapDetails) Clear() {
-	b.Lock()
-	defer b.Unlock()
-	b.NumColumns = 0
-	b.Batches = make(map[int32][]status)
-	b.BootstrapStage = Waiting
-}
+func (b *bootstrapDetails) Clear() { _ = "STUB: not implemented"; return }
 
 func (b *bootstrapDetails) MarshalJSON() ([]byte, error) {
-	type alias bootstrapDetails
-	b.RLock()
-	defer b.RUnlock()
-	return json.Marshal((*alias)(b))
+	_ = "STUB: not implemented"
+	return nil, nil
 }

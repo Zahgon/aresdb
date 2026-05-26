@@ -18,17 +18,14 @@ package query
 import "C"
 
 import (
-	"bytes"
-	"github.com/uber/aresdb/cgoutils"
-	memCom "github.com/uber/aresdb/memstore/common"
-	queryCom "github.com/uber/aresdb/query/common"
-	"github.com/uber/aresdb/query/expr"
-	"github.com/uber/aresdb/utils"
 	"net/http"
-	"strings"
 	"time"
 	"unsafe"
+
+	memCom "github.com/uber/aresdb/memstore/common"
+	queryCom "github.com/uber/aresdb/query/common"
 	"github.com/uber/aresdb/query/context"
+	"github.com/uber/aresdb/query/expr"
 )
 
 type boundaryType int
@@ -60,19 +57,7 @@ var columnUsageNames = map[columnUsage]string{
 	columnUsedByPrefilter:         "prefilter",
 }
 
-func (u columnUsage) MarshalJSON() ([]byte, error) {
-	var usageStrings []string
-	for mask := columnUsedByAllBatches; mask < columnUsedHighSentinel; mask <<= 1 {
-		usage := u & mask
-		if usage != 0 {
-			usageStrings = append(usageStrings, columnUsageNames[usage])
-		}
-	}
-	buffer := bytes.NewBufferString(`"`)
-	buffer.WriteString(strings.Join(usageStrings, "+"))
-	buffer.WriteString(`"`)
-	return buffer.Bytes(), nil
-}
+func (u columnUsage) MarshalJSON() ([]byte, error) { _ = "STUB: not implemented"; return nil, nil }
 
 // TableScanner defines how data for a table should be fed to device memory for
 // processing (scanner in a traditional terminology).
@@ -419,44 +404,31 @@ type AQLQueryContext struct {
 }
 
 // IsHLL return if the aggregation function is HLL
-func (ctx *OOPKContext) IsHLL() bool {
-	return ctx.AggregateType == C.AGGR_HLL
-}
+func (ctx *OOPKContext) IsHLL() bool { _ = "STUB: not implemented"; return false }
 
 func isAtomicAggType(aggType C.enum_AggregateFunction) bool {
-	return aggType == C.AGGR_SUM_SIGNED || aggType == C.AGGR_SUM_FLOAT
+	_ = "STUB: not implemented"
+	return false
 }
 
 // UseHashReduction return whether to use hash reduction or not
-func (ctx *OOPKContext) UseHashReduction() bool {
-	return utils.GetConfig().Query.EnableHashReduction &&
-		cgoutils.SupportHashReduction() && isAtomicAggType(ctx.AggregateType)
-}
+func (ctx *OOPKContext) UseHashReduction() bool { _ = "STUB: not implemented"; return false }
 
 // Initialize qcHelper, TODO: move to specialized constructor
-func (qc *AQLQueryContext) InitQCHelper() {
-	qc.QCHelper = &context.QueryContextHelper{
-		QCOptions: qc,
-	}
-}
+func (qc *AQLQueryContext) InitQCHelper() { _ = "STUB: not implemented"; return }
 
 func (qc *AQLQueryContext) GetSchema(tableID int) *memCom.TableSchema {
-	return qc.TableScanners[tableID].Schema
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (qc *AQLQueryContext) GetTableID(alias string) (int, bool) {
-	id, exists := qc.TableIDByAlias[alias]
-	return id, exists
+	_ = "STUB: not implemented"
+	return 0, false
 }
 
-func (qc *AQLQueryContext) GetQuery() *queryCom.AQLQuery {
-	return qc.Query
-}
+func (qc *AQLQueryContext) GetQuery() *queryCom.AQLQuery { _ = "STUB: not implemented"; return nil }
 
-func (qc *AQLQueryContext) SetError(err error) {
-	qc.Error = err
-}
+func (qc *AQLQueryContext) SetError(err error) { _ = "STUB: not implemented"; return }
 
-func (qc *AQLQueryContext) IsDataOnly() bool {
-	return qc.DataOnly
-}
+func (qc *AQLQueryContext) IsDataOnly() bool { _ = "STUB: not implemented"; return false }

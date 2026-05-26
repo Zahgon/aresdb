@@ -14,11 +14,6 @@
 
 package utils
 
-import (
-	"bytes"
-	"fmt"
-)
-
 // TableDataSource defines the interface a data source need to implement so that we can render
 // a tabular representation from the data source. We get number of columns from the length of
 // column header. the data source itself should ensure that for each get value call with row and
@@ -29,91 +24,35 @@ type TableDataSource interface {
 	ColumnHeaders() []string
 }
 
-func getFormatModifier(value interface{}) string {
-	switch value.(type) {
-	case string:
-		return "s"
-	case float32, float64:
-		return ".2f"
-	case int8, int16, int32, int64, int, uint8, uint16, uint32, uint64, uint:
-		return "d"
-	default:
-		return "v"
-	}
-}
+func getFormatModifier(value interface{}) string { _ = "STUB: not implemented"; return "" }
 
 func expandColumnWidth(columnWidths []int, value interface{}, idx int) {
-	valueWidth := len(fmt.Sprintf("%"+getFormatModifier(value), value))
-	if valueWidth > columnWidths[idx] {
-		columnWidths[idx] = valueWidth
-	}
+	_ = "STUB: not implemented"
+	return
 }
 
-func sprintfStrings(format string, strs []string) string {
-	values := make([]interface{}, len(strs))
-	for i, v := range strs {
-		values[i] = v
-	}
-	return fmt.Sprintf(format, values...)
-}
+func sprintfStrings(format string, strs []string) string { _ = "STUB: not implemented"; return "" }
 
 // WriteTable renders a tabular representation from underlying data source.
 // If there is no column for this data source, it will return an empty string.
 // All elements of the table will be right justify (left padding). Column
 // splitter is "|" for now.
-func WriteTable(dataSource TableDataSource) string {
-	columnHeaders := dataSource.ColumnHeaders()
-	numCols := len(columnHeaders)
+func WriteTable(dataSource TableDataSource) string { _ = "STUB: not implemented"; return "" }
 
-	// Return empty string if no columns.
-	if numCols == 0 {
-		return ""
-	}
-	// Compute column widths.
-	columnWidths := make([]int, numCols)
+// Return empty string if no columns.
 
-	// Then compare with the length of each value.
-	numRows := dataSource.NumRows()
-	for c := 0; c < numCols; c++ {
-		header := columnHeaders[c]
-		columnWidths[c] = len(header)
-		for r := 0; r < numRows; r++ {
-			value := dataSource.GetValue(r, c)
-			expandColumnWidth(columnWidths, value, c)
-		}
-	}
+// Compute column widths.
 
-	// string buffer for final result.
-	var buffer bytes.Buffer
-	// Prepare format for header.
-	headerFormat := "|"
-	for _, columnWidth := range columnWidths {
-		headerFormat += fmt.Sprintf("%%%ds|", columnWidth)
-	}
-	headerFormat += "\n"
+// Then compare with the length of each value.
 
-	// Write column header.
-	buffer.WriteString(sprintfStrings(headerFormat, columnHeaders))
+// string buffer for final result.
 
-	if numRows > 0 {
-		// Prepare format for rows.
-		rowFormat := "|"
-		for c := 0; c < numCols; c++ {
-			// get formatter of first row.
-			value := dataSource.GetValue(0, c)
-			modifier := getFormatModifier(value)
-			rowFormat += fmt.Sprintf("%%%d%s|", columnWidths[c], modifier)
-		}
-		rowFormat += "\n"
+// Prepare format for header.
 
-		// Write rows.
-		for r := 0; r < numRows; r++ {
-			row := make([]interface{}, numCols)
-			for c := 0; c < numCols; c++ {
-				row[c] = dataSource.GetValue(r, c)
-			}
-			buffer.WriteString(fmt.Sprintf(rowFormat, row...))
-		}
-	}
-	return buffer.String()
-}
+// Write column header.
+
+// Prepare format for rows.
+
+// get formatter of first row.
+
+// Write rows.

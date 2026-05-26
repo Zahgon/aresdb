@@ -19,7 +19,4 @@ import (
 )
 
 // BindEnvironments binds environment variables to viper
-func BindEnvironments(v *viper.Viper) {
-	v.SetEnvPrefix("ares")
-	v.BindEnv("env")
-}
+func BindEnvironments(v *viper.Viper) { _ = "STUB: not implemented"; return }

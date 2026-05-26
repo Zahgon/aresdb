@@ -15,8 +15,9 @@
 package common
 
 import (
-	"github.com/m3db/m3/src/cluster/client/etcd"
 	"net/http"
+
+	"github.com/m3db/m3/src/cluster/client/etcd"
 )
 
 // TimezoneConfig is the static config for timezone column support

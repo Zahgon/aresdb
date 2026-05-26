@@ -15,20 +15,15 @@
 package cmd
 
 import (
-	"fmt"
 	"github.com/spf13/cobra"
 	"github.com/uber-go/tally"
 	"github.com/uber/aresdb/cluster/kvstore"
 	"github.com/uber/aresdb/cmd/aresd/cmd"
-	"github.com/uber/aresdb/common"
 	"github.com/uber/aresdb/controller/handlers"
-	"github.com/uber/aresdb/controller/mutators"
-	"github.com/uber/aresdb/controller/tasks"
 	"github.com/uber/aresdb/utils"
 	cfgfx "go.uber.org/config"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
-	"net/http"
 )
 
 var (
@@ -58,70 +53,13 @@ type Result struct {
 }
 
 // AddFlags adds flags to command
-func AddFlags(cmd *cobra.Command) {
-	cmd.Flags().StringVarP(&cfgFile, "config", "c", "config/ares-controller.yaml", "Ares controller config file")
-	cmd.Flags().IntVarP(&port, "port", "p", 6708, "Ares controller service port")
-}
+func AddFlags(cmd *cobra.Command) { _ = "STUB: not implemented"; return }
 
-func Execute(setters ...cmd.Option) {
-	loggerFactory := common.NewLoggerFactory()
-	options := &cmd.Options{
-		ServerLogger: loggerFactory.GetDefaultLogger(),
-		QueryLogger:  loggerFactory.GetLogger("query"),
-		Metrics:      common.NewNoopMetrics(),
-	}
+func Execute(setters ...cmd.Option) { _ = "STUB: not implemented"; return }
 
-	for _, setter := range setters {
-		setter(options)
-	}
-
-	command := &cobra.Command{
-		Use:     "arescontrollerd",
-		Short:   "AresDB Controller",
-		Long:    `AresDB Controller is the administrative service for managing schema and configurations of the cluster`,
-		Example: `./arescontrollerd --config config/ares-controller.yaml --port 6708`,
-		Run: func(cmd *cobra.Command, args []string) {
-			fx.New(Module,
-				mutators.Module,
-				handlers.Module,
-				tasks.Module,
-				fx.Invoke(runServer),
-			).Run()
-		},
-	}
-
-	AddFlags(command)
-	command.Execute()
-}
-
-func Init() Result {
-	var result Result
-	zapLogger := zap.NewExample().Sugar()
-	logger := common.NewZapLoggerFactory(zapLogger).GetDefaultLogger()
-	scope := tally.NewTestScope("test", nil)
-
-	cfgProvider, err := cfgfx.NewYAML(cfgfx.Permissive(), cfgfx.File(cfgFile))
-	if err != nil {
-		logger.With("error", err.Error(), "path", cfgFile).Fatal("failed to read config file")
-		return result
-	}
-
-	var etcdConfig kvstore.EtcdConfig
-	if err := cfgProvider.Get("etcd").Populate(&etcdConfig); err != nil {
-		logger.With("error", err.Error(), "path", cfgFile).Fatal("failed to read config file")
-		return result
-	}
-
-	return Result{
-		ConfigProvider:         cfgProvider,
-		ZapLogger:              zapLogger,
-		Scope:                  scope,
-		EtcdClient:             kvstore.NewEtcdClient(zapLogger, etcdConfig),
-		MetricsLoggingProvider: utils.NewMetricsLoggingMiddleWareProvider(scope, logger),
-	}
-}
+func Init() Result { _ = "STUB: not implemented"; return *new(Result) }
 
 func runServer(logger *zap.SugaredLogger, handlerParams handlers.ServerParams) {
-	compositeHandler := handlers.NewCompositeHandler(handlerParams)
-	logger.Fatal(http.ListenAndServe(fmt.Sprintf("localhost:%d", port), compositeHandler))
+	_ = "STUB: not implemented"
+	return
 }

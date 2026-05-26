@@ -1,10 +1,10 @@
-//  Copyright (c) 2017-2018 Uber Technologies, Inc.
+//	Copyright (c) 2017-2018 Uber Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//     http://www.apache.org/licenses/LICENSE-2.0
+//	http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -23,37 +23,12 @@ type NamespaceMutator struct {
 
 // CreateNamespace provides a mock function with given fields: namespace
 func (_m *NamespaceMutator) CreateNamespace(namespace string) error {
-	ret := _m.Called(namespace)
-
-	var r0 error
-	if rf, ok := ret.Get(0).(func(string) error); ok {
-		r0 = rf(namespace)
-	} else {
-		r0 = ret.Error(0)
-	}
-
-	return r0
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // ListNamespaces provides a mock function with given fields:
 func (_m *NamespaceMutator) ListNamespaces() ([]string, error) {
-	ret := _m.Called()
-
-	var r0 []string
-	if rf, ok := ret.Get(0).(func() []string); ok {
-		r0 = rf()
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).([]string)
-		}
-	}
-
-	var r1 error
-	if rf, ok := ret.Get(1).(func() error); ok {
-		r1 = rf()
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
+	_ = "STUB: not implemented"
+	return nil, nil
 }

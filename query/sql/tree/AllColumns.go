@@ -24,13 +24,12 @@ type AllColumns struct {
 
 // NewAllColumns creates AllColumns
 func NewAllColumns(location *NodeLocation, prefix *QualifiedName) *AllColumns {
-	return &AllColumns{
-		NewSelectItem(location),
-		prefix,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Accept accepts visitor
 func (n *AllColumns) Accept(visitor AstVisitor, ctx interface{}) interface{} {
-	return visitor.VisitAllColumns(n, ctx)
+	_ = "STUB: not implemented"
+	return nil
 }

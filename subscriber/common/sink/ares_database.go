@@ -15,15 +15,11 @@
 package sink
 
 import (
-	"fmt"
-
 	"github.com/uber-go/tally"
 	"github.com/uber/aresdb/client"
 	controllerCli "github.com/uber/aresdb/controller/client"
 	"github.com/uber/aresdb/subscriber/common/rules"
 	"github.com/uber/aresdb/subscriber/config"
-	"github.com/uber/aresdb/utils"
-	"go.uber.org/zap"
 )
 
 // AresDatabase is an implementation of Database interface for saving data to ares
@@ -39,53 +35,18 @@ type AresDatabase struct {
 func NewAresDatabase(
 	serviceConfig config.ServiceConfig, jobConfig *rules.JobConfig, cluster string,
 	sinkCfg config.SinkConfig, aresControllerClient controllerCli.ControllerClient) (Sink, error) {
-	if sinkCfg.GetSinkMode() != config.Sink_AresDB {
-		return nil, fmt.Errorf("Failed to NewAresDatabase, wrong sinkMode=%d", sinkCfg.GetSinkMode())
-	}
-
-	connector := sinkCfg.AresDBConnectorConfig.NewConnector(serviceConfig.Logger.Sugar(), serviceConfig.Scope.Tagged(map[string]string{
-		"job":         jobConfig.Name,
-		"aresCluster": cluster,
-	}))
-
-	return &AresDatabase{
-		ServiceConfig: serviceConfig,
-		JobConfig:     jobConfig,
-		Scope: serviceConfig.Scope.Tagged(map[string]string{
-			"job":         jobConfig.Name,
-			"aresCluster": cluster,
-		}),
-		ClusterName: cluster,
-		Connector:   connector,
-	}, nil
+	_ = "STUB: not implemented"
+	return *new(Sink), nil
 }
 
 // Shutdown will clean up resources that needs to be cleaned up
-func (db *AresDatabase) Shutdown() {
-	db.Connector.Close()
-}
+func (db *AresDatabase) Shutdown() { _ = "STUB: not implemented"; return }
 
 // Save saves a batch of row objects into a destination
 func (db *AresDatabase) Save(destination Destination, rows []client.Row) error {
-	db.Scope.Gauge("batchSize").Update(float64(len(rows)))
-
-	saveStart := utils.Now()
-	db.ServiceConfig.Logger.Debug("saving", zap.Any("rows", rows))
-	rowsInserted, err := db.Connector.
-		Insert(destination.Table, destination.ColumnNames, rows, destination.AresUpdateModes...)
-	if err != nil {
-		db.Scope.Counter("errors.insert").Inc(1)
-		return utils.StackError(err, fmt.Sprintf("Failed to save rows in table %s, columns: %+v",
-			destination.Table, destination.ColumnNames))
-	}
-	db.Scope.Timer("latency.ares.save").Record(utils.Now().Sub(saveStart))
-	db.Scope.Counter("rowsWritten").Inc(int64(rowsInserted))
-	db.Scope.Counter("rowsIgnored").Inc(int64(len(rows)) - int64(rowsInserted))
-	db.Scope.Gauge("upsertBatchSize").Update(float64(rowsInserted))
+	_ = "STUB: not implemented"
 	return nil
 }
 
 // Cluster returns the DB cluster name
-func (db *AresDatabase) Cluster() string {
-	return db.ClusterName
-}
+func (db *AresDatabase) Cluster() string { _ = "STUB: not implemented"; return "" }

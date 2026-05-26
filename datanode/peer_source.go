@@ -1,17 +1,13 @@
 package datanode
 
 import (
-	"context"
 	"errors"
-	"fmt"
-	xerrors "github.com/m3db/m3/src/x/errors"
+	"sync"
+
 	"github.com/uber/aresdb/cluster/topology"
 	"github.com/uber/aresdb/datanode/client"
 	"github.com/uber/aresdb/datanode/generated/proto/rpc"
-	"github.com/uber/aresdb/utils"
 	"google.golang.org/grpc"
-	"net/url"
-	"sync"
 )
 
 var (
@@ -41,82 +37,31 @@ type peer struct {
 }
 
 func (p *peer) Host() topology.Host {
-	return p.host
+	_ = "STUB: not implemented"
+
+	// BorrowConnection from peer
+	return *new(topology.Host)
 }
 
-// BorrowConnection from peer
 func (p *peer) BorrowConnection(fn client.WithConnectionFn) (err error) {
-	p.Lock()
-	if p.closed {
-		p.Unlock()
-		return errPeerClosed
-	}
-
-	if p.conn == nil {
-		parsedURL, err := url.Parse(p.host.Address())
-		if err != nil {
-			p.Unlock()
-			return err
-		}
-
-		p.conn, p.closeFn, err = p.dialer(fmt.Sprintf("%s:%s", parsedURL.Hostname(), parsedURL.Port()), grpc.WithInsecure())
-		if err != nil {
-			p.Unlock()
-			return err
-		}
-	}
-
-	conn := p.conn
-	p.Add(1)
-	p.Unlock()
-
-	defer p.Done()
-
-	err = p.checkHealth(conn)
-	if err != nil {
-		return err
-	}
-
-	fn(p.host.ID(), conn)
+	_ = "STUB: not implemented"
 	return nil
 }
 
 func (p *peer) checkHealth(peerNodeClient rpc.PeerDataNodeClient) error {
-	healthCheckResponse, err := peerNodeClient.Health(context.Background(), &rpc.HealthCheckRequest{Service: "PeerData"})
-	if err != nil {
-		return xerrors.Wrapf(err, "failed to check health of %s", p.host.ID())
-	}
-	status := healthCheckResponse.GetStatus()
-	if status != rpc.HealthCheckResponse_SERVING {
-		return fmt.Errorf("unhealthy peer id: %s, status: %s", p.host.ID(), status.String())
-	}
+	_ = "STUB: not implemented"
 	return nil
 }
 
 // Close close the peer
-func (p *peer) Close() {
-	utils.GetLogger().With("host", p.host.String()).Info("closing peer connection")
-	// waiting for on going operation with client connection
-	p.Wait()
+func (p *peer) Close() { _ = "STUB: not implemented"; return }
 
-	p.Lock()
-	defer p.Unlock()
-	if p.conn != nil && p.closeFn != nil {
-		err := p.closeFn()
-		if err != nil {
-			utils.GetLogger().With("host", p.host.String(), "error", err.Error()).Error("failed to close grpc connection")
-		}
-		p.closed = true
-		p.conn = nil
-	}
-}
+// waiting for on going operation with client connection
 
 // newPeer create a new peer object
 func newPeer(host topology.Host, dialer client.PeerConnDialer) *peer {
-	return &peer{
-		host:   host,
-		dialer: dialer,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type peerSource struct {
@@ -130,100 +75,25 @@ type peerSource struct {
 }
 
 func (ps *peerSource) borrowConnection(hostID string, fn client.WithConnectionFn) error {
-	ps.RLock()
-	peer, exist := ps.peers[hostID]
-	if !exist {
-		ps.RUnlock()
-		return errPeerNotExist
-	}
-	ps.RUnlock()
-
-	return peer.BorrowConnection(fn)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (ps *peerSource) BorrowConnection(hostIDs []string, fn client.WithConnectionFn) error {
-	multiError := xerrors.NewMultiError()
-	for _, hostID := range hostIDs {
-		err := ps.borrowConnection(hostID, fn)
-		if err != nil {
-			utils.GetLogger().With("peer", hostID, "error", err.Error()).Warn("failed to borrow connection from peer")
-			multiError = multiError.Add(err)
-		} else {
-			utils.GetLogger().With("peer", hostID).Debug("successfully borrowed connection from peer")
-			return nil
-		}
-	}
-	return multiError.FinalError()
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (ps *peerSource) watchTopoChange() {
-	for {
-		select {
-		case <-ps.watch.C():
-			ps.updateTopoMap(ps.watch.Get())
-		case <-ps.done:
-			return
-		}
-	}
-}
+func (ps *peerSource) watchTopoChange() { _ = "STUB: not implemented"; return }
 
-func (ps *peerSource) Close() {
-	close(ps.done)
+func (ps *peerSource) Close() { _ = "STUB: not implemented"; return }
 
-	ps.Lock()
-	defer ps.Unlock()
-	for _, peer := range ps.peers {
-		peer.Close()
-	}
-}
+func (ps *peerSource) updateTopoMap(topoMap topology.Map) { _ = "STUB: not implemented"; return }
 
-func (ps *peerSource) updateTopoMap(topoMap topology.Map) {
-	ps.Lock()
-	defer ps.Unlock()
-
-	// unknown host
-	knownHosts := make(map[string]struct{})
-	for _, host := range topoMap.Hosts() {
-		knownHosts[host.ID()] = struct{}{}
-		if _, exist := ps.peers[host.ID()]; !exist {
-			ps.peers[host.ID()] = newPeer(host, ps.dialer)
-		}
-	}
-
-	for hostID, peer := range ps.peers {
-		if _, known := knownHosts[hostID]; !known {
-			delete(ps.peers, hostID)
-			go func() {
-				peer.Close()
-			}()
-		}
-	}
-}
+// unknown host
 
 // NewPeerSource creates PeerSource
 func NewPeerSource(topo topology.Topology, dialerOverride client.PeerConnDialer) (client.PeerSource, error) {
-	dialer := grpcDialer
-	if dialerOverride != nil {
-		dialer = dialerOverride
-	}
-
-	mapWatch, err := topo.Watch()
-	if err != nil {
-		return nil, err
-	}
-
-	<-mapWatch.C()
-	topoMap := mapWatch.Get()
-
-	ps := &peerSource{
-		watch:  mapWatch,
-		dialer: dialer,
-		done:   make(chan struct{}),
-		peers:  make(map[string]*peer),
-	}
-
-	ps.updateTopoMap(topoMap)
-	go ps.watchTopoChange()
-
-	return ps, nil
+	_ = "STUB: not implemented"
+	return *new(client.PeerSource), nil
 }

@@ -15,10 +15,7 @@
 package common
 
 import (
-	"encoding/json"
 	"unsafe"
-
-	"github.com/uber/aresdb/utils"
 )
 
 const (
@@ -81,38 +78,10 @@ type PrimaryKey interface {
 
 // MarshalPrimaryKey marshals a PrimaryKey into json. We cannot define MarshalJson for PrimaryKey
 // since pointer cannot be a receiver.
-func MarshalPrimaryKey(pk PrimaryKey) ([]byte, error) {
-	if pk == nil {
-		return nil, nil
-	}
-	return json.Marshal(map[string]interface{}{
-		"size":            pk.Size(),
-		"allocatedBytes":  pk.AllocatedBytes(),
-		"capacity":        pk.Capacity(),
-		"eventTimeCutoff": pk.GetEventTimeCutoff(),
-	})
-}
+func MarshalPrimaryKey(pk PrimaryKey) ([]byte, error) { _ = "STUB: not implemented"; return nil, nil }
 
 // AppendPrimaryKeyBytes writes primary keys bytes into key buffer
 func AppendPrimaryKeyBytes(key []byte, primaryKeyValues DataValueIterator) ([]byte, error) {
-	for !primaryKeyValues.done() {
-		value := primaryKeyValues.read()
-		if !value.Valid {
-			return key, utils.StackError(nil, "Primary key cannot be null")
-		}
-
-		if value.IsBool {
-			if value.BoolVal {
-				key = append(key, byte(1))
-			} else {
-				key = append(key, byte(0))
-			}
-		} else {
-			for i := 0; i < DataTypeBits(value.DataType)/8; i++ {
-				key = append(key, *(*byte)(utils.MemAccess(value.OtherVal, i)))
-			}
-		}
-		primaryKeyValues.next()
-	}
-	return key, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }

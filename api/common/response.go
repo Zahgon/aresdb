@@ -27,7 +27,6 @@ type StringArrayResponse struct {
 
 // NewStringArrayResponse creates a StringArrayResponse.
 func NewStringArrayResponse() StringArrayResponse {
-	return StringArrayResponse{
-		Body: []string{},
-	}
+	_ = "STUB: not implemented"
+	return *new(StringArrayResponse)
 }

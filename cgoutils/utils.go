@@ -17,18 +17,9 @@ package cgoutils
 // #include <stdlib.h>
 import "C"
 import (
-	"github.com/uber/aresdb/utils"
 	"unsafe"
 )
 
 // DoCGoCall is the function wrapper to call a cgo function, check whether there is any exception thrown by the function
 // and converted it to a golang error if any.
-func DoCGoCall(f func() (uintptr, unsafe.Pointer)) uintptr {
-	res, pStrErr := f()
-	if pStrErr != nil {
-		errMsg := C.GoString((*C.char)(pStrErr))
-		C.free(pStrErr)
-		panic(utils.StackError(nil, errMsg))
-	}
-	return res
-}
+func DoCGoCall(f func() (uintptr, unsafe.Pointer)) uintptr { _ = "STUB: not implemented"; return 0 }

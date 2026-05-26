@@ -28,24 +28,9 @@ type Connector struct {
 
 // Insert provides a mock function with given fields: tableName, columnNames, rows
 func (_m *Connector) Insert(tableName string, columnNames []string, rows []client.Row, updateModes ...common.ColumnUpdateMode) (int, error) {
-	ret := _m.Called(tableName, columnNames, rows)
-
-	var r0 int
-	if rf, ok := ret.Get(0).(func(string, []string, []client.Row, ...common.ColumnUpdateMode) int); ok {
-		r0 = rf(tableName, columnNames, rows, updateModes...)
-	} else {
-		r0 = ret.Get(0).(int)
-	}
-
-	var r1 error
-	if rf, ok := ret.Get(1).(func(string, []string, []client.Row, ...common.ColumnUpdateMode) error); ok {
-		r1 = rf(tableName, columnNames, rows, updateModes...)
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
+	_ = "STUB: not implemented"
+	return 0, nil
 }
 
 // Close the connection
-func (_m *Connector) Close() {}
+func (_m *Connector) Close() { _ = "STUB: not implemented"; return }

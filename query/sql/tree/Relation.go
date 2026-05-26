@@ -26,13 +26,10 @@ type Relation struct {
 }
 
 // NewRelation create Relation
-func NewRelation(location *NodeLocation) *Relation {
-	return &Relation{
-		NewNode(location),
-	}
-}
+func NewRelation(location *NodeLocation) *Relation { _ = "STUB: not implemented"; return nil }
 
 // Accept accepts visitor
 func (r *Relation) Accept(visitor AstVisitor, ctx interface{}) interface{} {
-	return visitor.VisitRelation(r, ctx)
+	_ = "STUB: not implemented"
+	return nil
 }

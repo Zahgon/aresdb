@@ -24,50 +24,10 @@ type WriteSyncCloser struct {
 }
 
 // Close provides a mock function with given fields:
-func (_m *WriteSyncCloser) Close() error {
-	ret := _m.Called()
-
-	var r0 error
-	if rf, ok := ret.Get(0).(func() error); ok {
-		r0 = rf()
-	} else {
-		r0 = ret.Error(0)
-	}
-
-	return r0
-}
+func (_m *WriteSyncCloser) Close() error { _ = "STUB: not implemented"; return nil }
 
 // Sync provides a mock function with given fields:
-func (_m *WriteSyncCloser) Sync() error {
-	ret := _m.Called()
-
-	var r0 error
-	if rf, ok := ret.Get(0).(func() error); ok {
-		r0 = rf()
-	} else {
-		r0 = ret.Error(0)
-	}
-
-	return r0
-}
+func (_m *WriteSyncCloser) Sync() error { _ = "STUB: not implemented"; return nil }
 
 // Write provides a mock function with given fields: p
-func (_m *WriteSyncCloser) Write(p []byte) (int, error) {
-	ret := _m.Called(p)
-
-	var r0 int
-	if rf, ok := ret.Get(0).(func([]byte) int); ok {
-		r0 = rf(p)
-	} else {
-		r0 = ret.Get(0).(int)
-	}
-
-	var r1 error
-	if rf, ok := ret.Get(1).(func([]byte) error); ok {
-		r1 = rf(p)
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
-}
+func (_m *WriteSyncCloser) Write(p []byte) (int, error) { _ = "STUB: not implemented"; return 0, nil }

@@ -26,14 +26,12 @@ type Identifier struct {
 
 // NewIdentifier creates Identifier
 func NewIdentifier(location *NodeLocation, value string, delimited bool) *Identifier {
-	return &Identifier{
-		NewExpression(location),
-		value,
-		delimited,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Accept accepts visitor
 func (e *Identifier) Accept(visitor AstVisitor, ctx interface{}) interface{} {
-	return visitor.VisitIdentifier(e, ctx)
+	_ = "STUB: not implemented"
+	return nil
 }

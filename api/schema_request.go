@@ -81,8 +81,10 @@ type ListEnumCasesRequest struct {
 
 // UpdateColumnRequest represents UpdateColumn request.
 // Supported for updates:
-//   preloadingDays
-//   priority
+//
+//	preloadingDays
+//	priority
+//
 // swagger:parameters updateColumn
 type UpdateColumnRequest struct {
 	// in: path

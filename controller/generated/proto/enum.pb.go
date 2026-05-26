@@ -18,8 +18,9 @@ package proto
 
 import (
 	fmt "fmt"
-	proto "github.com/golang/protobuf/proto"
 	math "math"
+
+	proto "github.com/golang/protobuf/proto"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -40,37 +41,27 @@ type EnumCases struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *EnumCases) Reset()         { *m = EnumCases{} }
-func (m *EnumCases) String() string { return proto.CompactTextString(m) }
-func (*EnumCases) ProtoMessage()    {}
-func (*EnumCases) Descriptor() ([]byte, []int) {
-	return fileDescriptor_13a9f1b5947140c8, []int{0}
+func (m *EnumCases) Reset()                    { _ = "STUB: not implemented"; return }
+func (m *EnumCases) String() string            { _ = "STUB: not implemented"; return "" }
+func (*EnumCases) ProtoMessage()               { _ = "STUB: not implemented"; return }
+func (*EnumCases) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
+
+func (m *EnumCases) XXX_Unmarshal(b []byte) error { _ = "STUB: not implemented"; return nil }
+
+func (m *EnumCases) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (m *EnumCases) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_EnumCases.Unmarshal(m, b)
-}
-func (m *EnumCases) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_EnumCases.Marshal(b, m, deterministic)
-}
-func (m *EnumCases) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_EnumCases.Merge(m, src)
-}
-func (m *EnumCases) XXX_Size() int {
-	return xxx_messageInfo_EnumCases.Size(m)
-}
-func (m *EnumCases) XXX_DiscardUnknown() {
-	xxx_messageInfo_EnumCases.DiscardUnknown(m)
-}
+func (m *EnumCases) XXX_Merge(src proto.Message) { _ = "STUB: not implemented"; return }
+
+func (m *EnumCases) XXX_Size() int { _ = "STUB: not implemented"; return 0 }
+
+func (m *EnumCases) XXX_DiscardUnknown() { _ = "STUB: not implemented"; return }
 
 var xxx_messageInfo_EnumCases proto.InternalMessageInfo
 
-func (m *EnumCases) GetCases() []string {
-	if m != nil {
-		return m.Cases
-	}
-	return nil
-}
+func (m *EnumCases) GetCases() []string { _ = "STUB: not implemented"; return nil }
 
 type EnumNodeList struct {
 	NumEnumNodes         int32    `protobuf:"varint,1,opt,name=numEnumNodes,proto3" json:"numEnumNodes,omitempty"`
@@ -79,37 +70,27 @@ type EnumNodeList struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *EnumNodeList) Reset()         { *m = EnumNodeList{} }
-func (m *EnumNodeList) String() string { return proto.CompactTextString(m) }
-func (*EnumNodeList) ProtoMessage()    {}
-func (*EnumNodeList) Descriptor() ([]byte, []int) {
-	return fileDescriptor_13a9f1b5947140c8, []int{1}
+func (m *EnumNodeList) Reset()                    { _ = "STUB: not implemented"; return }
+func (m *EnumNodeList) String() string            { _ = "STUB: not implemented"; return "" }
+func (*EnumNodeList) ProtoMessage()               { _ = "STUB: not implemented"; return }
+func (*EnumNodeList) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
+
+func (m *EnumNodeList) XXX_Unmarshal(b []byte) error { _ = "STUB: not implemented"; return nil }
+
+func (m *EnumNodeList) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (m *EnumNodeList) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_EnumNodeList.Unmarshal(m, b)
-}
-func (m *EnumNodeList) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_EnumNodeList.Marshal(b, m, deterministic)
-}
-func (m *EnumNodeList) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_EnumNodeList.Merge(m, src)
-}
-func (m *EnumNodeList) XXX_Size() int {
-	return xxx_messageInfo_EnumNodeList.Size(m)
-}
-func (m *EnumNodeList) XXX_DiscardUnknown() {
-	xxx_messageInfo_EnumNodeList.DiscardUnknown(m)
-}
+func (m *EnumNodeList) XXX_Merge(src proto.Message) { _ = "STUB: not implemented"; return }
+
+func (m *EnumNodeList) XXX_Size() int { _ = "STUB: not implemented"; return 0 }
+
+func (m *EnumNodeList) XXX_DiscardUnknown() { _ = "STUB: not implemented"; return }
 
 var xxx_messageInfo_EnumNodeList proto.InternalMessageInfo
 
-func (m *EnumNodeList) GetNumEnumNodes() int32 {
-	if m != nil {
-		return m.NumEnumNodes
-	}
-	return 0
-}
+func (m *EnumNodeList) GetNumEnumNodes() int32 { _ = "STUB: not implemented"; return 0 }
 
 func init() {
 	proto.RegisterType((*EnumCases)(nil), "proto.EnumCases")

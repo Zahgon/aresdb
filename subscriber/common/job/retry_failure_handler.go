@@ -48,57 +48,14 @@ func NewRetryFailureHandler(
 	serviceConfig config.ServiceConfig,
 	db sink.Sink,
 	jobName string) *RetryFailureHandler {
-	maxElapsedTime := defaultMaxElapsedTime
-	if config.MaxRetryMinutes > 0 {
-		maxElapsedTime = time.Duration(config.MaxRetryMinutes) * time.Minute
-	}
-
-	multiplier := defaultMultiplier
-	// only support constant or increasing interval
-	if config.Multiplier >= 1 {
-		multiplier = config.Multiplier
-	}
-
-	initInterval := defaultInitInterval
-	if config.InitRetryIntervalInSeconds > 0 {
-		initInterval = time.Duration(config.InitRetryIntervalInSeconds) * time.Second
-	}
-
-	return &RetryFailureHandler{
-		serviceConfig: serviceConfig,
-		scope: serviceConfig.Scope.Tagged(map[string]string{
-			"job":         jobName,
-			"aresCluster": db.Cluster(),
-		}),
-		sink:           db,
-		jobName:        jobName,
-		maxElapsedTime: maxElapsedTime,
-		elapsedTime:    0,
-		multiplier:     multiplier,
-		interval:       initInterval,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// only support constant or increasing interval
 
 // HandleFailure handles failure with retry
 func (handler *RetryFailureHandler) HandleFailure(destination sink.Destination, rows []client.Row) (err error) {
-	timer := time.NewTimer(0)
-	for handler.elapsedTime+handler.interval < handler.maxElapsedTime {
-		timer.Reset(handler.interval)
-		select {
-		case <-timer.C:
-			err = handler.sink.Save(destination, rows)
-			if err == nil {
-				timer.Stop()
-				handler.elapsedTime = 0
-				return nil
-			}
-			handler.elapsedTime += handler.interval
-			handler.interval = time.Duration(float32(handler.interval) * handler.multiplier)
-			handler.scope.Counter("message.retry.count").Inc(1)
-			handler.scope.Gauge("message.retry.elapsedTime").Update(float64(handler.elapsedTime))
-		}
-	}
-	timer.Stop()
-	handler.elapsedTime = 0
-	return err
+	_ = "STUB: not implemented"
+	return nil
 }

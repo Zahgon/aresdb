@@ -15,15 +15,14 @@
 package memstore
 
 import (
-	"github.com/uber/aresdb/cluster/topology"
-	"github.com/uber/aresdb/datanode/bootstrap"
 	"sync"
 
-	"fmt"
+	"github.com/uber/aresdb/cluster/topology"
+	"github.com/uber/aresdb/datanode/bootstrap"
+
 	"github.com/uber/aresdb/diskstore"
 	"github.com/uber/aresdb/memstore/common"
 	metaCom "github.com/uber/aresdb/metastore/common"
-	"github.com/uber/aresdb/utils"
 )
 
 // TableShardMemoryUsage contains memory usage for column memory and primary key memory usage
@@ -105,258 +104,95 @@ type memStoreImpl struct {
 	scheduler Scheduler
 }
 
-func getTableShardKey(tableName string, shardID int) string {
-	return fmt.Sprintf("%s_%d", tableName, shardID)
-}
+func getTableShardKey(tableName string, shardID int) string { _ = "STUB: not implemented"; return "" }
 
 // NewMemStore creates a MemStore from the specified MetaStore.
 func NewMemStore(metaStore metaCom.MetaStore, diskStore diskstore.DiskStore, options Options) MemStore {
-	memStore := &memStoreImpl{
-		TableShards:  make(map[string]map[int]*TableShard),
-		TableSchemas: make(map[string]*common.TableSchema),
-		metaStore:    metaStore,
-		diskStore:    diskStore,
-		options:      options,
-	}
-	// Create HostMemoryManager
-	memStore.HostMemManager = NewHostMemoryManager(memStore, utils.GetConfig().TotalMemorySize)
-	memStore.scheduler = newScheduler(memStore)
-	return memStore
+	_ = "STUB: not implemented"
+	return *new(MemStore)
 }
+
+// Create HostMemoryManager
 
 func (m *memStoreImpl) GetMemoryUsageDetails() (map[string]TableShardMemoryUsage, error) {
-	archiveMemoryUsageByTableShard, err := m.HostMemManager.GetArchiveMemoryUsageByTableShard()
-	if err != nil {
-		return nil, err
-	}
-
-	totalMemoryUsageByTableShard := map[string]TableShardMemoryUsage{}
-
-	tableShardsSnapshot := map[string][]int{}
-	m.RLock()
-	for tableName, shards := range m.TableShards {
-		tableShardsSnapshot[tableName] = []int{}
-		for shardID := range shards {
-			tableShardsSnapshot[tableName] = append(tableShardsSnapshot[tableName], shardID)
-		}
-	}
-	m.RUnlock()
-
-	for tableName, shardIDs := range tableShardsSnapshot {
-		for _, shardID := range shardIDs {
-			tableShardKey := getTableShardKey(tableName, shardID)
-			shard, err := m.GetTableShard(tableName, shardID)
-			if err != nil {
-				return totalMemoryUsageByTableShard, err
-			}
-
-			tableShardMemoryUsage := TableShardMemoryUsage{}
-			tableShardMemoryUsage.ColumnMemory = map[string]*common.ColumnMemoryUsage{}
-
-			// primary key memory usage
-			shard.LiveStore.WriterLock.RLock()
-			tableShardMemoryUsage.PrimaryKeyMemory = shard.LiveStore.PrimaryKey.AllocatedBytes()
-			shard.LiveStore.WriterLock.RUnlock()
-
-			// archive memory usage
-			if archiveMemoryUsage, ok := archiveMemoryUsageByTableShard[tableShardKey]; ok {
-				tableShardMemoryUsage.ColumnMemory = archiveMemoryUsage
-			}
-
-			// live store memory usage
-			shard.getLiveMemoryUsageByColumns(tableShardMemoryUsage.ColumnMemory)
-
-			totalMemoryUsageByTableShard[tableShardKey] = tableShardMemoryUsage
-			shard.Users.Done()
-		}
-	}
-	return totalMemoryUsageByTableShard, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (shard *TableShard) getLiveMemoryUsageByColumns(columnMemory map[string]*common.ColumnMemoryUsage) {
-	shard.Schema.RLock()
-	valueTypeByColumn := shard.Schema.GetValueTypeByColumn()
-	columnIDs := map[string]int{}
-	for columnName, columnID := range shard.Schema.ColumnIDs {
-		columnIDs[columnName] = columnID
-	}
-	shard.Schema.RUnlock()
+// primary key memory usage
 
-	for columnName, columnID := range columnIDs {
-		valueType := valueTypeByColumn[columnID]
-		liveStoreMemory := shard.LiveStore.GetMemoryUsageForColumn(valueType, columnID)
-		if memoryUsage, ok := columnMemory[columnName]; ok {
-			memoryUsage.Live = uint(liveStoreMemory)
-		} else {
-			columnMemory[columnName] = &common.ColumnMemoryUsage{
-				Live: uint(liveStoreMemory),
-			}
-		}
-	}
+// archive memory usage
+
+// live store memory usage
+
+func (shard *TableShard) getLiveMemoryUsageByColumns(columnMemory map[string]*common.ColumnMemoryUsage) {
+	_ = "STUB: not implemented"
+	return
 }
 
 // GetTableShard gets the data for a pinned table Shard. Caller needs to unpin after use.
 func (m *memStoreImpl) GetTableShard(table string, shardID int) (*TableShard, error) {
-	m.RLock()
-	defer m.RUnlock()
-	tableShardMap, ok := m.TableShards[table]
-
-	if !ok {
-		return nil, utils.StackError(nil, "Failed to get table Shard map for table %s", table)
-	}
-	tableShard, ok := tableShardMap[shardID]
-	if !ok {
-		return nil, utils.StackError(nil, "Failed to get Shard %d for table %s", shardID, table)
-	}
-	tableShard.Users.Add(1)
-	return tableShard, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // GetSchema returns schema for a table.
 func (m *memStoreImpl) GetSchema(table string) (*common.TableSchema, error) {
-	m.RLock()
-	defer m.RUnlock()
-	schema, ok := m.TableSchemas[table]
-	if !ok {
-		return nil, utils.StackError(nil, "Failed to get table schema for table %s", table)
-	}
-	return schema, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // GetSchemas returns all table schemas. Callers need to hold a reader lock to access this function.
 func (m *memStoreImpl) GetSchemas() map[string]*common.TableSchema {
-	return m.TableSchemas
+	_ = "STUB: not implemented"
+	return nil
+
+	// GetScheduler returns the scheduler instance bound to the MemStore.
 }
 
-// GetScheduler returns the scheduler instance bound to the MemStore.
 func (m *memStoreImpl) GetScheduler() Scheduler {
-	return m.scheduler
+	_ = "STUB: not implemented"
+
+	// TryEvictBatchColumn tries to evict a column from a given table/Shard/batchID.
+	// Return values are the check for column is deleted or not and error.
+	return *new(Scheduler)
 }
 
-// TryEvictBatchColumn tries to evict a column from a given table/Shard/batchID.
-// Return values are the check for column is deleted or not and error.
 func (m *memStoreImpl) TryEvictBatchColumn(table string, shardID int, batchID int32, columnID int) (bool, error) {
-	tableShard, err := m.GetTableShard(table, shardID)
-	if err != nil {
-		return false, utils.StackError(err, "Failed to delete batch %d from Shard %d for table %s", batchID, shardID, table)
-	}
-	defer tableShard.Users.Done()
-
-	currentVersion := tableShard.ArchiveStore.GetCurrentVersion()
-	defer currentVersion.Users.Done()
-
-	currentVersion.RLock()
-	archivingBatch, ok := currentVersion.Batches[batchID]
-	currentVersion.RUnlock()
-	if !ok {
-		utils.GetLogger().Debugf("Batch already got removed from memstore: table %s, shardID %d, batchID %d, columnID %d", table, shardID, batchID, columnID)
-		return true, nil
-	}
-
-	if evictedVP := archivingBatch.TryEvict(columnID); evictedVP == nil {
-		return false, nil
-	}
-
-	utils.GetLogger().Debugf("Successfully evict batch from memstore: table %s, shardID %d, batchID %d, columnID %d", table, shardID, batchID, columnID)
-	return true, nil
+	_ = "STUB: not implemented"
+	return false, nil
 }
 
 func (m *memStoreImpl) AddTableShard(table string, shardID int, totalShards int, needPeerCopy bool, needPurge bool) {
-	m.Lock()
-	defer m.Unlock()
-
-	schema := m.TableSchemas[table]
-	if schema == nil {
-		// table might get deleted at this point
-		return
-	}
-
-	shardMap := m.TableShards[table]
-	if shardMap == nil {
-		shardMap = make(map[int]*TableShard)
-	}
-	if _, exist := shardMap[shardID]; !exist {
-		// create new shard
-		tableShard := NewTableShard(schema, m.metaStore, m.diskStore, m.HostMemManager, shardID, totalShards, m.options)
-		if needPeerCopy {
-			tableShard.needPeerCopy = 1
-		}
-
-		// purge to make sure disk space is clean for new table shard when it is added
-		if needPurge {
-			if err := tableShard.diskStore.DeleteTableShard(table, shardID); err != nil {
-				utils.GetLogger().With("table", table, "shard", shardID, "error", err.Error()).Fatalf("failed to purge table shard data")
-			}
-			if err := tableShard.metaStore.DeleteTableShard(table, shardID); err != nil {
-				utils.GetLogger().With("table", table, "shard", shardID, "error", err.Error()).Fatal("failed to purge table shard metadata")
-			}
-		}
-
-		shardMap[shardID] = tableShard
-		utils.AddTableShardReporter(table, shardID)
-	}
-	m.TableShards[table] = shardMap
+	_ = "STUB: not implemented"
+	return
 }
+
+// table might get deleted at this point
+
+// create new shard
+
+// purge to make sure disk space is clean for new table shard when it is added
 
 func (m *memStoreImpl) RemoveTableShard(table string, shardID int) {
-	var shard *TableShard
+	_ = "STUB: not implemented"
+	return
+
 	// Detach first.
-	m.Lock()
-	shards := m.TableShards[table]
-	if shards != nil {
-		shard = shards[shardID]
-		delete(shards, shardID)
-		utils.DeleteTableShardReporter(table, shardID)
-	}
-	m.Unlock()
-	// Destruct.
-	if shard != nil {
-		shard.Destruct()
-	}
 }
+
+// Destruct.
 
 // preloadAllFactTables preloads recent days data for all columns of all table shards into memory.
 // The number of preloading days is defined at each column level. This call will happen at
 // shard initialization stage.
-func (m *memStoreImpl) preloadAllFactTables() {
-	tableShardSnapshot := make(map[string][]int)
+func (m *memStoreImpl) preloadAllFactTables() { _ = "STUB: not implemented"; return }
 
-	// snapshot (tableName, shardID)s.
-	m.RLock()
-	for tableName, shardMap := range m.TableShards {
-		tableShardSnapshot[tableName] = make([]int, 0, len(shardMap))
-		for shardID := range shardMap {
-			tableShardSnapshot[tableName] = append(tableShardSnapshot[tableName], shardID)
-		}
-	}
-	m.RUnlock()
+// snapshot (tableName, shardID)s.
 
-	currentDay := int(utils.Now().Unix() / 86400)
-	for tableName, shardIDs := range tableShardSnapshot {
-		for _, shardID := range shardIDs {
-			tableShard, err := m.GetTableShard(tableName, shardID)
-			// Table shard may have already been removed from this node.
-			if err != nil {
-				continue
-			}
-			tableShard.Schema.RLock()
-			columns := tableShard.Schema.Schema.Columns
-			tableShard.Schema.RUnlock()
-			if tableShard.Schema.Schema.IsFactTable {
-				archiveStoreVersion := tableShard.ArchiveStore.GetCurrentVersion()
-				for columnID, column := range columns {
-					if !column.Deleted {
-						preloadingDays := column.Config.PreloadingDays
-						tableShard.PreloadColumn(columnID, currentDay-preloadingDays, currentDay)
-					}
-				}
-				archiveStoreVersion.Users.Done()
-			}
-			tableShard.Users.Done()
-		}
-	}
-}
+// Table shard may have already been removed from this node.
 
 func (m *memStoreImpl) GetHostMemoryManager() common.HostMemoryManager {
-	return m.HostMemManager
+	_ = "STUB: not implemented"
+	return *new(common.HostMemoryManager)
 }

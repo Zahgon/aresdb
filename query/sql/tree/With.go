@@ -26,14 +26,12 @@ type With struct {
 
 // NewWith creates With
 func NewWith(location *NodeLocation, recursive bool, queries []*WithQuery) *With {
-	return &With{
-		NewNode(location),
-		recursive,
-		queries,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Accept accepts visitor
 func (n *With) Accept(visitor AstVisitor, ctx interface{}) interface{} {
-	return visitor.VisitWith(n, ctx)
+	_ = "STUB: not implemented"
+	return nil
 }

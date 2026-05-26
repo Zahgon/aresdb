@@ -15,11 +15,8 @@
 package memstore
 
 import (
-	"io"
-
 	"github.com/uber/aresdb/diskstore"
 	"github.com/uber/aresdb/memstore/common"
-	"github.com/uber/aresdb/redolog"
 
 	"github.com/uber/aresdb/utils"
 )
@@ -42,125 +39,38 @@ type redoLogBrowser struct {
 
 // ListLogFiles lists all log files of a given table Shard.
 func (rb *redoLogBrowser) ListLogFiles() ([]int64, error) {
-	return rb.diskStore.ListLogFiles(rb.tableName, rb.shardID)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // ListUpsertBatches opens corresponding redo log file given creation time and returns starting offsets of upsert batches
 // in this file.
 func (rb *redoLogBrowser) ListUpsertBatch(creationTime int64) ([]int64, error) {
-	var f utils.ReaderSeekerCloser
-	var err error
-	if f, err = rb.diskStore.OpenLogFileForReplay(rb.tableName, rb.shardID, creationTime); err != nil {
-		return nil, err
-	}
-
-	defer f.Close()
-
-	streamReader := utils.NewStreamDataReader(f)
-
-	var size uint32
-	// Read magic header.
-	header, err := streamReader.ReadUint32()
-	if err != nil {
-		return nil, err
-	}
-
-	if header != redolog.UpsertHeader {
-		return nil, utils.StackError(nil,
-			"Invalid header %#x", header)
-	}
-
-	// Offset starts from magical header.
-	var currentOffset int64 = 4
-
-	var startOffsets []int64
-
-	for size, err = streamReader.ReadUint32(); err != io.EOF; size, err = streamReader.ReadUint32() {
-		if err != nil {
-			return nil, err
-		}
-
-		var newOffset int64
-		if newOffset, err = f.Seek(int64(size), io.SeekCurrent); err != nil {
-			if err != nil {
-				return nil, err
-			}
-		}
-
-		desiredOffset := currentOffset + 4 + int64(size)
-		if newOffset != desiredOffset {
-			return nil, utils.StackError(nil,
-				"Cannot seek to desired offset %d of redolog file ,current offset %d",
-				desiredOffset, newOffset)
-		}
-
-		startOffsets = append(startOffsets, currentOffset)
-		currentOffset = desiredOffset
-	}
-	return startOffsets, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
+
+// Read magic header.
+
+// Offset starts from magical header.
 
 // ReadData first locates the upsert batch using creationTime and upsertBatchOffset. It then returns data
 // starting from given start and has length rows along with number of total rows and column names in this
 // upsert batch.
 func (rb *redoLogBrowser) ReadData(creationTime int64, upsertBatchOffset int64, start int, length int) (
 	data [][]interface{}, columnNames []string, numRows int, err error) {
-	var f utils.ReaderSeekerCloser
-	if f, err = rb.diskStore.OpenLogFileForReplay(rb.tableName, rb.shardID, creationTime); err != nil {
-		return
-	}
-	defer f.Close()
-
-	var actualOffset int64
-	if actualOffset, err = f.Seek(upsertBatchOffset, io.SeekStart); err != nil {
-		return
-	}
-
-	if actualOffset != upsertBatchOffset {
-		err = utils.StackError(nil,
-			"Cannot seek to desired offset %d of redolog file ,current offset %d",
-			upsertBatchOffset, actualOffset)
-		return
-	}
-
-	var upsertBatch *common.UpsertBatch
-	if upsertBatch, err = rb.readUpsertBatch(f); err != nil {
-		return
-	}
-
-	columnNames, err = upsertBatch.GetColumnNames(rb.schema)
-	if err != nil {
-		return
-	}
-
-	data, err = upsertBatch.ReadData(start, length)
-	if err != nil {
-		return
-	}
-	numRows = upsertBatch.NumRows
-	return
+	_ = "STUB: not implemented"
+	return nil, nil, 0, nil
 }
 
 // readUpsertBatch reads an upsert batch from current offset of a stream.
 func (rb *redoLogBrowser) readUpsertBatch(f utils.ReaderSeekerCloser) (*common.UpsertBatch, error) {
-	streamReader := utils.NewStreamDataReader(f)
-	size, err := streamReader.ReadUint32()
-	if err != nil {
-		return nil, err
-	}
-	buffer := make([]byte, size)
-	if err = streamReader.Read(buffer); err != nil {
-		return nil, err
-	}
-
-	return common.NewUpsertBatch(buffer)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // NewRedoLogBrowser creates a RedoLogBrowser using field from Shard.
 func (shard *TableShard) NewRedoLogBrowser() RedoLogBrowser {
-	return &redoLogBrowser{
-		tableName: shard.Schema.Schema.Name,
-		shardID:   shard.ShardID,
-		schema:    shard.Schema,
-		diskStore: shard.diskStore}
+	_ = "STUB: not implemented"
+	return *new(RedoLogBrowser)
 }

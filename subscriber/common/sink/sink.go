@@ -18,10 +18,6 @@ import (
 	"github.com/uber/aresdb/client"
 	memCom "github.com/uber/aresdb/memstore/common"
 	"github.com/uber/aresdb/subscriber/common/rules"
-	"github.com/uber/aresdb/utils"
-	"math"
-	"strings"
-	"unsafe"
 )
 
 // Sink is abstraction for interactions with downstream storage layer
@@ -54,71 +50,23 @@ type Destination struct {
 }
 
 func Shard(rows []client.Row, destination Destination, jobConfig *rules.JobConfig) (map[uint32][]client.Row, int) {
-	rowsIgnored := 0
-	if destination.NumShards == 0 || destination.NumShards == 1 {
-		// in this case, there is no sharding in this aresDB cluster
-		return nil, rowsIgnored
-	}
-
-	shards := make(map[uint32][]client.Row)
-	for i := uint32(0); i < destination.NumShards; i++ {
-		shards[i] = make([]client.Row, 0, len(rows))
-	}
-
-	for _, row := range rows {
-		// convert primaryKey to byte array
-		pk, err := getPrimaryKeyBytes(row, destination, jobConfig, jobConfig.GetPrimaryKeyBytes())
-		if err != nil {
-			rowsIgnored++
-			continue
-		}
-
-		// calculate shard
-		shardID := shardFn(pk, destination.NumShards)
-		shards[shardID] = append(shards[shardID], row)
-	}
-	return shards, rowsIgnored
+	_ = "STUB: not implemented"
+	return nil, 0
 }
 
-func shardFn(key []byte, numShards uint32) uint32 {
-	return utils.Murmur3Sum32(unsafe.Pointer(&key[0]), len(key), 0) / (math.MaxUint32 / numShards)
-}
+// in this case, there is no sharding in this aresDB cluster
+
+// convert primaryKey to byte array
+
+// calculate shard
+
+func shardFn(key []byte, numShards uint32) uint32 { _ = "STUB: not implemented"; return 0 }
 
 func getPrimaryKeyBytes(row client.Row, destination Destination, jobConfig *rules.JobConfig, keyLength int) ([]byte, error) {
-	primaryKeyValues := make([]memCom.DataValue, len(destination.PrimaryKeys))
-	var err error
-	// create empty key with keyLength capacity
-	key := make([]byte, 0, keyLength)
-	var strBytes []byte
-	i := 0
-	for columnName, columnID := range destination.PrimaryKeys {
-		columnIDInSchema := destination.PrimaryKeysInSchema[columnName]
-		if jobConfig.AresTableConfig.Table.Columns[columnIDInSchema].IsEnumColumn() {
-			// convert the string to bytes if primaryKey value is string
-			str := row[columnID].(string)
-			if strBytes == nil {
-				strBytes = make([]byte, 0, len(str))
-			}
-
-			if !jobConfig.AresTableConfig.Table.Columns[columnIDInSchema].CaseInsensitive {
-				str = strings.ToLower(row[columnID].(string))
-			}
-			strBytes = append(strBytes, []byte(str)...)
-		} else {
-			primaryKeyValues[i], err = memCom.GetDataValue(row[columnID], columnIDInSchema, jobConfig.AresTableConfig.Table.Columns[columnIDInSchema].Type)
-			if err != nil {
-				return key, utils.StackError(err, "Failed to read primary key at row %d, col %d",
-					row, columnID)
-			}
-			i++
-		}
-	}
-
-	if key, err = memCom.AppendPrimaryKeyBytes(key, memCom.NewSliceDataValueIterator(primaryKeyValues)); err != nil {
-		return key, err
-	}
-	if strBytes != nil {
-		key = append(key, strBytes...)
-	}
-	return key, err
+	_ = "STUB: not implemented"
+	return nil, nil
 }
+
+// create empty key with keyLength capacity
+
+// convert the string to bytes if primaryKey value is string

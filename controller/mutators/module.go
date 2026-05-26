@@ -3,7 +3,6 @@ package mutators
 import (
 	"github.com/uber/aresdb/cluster/kvstore"
 	"github.com/uber/aresdb/controller/mutators/common"
-	"github.com/uber/aresdb/controller/mutators/etcd"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 )
@@ -18,7 +17,7 @@ type Result struct {
 	SchemaMutator              common.TableSchemaMutator
 	IngestionAssignmentMutator common.IngestionAssignmentMutator
 	MembershipMutator          common.MembershipMutator
-	PlacementMutator		   common.PlacementMutator
+	PlacementMutator           common.PlacementMutator
 	EnumMutator                common.EnumMutator
 }
 
@@ -31,23 +30,7 @@ type Params struct {
 }
 
 // InitMutators initialize mutators
-func InitMutators(param Params) Result {
-	if param.EtcdClient == nil {
-		param.Logger.Fatal("Non usable clients provided")
-	}
-
-	result := Result{
-		JobMutator: etcd.NewJobMutator(param.EtcdClient.TxnStore, param.Logger),
-		SchemaMutator: etcd.NewTableSchemaMutator(param.EtcdClient.TxnStore, param.Logger),
-		SubscriberMutator: etcd.NewSubscriberMutator(param.EtcdClient),
-		IngestionAssignmentMutator: etcd.NewIngestionAssignmentMutator(param.EtcdClient.TxnStore),
-		NamespaceMutator: etcd.NewNamespaceMutator(param.EtcdClient.TxnStore),
-		MembershipMutator: etcd.NewMembershipMutator(param.EtcdClient),
-		PlacementMutator: etcd.NewPlacementMutator(param.EtcdClient),
-	}
-	result.EnumMutator = etcd.NewEnumMutator(param.EtcdClient.TxnStore, result.SchemaMutator)
-	return result
-}
+func InitMutators(param Params) Result { _ = "STUB: not implemented"; return *new(Result) }
 
 // Module defines business module
 var Module = fx.Provide(InitMutators)

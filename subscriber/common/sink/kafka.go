@@ -15,10 +15,6 @@
 package sink
 
 import (
-	"fmt"
-	"strings"
-	"time"
-
 	"github.com/Shopify/sarama"
 	"github.com/uber-go/tally"
 	"github.com/uber/aresdb/client"
@@ -26,8 +22,6 @@ import (
 	memCom "github.com/uber/aresdb/memstore/common"
 	"github.com/uber/aresdb/subscriber/common/rules"
 	"github.com/uber/aresdb/subscriber/config"
-	"github.com/uber/aresdb/utils"
-	"go.uber.org/zap"
 )
 
 // default schema refresh interval in seconds
@@ -45,142 +39,35 @@ type KafkaPublisher struct {
 
 func NewKafkaPublisher(serviceConfig config.ServiceConfig, jobConfig *rules.JobConfig, cluster string,
 	sinkCfg config.SinkConfig, aresControllerClient controllerCli.ControllerClient) (Sink, error) {
-	if sinkCfg.GetSinkMode() != config.Sink_Kafka {
-		return nil, fmt.Errorf("Failed to NewKafkaPublisher, wrong sinkMode=%d", sinkCfg.GetSinkMode())
-	}
-
-	addresses := strings.Split(sinkCfg.KafkaProducerConfig.Brokers, ",")
-	serviceConfig.Logger.Info("Kafka borkers address", zap.Any("brokers", addresses))
-
-	cfg := sarama.NewConfig()
-	if jobConfig.AresTableConfig.Table.IsFactTable {
-		cfg.Producer.Partitioner = sarama.NewManualPartitioner
-	}
-	cfg.Producer.RequiredAcks = sarama.WaitForAll // Wait for all in-sync replicas to ack the message
-	if sinkCfg.KafkaProducerConfig.RetryMax > 0 {
-		cfg.Producer.Retry.Max = sinkCfg.KafkaProducerConfig.RetryMax
-	}
-	if sinkCfg.KafkaProducerConfig.TimeoutInSec > 0 {
-		cfg.Producer.Timeout = time.Second * time.Duration(sinkCfg.KafkaProducerConfig.TimeoutInSec)
-	}
-	cfg.Producer.Return.Successes = true
-
-	p, err := sarama.NewSyncProducer(addresses, cfg)
-	if err != nil {
-		return nil, utils.StackError(err, "Unable to initialize Kafka producer")
-	}
-
-	// replace httpSchemaFetcher with gateway client
-	// httpSchemaFetcher := NewHttpSchemaFetcher(httpClient, cfg.Address, metricScope)
-	cachedSchemaHandler := client.NewCachedSchemaHandler(
-		serviceConfig.Logger.Sugar(),
-		serviceConfig.Scope.Tagged(map[string]string{
-			"job":         jobConfig.Name,
-			"aresCluster": cluster,
-		}), aresControllerClient)
-
-	// schema refresh is based on job assignment refresh, so disable at here
-	if sinkCfg.KafkaProducerConfig.SchemaRefreshInterval <= 0 {
-		sinkCfg.KafkaProducerConfig.SchemaRefreshInterval = defaultSchemaRefreshInterval
-	}
-	cachedSchemaHandler.Start(sinkCfg.KafkaProducerConfig.SchemaRefreshInterval)
-	if err != nil {
-		return nil, err
-	}
-
-	kp := KafkaPublisher{
-		SyncProducer: p,
-		UpsertBatchBuilder: client.NewUpsertBatchBuilderImpl(
-			serviceConfig.Logger.Sugar(),
-			serviceConfig.Scope.Tagged(map[string]string{
-				"job":         jobConfig.Name,
-				"aresCluster": cluster,
-			}),
-			cachedSchemaHandler),
-		ServiceConfig: serviceConfig,
-		JobConfig:     jobConfig,
-		Scope: serviceConfig.Scope.Tagged(map[string]string{
-			"job":         jobConfig.Name,
-			"aresCluster": cluster,
-		}),
-		ClusterName: cluster,
-	}
-
-	return &kp, nil
+	_ = "STUB: not implemented"
+	return *new(Sink), nil
 }
+
+// Wait for all in-sync replicas to ack the message
+
+// replace httpSchemaFetcher with gateway client
+// httpSchemaFetcher := NewHttpSchemaFetcher(httpClient, cfg.Address, metricScope)
+
+// schema refresh is based on job assignment refresh, so disable at here
 
 // Shutdown will clean up resources that needs to be cleaned up
-func (kp *KafkaPublisher) Shutdown() {
-	kp.SyncProducer.Close()
-	kp.UpsertBatchBuilder = nil
-}
+func (kp *KafkaPublisher) Shutdown() { _ = "STUB: not implemented"; return }
 
 // Save saves a batch of row objects into a destination
 func (kp *KafkaPublisher) Save(destination Destination, rows []client.Row) error {
-	kp.Scope.Gauge("batchSize").Update(float64(len(rows)))
-
-	shards, rowsIgnored := Shard(rows, destination, kp.JobConfig)
-	if rowsIgnored != 0 {
-		kp.Scope.Counter("errors.shard").Inc(int64(rowsIgnored))
-	}
-
-	msgs := make([]*sarama.ProducerMessage, 0, len(shards))
-	if shards == nil {
-		// case1: no sharding --  publish rows to random kafka partition
-		kp.buildKafkaMessage(&msgs, &rowsIgnored, destination.Table, -1, destination.ColumnNames, rows, destination.AresUpdateModes...)
-	} else {
-		// case2: sharding -- publish rows to specified partition
-		for shardID, rowsInShard := range shards {
-			kp.buildKafkaMessage(&msgs, &rowsIgnored, destination.Table, int32(shardID), destination.ColumnNames, rowsInShard, destination.AresUpdateModes...)
-		}
-	}
-
-	saveStart := utils.Now()
-	kp.ServiceConfig.Logger.Debug("saving", zap.Any("rows", rows))
-	err := kp.SyncProducer.SendMessages(msgs)
-	if err != nil {
-		kp.Scope.Counter("errors.insert").Inc(1)
-		return utils.StackError(err, fmt.Sprintf("Failed to publish rows in table %s, columns: %+v",
-			destination.Table, destination.ColumnNames))
-	}
-	numRows := len(rows) - rowsIgnored
-	kp.Scope.Timer("latency.ares.save").Record(utils.Now().Sub(saveStart))
-	kp.Scope.Counter("rowsWritten").Inc(int64(numRows))
-	kp.Scope.Counter("rowsIgnored").Inc(int64(rowsIgnored))
-	kp.Scope.Gauge("upsertBatchSize").Update(float64(numRows))
-
+	_ = "STUB: not implemented"
 	return nil
 }
 
+// case1: no sharding --  publish rows to random kafka partition
+
+// case2: sharding -- publish rows to specified partition
+
 // Cluster returns the DB cluster name
-func (kp *KafkaPublisher) Cluster() string {
-	return kp.ClusterName
-}
+func (kp *KafkaPublisher) Cluster() string { _ = "STUB: not implemented"; return "" }
 
 func (kp *KafkaPublisher) buildKafkaMessage(msgs *[]*sarama.ProducerMessage, rowsIgnored *int, tableName string, shardID int32, columnNames []string, rows []client.Row,
 	updateModes ...memCom.ColumnUpdateMode) {
-	bytes, numRows, err := kp.UpsertBatchBuilder.PrepareUpsertBatch(tableName, columnNames, updateModes, rows)
-	if err != nil {
-		kp.Scope.Counter("errors.upsertBatchBuild").Inc(1)
-		kp.ServiceConfig.Logger.Error("Failed to prepare rows",
-			zap.String("table", tableName),
-			zap.Any("columns", columnNames),
-			zap.Error(err))
-	}
-
-	if len(bytes) > 0 {
-		msg := sarama.ProducerMessage{
-			Topic: fmt.Sprintf("ares-redolog-%s-%s", kp.Cluster(), tableName),
-			Value: sarama.ByteEncoder(bytes),
-		}
-
-		if shardID >= 0 {
-			msg.Partition = shardID
-		}
-
-		*msgs = append(*msgs, &msg)
-	}
-
-	*rowsIgnored = *rowsIgnored + (len(rows) - numRows)
+	_ = "STUB: not implemented"
 	return
 }

@@ -14,13 +14,6 @@
 
 package utils
 
-import (
-	"errors"
-	"fmt"
-	"runtime"
-	"strings"
-)
-
 // APIError represents APIError with error code
 type APIError struct {
 	Code    int    `json:"-"`
@@ -28,13 +21,7 @@ type APIError struct {
 	Cause   error  `json:"cause"`
 }
 
-func (e APIError) Error() string {
-	cause := ""
-	if e.Cause != nil {
-		cause = e.Cause.Error()
-	}
-	return fmt.Sprintf("%s\n%s", e.Message, cause)
-}
+func (e APIError) Error() string { _ = "STUB: not implemented"; return "" }
 
 // StackedError contains multiple lines of error messages as well as the stack trace.
 type StackedError struct {
@@ -42,64 +29,17 @@ type StackedError struct {
 	Stack    []string `json:"stack"`
 }
 
-func (e *StackedError) Error() string {
-	var result string
-	for i := len(e.Messages) - 1; i >= 0; i-- {
-		result += e.Messages[i]
-		result += "\n"
-	}
-	result += strings.Join(e.Stack, "\n")
-	return result
-}
+func (e *StackedError) Error() string { _ = "STUB: not implemented"; return "" }
 
 // StackError adds one more line of message to err.
 // It updates err if it's already a StackedError, otherwise creates a new StackedError
 // with the message from err and the stack trace of current goroutine.
 func StackError(err error, message string, args ...interface{}) *StackedError {
-	if err == nil {
-		stack := make([]byte, 0x10000)
-		runtime.Stack(stack, false)
-		e := &StackedError{
-			[]string{fmt.Sprintf(message, args...)},
-			strings.Split(string(stack), "\n"),
-		}
-		e.Stack = e.Stack[:len(e.Stack)-1]
-		return e
-	}
-
-	e, ok := err.(*StackedError)
-	if !ok {
-		stack := make([]byte, 0x10000)
-		runtime.Stack(stack, false)
-		e = &StackedError{
-			[]string{err.Error()},
-			strings.Split(string(stack), "\n"),
-		}
-		e.Stack = e.Stack[:len(e.Stack)-1]
-	}
-
-	if message != "" {
-		e.Messages = append(e.Messages, fmt.Sprintf(message, args...))
-	}
-	return e
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // RecoverWrap recover all panics inside the passed in func
-func RecoverWrap(call func() error) (err error) {
-	defer func() {
-		if r := recover(); r != nil {
-			// find out exactly what the error was and set err
-			switch x := r.(type) {
-			case string:
-				err = errors.New(x)
-			case error:
-				err = x
-			default:
-				err = errors.New("Unknown panic")
-			}
-		}
-	}()
+func RecoverWrap(call func() error) (err error) { _ = "STUB: not implemented"; return nil }
 
-	err = call()
-	return
-}
+// find out exactly what the error was and set err

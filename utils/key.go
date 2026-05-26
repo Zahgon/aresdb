@@ -1,10 +1,10 @@
-//  Copyright (c) 2017-2018 Uber Technologies, Inc.
+//	Copyright (c) 2017-2018 Uber Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//     http://www.apache.org/licenses/LICENSE-2.0
+//	http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,11 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 package utils
-
-import (
-	"path"
-	"strconv"
-)
 
 const (
 	// AresController sets the name for ares controller
@@ -32,76 +27,52 @@ const (
 // etcd keys
 
 // NamespaceListKey builds key for namespace list
-func NamespaceListKey() string {
-	return path.Join(AresController, "namespace")
-}
+func NamespaceListKey() string { _ = "STUB: not implemented"; return "" }
 
 // NamespaceKey builds key for namespace
-func NamespaceKey(namespace string) string {
-	return path.Join(NamespaceListKey(), namespace)
-}
+func NamespaceKey(namespace string) string { _ = "STUB: not implemented"; return "" }
 
 // SchemaListKey builds key for schema list
-func SchemaListKey(namespace string) string {
-	return path.Join(NamespaceKey(namespace), "schema")
-}
+func SchemaListKey(namespace string) string { _ = "STUB: not implemented"; return "" }
 
 // JobListKey builds key for job list
-func JobListKey(namespace string) string {
-	return path.Join(NamespaceKey(namespace), "job_config")
-}
+func JobListKey(namespace string) string { _ = "STUB: not implemented"; return "" }
 
 // JobAssignmentsListKey builds key for job assignments
-func JobAssignmentsListKey(namespace string) string {
-	return path.Join(NamespaceKey(namespace), "job_assignments")
-}
+func JobAssignmentsListKey(namespace string) string { _ = "STUB: not implemented"; return "" }
 
 // InstanceListKey builds key for job assignments
-func InstanceListKey(namespace string) string {
-	return path.Join(NamespaceKey(namespace), "instances")
-}
+func InstanceListKey(namespace string) string { _ = "STUB: not implemented"; return "" }
 
 // SchemaKey builds key for schema
-func SchemaKey(namespace, name string) string {
-	return path.Join(SchemaListKey(namespace), name)
-}
+func SchemaKey(namespace, name string) string { _ = "STUB: not implemented"; return "" }
 
 // JobKey builds key for job config
-func JobKey(namespace, name string) string {
-	return path.Join(JobListKey(namespace), name)
-}
+func JobKey(namespace, name string) string { _ = "STUB: not implemented"; return "" }
 
 // JobAssignmentsKey builds key for job assignments
-func JobAssignmentsKey(namespace, name string) string {
-	return path.Join(JobAssignmentsListKey(namespace), name)
-}
+func JobAssignmentsKey(namespace, name string) string { _ = "STUB: not implemented"; return "" }
 
 // InstanceKey builds key for instance
-func InstanceKey(namespace, name string) string {
-	return path.Join(InstanceListKey(namespace), name)
-}
+func InstanceKey(namespace, name string) string { _ = "STUB: not implemented"; return "" }
 
 // EnumNodeListKey builds the key for enum node list
 func EnumNodeListKey(namespace, table string, incarnation, columnID int) string {
-	return path.Join(NamespaceKey(namespace), "enum_cases", table, strconv.Itoa(incarnation), strconv.Itoa(columnID))
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // EnumNodeKey builds the key for enum node
 func EnumNodeKey(namespace, table string, incarnation int, columnID, nodeID int) string {
-	return path.Join(EnumNodeListKey(namespace, table, incarnation, columnID), strconv.Itoa(nodeID))
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // SubscriberServiceName builds the subscriber service name
-func SubscriberServiceName(namespace string) string {
-	return path.Join(namespace, AresSubscriber)
-}
+func SubscriberServiceName(namespace string) string { _ = "STUB: not implemented"; return "" }
 
 // DataNodeServiceName builds the data node service name
-func DataNodeServiceName(namespace string) string {
-	return path.Join(namespace, AresDataNode)
-}
+func DataNodeServiceName(namespace string) string { _ = "STUB: not implemented"; return "" }
 
 // BrokerServiceName builds the broker service name
-func BrokerServiceName(namespace string) string {
-	return path.Join(namespace, AresDataNode)
-}
+func BrokerServiceName(namespace string) string { _ = "STUB: not implemented"; return "" }

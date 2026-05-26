@@ -148,9 +148,7 @@ type AQLQuery struct {
 	SQLQuery string `json:"sql,omitempty"`
 }
 
-func (d Dimension) IsTimeDimension() bool {
-	return d.TimeBucketizer != "" || d.TimeUnit != ""
-}
+func (d Dimension) IsTimeDimension() bool { _ = "STUB: not implemented"; return false }
 
 // AQLRequest contains multiple of AQLQueries.
 type AQLRequest struct {

@@ -18,48 +18,25 @@ import "unsafe"
 
 // MemAccess access memory location with starting pointer and an offset.
 func MemAccess(p unsafe.Pointer, offset int) unsafe.Pointer {
-	return unsafe.Pointer(uintptr(p) + uintptr(offset))
+	_ = "STUB: not implemented"
+	return *new(unsafe.Pointer)
 }
 
 // MemDist returns the distance between two unsafe pointer.
-func MemDist(p1 unsafe.Pointer, p2 unsafe.Pointer) int64 {
-	return int64(uintptr(p1) - uintptr(p2))
-}
+func MemDist(p1 unsafe.Pointer, p2 unsafe.Pointer) int64 { _ = "STUB: not implemented"; return 0 }
 
 // MemEqual performs byte to byte comparison.
 func MemEqual(a unsafe.Pointer, b unsafe.Pointer, bytes int) bool {
-	for i := 0; i < bytes; i++ {
-		if *(*uint8)(MemAccess(a, i)) != *(*uint8)(MemAccess(b, i)) {
-			return false
-		}
-	}
-	return true
+	_ = "STUB: not implemented"
+	return false
 }
 
 // MemCopy performs memory copy of specified bytes from src to dst
-func MemCopy(dst unsafe.Pointer, src unsafe.Pointer, bytes int) {
-	for i := 0; i < bytes; i++ {
-		*(*uint8)(MemAccess(dst, i)) = *(*uint8)(MemAccess(src, i))
-	}
-}
+func MemCopy(dst unsafe.Pointer, src unsafe.Pointer, bytes int) { _ = "STUB: not implemented"; return }
 
 // MemSwap performs memory copy of specified bytes from src to dst
-func MemSwap(dst unsafe.Pointer, src unsafe.Pointer, bytes int) {
-	for i := 0; i < bytes; i++ {
-		tmp := *(*uint8)(MemAccess(dst, i))
-		*(*uint8)(MemAccess(dst, i)) = *(*uint8)(MemAccess(src, i))
-		*(*uint8)(MemAccess(src, i)) = tmp
-	}
-}
+func MemSwap(dst unsafe.Pointer, src unsafe.Pointer, bytes int) { _ = "STUB: not implemented"; return }
 
 // MemCmp performs memory comparison between two memory location start from offset
 // comparing bytes byte while skip offset byte
-func MemCmp(a, b unsafe.Pointer, offset, bytes int) int {
-	for i := offset; i < bytes; i++ {
-		v := *(*int8)(MemAccess(a, i)) - *(*int8)(MemAccess(b, i))
-		if v != 0 {
-			return int(v)
-		}
-	}
-	return 0
-}
+func MemCmp(a, b unsafe.Pointer, offset, bytes int) int { _ = "STUB: not implemented"; return 0 }

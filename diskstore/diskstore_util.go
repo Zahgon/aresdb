@@ -14,15 +14,6 @@
 
 package diskstore
 
-import (
-	"fmt"
-	"path/filepath"
-	"strconv"
-	"strings"
-
-	"github.com/uber/aresdb/utils"
-)
-
 const data string = "data"
 const redologs string = "redologs"
 const snapshots string = "snapshots"
@@ -36,8 +27,8 @@ const archiveBatches string = "archiving_batches"
 
 // getPathForTableShard is used to get the directory to store a table shard given path prefix, table name and shard id.
 func getPathForTableShard(prefix, table string, shardID int) string {
-	tableShardDirPath := fmt.Sprintf("%s_%d", table, shardID)
-	return filepath.Join(prefix, data, tableShardDirPath)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // Redologs Utils
@@ -50,15 +41,14 @@ func getPathForTableShard(prefix, table string, shardID int) string {
 
 // GetPathForTableRedologs is used to get the directory to store a table redolog given path prefix, table name and shard id.
 func GetPathForTableRedologs(prefix, table string, shardID int) string {
-	tableShardPath := getPathForTableShard(prefix, table, shardID)
-	return filepath.Join(tableShardPath, redologs)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetPathForRedologFile is used to get on disk file path given path prefix, table name, shard id and creationTime.
 func GetPathForRedologFile(prefix, table string, shardID int, creationTime int64) string {
-	redologDirPath := GetPathForTableRedologs(prefix, table, shardID)
-	redologName := fmt.Sprintf("%d.redolog", creationTime)
-	return filepath.Join(redologDirPath, redologName)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // Snapshot Utils
@@ -71,32 +61,31 @@ func GetPathForRedologFile(prefix, table string, shardID int, creationTime int64
 
 // GetPathForTableSnapshotDir is used to get the dir path of a snapshot given path prefix, table name and shard id.
 func GetPathForTableSnapshotDir(prefix, table string, shardID int) string {
-	tableShardPath := getPathForTableShard(prefix, table, shardID)
-	return filepath.Join(tableShardPath, snapshots)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetPathForTableSnapshotDirPath is used to get the dir path of a snapshot given path prefix, table name, shard id
 // redo log file and offset.
 func GetPathForTableSnapshotDirPath(prefix, table string, shardID int, redoLogFile int64, offset uint32) string {
-	tableSnapshotDirPath := GetPathForTableSnapshotDir(prefix, table, shardID)
-	snapshotName := fmt.Sprintf("%d_%d", redoLogFile, offset)
-	return filepath.Join(tableSnapshotDirPath, snapshotName)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetPathForTableSnapshotBatchDir is used to get the dir path of a snapshot batch given path prefix, table name,
 // shard id, redo log file, offset and batchID.
 func GetPathForTableSnapshotBatchDir(prefix, table string, shardID int, redoLogFile int64, offset uint32,
 	batchID int) string {
-	snapshotDirPath := GetPathForTableSnapshotDirPath(prefix, table, shardID, redoLogFile, offset)
-	return filepath.Join(snapshotDirPath, strconv.Itoa(batchID))
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetPathForTableSnapshotColumnFilePath is used to get the file path of a snapshot column given path prefix,
 // table name, shard id, redo log file, offset, batchID and columnID
 func GetPathForTableSnapshotColumnFilePath(prefix, table string, shardID int, redoLogFile int64, offset uint32,
 	batchID, columnID int) string {
-	snapshotBatchDirPath := GetPathForTableSnapshotBatchDir(prefix, table, shardID, redoLogFile, offset, batchID)
-	return filepath.Join(snapshotBatchDirPath, fmt.Sprintf("%d.data", columnID))
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // Archive batches Utils
@@ -113,56 +102,26 @@ func GetPathForTableSnapshotColumnFilePath(prefix, table string, shardID int, re
 
 // GetPathForTableArchiveBatchRootDir is used to get root directory path for archive batch given path prefix, table name and shard id.
 func GetPathForTableArchiveBatchRootDir(prefix, table string, shardID int) string {
-	tableShardPath := getPathForTableShard(prefix, table, shardID)
-	return filepath.Join(tableShardPath, archiveBatches)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetPathForTableArchiveBatchDir is used to get the dir path of an archive batch version given path prefix, table name, shard id, batch id and batch version.
 func GetPathForTableArchiveBatchDir(prefix, table string, shardID int, batchID string, batchVersion uint32, seqNum uint32) string {
-	tableShardPath := getPathForTableShard(prefix, table, shardID)
-	var batchIDAndVersionPath string
-	// largest uint32 indicates there's no seqNum
-	if seqNum != 0 {
-		batchIDAndVersionPath = fmt.Sprintf("%s_%d-%d", batchID, batchVersion, seqNum)
-	} else {
-		batchIDAndVersionPath = fmt.Sprintf("%s_%d", batchID, batchVersion)
-	}
-	return filepath.Join(tableShardPath, archiveBatches, batchIDAndVersionPath)
+	_ = "STUB: not implemented"
+	return ""
 }
+
+// largest uint32 indicates there's no seqNum
 
 // GetPathForTableArchiveBatchColumnFile is used to get the file path of a column inside an archive batch version given path prefix, table name, shard id, batch id, batch version and column id.
 func GetPathForTableArchiveBatchColumnFile(prefix, table string, shardID int, batchID string, batchVersion uint32, seqNum uint32, columnID int) string {
-	tableArchiveBatchDir := GetPathForTableArchiveBatchDir(prefix, table, shardID, batchID, batchVersion, seqNum)
-	columnFileName := fmt.Sprintf("%d.data", columnID)
-	return filepath.Join(tableArchiveBatchDir, columnFileName)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // ParseBatchIDAndVersionName will parse a batchIDAndVersion into batchID and batchVersion+seqNum.
 func ParseBatchIDAndVersionName(batchIDAndVersion string) (string, uint32, uint32, error) {
-	var batchID string
-	var batchVersion uint64
-	var seqNum uint64
-	var err error
-
-	splits := strings.Split(batchIDAndVersion, "_")
-	if len(splits) == 2 {
-		batchID = splits[0]
-
-		if !strings.Contains(splits[1], "-") {
-			batchVersion, err = strconv.ParseUint(splits[1], 10, 64)
-		} else {
-			versionSeqStr := strings.Split(splits[1], "-")
-			seqNum, err = strconv.ParseUint(versionSeqStr[1], 10, 64)
-			if err != nil {
-				return "", 0, 0, utils.StackError(err, "Failed to parse batch seqNum: %s", batchIDAndVersion)
-			}
-			batchVersion, err = strconv.ParseUint(versionSeqStr[0], 10, 64)
-		}
-		if err != nil {
-			return "", 0, 0, utils.StackError(nil, "Failed to parsed batch version: %s", batchIDAndVersion)
-		}
-
-		return batchID, uint32(batchVersion), uint32(seqNum), nil
-	}
-	return "", 0, 0, utils.StackError(nil, "Failed to parsed batch ID and version: %s", batchIDAndVersion)
+	_ = "STUB: not implemented"
+	return "", 0, 0, nil
 }

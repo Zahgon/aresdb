@@ -21,9 +21,6 @@ import (
 	"github.com/uber/aresdb/memstore/common"
 	"github.com/uber/aresdb/memstore/vectors"
 	"github.com/uber/aresdb/utils"
-	"gopkg.in/yaml.v2"
-	"path/filepath"
-	"strings"
 
 	"sync"
 )
@@ -68,234 +65,93 @@ type rawUpsertBatch struct {
 
 // ReadArchiveBatch read batch and do pruning for every columns.
 func (t TestFactoryBase) ReadArchiveBatch(name string) (*common.Batch, error) {
-	batch, err := t.ReadBatch(name, false)
-	if err != nil {
-		return nil, err
-	}
-	for i, column := range batch.Columns {
-		if column != nil {
-			archiveColumn := t.ToArchiveVectorParty(column, batch)
-			batch.Columns[i] = archiveColumn
-
-		}
-	}
-	batch.RWMutex = &sync.RWMutex{}
-	return batch, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // ReadLiveBatch read batch and skip pruning for every columns.
 func (t TestFactoryBase) ReadLiveBatch(name string) (*common.Batch, error) {
-	batch, err := t.ReadBatch(name, true)
-	if err != nil {
-		return nil, err
-	}
-	for i, column := range batch.Columns {
-		if column != nil {
-			liveColumn := t.ToLiveVectorParty(column)
-			batch.Columns[i] = liveColumn
-		}
-	}
-	batch.RWMutex = &sync.RWMutex{}
-	return batch, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // ReadBatch returns a batch given batch name. Batch will be searched
 // under testing/data/batches folder. Prune tells whether need to prune
 // the columns after column contruction.
 func (t TestFactoryBase) ReadBatch(name string, forLiveVP bool) (*common.Batch, error) {
-	path := filepath.Join(t.RootPath, "batches", name)
-	return t.readBatchFromFile(path, forLiveVP)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (t TestFactoryBase) readBatchFromFile(path string, forLiveVP bool) (*common.Batch, error) {
-	fileContent, err := t.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
-
-	rb := &rawBatch{}
-	if err = yaml.Unmarshal(fileContent, &rb); err != nil {
-		return nil, err
-	}
-	return rb.toBatch(t, forLiveVP)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (rb *rawBatch) toBatch(t TestFactoryBase, forLiveVP bool) (*common.Batch, error) {
-	batch := &common.Batch{
-		Columns: make([]common.VectorParty, len(rb.Columns)),
-	}
-	for i, name := range rb.Columns {
-		if len(name) == 0 {
-			continue
-		}
-		column, err := t.ReadVectorParty(name, forLiveVP)
-		if err != nil {
-			return nil, utils.StackError(err,
-				"Failed to read vector party %s",
-				name,
-			)
-		}
-		batch.Columns[i] = column
-	}
-	return batch, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // ReadArchiveVectorParty loads a vector party and prune it after construction.
 func (t TestFactoryBase) ReadArchiveVectorParty(name string, locker sync.Locker) (common.ArchiveVectorParty, error) {
-	vp, err := t.ReadVectorParty(name, false)
-	if err != nil {
-		return nil, err
-	}
-	return t.ToArchiveVectorParty(vp, locker), nil
+	_ = "STUB: not implemented"
+	return *new(common.ArchiveVectorParty), nil
 }
 
 // ReadLiveVectorParty loads a vector party and skip pruning.
 func (t TestFactoryBase) ReadLiveVectorParty(name string) (common.LiveVectorParty, error) {
-	vp, err := t.ReadVectorParty(name, true)
-	if err != nil {
-		return nil, err
-	}
-	return t.ToLiveVectorParty(vp), nil
+	_ = "STUB: not implemented"
+	return *new(common.LiveVectorParty), nil
 }
 
 // ReadVectorParty returns a vector party given vector party name. Vector party
 // will be searched under testing/data/vps folder. Prune tells whether to prune this
 // column.
 func (t TestFactoryBase) ReadVectorParty(name string, forLiveVP bool) (common.VectorParty, error) {
-	path := filepath.Join(t.RootPath, "vps", name)
-	return t.readVectorPartyFromFile(path, forLiveVP)
+	_ = "STUB: not implemented"
+	return *new(common.VectorParty), nil
 }
 
 func (t TestFactoryBase) readVectorPartyFromFile(path string, forLiveVP bool) (common.VectorParty, error) {
-	fileContent, err := t.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
-
-	rvp := &RawVectorParty{}
-	if err = yaml.Unmarshal(fileContent, &rvp); err != nil {
-		return nil, err
-	}
-	return t.ToVectorParty(rvp, forLiveVP)
+	_ = "STUB: not implemented"
+	return *new(common.VectorParty), nil
 }
 
 // ReadVector returns a vector given vector name. Vector will
 // be searched under testing/data/vectors folder.
 func (t TestFactoryBase) ReadVector(name string) (*vectors.Vector, error) {
-	path := filepath.Join(t.RootPath, "vectors", name)
-	return t.readVectorFromFile(path)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func setDataValue(v *vectors.Vector, idx int, val common.DataValue) {
-	if val.Valid {
-		if v.DataType == common.Bool {
-			v.SetBool(idx, val.BoolVal)
-		} else {
-			v.SetValue(idx, val.OtherVal)
-		}
-	}
+	_ = "STUB: not implemented"
+	return
 }
 
 func (rv *rawVector) toVector() (*vectors.Vector, error) {
-	dataType := common.DataTypeFromString(rv.DataType)
-	if dataType == common.Unknown {
-		return nil, utils.StackError(nil,
-			"Unknown DataType when reading vector from file",
-		)
-	}
-
-	if len(rv.Values) != rv.Length {
-		return nil, utils.StackError(nil,
-			"Values length %d is not as expected: %d",
-			len(rv.Values),
-			rv.Length,
-		)
-	}
-
-	v := vectors.NewVector(dataType, rv.Length)
-
-	for i, row := range rv.Values {
-		val, err := common.ValueFromString(row, dataType)
-		if err != nil {
-			return nil, utils.StackError(err,
-				"Unable to parse value from string %s for data type %s",
-				row, rv.DataType)
-		}
-		setDataValue(v, i, val)
-	}
-	return v, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (t TestFactoryBase) readVectorFromFile(path string) (*vectors.Vector, error) {
-	fileContent, err := t.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
-
-	rv := &rawVector{}
-	if err = yaml.Unmarshal(fileContent, &rv); err != nil {
-		return nil, err
-	}
-
-	return rv.toVector()
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // ReadUpsertBatch returns a pointer to UpsertBatch given the upsert batch name.
 func (t TestFactoryBase) ReadUpsertBatch(name string) (*common.UpsertBatch, error) {
-	path := filepath.Join(t.RootPath, "upsert-batches", name)
-	return t.readUpsertBatchFromFile(path)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (ru *rawUpsertBatch) toUpsertBatch() (*common.UpsertBatch, error) {
-	builder := common.NewUpsertBatchBuilder()
-	var dataTypes []common.DataType
-	for _, column := range ru.Columns {
-		dataType := common.DataTypeFromString(column.DataType)
-		if dataType == common.Unknown {
-			return nil, utils.StackError(nil,
-				"Unknown DataType when reading vector from file",
-			)
-		}
-		dataTypes = append(dataTypes, dataType)
-		if err := builder.AddColumn(column.ColumnID, dataType); err != nil {
-			return nil, err
-		}
-	}
-
-	for row, rowStr := range ru.Rows {
-		builder.AddRow()
-		rawValues := strings.Split(rowStr, ";")
-		if len(rawValues) != len(ru.Columns) {
-			return nil, utils.StackError(nil,
-				"Length of rawValues %d on row %d is different from number of columns %d", len(rawValues), row, len(ru.Columns))
-		}
-
-		for col, rawValue := range rawValues {
-			value, err := common.ValueFromString(rawValue, dataTypes[col])
-			if err != nil {
-				return nil, err
-			}
-			builder.SetValue(row, col, value.ConvertToHumanReadable(dataTypes[col]))
-		}
-	}
-
-	bytes, err := builder.ToByteArray()
-	if err != nil {
-		return nil, err
-	}
-	return common.NewUpsertBatch(bytes)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (t TestFactoryBase) readUpsertBatchFromFile(path string) (*common.UpsertBatch, error) {
-	fileContent, err := t.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
-
-	ru := &rawUpsertBatch{}
-	if err = yaml.Unmarshal(fileContent, &ru); err != nil {
-		return nil, err
-	}
-
-	return ru.toUpsertBatch()
+	_ = "STUB: not implemented"
+	return nil, nil
 }

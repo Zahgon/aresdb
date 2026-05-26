@@ -14,16 +14,11 @@
 
 package utils
 
-import "fmt"
-
 // ares redolog kafka topic prefix
 const aresRedologKafkaTopicPrefix = "ares-redolog"
 
 // GetTopicFromTable get the topic name for namespace and table name
 func GetTopicFromTable(namespace, table, suffix string) string {
-	if suffix == "" {
-		return fmt.Sprintf("%s-%s-%s", aresRedologKafkaTopicPrefix, namespace, table)
-	} else {
-		return fmt.Sprintf("%s-%s-%s-%s", aresRedologKafkaTopicPrefix, namespace, table, suffix)
-	}
+	_ = "STUB: not implemented"
+	return ""
 }

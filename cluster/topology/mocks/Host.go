@@ -9,43 +9,10 @@ type Host struct {
 }
 
 // Address provides a mock function with given fields:
-func (_m *Host) Address() string {
-	ret := _m.Called()
-
-	var r0 string
-	if rf, ok := ret.Get(0).(func() string); ok {
-		r0 = rf()
-	} else {
-		r0 = ret.Get(0).(string)
-	}
-
-	return r0
-}
+func (_m *Host) Address() string { _ = "STUB: not implemented"; return "" }
 
 // ID provides a mock function with given fields:
-func (_m *Host) ID() string {
-	ret := _m.Called()
-
-	var r0 string
-	if rf, ok := ret.Get(0).(func() string); ok {
-		r0 = rf()
-	} else {
-		r0 = ret.Get(0).(string)
-	}
-
-	return r0
-}
+func (_m *Host) ID() string { _ = "STUB: not implemented"; return "" }
 
 // String provides a mock function with given fields:
-func (_m *Host) String() string {
-	ret := _m.Called()
-
-	var r0 string
-	if rf, ok := ret.Get(0).(func() string); ok {
-		r0 = rf()
-	} else {
-		r0 = ret.Get(0).(string)
-	}
-
-	return r0
-}
+func (_m *Host) String() string { _ = "STUB: not implemented"; return "" }

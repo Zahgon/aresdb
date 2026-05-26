@@ -17,13 +17,17 @@ package utils
 // Int64Array is the holder object for []int64 and implementations for Sort interfaces.
 type Int64Array []int64
 
-func (s Int64Array) Len() int           { return len(s) }
-func (s Int64Array) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
-func (s Int64Array) Less(i, j int) bool { return s[i] < s[j] }
+func (s Int64Array) Len() int      { _ = "STUB: not implemented"; return 0 }
+func (s Int64Array) Swap(i, j int) { _ = "STUB: not implemented"; return }
+func (s Int64Array) Less(i, j int) bool {
+	_ = "STUB: not implemented"
 
-// Uint32Array is the holder object for []uint32 and implementations for Sort interfaces.
+	// Uint32Array is the holder object for []uint32 and implementations for Sort interfaces.
+	return false
+}
+
 type Uint32Array []uint32
 
-func (s Uint32Array) Len() int           { return len(s) }
-func (s Uint32Array) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
-func (s Uint32Array) Less(i, j int) bool { return s[i] < s[j] }
+func (s Uint32Array) Len() int           { _ = "STUB: not implemented"; return 0 }
+func (s Uint32Array) Swap(i, j int)      { _ = "STUB: not implemented"; return }
+func (s Uint32Array) Less(i, j int) bool { _ = "STUB: not implemented"; return false }

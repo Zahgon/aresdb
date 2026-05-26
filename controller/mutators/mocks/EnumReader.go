@@ -11,23 +11,6 @@ type EnumReader struct {
 
 // GetEnumCases provides a mock function with given fields: namespace, table, column
 func (_m *EnumReader) GetEnumCases(namespace string, table string, column string) ([]string, error) {
-	ret := _m.Called(namespace, table, column)
-
-	var r0 []string
-	if rf, ok := ret.Get(0).(func(string, string, string) []string); ok {
-		r0 = rf(namespace, table, column)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).([]string)
-		}
-	}
-
-	var r1 error
-	if rf, ok := ret.Get(1).(func(string, string, string) error); ok {
-		r1 = rf(namespace, table, column)
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
+	_ = "STUB: not implemented"
+	return nil, nil
 }

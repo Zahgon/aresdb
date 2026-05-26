@@ -25,25 +25,12 @@ type PanicHandler struct {
 
 // WithPanicHandling will apply panic handler to regular http handler.
 func WithPanicHandling(handler http.Handler) PanicHandler {
-	return PanicHandler{
-		handler: handler,
-	}
+	_ = "STUB: not implemented"
+	return *new(PanicHandler)
 }
 
 // ServeHTTP serves http request for PanicHandler.
 func (handler PanicHandler) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
-	defer func() {
-		if r := recover(); r != nil {
-			rw.WriteHeader(http.StatusInternalServerError)
-			switch e := r.(type) {
-			case error:
-				rw.Write([]byte(e.Error()))
-			case string:
-				rw.Write([]byte(e))
-			default:
-				rw.Write([]byte("Unknown Panic"))
-			}
-		}
-	}()
-	handler.handler.ServeHTTP(rw, r)
+	_ = "STUB: not implemented"
+	return
 }

@@ -15,8 +15,6 @@
 package config
 
 import (
-	"errors"
-	"fmt"
 	"sync"
 	"time"
 
@@ -189,77 +187,14 @@ type ZooKeeperConfig struct {
 
 // NewServiceConfig constructs ServiceConfig.
 func NewServiceConfig(p Params) (Result, error) {
-	raw := p.Config.Get(cfgfx.Root)
-	serviceConfig := ServiceConfig{}
-
-	if err := raw.Populate(&serviceConfig); err != nil {
-		return Result{
-			ServiceConfig: serviceConfig,
-		}, err
-	}
-
-	raw = p.Config.Get("etcd.etcdClusters")
-	if err := raw.Populate(&serviceConfig.EtcdClustersConfig); err != nil {
-		return Result{
-			ServiceConfig: serviceConfig,
-		}, err
-	}
-
-	// etcd key format: prefix/${env}/namespace/service/instanceId
-	etcdConfig := &serviceConfig.EtcdConfig
-	etcdConfig.Mutex = &sync.Mutex{}
-	etcdConfig.EtcdConfig.Env = fmt.Sprintf("%s/%s", etcdConfig.EtcdConfig.Env, ActiveJobNameSpace)
-
-	serviceConfig.Environment = p.Environment
-	serviceConfig.Logger = p.Logger
-	serviceConfig.Scope = p.Scope.Tagged(map[string]string{
-		"deployment":  p.Environment.Deployment,
-		"dc":          p.Environment.Zone,
-		"application": p.Environment.ApplicationID,
-	})
-	serviceConfig.Config = p.Config
-	serviceConfig.ActiveAresClusters = make(map[string]SinkConfig)
-
-	// set serviceConfig.ActiveAresClusters
-	if (serviceConfig.AresNSConfig.AresClusters == nil || serviceConfig.AresNSConfig.AresNameSpaces == nil) &&
-		!serviceConfig.ControllerConfig.Enable {
-		return Result{
-			ServiceConfig: serviceConfig,
-		}, errors.New("Ares namespaces and clusters must be configured")
-	}
-
-	activeAresClusters := serviceConfig.AresNSConfig.AresNameSpaces[ActiveAresNameSpace]
-	if activeAresClusters != nil {
-		for _, cluster := range activeAresClusters {
-			serviceConfig.ActiveAresClusters[cluster] = serviceConfig.AresNSConfig.AresClusters[cluster]
-		}
-		if len(serviceConfig.ActiveAresClusters) == 0 {
-			return Result{
-				ServiceConfig: serviceConfig,
-			}, fmt.Errorf("No ares cluster configure is found for namespace %s", ActiveAresNameSpace)
-		}
-	} else if !serviceConfig.ControllerConfig.Enable {
-		return Result{
-			ServiceConfig: serviceConfig,
-		}, fmt.Errorf("No ares clusters are defined for namespace %s", ActiveAresNameSpace)
-	}
-
-	// set serviceConfig.ActiveJobs
-	if serviceConfig.JobNSConfig.Jobs == nil && !serviceConfig.ControllerConfig.Enable {
-		return Result{
-			ServiceConfig: serviceConfig,
-		}, errors.New("Job namespace config not found")
-	}
-	serviceConfig.ActiveJobs = serviceConfig.JobNSConfig.Jobs[ActiveJobNameSpace]
-
-	return Result{
-		ServiceConfig: serviceConfig,
-	}, nil
+	_ = "STUB: not implemented"
+	return *new(Result), nil
 }
 
-func (s SinkConfig) GetSinkMode() SinkMode {
-	if val, ok := sinkModeStr[s.SinkModeStr]; ok {
-		return val
-	}
-	return Sink_Undefined
-}
+// etcd key format: prefix/${env}/namespace/service/instanceId
+
+// set serviceConfig.ActiveAresClusters
+
+// set serviceConfig.ActiveJobs
+
+func (s SinkConfig) GetSinkMode() SinkMode { _ = "STUB: not implemented"; return *new(SinkMode) }

@@ -6,9 +6,10 @@ package rpc
 import (
 	context "context"
 	fmt "fmt"
+	math "math"
+
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
-	math "math"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -42,12 +43,11 @@ var HealthCheckResponse_ServingStatus_value = map[string]int32{
 	"NOT_SERVING": 2,
 }
 
-func (x HealthCheckResponse_ServingStatus) String() string {
-	return proto.EnumName(HealthCheckResponse_ServingStatus_name, int32(x))
-}
+func (x HealthCheckResponse_ServingStatus) String() string { _ = "STUB: not implemented"; return "" }
 
 func (HealthCheckResponse_ServingStatus) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_7b771d46e8b2ce71, []int{17, 0}
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 type KafkaOffset struct {
@@ -58,44 +58,29 @@ type KafkaOffset struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *KafkaOffset) Reset()         { *m = KafkaOffset{} }
-func (m *KafkaOffset) String() string { return proto.CompactTextString(m) }
-func (*KafkaOffset) ProtoMessage()    {}
-func (*KafkaOffset) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7b771d46e8b2ce71, []int{0}
+func (m *KafkaOffset) Reset()                    { _ = "STUB: not implemented"; return }
+func (m *KafkaOffset) String() string            { _ = "STUB: not implemented"; return "" }
+func (*KafkaOffset) ProtoMessage()               { _ = "STUB: not implemented"; return }
+func (*KafkaOffset) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
+
+func (m *KafkaOffset) XXX_Unmarshal(b []byte) error { _ = "STUB: not implemented"; return nil }
+
+func (m *KafkaOffset) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (m *KafkaOffset) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_KafkaOffset.Unmarshal(m, b)
-}
-func (m *KafkaOffset) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_KafkaOffset.Marshal(b, m, deterministic)
-}
-func (m *KafkaOffset) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_KafkaOffset.Merge(m, src)
-}
-func (m *KafkaOffset) XXX_Size() int {
-	return xxx_messageInfo_KafkaOffset.Size(m)
-}
-func (m *KafkaOffset) XXX_DiscardUnknown() {
-	xxx_messageInfo_KafkaOffset.DiscardUnknown(m)
-}
+func (m *KafkaOffset) XXX_Merge(src proto.Message) { _ = "STUB: not implemented"; return }
+
+func (m *KafkaOffset) XXX_Size() int { _ = "STUB: not implemented"; return 0 }
+
+func (m *KafkaOffset) XXX_DiscardUnknown() { _ = "STUB: not implemented"; return }
 
 var xxx_messageInfo_KafkaOffset proto.InternalMessageInfo
 
-func (m *KafkaOffset) GetCheckPointOffset() int64 {
-	if m != nil {
-		return m.CheckPointOffset
-	}
-	return 0
-}
+func (m *KafkaOffset) GetCheckPointOffset() int64 { _ = "STUB: not implemented"; return 0 }
 
-func (m *KafkaOffset) GetCommitOffset() int64 {
-	if m != nil {
-		return m.CommitOffset
-	}
-	return 0
-}
+func (m *KafkaOffset) GetCommitOffset() int64 { _ = "STUB: not implemented"; return 0 }
 
 type BackfillCheckpoint struct {
 	RedoFileID           int64    `protobuf:"varint,1,opt,name=redoFileID,proto3" json:"redoFileID,omitempty"`
@@ -105,44 +90,29 @@ type BackfillCheckpoint struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *BackfillCheckpoint) Reset()         { *m = BackfillCheckpoint{} }
-func (m *BackfillCheckpoint) String() string { return proto.CompactTextString(m) }
-func (*BackfillCheckpoint) ProtoMessage()    {}
-func (*BackfillCheckpoint) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7b771d46e8b2ce71, []int{1}
+func (m *BackfillCheckpoint) Reset()                    { _ = "STUB: not implemented"; return }
+func (m *BackfillCheckpoint) String() string            { _ = "STUB: not implemented"; return "" }
+func (*BackfillCheckpoint) ProtoMessage()               { _ = "STUB: not implemented"; return }
+func (*BackfillCheckpoint) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
+
+func (m *BackfillCheckpoint) XXX_Unmarshal(b []byte) error { _ = "STUB: not implemented"; return nil }
+
+func (m *BackfillCheckpoint) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (m *BackfillCheckpoint) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_BackfillCheckpoint.Unmarshal(m, b)
-}
-func (m *BackfillCheckpoint) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_BackfillCheckpoint.Marshal(b, m, deterministic)
-}
-func (m *BackfillCheckpoint) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_BackfillCheckpoint.Merge(m, src)
-}
-func (m *BackfillCheckpoint) XXX_Size() int {
-	return xxx_messageInfo_BackfillCheckpoint.Size(m)
-}
-func (m *BackfillCheckpoint) XXX_DiscardUnknown() {
-	xxx_messageInfo_BackfillCheckpoint.DiscardUnknown(m)
-}
+func (m *BackfillCheckpoint) XXX_Merge(src proto.Message) { _ = "STUB: not implemented"; return }
+
+func (m *BackfillCheckpoint) XXX_Size() int { _ = "STUB: not implemented"; return 0 }
+
+func (m *BackfillCheckpoint) XXX_DiscardUnknown() { _ = "STUB: not implemented"; return }
 
 var xxx_messageInfo_BackfillCheckpoint proto.InternalMessageInfo
 
-func (m *BackfillCheckpoint) GetRedoFileID() int64 {
-	if m != nil {
-		return m.RedoFileID
-	}
-	return 0
-}
+func (m *BackfillCheckpoint) GetRedoFileID() int64 { _ = "STUB: not implemented"; return 0 }
 
-func (m *BackfillCheckpoint) GetRedoFileOffset() uint32 {
-	if m != nil {
-		return m.RedoFileOffset
-	}
-	return 0
-}
+func (m *BackfillCheckpoint) GetRedoFileOffset() uint32 { _ = "STUB: not implemented"; return 0 }
 
 type ArchiveVersion struct {
 	ArchiveVersion       uint32   `protobuf:"varint,1,opt,name=archiveVersion,proto3" json:"archiveVersion,omitempty"`
@@ -152,44 +122,29 @@ type ArchiveVersion struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ArchiveVersion) Reset()         { *m = ArchiveVersion{} }
-func (m *ArchiveVersion) String() string { return proto.CompactTextString(m) }
-func (*ArchiveVersion) ProtoMessage()    {}
-func (*ArchiveVersion) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7b771d46e8b2ce71, []int{2}
+func (m *ArchiveVersion) Reset()                    { _ = "STUB: not implemented"; return }
+func (m *ArchiveVersion) String() string            { _ = "STUB: not implemented"; return "" }
+func (*ArchiveVersion) ProtoMessage()               { _ = "STUB: not implemented"; return }
+func (*ArchiveVersion) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
+
+func (m *ArchiveVersion) XXX_Unmarshal(b []byte) error { _ = "STUB: not implemented"; return nil }
+
+func (m *ArchiveVersion) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (m *ArchiveVersion) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ArchiveVersion.Unmarshal(m, b)
-}
-func (m *ArchiveVersion) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ArchiveVersion.Marshal(b, m, deterministic)
-}
-func (m *ArchiveVersion) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ArchiveVersion.Merge(m, src)
-}
-func (m *ArchiveVersion) XXX_Size() int {
-	return xxx_messageInfo_ArchiveVersion.Size(m)
-}
-func (m *ArchiveVersion) XXX_DiscardUnknown() {
-	xxx_messageInfo_ArchiveVersion.DiscardUnknown(m)
-}
+func (m *ArchiveVersion) XXX_Merge(src proto.Message) { _ = "STUB: not implemented"; return }
+
+func (m *ArchiveVersion) XXX_Size() int { _ = "STUB: not implemented"; return 0 }
+
+func (m *ArchiveVersion) XXX_DiscardUnknown() { _ = "STUB: not implemented"; return }
 
 var xxx_messageInfo_ArchiveVersion proto.InternalMessageInfo
 
-func (m *ArchiveVersion) GetArchiveVersion() uint32 {
-	if m != nil {
-		return m.ArchiveVersion
-	}
-	return 0
-}
+func (m *ArchiveVersion) GetArchiveVersion() uint32 { _ = "STUB: not implemented"; return 0 }
 
-func (m *ArchiveVersion) GetBackfillSeq() uint32 {
-	if m != nil {
-		return m.BackfillSeq
-	}
-	return 0
-}
+func (m *ArchiveVersion) GetBackfillSeq() uint32 { _ = "STUB: not implemented"; return 0 }
 
 type SnapshotVersion struct {
 	RedoFileID           int64    `protobuf:"varint,1,opt,name=redoFileID,proto3" json:"redoFileID,omitempty"`
@@ -199,44 +154,29 @@ type SnapshotVersion struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *SnapshotVersion) Reset()         { *m = SnapshotVersion{} }
-func (m *SnapshotVersion) String() string { return proto.CompactTextString(m) }
-func (*SnapshotVersion) ProtoMessage()    {}
-func (*SnapshotVersion) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7b771d46e8b2ce71, []int{3}
+func (m *SnapshotVersion) Reset()                    { _ = "STUB: not implemented"; return }
+func (m *SnapshotVersion) String() string            { _ = "STUB: not implemented"; return "" }
+func (*SnapshotVersion) ProtoMessage()               { _ = "STUB: not implemented"; return }
+func (*SnapshotVersion) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
+
+func (m *SnapshotVersion) XXX_Unmarshal(b []byte) error { _ = "STUB: not implemented"; return nil }
+
+func (m *SnapshotVersion) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (m *SnapshotVersion) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_SnapshotVersion.Unmarshal(m, b)
-}
-func (m *SnapshotVersion) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_SnapshotVersion.Marshal(b, m, deterministic)
-}
-func (m *SnapshotVersion) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SnapshotVersion.Merge(m, src)
-}
-func (m *SnapshotVersion) XXX_Size() int {
-	return xxx_messageInfo_SnapshotVersion.Size(m)
-}
-func (m *SnapshotVersion) XXX_DiscardUnknown() {
-	xxx_messageInfo_SnapshotVersion.DiscardUnknown(m)
-}
+func (m *SnapshotVersion) XXX_Merge(src proto.Message) { _ = "STUB: not implemented"; return }
+
+func (m *SnapshotVersion) XXX_Size() int { _ = "STUB: not implemented"; return 0 }
+
+func (m *SnapshotVersion) XXX_DiscardUnknown() { _ = "STUB: not implemented"; return }
 
 var xxx_messageInfo_SnapshotVersion proto.InternalMessageInfo
 
-func (m *SnapshotVersion) GetRedoFileID() int64 {
-	if m != nil {
-		return m.RedoFileID
-	}
-	return 0
-}
+func (m *SnapshotVersion) GetRedoFileID() int64 { _ = "STUB: not implemented"; return 0 }
 
-func (m *SnapshotVersion) GetRedoFileOffset() uint32 {
-	if m != nil {
-		return m.RedoFileOffset
-	}
-	return 0
-}
+func (m *SnapshotVersion) GetRedoFileOffset() uint32 { _ = "STUB: not implemented"; return 0 }
 
 type VectorPartyMetaData struct {
 	ColumnID             uint32   `protobuf:"varint,1,opt,name=columnID,proto3" json:"columnID,omitempty"`
@@ -245,37 +185,30 @@ type VectorPartyMetaData struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *VectorPartyMetaData) Reset()         { *m = VectorPartyMetaData{} }
-func (m *VectorPartyMetaData) String() string { return proto.CompactTextString(m) }
-func (*VectorPartyMetaData) ProtoMessage()    {}
+func (m *VectorPartyMetaData) Reset()         { _ = "STUB: not implemented"; return }
+func (m *VectorPartyMetaData) String() string { _ = "STUB: not implemented"; return "" }
+func (*VectorPartyMetaData) ProtoMessage()    { _ = "STUB: not implemented"; return }
 func (*VectorPartyMetaData) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7b771d46e8b2ce71, []int{4}
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (m *VectorPartyMetaData) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_VectorPartyMetaData.Unmarshal(m, b)
-}
+func (m *VectorPartyMetaData) XXX_Unmarshal(b []byte) error { _ = "STUB: not implemented"; return nil }
+
 func (m *VectorPartyMetaData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_VectorPartyMetaData.Marshal(b, m, deterministic)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
-func (m *VectorPartyMetaData) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_VectorPartyMetaData.Merge(m, src)
-}
-func (m *VectorPartyMetaData) XXX_Size() int {
-	return xxx_messageInfo_VectorPartyMetaData.Size(m)
-}
-func (m *VectorPartyMetaData) XXX_DiscardUnknown() {
-	xxx_messageInfo_VectorPartyMetaData.DiscardUnknown(m)
-}
+
+func (m *VectorPartyMetaData) XXX_Merge(src proto.Message) { _ = "STUB: not implemented"; return }
+
+func (m *VectorPartyMetaData) XXX_Size() int { _ = "STUB: not implemented"; return 0 }
+
+func (m *VectorPartyMetaData) XXX_DiscardUnknown() { _ = "STUB: not implemented"; return }
 
 var xxx_messageInfo_VectorPartyMetaData proto.InternalMessageInfo
 
-func (m *VectorPartyMetaData) GetColumnID() uint32 {
-	if m != nil {
-		return m.ColumnID
-	}
-	return 0
-}
+func (m *VectorPartyMetaData) GetColumnID() uint32 { _ = "STUB: not implemented"; return 0 }
 
 type BatchMetaData struct {
 	BatchID              int32                  `protobuf:"varint,1,opt,name=batchID,proto3" json:"batchID,omitempty"`
@@ -287,58 +220,33 @@ type BatchMetaData struct {
 	XXX_sizecache        int32                  `json:"-"`
 }
 
-func (m *BatchMetaData) Reset()         { *m = BatchMetaData{} }
-func (m *BatchMetaData) String() string { return proto.CompactTextString(m) }
-func (*BatchMetaData) ProtoMessage()    {}
-func (*BatchMetaData) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7b771d46e8b2ce71, []int{5}
+func (m *BatchMetaData) Reset()                    { _ = "STUB: not implemented"; return }
+func (m *BatchMetaData) String() string            { _ = "STUB: not implemented"; return "" }
+func (*BatchMetaData) ProtoMessage()               { _ = "STUB: not implemented"; return }
+func (*BatchMetaData) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
+
+func (m *BatchMetaData) XXX_Unmarshal(b []byte) error { _ = "STUB: not implemented"; return nil }
+
+func (m *BatchMetaData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (m *BatchMetaData) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_BatchMetaData.Unmarshal(m, b)
-}
-func (m *BatchMetaData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_BatchMetaData.Marshal(b, m, deterministic)
-}
-func (m *BatchMetaData) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_BatchMetaData.Merge(m, src)
-}
-func (m *BatchMetaData) XXX_Size() int {
-	return xxx_messageInfo_BatchMetaData.Size(m)
-}
-func (m *BatchMetaData) XXX_DiscardUnknown() {
-	xxx_messageInfo_BatchMetaData.DiscardUnknown(m)
-}
+func (m *BatchMetaData) XXX_Merge(src proto.Message) { _ = "STUB: not implemented"; return }
+
+func (m *BatchMetaData) XXX_Size() int { _ = "STUB: not implemented"; return 0 }
+
+func (m *BatchMetaData) XXX_DiscardUnknown() { _ = "STUB: not implemented"; return }
 
 var xxx_messageInfo_BatchMetaData proto.InternalMessageInfo
 
-func (m *BatchMetaData) GetBatchID() int32 {
-	if m != nil {
-		return m.BatchID
-	}
-	return 0
-}
+func (m *BatchMetaData) GetBatchID() int32 { _ = "STUB: not implemented"; return 0 }
 
-func (m *BatchMetaData) GetSize() uint32 {
-	if m != nil {
-		return m.Size
-	}
-	return 0
-}
+func (m *BatchMetaData) GetSize() uint32 { _ = "STUB: not implemented"; return 0 }
 
-func (m *BatchMetaData) GetArchiveVersion() *ArchiveVersion {
-	if m != nil {
-		return m.ArchiveVersion
-	}
-	return nil
-}
+func (m *BatchMetaData) GetArchiveVersion() *ArchiveVersion { _ = "STUB: not implemented"; return nil }
 
-func (m *BatchMetaData) GetVps() []*VectorPartyMetaData {
-	if m != nil {
-		return m.Vps
-	}
-	return nil
-}
+func (m *BatchMetaData) GetVps() []*VectorPartyMetaData { _ = "STUB: not implemented"; return nil }
 
 type FactTableShardMetaData struct {
 	HighWatermark        uint32              `protobuf:"varint,1,opt,name=highWatermark,proto3" json:"highWatermark,omitempty"`
@@ -348,42 +256,36 @@ type FactTableShardMetaData struct {
 	XXX_sizecache        int32               `json:"-"`
 }
 
-func (m *FactTableShardMetaData) Reset()         { *m = FactTableShardMetaData{} }
-func (m *FactTableShardMetaData) String() string { return proto.CompactTextString(m) }
-func (*FactTableShardMetaData) ProtoMessage()    {}
+func (m *FactTableShardMetaData) Reset()         { _ = "STUB: not implemented"; return }
+func (m *FactTableShardMetaData) String() string { _ = "STUB: not implemented"; return "" }
+func (*FactTableShardMetaData) ProtoMessage()    { _ = "STUB: not implemented"; return }
 func (*FactTableShardMetaData) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7b771d46e8b2ce71, []int{6}
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (m *FactTableShardMetaData) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_FactTableShardMetaData.Unmarshal(m, b)
+	_ = "STUB: not implemented"
+	return nil
 }
+
 func (m *FactTableShardMetaData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_FactTableShardMetaData.Marshal(b, m, deterministic)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
-func (m *FactTableShardMetaData) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_FactTableShardMetaData.Merge(m, src)
-}
-func (m *FactTableShardMetaData) XXX_Size() int {
-	return xxx_messageInfo_FactTableShardMetaData.Size(m)
-}
-func (m *FactTableShardMetaData) XXX_DiscardUnknown() {
-	xxx_messageInfo_FactTableShardMetaData.DiscardUnknown(m)
-}
+
+func (m *FactTableShardMetaData) XXX_Merge(src proto.Message) { _ = "STUB: not implemented"; return }
+
+func (m *FactTableShardMetaData) XXX_Size() int { _ = "STUB: not implemented"; return 0 }
+
+func (m *FactTableShardMetaData) XXX_DiscardUnknown() { _ = "STUB: not implemented"; return }
 
 var xxx_messageInfo_FactTableShardMetaData proto.InternalMessageInfo
 
-func (m *FactTableShardMetaData) GetHighWatermark() uint32 {
-	if m != nil {
-		return m.HighWatermark
-	}
-	return 0
-}
+func (m *FactTableShardMetaData) GetHighWatermark() uint32 { _ = "STUB: not implemented"; return 0 }
 
 func (m *FactTableShardMetaData) GetBackfillCheckpoint() *BackfillCheckpoint {
-	if m != nil {
-		return m.BackfillCheckpoint
-	}
+	_ = "STUB: not implemented"
 	return nil
 }
 
@@ -396,51 +298,43 @@ type DimensionTableShardMetaData struct {
 	XXX_sizecache        int32            `json:"-"`
 }
 
-func (m *DimensionTableShardMetaData) Reset()         { *m = DimensionTableShardMetaData{} }
-func (m *DimensionTableShardMetaData) String() string { return proto.CompactTextString(m) }
-func (*DimensionTableShardMetaData) ProtoMessage()    {}
+func (m *DimensionTableShardMetaData) Reset()         { _ = "STUB: not implemented"; return }
+func (m *DimensionTableShardMetaData) String() string { _ = "STUB: not implemented"; return "" }
+func (*DimensionTableShardMetaData) ProtoMessage()    { _ = "STUB: not implemented"; return }
 func (*DimensionTableShardMetaData) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7b771d46e8b2ce71, []int{7}
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (m *DimensionTableShardMetaData) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DimensionTableShardMetaData.Unmarshal(m, b)
+	_ = "STUB: not implemented"
+	return nil
 }
+
 func (m *DimensionTableShardMetaData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DimensionTableShardMetaData.Marshal(b, m, deterministic)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
+
 func (m *DimensionTableShardMetaData) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DimensionTableShardMetaData.Merge(m, src)
+	_ = "STUB: not implemented"
+	return
 }
-func (m *DimensionTableShardMetaData) XXX_Size() int {
-	return xxx_messageInfo_DimensionTableShardMetaData.Size(m)
-}
-func (m *DimensionTableShardMetaData) XXX_DiscardUnknown() {
-	xxx_messageInfo_DimensionTableShardMetaData.DiscardUnknown(m)
-}
+
+func (m *DimensionTableShardMetaData) XXX_Size() int { _ = "STUB: not implemented"; return 0 }
+
+func (m *DimensionTableShardMetaData) XXX_DiscardUnknown() { _ = "STUB: not implemented"; return }
 
 var xxx_messageInfo_DimensionTableShardMetaData proto.InternalMessageInfo
 
 func (m *DimensionTableShardMetaData) GetSnapshotVersion() *SnapshotVersion {
-	if m != nil {
-		return m.SnapshotVersion
-	}
+	_ = "STUB: not implemented"
 	return nil
 }
 
-func (m *DimensionTableShardMetaData) GetLastBatchID() int32 {
-	if m != nil {
-		return m.LastBatchID
-	}
-	return 0
-}
+func (m *DimensionTableShardMetaData) GetLastBatchID() int32 { _ = "STUB: not implemented"; return 0 }
 
-func (m *DimensionTableShardMetaData) GetLastBatchSize() int32 {
-	if m != nil {
-		return m.LastBatchSize
-	}
-	return 0
-}
+func (m *DimensionTableShardMetaData) GetLastBatchSize() int32 { _ = "STUB: not implemented"; return 0 }
 
 type TableShardMetaData struct {
 	Table       string       `protobuf:"bytes,1,opt,name=table,proto3" json:"table,omitempty"`
@@ -457,58 +351,33 @@ type TableShardMetaData struct {
 	XXX_sizecache        int32                     `json:"-"`
 }
 
-func (m *TableShardMetaData) Reset()         { *m = TableShardMetaData{} }
-func (m *TableShardMetaData) String() string { return proto.CompactTextString(m) }
-func (*TableShardMetaData) ProtoMessage()    {}
-func (*TableShardMetaData) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7b771d46e8b2ce71, []int{8}
+func (m *TableShardMetaData) Reset()                    { _ = "STUB: not implemented"; return }
+func (m *TableShardMetaData) String() string            { _ = "STUB: not implemented"; return "" }
+func (*TableShardMetaData) ProtoMessage()               { _ = "STUB: not implemented"; return }
+func (*TableShardMetaData) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
+
+func (m *TableShardMetaData) XXX_Unmarshal(b []byte) error { _ = "STUB: not implemented"; return nil }
+
+func (m *TableShardMetaData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (m *TableShardMetaData) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_TableShardMetaData.Unmarshal(m, b)
-}
-func (m *TableShardMetaData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_TableShardMetaData.Marshal(b, m, deterministic)
-}
-func (m *TableShardMetaData) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TableShardMetaData.Merge(m, src)
-}
-func (m *TableShardMetaData) XXX_Size() int {
-	return xxx_messageInfo_TableShardMetaData.Size(m)
-}
-func (m *TableShardMetaData) XXX_DiscardUnknown() {
-	xxx_messageInfo_TableShardMetaData.DiscardUnknown(m)
-}
+func (m *TableShardMetaData) XXX_Merge(src proto.Message) { _ = "STUB: not implemented"; return }
+
+func (m *TableShardMetaData) XXX_Size() int { _ = "STUB: not implemented"; return 0 }
+
+func (m *TableShardMetaData) XXX_DiscardUnknown() { _ = "STUB: not implemented"; return }
 
 var xxx_messageInfo_TableShardMetaData proto.InternalMessageInfo
 
-func (m *TableShardMetaData) GetTable() string {
-	if m != nil {
-		return m.Table
-	}
-	return ""
-}
+func (m *TableShardMetaData) GetTable() string { _ = "STUB: not implemented"; return "" }
 
-func (m *TableShardMetaData) GetIncarnation() int32 {
-	if m != nil {
-		return m.Incarnation
-	}
-	return 0
-}
+func (m *TableShardMetaData) GetIncarnation() int32 { _ = "STUB: not implemented"; return 0 }
 
-func (m *TableShardMetaData) GetShard() uint32 {
-	if m != nil {
-		return m.Shard
-	}
-	return 0
-}
+func (m *TableShardMetaData) GetShard() uint32 { _ = "STUB: not implemented"; return 0 }
 
-func (m *TableShardMetaData) GetKafkaOffset() *KafkaOffset {
-	if m != nil {
-		return m.KafkaOffset
-	}
-	return nil
-}
+func (m *TableShardMetaData) GetKafkaOffset() *KafkaOffset { _ = "STUB: not implemented"; return nil }
 
 type isTableShardMetaData_Meta interface {
 	isTableShardMetaData_Meta()
@@ -522,45 +391,32 @@ type TableShardMetaData_DimensionMeta struct {
 	DimensionMeta *DimensionTableShardMetaData `protobuf:"bytes,6,opt,name=dimensionMeta,proto3,oneof"`
 }
 
-func (*TableShardMetaData_FactMeta) isTableShardMetaData_Meta() {}
+func (*TableShardMetaData_FactMeta) isTableShardMetaData_Meta() { _ = "STUB: not implemented"; return }
 
-func (*TableShardMetaData_DimensionMeta) isTableShardMetaData_Meta() {}
+func (*TableShardMetaData_DimensionMeta) isTableShardMetaData_Meta() {
+	_ = "STUB: not implemented"
+	return
+}
 
 func (m *TableShardMetaData) GetMeta() isTableShardMetaData_Meta {
-	if m != nil {
-		return m.Meta
-	}
-	return nil
+	_ = "STUB: not implemented"
+	return *new(isTableShardMetaData_Meta)
 }
 
 func (m *TableShardMetaData) GetFactMeta() *FactTableShardMetaData {
-	if x, ok := m.GetMeta().(*TableShardMetaData_FactMeta); ok {
-		return x.FactMeta
-	}
+	_ = "STUB: not implemented"
 	return nil
 }
 
 func (m *TableShardMetaData) GetDimensionMeta() *DimensionTableShardMetaData {
-	if x, ok := m.GetMeta().(*TableShardMetaData_DimensionMeta); ok {
-		return x.DimensionMeta
-	}
+	_ = "STUB: not implemented"
 	return nil
 }
 
-func (m *TableShardMetaData) GetBatches() []*BatchMetaData {
-	if m != nil {
-		return m.Batches
-	}
-	return nil
-}
+func (m *TableShardMetaData) GetBatches() []*BatchMetaData { _ = "STUB: not implemented"; return nil }
 
 // XXX_OneofWrappers is for the internal use of the proto package.
-func (*TableShardMetaData) XXX_OneofWrappers() []interface{} {
-	return []interface{}{
-		(*TableShardMetaData_FactMeta)(nil),
-		(*TableShardMetaData_DimensionMeta)(nil),
-	}
-}
+func (*TableShardMetaData) XXX_OneofWrappers() []interface{} { _ = "STUB: not implemented"; return nil }
 
 type TableShardMetaDataRequest struct {
 	Table                string   `protobuf:"bytes,1,opt,name=table,proto3" json:"table,omitempty"`
@@ -575,79 +431,45 @@ type TableShardMetaDataRequest struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *TableShardMetaDataRequest) Reset()         { *m = TableShardMetaDataRequest{} }
-func (m *TableShardMetaDataRequest) String() string { return proto.CompactTextString(m) }
-func (*TableShardMetaDataRequest) ProtoMessage()    {}
+func (m *TableShardMetaDataRequest) Reset()         { _ = "STUB: not implemented"; return }
+func (m *TableShardMetaDataRequest) String() string { _ = "STUB: not implemented"; return "" }
+func (*TableShardMetaDataRequest) ProtoMessage()    { _ = "STUB: not implemented"; return }
 func (*TableShardMetaDataRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7b771d46e8b2ce71, []int{9}
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (m *TableShardMetaDataRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_TableShardMetaDataRequest.Unmarshal(m, b)
+	_ = "STUB: not implemented"
+	return nil
 }
+
 func (m *TableShardMetaDataRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_TableShardMetaDataRequest.Marshal(b, m, deterministic)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
-func (m *TableShardMetaDataRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TableShardMetaDataRequest.Merge(m, src)
-}
-func (m *TableShardMetaDataRequest) XXX_Size() int {
-	return xxx_messageInfo_TableShardMetaDataRequest.Size(m)
-}
-func (m *TableShardMetaDataRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_TableShardMetaDataRequest.DiscardUnknown(m)
-}
+
+func (m *TableShardMetaDataRequest) XXX_Merge(src proto.Message) { _ = "STUB: not implemented"; return }
+
+func (m *TableShardMetaDataRequest) XXX_Size() int { _ = "STUB: not implemented"; return 0 }
+
+func (m *TableShardMetaDataRequest) XXX_DiscardUnknown() { _ = "STUB: not implemented"; return }
 
 var xxx_messageInfo_TableShardMetaDataRequest proto.InternalMessageInfo
 
-func (m *TableShardMetaDataRequest) GetTable() string {
-	if m != nil {
-		return m.Table
-	}
-	return ""
-}
+func (m *TableShardMetaDataRequest) GetTable() string { _ = "STUB: not implemented"; return "" }
 
-func (m *TableShardMetaDataRequest) GetIncarnation() int32 {
-	if m != nil {
-		return m.Incarnation
-	}
-	return 0
-}
+func (m *TableShardMetaDataRequest) GetIncarnation() int32 { _ = "STUB: not implemented"; return 0 }
 
-func (m *TableShardMetaDataRequest) GetShard() uint32 {
-	if m != nil {
-		return m.Shard
-	}
-	return 0
-}
+func (m *TableShardMetaDataRequest) GetShard() uint32 { _ = "STUB: not implemented"; return 0 }
 
-func (m *TableShardMetaDataRequest) GetStartBatchID() int32 {
-	if m != nil {
-		return m.StartBatchID
-	}
-	return 0
-}
+func (m *TableShardMetaDataRequest) GetStartBatchID() int32 { _ = "STUB: not implemented"; return 0 }
 
-func (m *TableShardMetaDataRequest) GetEndBatchID() int32 {
-	if m != nil {
-		return m.EndBatchID
-	}
-	return 0
-}
+func (m *TableShardMetaDataRequest) GetEndBatchID() int32 { _ = "STUB: not implemented"; return 0 }
 
-func (m *TableShardMetaDataRequest) GetSessionID() int64 {
-	if m != nil {
-		return m.SessionID
-	}
-	return 0
-}
+func (m *TableShardMetaDataRequest) GetSessionID() int64 { _ = "STUB: not implemented"; return 0 }
 
-func (m *TableShardMetaDataRequest) GetNodeID() string {
-	if m != nil {
-		return m.NodeID
-	}
-	return ""
-}
+func (m *TableShardMetaDataRequest) GetNodeID() string { _ = "STUB: not implemented"; return "" }
 
 type VectorPartyRawDataRequest struct {
 	Table       string `protobuf:"bytes,1,opt,name=table,proto3" json:"table,omitempty"`
@@ -666,58 +488,39 @@ type VectorPartyRawDataRequest struct {
 	XXX_sizecache        int32                               `json:"-"`
 }
 
-func (m *VectorPartyRawDataRequest) Reset()         { *m = VectorPartyRawDataRequest{} }
-func (m *VectorPartyRawDataRequest) String() string { return proto.CompactTextString(m) }
-func (*VectorPartyRawDataRequest) ProtoMessage()    {}
+func (m *VectorPartyRawDataRequest) Reset()         { _ = "STUB: not implemented"; return }
+func (m *VectorPartyRawDataRequest) String() string { _ = "STUB: not implemented"; return "" }
+func (*VectorPartyRawDataRequest) ProtoMessage()    { _ = "STUB: not implemented"; return }
 func (*VectorPartyRawDataRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7b771d46e8b2ce71, []int{10}
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (m *VectorPartyRawDataRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_VectorPartyRawDataRequest.Unmarshal(m, b)
+	_ = "STUB: not implemented"
+	return nil
 }
+
 func (m *VectorPartyRawDataRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_VectorPartyRawDataRequest.Marshal(b, m, deterministic)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
-func (m *VectorPartyRawDataRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_VectorPartyRawDataRequest.Merge(m, src)
-}
-func (m *VectorPartyRawDataRequest) XXX_Size() int {
-	return xxx_messageInfo_VectorPartyRawDataRequest.Size(m)
-}
-func (m *VectorPartyRawDataRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_VectorPartyRawDataRequest.DiscardUnknown(m)
-}
+
+func (m *VectorPartyRawDataRequest) XXX_Merge(src proto.Message) { _ = "STUB: not implemented"; return }
+
+func (m *VectorPartyRawDataRequest) XXX_Size() int { _ = "STUB: not implemented"; return 0 }
+
+func (m *VectorPartyRawDataRequest) XXX_DiscardUnknown() { _ = "STUB: not implemented"; return }
 
 var xxx_messageInfo_VectorPartyRawDataRequest proto.InternalMessageInfo
 
-func (m *VectorPartyRawDataRequest) GetTable() string {
-	if m != nil {
-		return m.Table
-	}
-	return ""
-}
+func (m *VectorPartyRawDataRequest) GetTable() string { _ = "STUB: not implemented"; return "" }
 
-func (m *VectorPartyRawDataRequest) GetIncarnation() int32 {
-	if m != nil {
-		return m.Incarnation
-	}
-	return 0
-}
+func (m *VectorPartyRawDataRequest) GetIncarnation() int32 { _ = "STUB: not implemented"; return 0 }
 
-func (m *VectorPartyRawDataRequest) GetShard() uint32 {
-	if m != nil {
-		return m.Shard
-	}
-	return 0
-}
+func (m *VectorPartyRawDataRequest) GetShard() uint32 { _ = "STUB: not implemented"; return 0 }
 
-func (m *VectorPartyRawDataRequest) GetBatchID() int32 {
-	if m != nil {
-		return m.BatchID
-	}
-	return 0
-}
+func (m *VectorPartyRawDataRequest) GetBatchID() int32 { _ = "STUB: not implemented"; return 0 }
 
 type isVectorPartyRawDataRequest_Version interface {
 	isVectorPartyRawDataRequest_Version()
@@ -731,58 +534,41 @@ type VectorPartyRawDataRequest_SnapshotVersion struct {
 	SnapshotVersion *SnapshotVersion `protobuf:"bytes,6,opt,name=snapshotVersion,proto3,oneof"`
 }
 
-func (*VectorPartyRawDataRequest_ArchiveVersion) isVectorPartyRawDataRequest_Version() {}
+func (*VectorPartyRawDataRequest_ArchiveVersion) isVectorPartyRawDataRequest_Version() {
+	_ = "STUB: not implemented"
+	return
+}
 
-func (*VectorPartyRawDataRequest_SnapshotVersion) isVectorPartyRawDataRequest_Version() {}
+func (*VectorPartyRawDataRequest_SnapshotVersion) isVectorPartyRawDataRequest_Version() {
+	_ = "STUB: not implemented"
+	return
+}
 
 func (m *VectorPartyRawDataRequest) GetVersion() isVectorPartyRawDataRequest_Version {
-	if m != nil {
-		return m.Version
-	}
-	return nil
+	_ = "STUB: not implemented"
+	return *new(isVectorPartyRawDataRequest_Version)
 }
 
 func (m *VectorPartyRawDataRequest) GetArchiveVersion() *ArchiveVersion {
-	if x, ok := m.GetVersion().(*VectorPartyRawDataRequest_ArchiveVersion); ok {
-		return x.ArchiveVersion
-	}
+	_ = "STUB: not implemented"
 	return nil
 }
 
 func (m *VectorPartyRawDataRequest) GetSnapshotVersion() *SnapshotVersion {
-	if x, ok := m.GetVersion().(*VectorPartyRawDataRequest_SnapshotVersion); ok {
-		return x.SnapshotVersion
-	}
+	_ = "STUB: not implemented"
 	return nil
 }
 
-func (m *VectorPartyRawDataRequest) GetColumnID() uint32 {
-	if m != nil {
-		return m.ColumnID
-	}
-	return 0
-}
+func (m *VectorPartyRawDataRequest) GetColumnID() uint32 { _ = "STUB: not implemented"; return 0 }
 
-func (m *VectorPartyRawDataRequest) GetSessionID() int64 {
-	if m != nil {
-		return m.SessionID
-	}
-	return 0
-}
+func (m *VectorPartyRawDataRequest) GetSessionID() int64 { _ = "STUB: not implemented"; return 0 }
 
-func (m *VectorPartyRawDataRequest) GetNodeID() string {
-	if m != nil {
-		return m.NodeID
-	}
-	return ""
-}
+func (m *VectorPartyRawDataRequest) GetNodeID() string { _ = "STUB: not implemented"; return "" }
 
 // XXX_OneofWrappers is for the internal use of the proto package.
 func (*VectorPartyRawDataRequest) XXX_OneofWrappers() []interface{} {
-	return []interface{}{
-		(*VectorPartyRawDataRequest_ArchiveVersion)(nil),
-		(*VectorPartyRawDataRequest_SnapshotVersion)(nil),
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type VectorPartyRawData struct {
@@ -792,37 +578,27 @@ type VectorPartyRawData struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *VectorPartyRawData) Reset()         { *m = VectorPartyRawData{} }
-func (m *VectorPartyRawData) String() string { return proto.CompactTextString(m) }
-func (*VectorPartyRawData) ProtoMessage()    {}
-func (*VectorPartyRawData) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7b771d46e8b2ce71, []int{11}
+func (m *VectorPartyRawData) Reset()                    { _ = "STUB: not implemented"; return }
+func (m *VectorPartyRawData) String() string            { _ = "STUB: not implemented"; return "" }
+func (*VectorPartyRawData) ProtoMessage()               { _ = "STUB: not implemented"; return }
+func (*VectorPartyRawData) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
+
+func (m *VectorPartyRawData) XXX_Unmarshal(b []byte) error { _ = "STUB: not implemented"; return nil }
+
+func (m *VectorPartyRawData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (m *VectorPartyRawData) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_VectorPartyRawData.Unmarshal(m, b)
-}
-func (m *VectorPartyRawData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_VectorPartyRawData.Marshal(b, m, deterministic)
-}
-func (m *VectorPartyRawData) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_VectorPartyRawData.Merge(m, src)
-}
-func (m *VectorPartyRawData) XXX_Size() int {
-	return xxx_messageInfo_VectorPartyRawData.Size(m)
-}
-func (m *VectorPartyRawData) XXX_DiscardUnknown() {
-	xxx_messageInfo_VectorPartyRawData.DiscardUnknown(m)
-}
+func (m *VectorPartyRawData) XXX_Merge(src proto.Message) { _ = "STUB: not implemented"; return }
+
+func (m *VectorPartyRawData) XXX_Size() int { _ = "STUB: not implemented"; return 0 }
+
+func (m *VectorPartyRawData) XXX_DiscardUnknown() { _ = "STUB: not implemented"; return }
 
 var xxx_messageInfo_VectorPartyRawData proto.InternalMessageInfo
 
-func (m *VectorPartyRawData) GetChunk() []byte {
-	if m != nil {
-		return m.Chunk
-	}
-	return nil
-}
+func (m *VectorPartyRawData) GetChunk() []byte { _ = "STUB: not implemented"; return nil }
 
 type StartSessionRequest struct {
 	Table                string   `protobuf:"bytes,1,opt,name=table,proto3" json:"table,omitempty"`
@@ -834,58 +610,36 @@ type StartSessionRequest struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *StartSessionRequest) Reset()         { *m = StartSessionRequest{} }
-func (m *StartSessionRequest) String() string { return proto.CompactTextString(m) }
-func (*StartSessionRequest) ProtoMessage()    {}
+func (m *StartSessionRequest) Reset()         { _ = "STUB: not implemented"; return }
+func (m *StartSessionRequest) String() string { _ = "STUB: not implemented"; return "" }
+func (*StartSessionRequest) ProtoMessage()    { _ = "STUB: not implemented"; return }
 func (*StartSessionRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7b771d46e8b2ce71, []int{12}
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (m *StartSessionRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_StartSessionRequest.Unmarshal(m, b)
-}
+func (m *StartSessionRequest) XXX_Unmarshal(b []byte) error { _ = "STUB: not implemented"; return nil }
+
 func (m *StartSessionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_StartSessionRequest.Marshal(b, m, deterministic)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
-func (m *StartSessionRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_StartSessionRequest.Merge(m, src)
-}
-func (m *StartSessionRequest) XXX_Size() int {
-	return xxx_messageInfo_StartSessionRequest.Size(m)
-}
-func (m *StartSessionRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_StartSessionRequest.DiscardUnknown(m)
-}
+
+func (m *StartSessionRequest) XXX_Merge(src proto.Message) { _ = "STUB: not implemented"; return }
+
+func (m *StartSessionRequest) XXX_Size() int { _ = "STUB: not implemented"; return 0 }
+
+func (m *StartSessionRequest) XXX_DiscardUnknown() { _ = "STUB: not implemented"; return }
 
 var xxx_messageInfo_StartSessionRequest proto.InternalMessageInfo
 
-func (m *StartSessionRequest) GetTable() string {
-	if m != nil {
-		return m.Table
-	}
-	return ""
-}
+func (m *StartSessionRequest) GetTable() string { _ = "STUB: not implemented"; return "" }
 
-func (m *StartSessionRequest) GetShard() uint32 {
-	if m != nil {
-		return m.Shard
-	}
-	return 0
-}
+func (m *StartSessionRequest) GetShard() uint32 { _ = "STUB: not implemented"; return 0 }
 
-func (m *StartSessionRequest) GetTtl() int64 {
-	if m != nil {
-		return m.Ttl
-	}
-	return 0
-}
+func (m *StartSessionRequest) GetTtl() int64 { _ = "STUB: not implemented"; return 0 }
 
-func (m *StartSessionRequest) GetNodeID() string {
-	if m != nil {
-		return m.NodeID
-	}
-	return ""
-}
+func (m *StartSessionRequest) GetNodeID() string { _ = "STUB: not implemented"; return "" }
 
 type Session struct {
 	ID                   int64    `protobuf:"varint,1,opt,name=ID,proto3" json:"ID,omitempty"`
@@ -895,44 +649,29 @@ type Session struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Session) Reset()         { *m = Session{} }
-func (m *Session) String() string { return proto.CompactTextString(m) }
-func (*Session) ProtoMessage()    {}
-func (*Session) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7b771d46e8b2ce71, []int{13}
+func (m *Session) Reset()                    { _ = "STUB: not implemented"; return }
+func (m *Session) String() string            { _ = "STUB: not implemented"; return "" }
+func (*Session) ProtoMessage()               { _ = "STUB: not implemented"; return }
+func (*Session) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
+
+func (m *Session) XXX_Unmarshal(b []byte) error { _ = "STUB: not implemented"; return nil }
+
+func (m *Session) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (m *Session) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Session.Unmarshal(m, b)
-}
-func (m *Session) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Session.Marshal(b, m, deterministic)
-}
-func (m *Session) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Session.Merge(m, src)
-}
-func (m *Session) XXX_Size() int {
-	return xxx_messageInfo_Session.Size(m)
-}
-func (m *Session) XXX_DiscardUnknown() {
-	xxx_messageInfo_Session.DiscardUnknown(m)
-}
+func (m *Session) XXX_Merge(src proto.Message) { _ = "STUB: not implemented"; return }
+
+func (m *Session) XXX_Size() int { _ = "STUB: not implemented"; return 0 }
+
+func (m *Session) XXX_DiscardUnknown() { _ = "STUB: not implemented"; return }
 
 var xxx_messageInfo_Session proto.InternalMessageInfo
 
-func (m *Session) GetID() int64 {
-	if m != nil {
-		return m.ID
-	}
-	return 0
-}
+func (m *Session) GetID() int64 { _ = "STUB: not implemented"; return 0 }
 
-func (m *Session) GetNodeID() string {
-	if m != nil {
-		return m.NodeID
-	}
-	return ""
-}
+func (m *Session) GetNodeID() string { _ = "STUB: not implemented"; return "" }
 
 type KeepAliveResponse struct {
 	ID                   int64    `protobuf:"varint,1,opt,name=ID,proto3" json:"ID,omitempty"`
@@ -942,44 +681,29 @@ type KeepAliveResponse struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *KeepAliveResponse) Reset()         { *m = KeepAliveResponse{} }
-func (m *KeepAliveResponse) String() string { return proto.CompactTextString(m) }
-func (*KeepAliveResponse) ProtoMessage()    {}
-func (*KeepAliveResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7b771d46e8b2ce71, []int{14}
+func (m *KeepAliveResponse) Reset()                    { _ = "STUB: not implemented"; return }
+func (m *KeepAliveResponse) String() string            { _ = "STUB: not implemented"; return "" }
+func (*KeepAliveResponse) ProtoMessage()               { _ = "STUB: not implemented"; return }
+func (*KeepAliveResponse) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
+
+func (m *KeepAliveResponse) XXX_Unmarshal(b []byte) error { _ = "STUB: not implemented"; return nil }
+
+func (m *KeepAliveResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (m *KeepAliveResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_KeepAliveResponse.Unmarshal(m, b)
-}
-func (m *KeepAliveResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_KeepAliveResponse.Marshal(b, m, deterministic)
-}
-func (m *KeepAliveResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_KeepAliveResponse.Merge(m, src)
-}
-func (m *KeepAliveResponse) XXX_Size() int {
-	return xxx_messageInfo_KeepAliveResponse.Size(m)
-}
-func (m *KeepAliveResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_KeepAliveResponse.DiscardUnknown(m)
-}
+func (m *KeepAliveResponse) XXX_Merge(src proto.Message) { _ = "STUB: not implemented"; return }
+
+func (m *KeepAliveResponse) XXX_Size() int { _ = "STUB: not implemented"; return 0 }
+
+func (m *KeepAliveResponse) XXX_DiscardUnknown() { _ = "STUB: not implemented"; return }
 
 var xxx_messageInfo_KeepAliveResponse proto.InternalMessageInfo
 
-func (m *KeepAliveResponse) GetID() int64 {
-	if m != nil {
-		return m.ID
-	}
-	return 0
-}
+func (m *KeepAliveResponse) GetID() int64 { _ = "STUB: not implemented"; return 0 }
 
-func (m *KeepAliveResponse) GetTtl() int64 {
-	if m != nil {
-		return m.Ttl
-	}
-	return 0
-}
+func (m *KeepAliveResponse) GetTtl() int64 { _ = "STUB: not implemented"; return 0 }
 
 type BenchmarkRequest struct {
 	File                 string   `protobuf:"bytes,1,opt,name=file,proto3" json:"file,omitempty"`
@@ -990,51 +714,31 @@ type BenchmarkRequest struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *BenchmarkRequest) Reset()         { *m = BenchmarkRequest{} }
-func (m *BenchmarkRequest) String() string { return proto.CompactTextString(m) }
-func (*BenchmarkRequest) ProtoMessage()    {}
-func (*BenchmarkRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7b771d46e8b2ce71, []int{15}
+func (m *BenchmarkRequest) Reset()                    { _ = "STUB: not implemented"; return }
+func (m *BenchmarkRequest) String() string            { _ = "STUB: not implemented"; return "" }
+func (*BenchmarkRequest) ProtoMessage()               { _ = "STUB: not implemented"; return }
+func (*BenchmarkRequest) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
+
+func (m *BenchmarkRequest) XXX_Unmarshal(b []byte) error { _ = "STUB: not implemented"; return nil }
+
+func (m *BenchmarkRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (m *BenchmarkRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_BenchmarkRequest.Unmarshal(m, b)
-}
-func (m *BenchmarkRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_BenchmarkRequest.Marshal(b, m, deterministic)
-}
-func (m *BenchmarkRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_BenchmarkRequest.Merge(m, src)
-}
-func (m *BenchmarkRequest) XXX_Size() int {
-	return xxx_messageInfo_BenchmarkRequest.Size(m)
-}
-func (m *BenchmarkRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_BenchmarkRequest.DiscardUnknown(m)
-}
+func (m *BenchmarkRequest) XXX_Merge(src proto.Message) { _ = "STUB: not implemented"; return }
+
+func (m *BenchmarkRequest) XXX_Size() int { _ = "STUB: not implemented"; return 0 }
+
+func (m *BenchmarkRequest) XXX_DiscardUnknown() { _ = "STUB: not implemented"; return }
 
 var xxx_messageInfo_BenchmarkRequest proto.InternalMessageInfo
 
-func (m *BenchmarkRequest) GetFile() string {
-	if m != nil {
-		return m.File
-	}
-	return ""
-}
+func (m *BenchmarkRequest) GetFile() string { _ = "STUB: not implemented"; return "" }
 
-func (m *BenchmarkRequest) GetChunkSize() int32 {
-	if m != nil {
-		return m.ChunkSize
-	}
-	return 0
-}
+func (m *BenchmarkRequest) GetChunkSize() int32 { _ = "STUB: not implemented"; return 0 }
 
-func (m *BenchmarkRequest) GetBufferSize() int32 {
-	if m != nil {
-		return m.BufferSize
-	}
-	return 0
-}
+func (m *BenchmarkRequest) GetBufferSize() int32 { _ = "STUB: not implemented"; return 0 }
 
 type HealthCheckRequest struct {
 	Service              string   `protobuf:"bytes,1,opt,name=service,proto3" json:"service,omitempty"`
@@ -1043,37 +747,27 @@ type HealthCheckRequest struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *HealthCheckRequest) Reset()         { *m = HealthCheckRequest{} }
-func (m *HealthCheckRequest) String() string { return proto.CompactTextString(m) }
-func (*HealthCheckRequest) ProtoMessage()    {}
-func (*HealthCheckRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7b771d46e8b2ce71, []int{16}
+func (m *HealthCheckRequest) Reset()                    { _ = "STUB: not implemented"; return }
+func (m *HealthCheckRequest) String() string            { _ = "STUB: not implemented"; return "" }
+func (*HealthCheckRequest) ProtoMessage()               { _ = "STUB: not implemented"; return }
+func (*HealthCheckRequest) Descriptor() ([]byte, []int) { _ = "STUB: not implemented"; return nil, nil }
+
+func (m *HealthCheckRequest) XXX_Unmarshal(b []byte) error { _ = "STUB: not implemented"; return nil }
+
+func (m *HealthCheckRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (m *HealthCheckRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_HealthCheckRequest.Unmarshal(m, b)
-}
-func (m *HealthCheckRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_HealthCheckRequest.Marshal(b, m, deterministic)
-}
-func (m *HealthCheckRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_HealthCheckRequest.Merge(m, src)
-}
-func (m *HealthCheckRequest) XXX_Size() int {
-	return xxx_messageInfo_HealthCheckRequest.Size(m)
-}
-func (m *HealthCheckRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_HealthCheckRequest.DiscardUnknown(m)
-}
+func (m *HealthCheckRequest) XXX_Merge(src proto.Message) { _ = "STUB: not implemented"; return }
+
+func (m *HealthCheckRequest) XXX_Size() int { _ = "STUB: not implemented"; return 0 }
+
+func (m *HealthCheckRequest) XXX_DiscardUnknown() { _ = "STUB: not implemented"; return }
 
 var xxx_messageInfo_HealthCheckRequest proto.InternalMessageInfo
 
-func (m *HealthCheckRequest) GetService() string {
-	if m != nil {
-		return m.Service
-	}
-	return ""
-}
+func (m *HealthCheckRequest) GetService() string { _ = "STUB: not implemented"; return "" }
 
 type HealthCheckResponse struct {
 	Status               HealthCheckResponse_ServingStatus `protobuf:"varint,1,opt,name=status,proto3,enum=rpc.HealthCheckResponse_ServingStatus" json:"status,omitempty"`
@@ -1082,36 +776,32 @@ type HealthCheckResponse struct {
 	XXX_sizecache        int32                             `json:"-"`
 }
 
-func (m *HealthCheckResponse) Reset()         { *m = HealthCheckResponse{} }
-func (m *HealthCheckResponse) String() string { return proto.CompactTextString(m) }
-func (*HealthCheckResponse) ProtoMessage()    {}
+func (m *HealthCheckResponse) Reset()         { _ = "STUB: not implemented"; return }
+func (m *HealthCheckResponse) String() string { _ = "STUB: not implemented"; return "" }
+func (*HealthCheckResponse) ProtoMessage()    { _ = "STUB: not implemented"; return }
 func (*HealthCheckResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_7b771d46e8b2ce71, []int{17}
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-func (m *HealthCheckResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_HealthCheckResponse.Unmarshal(m, b)
-}
+func (m *HealthCheckResponse) XXX_Unmarshal(b []byte) error { _ = "STUB: not implemented"; return nil }
+
 func (m *HealthCheckResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_HealthCheckResponse.Marshal(b, m, deterministic)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
-func (m *HealthCheckResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_HealthCheckResponse.Merge(m, src)
-}
-func (m *HealthCheckResponse) XXX_Size() int {
-	return xxx_messageInfo_HealthCheckResponse.Size(m)
-}
-func (m *HealthCheckResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_HealthCheckResponse.DiscardUnknown(m)
-}
+
+func (m *HealthCheckResponse) XXX_Merge(src proto.Message) { _ = "STUB: not implemented"; return }
+
+func (m *HealthCheckResponse) XXX_Size() int { _ = "STUB: not implemented"; return 0 }
+
+func (m *HealthCheckResponse) XXX_DiscardUnknown() { _ = "STUB: not implemented"; return }
 
 var xxx_messageInfo_HealthCheckResponse proto.InternalMessageInfo
 
 func (m *HealthCheckResponse) GetStatus() HealthCheckResponse_ServingStatus {
-	if m != nil {
-		return m.Status
-	}
-	return HealthCheckResponse_UNKNOWN
+	_ = "STUB: not implemented"
+	return *new(HealthCheckResponse_ServingStatus)
 }
 
 func init() {
@@ -1239,34 +929,23 @@ type peerDataNodeClient struct {
 }
 
 func NewPeerDataNodeClient(cc *grpc.ClientConn) PeerDataNodeClient {
-	return &peerDataNodeClient{cc}
+	_ = "STUB: not implemented"
+	return *new(PeerDataNodeClient)
 }
 
 func (c *peerDataNodeClient) Health(ctx context.Context, in *HealthCheckRequest, opts ...grpc.CallOption) (*HealthCheckResponse, error) {
-	out := new(HealthCheckResponse)
-	err := c.cc.Invoke(ctx, "/rpc.PeerDataNode/Health", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (c *peerDataNodeClient) StartSession(ctx context.Context, in *StartSessionRequest, opts ...grpc.CallOption) (*Session, error) {
-	out := new(Session)
-	err := c.cc.Invoke(ctx, "/rpc.PeerDataNode/StartSession", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (c *peerDataNodeClient) KeepAlive(ctx context.Context, opts ...grpc.CallOption) (PeerDataNode_KeepAliveClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_PeerDataNode_serviceDesc.Streams[0], "/rpc.PeerDataNode/KeepAlive", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &peerDataNodeKeepAliveClient{stream}
-	return x, nil
+	_ = "STUB: not implemented"
+	return *new(PeerDataNode_KeepAliveClient), nil
 }
 
 type PeerDataNode_KeepAliveClient interface {
@@ -1279,40 +958,21 @@ type peerDataNodeKeepAliveClient struct {
 	grpc.ClientStream
 }
 
-func (x *peerDataNodeKeepAliveClient) Send(m *Session) error {
-	return x.ClientStream.SendMsg(m)
-}
+func (x *peerDataNodeKeepAliveClient) Send(m *Session) error { _ = "STUB: not implemented"; return nil }
 
 func (x *peerDataNodeKeepAliveClient) Recv() (*KeepAliveResponse, error) {
-	m := new(KeepAliveResponse)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (c *peerDataNodeClient) FetchTableShardMetaData(ctx context.Context, in *TableShardMetaDataRequest, opts ...grpc.CallOption) (*TableShardMetaData, error) {
-	out := new(TableShardMetaData)
-	err := c.cc.Invoke(ctx, "/rpc.PeerDataNode/FetchTableShardMetaData", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (c *peerDataNodeClient) FetchVectorPartyRawData(ctx context.Context, in *VectorPartyRawDataRequest, opts ...grpc.CallOption) (PeerDataNode_FetchVectorPartyRawDataClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_PeerDataNode_serviceDesc.Streams[1], "/rpc.PeerDataNode/FetchVectorPartyRawData", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &peerDataNodeFetchVectorPartyRawDataClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
+	_ = "STUB: not implemented"
+	return *new(PeerDataNode_FetchVectorPartyRawDataClient), nil
 }
 
 type PeerDataNode_FetchVectorPartyRawDataClient interface {
@@ -1325,26 +985,13 @@ type peerDataNodeFetchVectorPartyRawDataClient struct {
 }
 
 func (x *peerDataNodeFetchVectorPartyRawDataClient) Recv() (*VectorPartyRawData, error) {
-	m := new(VectorPartyRawData)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (c *peerDataNodeClient) BenchmarkFileTransfer(ctx context.Context, in *BenchmarkRequest, opts ...grpc.CallOption) (PeerDataNode_BenchmarkFileTransferClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_PeerDataNode_serviceDesc.Streams[2], "/rpc.PeerDataNode/BenchmarkFileTransfer", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &peerDataNodeBenchmarkFileTransferClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
+	_ = "STUB: not implemented"
+	return *new(PeerDataNode_BenchmarkFileTransferClient), nil
 }
 
 type PeerDataNode_BenchmarkFileTransferClient interface {
@@ -1357,11 +1004,8 @@ type peerDataNodeBenchmarkFileTransferClient struct {
 }
 
 func (x *peerDataNodeBenchmarkFileTransferClient) Recv() (*VectorPartyRawData, error) {
-	m := new(VectorPartyRawData)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 // PeerDataNodeServer is the server API for PeerDataNode service.
@@ -1381,47 +1025,23 @@ type PeerDataNodeServer interface {
 }
 
 func RegisterPeerDataNodeServer(s *grpc.Server, srv PeerDataNodeServer) {
-	s.RegisterService(&_PeerDataNode_serviceDesc, srv)
+	_ = "STUB: not implemented"
+	return
 }
 
 func _PeerDataNode_Health_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HealthCheckRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PeerDataNodeServer).Health(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/rpc.PeerDataNode/Health",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PeerDataNodeServer).Health(ctx, req.(*HealthCheckRequest))
-	}
-	return interceptor(ctx, in, info, handler)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func _PeerDataNode_StartSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(StartSessionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PeerDataNodeServer).StartSession(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/rpc.PeerDataNode/StartSession",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PeerDataNodeServer).StartSession(ctx, req.(*StartSessionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func _PeerDataNode_KeepAlive_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(PeerDataNodeServer).KeepAlive(&peerDataNodeKeepAliveServer{stream})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type PeerDataNode_KeepAliveServer interface {
@@ -1435,41 +1055,23 @@ type peerDataNodeKeepAliveServer struct {
 }
 
 func (x *peerDataNodeKeepAliveServer) Send(m *KeepAliveResponse) error {
-	return x.ServerStream.SendMsg(m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (x *peerDataNodeKeepAliveServer) Recv() (*Session, error) {
-	m := new(Session)
-	if err := x.ServerStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func _PeerDataNode_FetchTableShardMetaData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TableShardMetaDataRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PeerDataNodeServer).FetchTableShardMetaData(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/rpc.PeerDataNode/FetchTableShardMetaData",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PeerDataNodeServer).FetchTableShardMetaData(ctx, req.(*TableShardMetaDataRequest))
-	}
-	return interceptor(ctx, in, info, handler)
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func _PeerDataNode_FetchVectorPartyRawData_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(VectorPartyRawDataRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(PeerDataNodeServer).FetchVectorPartyRawData(m, &peerDataNodeFetchVectorPartyRawDataServer{stream})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type PeerDataNode_FetchVectorPartyRawDataServer interface {
@@ -1482,15 +1084,13 @@ type peerDataNodeFetchVectorPartyRawDataServer struct {
 }
 
 func (x *peerDataNodeFetchVectorPartyRawDataServer) Send(m *VectorPartyRawData) error {
-	return x.ServerStream.SendMsg(m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func _PeerDataNode_BenchmarkFileTransfer_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(BenchmarkRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(PeerDataNodeServer).BenchmarkFileTransfer(m, &peerDataNodeBenchmarkFileTransferServer{stream})
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type PeerDataNode_BenchmarkFileTransferServer interface {
@@ -1503,7 +1103,8 @@ type peerDataNodeBenchmarkFileTransferServer struct {
 }
 
 func (x *peerDataNodeBenchmarkFileTransferServer) Send(m *VectorPartyRawData) error {
-	return x.ServerStream.SendMsg(m)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 var _PeerDataNode_serviceDesc = grpc.ServiceDesc{

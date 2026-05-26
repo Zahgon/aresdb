@@ -52,35 +52,12 @@ type EnvironmentContext struct {
 }
 
 // GetAresEnv gets the running environment setting for ares
-func GetAresEnv() AresEnv {
-	aresEnv := AresEnv(GetConfig().Env)
-	switch aresEnv {
-	case EnvProd:
-		break
-	case EnvStaging:
-		break
-	case EnvDev:
-		break
-	case EnvTest:
-		break
-	default:
-		return EnvDev
-	}
-	return aresEnv
-}
+func GetAresEnv() AresEnv { _ = "STUB: not implemented"; return *new(AresEnv) }
 
-func IsTest() bool {
-	return GetAresEnv() == EnvTest
-}
+func IsTest() bool { _ = "STUB: not implemented"; return false }
 
-func IsDev() bool {
-	return GetAresEnv() == EnvDev
-}
+func IsDev() bool { _ = "STUB: not implemented"; return false }
 
-func IsProd() bool {
-	return GetAresEnv() == EnvProd
-}
+func IsProd() bool { _ = "STUB: not implemented"; return false }
 
-func IsStaging() bool {
-	return GetAresEnv() == EnvStaging
-}
+func IsStaging() bool { _ = "STUB: not implemented"; return false }

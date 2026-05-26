@@ -15,10 +15,10 @@
 package api
 
 import (
-	"github.com/uber/aresdb/utils"
-	"io"
 	"net/http"
 	"sync"
+
+	"github.com/uber/aresdb/utils"
 )
 
 // HealthCheckHandler http handler for health check.
@@ -31,23 +31,16 @@ type HealthCheckHandler struct {
 }
 
 // NewHealthCheckHandler return a new http handler for health check.
-func NewHealthCheckHandler() *HealthCheckHandler {
-	return &HealthCheckHandler{}
-}
+func NewHealthCheckHandler() *HealthCheckHandler { _ = "STUB: not implemented"; return nil }
 
 // HealthCheck is the HealthCheck endpoint.
 func (handler *HealthCheckHandler) HealthCheck(w *utils.ResponseWriter, r *http.Request) {
-	handler.RLock()
-	disabled := handler.disable
-	handler.RUnlock()
-	if disabled {
-		w.WriteBytesWithCode(http.StatusServiceUnavailable, []byte("Health check disabled"))
-	} else {
-		io.WriteString(w, "OK")
-	}
+	_ = "STUB: not implemented"
+	return
 }
 
 // Version is the Version check endpoint.
 func (handler *HealthCheckHandler) Version(w http.ResponseWriter, r *http.Request) {
-	io.WriteString(w, utils.GetConfig().Version)
+	_ = "STUB: not implemented"
+	return
 }

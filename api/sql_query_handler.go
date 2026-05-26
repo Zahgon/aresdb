@@ -15,74 +15,27 @@
 package api
 
 import (
-	apiCom "github.com/uber/aresdb/api/common"
-	queryCom "github.com/uber/aresdb/query/common"
-	"github.com/uber/aresdb/query/sql"
-	"github.com/uber/aresdb/utils"
 	"net/http"
+
+	"github.com/uber/aresdb/utils"
 )
 
 // HandleSQL swagger:route POST /query/sql querySQL
 // query in SQL
 //
 // Consumes:
-//    - application/json
-//    - application/hll
+//   - application/json
+//   - application/hll
 //
 // Produces:
-//    - application/json
+//   - application/json
 //
 // Responses:
-//    default: errorResponse
-//        200: aqlResponse
-//        400: aqlResponse
+//
+//	default: errorResponse
+//	    200: aqlResponse
+//	    400: aqlResponse
 func (handler *QueryHandler) HandleSQL(w *utils.ResponseWriter, r *http.Request) {
-	sqlRequest := apiCom.SQLRequest{Device: -1}
-
-	if err := apiCom.ReadRequest(r, &sqlRequest); err != nil {
-		w.WriteErrorWithCode(http.StatusBadRequest, err)
-		return
-	}
-
-	var aqlQueries []queryCom.AQLQuery
-	if sqlRequest.Body.Queries != nil {
-		aqlQueries = make([]queryCom.AQLQuery, len(sqlRequest.Body.Queries))
-		startTs := utils.Now()
-		for i, sqlQuery := range sqlRequest.Body.Queries {
-			parsedAQLQuery, err := sql.Parse(sqlQuery, utils.GetLogger())
-			if err != nil {
-				w.WriteErrorWithCode(http.StatusBadRequest, err)
-				return
-			}
-			aqlQueries[i] = *parsedAQLQuery
-		}
-		sqlParseTimer := utils.GetRootReporter().GetTimer(utils.QuerySQLParsingLatency)
-		duration := utils.Now().Sub(startTs)
-		sqlParseTimer.Record(duration)
-	}
-
-	aqlRequest := apiCom.AQLRequest{
-		Device:                sqlRequest.Device,
-		Verbose:               sqlRequest.Verbose + sqlRequest.Debug,
-		Debug:                 sqlRequest.Debug,
-		Profiling:             sqlRequest.Profiling,
-		DeviceChoosingTimeout: sqlRequest.DeviceChoosingTimeout,
-		Accept:                sqlRequest.Accept,
-		Origin:                sqlRequest.Origin,
-		Body: queryCom.AQLRequest{
-			Queries: aqlQueries,
-		},
-	}
-
-	done := make(chan struct{})
-	available := handler.workerPool.GoIfAvailable(func() {
-		defer close(done)
-		handler.handleAQLInternal(aqlRequest, w, r)
-	})
-
-	if !available {
-		w.WriteError(apiCom.ErrQueryServiceNotAvailable)
-		return
-	}
-	<-done
+	_ = "STUB: not implemented"
+	return
 }

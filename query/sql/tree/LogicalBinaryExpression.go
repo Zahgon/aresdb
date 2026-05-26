@@ -14,12 +14,6 @@
 
 package tree
 
-import (
-	"fmt"
-
-	"github.com/uber/aresdb/query/sql/util"
-)
-
 // LogicalBinaryExpression is IExpression
 type LogicalBinaryExpression struct {
 	IExpression
@@ -50,22 +44,12 @@ var LogicalBinaryExpTypes = [...]string{
 // NewLogicalBinaryExpression creates LogicalBinaryExpression
 func NewLogicalBinaryExpression(location *NodeLocation, logicType LogicalBinaryExpType,
 	left, right IExpression) *LogicalBinaryExpression {
-	errMsg := fmt.Sprintf("type is null at (line:%d, col:%d)", location.Line, location.CharPosition)
-	util.RequireNonNull(logicType, errMsg)
-	errMsg = fmt.Sprintf("left is null at (line:%d, col:%d)", location.Line, location.CharPosition)
-	util.RequireNonNull(left, errMsg)
-	errMsg = fmt.Sprintf("right is null at (line:%d, col:%d)", location.Line, location.CharPosition)
-	util.RequireNonNull(right, errMsg)
-
-	return &LogicalBinaryExpression{
-		NewExpression(location),
-		logicType,
-		left,
-		right,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Accept accepts visitor
 func (e *LogicalBinaryExpression) Accept(visitor AstVisitor, ctx interface{}) interface{} {
-	return visitor.VisitLogicalBinaryExpression(e, ctx)
+	_ = "STUB: not implemented"
+	return nil
 }

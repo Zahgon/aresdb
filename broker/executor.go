@@ -16,13 +16,13 @@ package broker
 
 import (
 	"context"
+	"net/http"
+
 	"github.com/uber/aresdb/broker/common"
 	"github.com/uber/aresdb/cluster/topology"
 	dataCli "github.com/uber/aresdb/datanode/client"
 	memCom "github.com/uber/aresdb/memstore/common"
 	queryCom "github.com/uber/aresdb/query/common"
-	"net/http"
-	"time"
 )
 
 const (
@@ -31,11 +31,8 @@ const (
 
 // NewQueryExecutor creates a new QueryExecutor
 func NewQueryExecutor(tsr memCom.TableSchemaReader, topo topology.HealthTrackingDynamicTopoloy, client dataCli.DataNodeQueryClient) common.QueryExecutor {
-	return &queryExecutorImpl{
-		tableSchemaReader: tsr,
-		topo:              topo,
-		dataNodeClient:    client,
-	}
+	_ = "STUB: not implemented"
+	return *new(common.QueryExecutor)
 }
 
 // queryExecutorImpl will be reused across all queries
@@ -46,28 +43,10 @@ type queryExecutorImpl struct {
 }
 
 func (qe *queryExecutorImpl) Execute(ctx context.Context, requestID string, aql *queryCom.AQLQuery, returnHLLBinary bool, w http.ResponseWriter) (err error) {
-	var cancelFn context.CancelFunc
-	ctx, cancelFn = context.WithTimeout(ctx, time.Duration(executorTimeoutSeconds)*time.Second)
-	defer cancelFn()
-
-	// compile
-	qc := NewQueryContext(aql, returnHLLBinary, w)
-	qc.Compile(qe.tableSchemaReader)
-	if qc.Error != nil {
-		err = qc.Error
-		return
-	}
-
-	// execute
-	var queryPlan common.QueryPlan
-	if qc.IsNonAggregationQuery {
-		queryPlan, err = NewNonAggQueryPlan(qc, qe.topo, qe.dataNodeClient)
-	} else {
-		queryPlan, err = NewAggQueryPlan(qc, qe.topo, qe.dataNodeClient)
-	}
-	if err != nil {
-		return
-	}
-
-	return queryPlan.Execute(ctx, w)
+	_ = "STUB: not implemented"
+	return nil
 }
+
+// compile
+
+// execute

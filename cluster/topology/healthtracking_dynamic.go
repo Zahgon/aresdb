@@ -21,7 +21,6 @@
 package topology
 
 import (
-	"github.com/uber/aresdb/utils"
 	"sync"
 	"time"
 )
@@ -44,91 +43,36 @@ type healthTrackingDynamicTopoImpl struct {
 }
 
 func NewHealthTrackingDynamicTopology(opts DynamicOptions) (HealthTrackingDynamicTopoloy, error) {
-	dynamicTopo, err := NewDynamicInitializer(opts).Init()
-	if err != nil {
-		return nil, err
-	}
-
-	topo := &healthTrackingDynamicTopoImpl{
-		dynamicTopology:  dynamicTopo,
-		hostsHealthiness: make(map[Host]*healthiness),
-	}
-
-	return topo, nil
+	_ = "STUB: not implemented"
+	return *new(HealthTrackingDynamicTopoloy), nil
 }
 
-func (ht *healthTrackingDynamicTopoImpl) Get() Map {
-	ht.Lock()
-	defer ht.Unlock()
+func (ht *healthTrackingDynamicTopoImpl) Get() Map { _ = "STUB: not implemented"; return *new(Map) }
 
-	// filter known unhealthy hosts from dynamic topology
-	dm := ht.dynamicTopology.Get()
-	dhss := dm.HostShardSets()
-	var hostShardSets []HostShardSet
-	for _, hss := range dhss {
-		h, found := ht.hostsHealthiness[hss.Host()]
-		if !found {
-			newHealthiness := &healthiness{
-				healthy:             true,
-				lastUpdateTimestamp: utils.Now(),
-			}
-			ht.hostsHealthiness[hss.Host()] = newHealthiness
-			h = newHealthiness
-		}
-		if h.healthy || utils.Now().Sub(h.lastUpdateTimestamp).Seconds() > unhealthyRetryPeriodSeconds {
-			hostShardSets = append(hostShardSets, hss)
-		}
-	}
-
-	return NewStaticMap(NewStaticOptions().
-		SetShardSet(dm.ShardSet()).
-		SetReplicas(dm.Replicas()).
-		SetHostShardSets(hostShardSets))
-}
+// filter known unhealthy hosts from dynamic topology
 
 func (ht *healthTrackingDynamicTopoImpl) MarkHostHealthy(host Host) error {
-	return ht.changeHostHealthState(host, true)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (ht *healthTrackingDynamicTopoImpl) MarkHostUnhealthy(host Host) error {
-	return ht.changeHostHealthState(host, false)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (ht *healthTrackingDynamicTopoImpl) changeHostHealthState(host Host, healthy bool) error {
-	ht.Lock()
-	defer ht.Unlock()
-
-	h, found := ht.hostsHealthiness[host]
-	if !found {
-		return utils.StackError(nil, "failed to change host health state, host not found. host: %s, healthiness %t", host, healthy)
-	}
-	h.healthy = healthy
-	h.lastUpdateTimestamp = utils.Now()
+	_ = "STUB: not implemented"
 	return nil
 }
 
 // dummy implementation, don't use
 // TODO: implement when needed
 func (ht *healthTrackingDynamicTopoImpl) Watch() (MapWatch, error) {
-	return nil, nil
+	_ = "STUB: not implemented"
+	return *new(MapWatch), nil
 }
 
-func (ht *healthTrackingDynamicTopoImpl) isClosed() bool {
-	ht.RLock()
-	closed := ht.closed
-	ht.RUnlock()
-	return closed
-}
+func (ht *healthTrackingDynamicTopoImpl) isClosed() bool { _ = "STUB: not implemented"; return false }
 
-func (ht *healthTrackingDynamicTopoImpl) Close() {
-	ht.Lock()
-	defer ht.Unlock()
-
-	if ht.closed {
-		return
-	}
-
-	ht.closed = true
-
-	ht.dynamicTopology.Close()
-}
+func (ht *healthTrackingDynamicTopoImpl) Close() { _ = "STUB: not implemented"; return }

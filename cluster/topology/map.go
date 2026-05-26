@@ -36,83 +36,45 @@ type staticMap struct {
 }
 
 // NewStaticMap creates Map
-func NewStaticMap(opts StaticOptions) Map {
-	totalShards := len(opts.ShardSet().AllIDs())
-	hostShardSets := opts.HostShardSets()
-	staticMap := staticMap{
-		shardSet:          opts.ShardSet(),
-		hostShardSets:     hostShardSets,
-		hostShardSetsByID: make(map[string]HostShardSet),
-		hostsByShard:      make([][]Host, totalShards),
-		orderedHosts:      make([]Host, 0, len(hostShardSets)),
-		replicas:          opts.Replicas(),
-	}
+func NewStaticMap(opts StaticOptions) Map { _ = "STUB: not implemented"; return *new(Map) }
 
-	for _, hostShardSet := range hostShardSets {
-		host := hostShardSet.Host()
-		staticMap.hostShardSetsByID[host.ID()] = hostShardSet
-		staticMap.orderedHosts = append(staticMap.orderedHosts, host)
-		for _, shard := range hostShardSet.ShardSet().AllIDs() {
-			staticMap.hostsByShard[shard] = append(staticMap.hostsByShard[shard], host)
-		}
-	}
-	return &staticMap
-}
+func (sm *staticMap) Hosts() []Host { _ = "STUB: not implemented"; return nil }
 
-func (sm *staticMap) Hosts() []Host {
-	return sm.orderedHosts
-}
-
-func (sm *staticMap) HostShardSets() []HostShardSet {
-	return sm.hostShardSets
-}
+func (sm *staticMap) HostShardSets() []HostShardSet { _ = "STUB: not implemented"; return nil }
 
 func (sm *staticMap) LookupHostShardSet(hostID string) (HostShardSet, bool) {
-	v, ok := sm.hostShardSetsByID[hostID]
-	return v, ok
+	_ = "STUB: not implemented"
+	return *new(HostShardSet), false
 }
 
-func (sm *staticMap) HostsLen() int {
-	return len(sm.orderedHosts)
-}
+func (sm *staticMap) HostsLen() int { _ = "STUB: not implemented"; return 0 }
 
 func (sm *staticMap) ShardSet() aresShard.ShardSet {
-	return sm.shardSet
+	_ = "STUB: not implemented"
+	return *new(aresShard.ShardSet)
 }
 
 func (sm *staticMap) RouteShard(shard uint32) ([]Host, error) {
-	if int(shard) >= len(sm.hostsByShard) {
-		return nil, errUnownedShard
-	}
-	return sm.hostsByShard[shard], nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
 func (t *staticMap) Replicas() int {
-	return t.replicas
+	_ = "STUB: not implemented"
+
+	// mapWatch is the implementation of the interface MapWatch
+	return 0
 }
 
-// mapWatch is the implementation of the interface MapWatch
 type mapWatch struct {
 	xwatch.Watch
 }
 
 // NewMapWatch creates MapWatch
-func NewMapWatch(w xwatch.Watch) MapWatch {
-	return &mapWatch{w}
-}
+func NewMapWatch(w xwatch.Watch) MapWatch { _ = "STUB: not implemented"; return *new(MapWatch) }
 
-func (w *mapWatch) C() <-chan struct{} {
-	return w.Watch.C()
-}
+func (w *mapWatch) C() <-chan struct{} { _ = "STUB: not implemented"; return nil }
 
-func (w *mapWatch) Get() Map {
-	value := w.Watch.Get()
-	if value == nil {
-		return nil
-	}
-	return value.(Map)
-}
+func (w *mapWatch) Get() Map { _ = "STUB: not implemented"; return *new(Map) }
 
-func (w *mapWatch) Close() {
-	w.Watch.Close()
-}
+func (w *mapWatch) Close() { _ = "STUB: not implemented"; return }

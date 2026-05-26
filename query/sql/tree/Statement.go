@@ -27,13 +27,10 @@ type Statement struct {
 }
 
 // NewStatement creates Statement
-func NewStatement(location *NodeLocation) *Statement {
-	return &Statement{
-		NewNode(location),
-	}
-}
+func NewStatement(location *NodeLocation) *Statement { _ = "STUB: not implemented"; return nil }
 
 // Accept accepts visitor
 func (q *Statement) Accept(visitor AstVisitor, ctx interface{}) interface{} {
-	return visitor.VisitStatement(q, ctx)
+	_ = "STUB: not implemented"
+	return nil
 }

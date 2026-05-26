@@ -15,13 +15,12 @@
 package api
 
 import (
-	"encoding/json"
+	"net/http"
+
 	"github.com/gorilla/mux"
-	"github.com/uber/aresdb/api/common"
 	"github.com/uber/aresdb/memstore"
 	metaCom "github.com/uber/aresdb/metastore/common"
 	"github.com/uber/aresdb/utils"
-	"net/http"
 )
 
 // EnumHandler handlers enum rw
@@ -32,52 +31,26 @@ type EnumHandler struct {
 
 // NewEnumHandler returns a new enum handler
 func NewEnumHandler(memStore memstore.MemStore, metastore metaCom.MetaStore) *EnumHandler {
-	return &EnumHandler{
-		memStore:  memStore,
-		metastore: metastore,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Register regists paths
 func (handler *EnumHandler) Register(router *mux.Router, wrappers ...utils.HTTPHandlerWrapper) {
-	router.HandleFunc("/tables/{table}/columns/{column}/enum-cases", utils.ApplyHTTPWrappers(handler.ListEnumCases, wrappers...)).Methods(http.MethodGet)
-	router.HandleFunc("/tables/{table}/columns/{column}/enum-cases", utils.ApplyHTTPWrappers(handler.AddEnumCase, wrappers...)).Methods(http.MethodPost)
+	_ = "STUB: not implemented"
+	return
 }
 
 // ListEnumCases swagger:route GET /schema/tables/{table}/columns/{column}/enum-cases listEnumCases
 // list existing enumCases for given table and column
 //
 // Responses:
-//    default: errorResponse
-//        200: listEnumCasesResponse
+//
+//	default: errorResponse
+//	    200: listEnumCasesResponse
 func (handler *EnumHandler) ListEnumCases(w *utils.ResponseWriter, r *http.Request) {
-	var listEnumCasesRequest ListEnumCasesRequest
-	var listEnumCasesResponse ListEnumCasesResponse
-
-	err := common.ReadRequest(r, &listEnumCasesRequest)
-	if err != nil {
-		w.WriteError(err)
-		return
-	}
-
-	tableSchema, err := handler.memStore.GetSchema(listEnumCasesRequest.TableName)
-	if err != nil {
-		w.WriteError(ErrTableDoesNotExist)
-		return
-	}
-
-	tableSchema.RLock()
-	enumDict, columnExist := tableSchema.EnumDicts[listEnumCasesRequest.ColumnName]
-	if !columnExist {
-		tableSchema.RUnlock()
-		w.WriteError(ErrColumnDoesNotExist)
-		return
-	}
-
-	listEnumCasesResponse.JSONBuffer, err = json.Marshal(enumDict.ReverseDict)
-	tableSchema.RUnlock()
-
-	w.WriteJSONBytes(listEnumCasesResponse.JSONBuffer, err)
+	_ = "STUB: not implemented"
+	return
 }
 
 // AddEnumCase swagger:route POST /schema/tables/{table}/columns/{column}/enum-cases addEnumCase
@@ -85,25 +58,13 @@ func (handler *EnumHandler) ListEnumCases(w *utils.ResponseWriter, r *http.Reque
 // return the id of the enum
 //
 // Responses:
-//    default: errorResponse
-//        200: addEnumCaseResponse
+//
+//	default: errorResponse
+//	    200: addEnumCaseResponse
 func (handler *EnumHandler) AddEnumCase(w *utils.ResponseWriter, r *http.Request) {
-	var addEnumCaseRequest AddEnumCaseRequest
-	var addEnumCaseResponse AddEnumCaseResponse
-
-	err := common.ReadRequest(r, &addEnumCaseRequest)
-	if err != nil {
-		w.WriteError(err)
-		return
-	}
-
-	addEnumCaseResponse.Body, err = handler.metastore.ExtendEnumDict(addEnumCaseRequest.TableName, addEnumCaseRequest.ColumnName, addEnumCaseRequest.Body.EnumCases)
-	if err != nil {
-		// TODO: need mapping from metaStore error to api error
-		// for metaStore error might also be user error
-		w.WriteError(err)
-		return
-	}
-
-	w.WriteObject(addEnumCaseResponse.Body)
+	_ = "STUB: not implemented"
+	return
 }
+
+// TODO: need mapping from metaStore error to api error
+// for metaStore error might also be user error

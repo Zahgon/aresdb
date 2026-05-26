@@ -15,10 +15,9 @@
 package utils
 
 import (
-	"fmt"
-	"github.com/uber-go/tally"
-	"strconv"
 	"sync"
+
+	"github.com/uber-go/tally"
 )
 
 // MetricName is the type of the metric.
@@ -224,7 +223,7 @@ const (
 	scopeNameQueryWaitForMemoryDuration      = "query_wait_for_memory_duration"
 	scopeNameQueryReceived                   = "query_received"
 	scopeNameQueryRecordsProcessed           = "records_processed"
-	scopeNameBatchTransferTime				 = "batch_transfer_time"
+	scopeNameBatchTransferTime               = "batch_transfer_time"
 	scopeNameQueryBatchProcessed             = "batch_processed"
 	scopeNameQueryBytesTransferred           = "bytes_transferred"
 	scopeNameQueryRowsReturned               = "rows_returned"
@@ -250,9 +249,9 @@ const (
 	scopeNameSchemaDeletionCount             = "schema_deletions"
 	scopeNameSchemaCreationCount             = "schema_creations"
 	scopeNameJobFailuresCount                = "job_failures_count"
-	scopeNameWriteLockAcquireTime   		 = "writelock_acquire_time"
-	scopeNameReadLockAcquireTime   		 	 = "readlock_acquire_time"
-	scopeNamePrimaryKeyLookupTime			 = "pk_lookup_time"
+	scopeNameWriteLockAcquireTime            = "writelock_acquire_time"
+	scopeNameReadLockAcquireTime             = "readlock_acquire_time"
+	scopeNamePrimaryKeyLookupTime            = "pk_lookup_time"
 
 	// broker metrics
 	scopeNameAQLQueryReceivedBroker    = "aql_query_received_broker"
@@ -647,7 +646,7 @@ var metricDefs = map[MetricName]metricDefinition{
 		},
 	},
 	IngestionWritelockAquireTime: {
-		name: scopeNameWriteLockAcquireTime,
+		name:       scopeNameWriteLockAcquireTime,
 		metricType: Timer,
 		tags: map[string]string{
 			metricsTagOperation: metricsOperationIngestion,
@@ -655,7 +654,7 @@ var metricDefs = map[MetricName]metricDefinition{
 		},
 	},
 	IngestionPrimaryKeyLookupTime: {
-		name: scopeNamePrimaryKeyLookupTime,
+		name:       scopeNamePrimaryKeyLookupTime,
 		metricType: Timer,
 		tags: map[string]string{
 			metricsTagOperation: metricsOperationIngestion,
@@ -740,7 +739,7 @@ var metricDefs = map[MetricName]metricDefinition{
 		},
 	},
 	QueryReadLockAcquireTime: {
-		name: scopeNameReadLockAcquireTime,
+		name:       scopeNameReadLockAcquireTime,
 		metricType: Timer,
 		tags: map[string]string{
 			metricsTagComponent: metricsComponentQuery,
@@ -1118,53 +1117,33 @@ type ReporterFactory struct {
 
 // NewReporterFactory returns a new report factory.
 func NewReporterFactory(rootScope tally.Scope) *ReporterFactory {
-	return &ReporterFactory{
-		rootReporter: NewReporter(rootScope),
-		reporters:    make(map[string]*Reporter),
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // AddTableShard adds a reporter for the given table and shards. It should
 // be called when bootstrap the table shards or shard ownership changes.
 func (f *ReporterFactory) AddTableShard(tableName string, shardID int) {
-	f.Lock()
-	defer f.Unlock()
-	key := fmt.Sprintf("%s_%d", tableName, shardID)
-	_, ok := f.reporters[key]
-	if !ok {
-		f.reporters[key] = NewReporter(f.rootReporter.GetRootScope().Tagged(map[string]string{
-			metricsTagTable: tableName,
-			metricsTagShard: strconv.Itoa(shardID),
-		}))
-	}
+	_ = "STUB: not implemented"
+	return
 }
 
 // DeleteTableShard deletes the reporter for the given table and shards. It should
 // be called when the table shard no longer belongs to current node.
 func (f *ReporterFactory) DeleteTableShard(tableName string, shardID int) {
-	f.Lock()
-	defer f.Unlock()
-	key := fmt.Sprintf("%s_%d", tableName, shardID)
-	delete(f.reporters, key)
+	_ = "STUB: not implemented"
+	return
 }
 
 // GetReporter returns reporter given tableName and shardID. If the corresponding
 // reporter cannot be found. It will return the root scope.
 func (f *ReporterFactory) GetReporter(tableName string, shardID int) *Reporter {
-	f.RLock()
-	defer f.RUnlock()
-	key := fmt.Sprintf("%s_%d", tableName, shardID)
-	reporter, ok := f.reporters[key]
-	if ok {
-		return reporter
-	}
-	return f.rootReporter
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // GetRootReporter returns the root reporter.
-func (f *ReporterFactory) GetRootReporter() *Reporter {
-	return f.rootReporter
-}
+func (f *ReporterFactory) GetRootReporter() *Reporter { _ = "STUB: not implemented"; return nil }
 
 // Reporter is the the interface used to report stats,
 type Reporter struct {
@@ -1173,79 +1152,43 @@ type Reporter struct {
 }
 
 // NewReporter returns a new reporter with supplied root scope.
-func NewReporter(rootScope tally.Scope) *Reporter {
-	defs := make([]metricDefinition, int(MetricNamesSentinel))
-	for key, metricDefinition := range metricDefs {
-		metricDefinition.init(rootScope)
-		defs[key] = metricDefinition
-	}
-	return &Reporter{rootScope: rootScope, cachedDefinitions: defs}
-}
+func NewReporter(rootScope tally.Scope) *Reporter { _ = "STUB: not implemented"; return nil }
 
 // GetCounter returns the tally counter with corresponding tags.
 func (r *Reporter) GetCounter(n MetricName) tally.Counter {
-	def := r.cachedDefinitions[n]
-	if def.metricType == Counter {
-		return def.counter
-	}
-	GetLogger().Panicf("Cannot get counter given %d", n)
-	return nil
+	_ = "STUB: not implemented"
+	return *new(tally.Counter)
 }
 
 // GetGauge returns the tally gauge with corresponding tags.
 func (r *Reporter) GetGauge(n MetricName) tally.Gauge {
-	def := r.cachedDefinitions[n]
-	if def.metricType == Gauge {
-		return def.gauge
-	}
-	GetLogger().Panicf("Cannot get gauge given %d", n)
-	return nil
+	_ = "STUB: not implemented"
+	return *new(tally.Gauge)
 }
 
 // GetTimer returns the tally timer with corresponding tags.
 func (r *Reporter) GetTimer(n MetricName) tally.Timer {
-	def := r.cachedDefinitions[n]
-	if def.metricType == Timer {
-		return def.timer
-	}
-	GetLogger().Panicf("Cannot get timer given %d", n)
-	return nil
+	_ = "STUB: not implemented"
+	return *new(tally.Timer)
 }
 
 // GetChildCounter create tagged child counter from reporter
 func (r *Reporter) GetChildCounter(tags map[string]string, n MetricName) tally.Counter {
-	childScope := r.rootScope.Tagged(tags)
-	def := r.cachedDefinitions[n]
-	if def.metricType == Counter {
-		return childScope.Tagged(def.tags).Counter(def.name)
-	}
-	GetLogger().Panicf("Cannot get child counter given %d", n)
-	return nil
+	_ = "STUB: not implemented"
+	return *new(tally.Counter)
 }
 
 // GetChildGauge create tagged child gauge from reporter
 func (r *Reporter) GetChildGauge(tags map[string]string, n MetricName) tally.Gauge {
-	childScope := r.rootScope.Tagged(tags)
-	def := r.cachedDefinitions[n]
-	if def.metricType == Gauge {
-		return childScope.Tagged(def.tags).Gauge(def.name)
-	}
-	GetLogger().Panicf("Cannot get child gauge given %d", n)
-	return nil
+	_ = "STUB: not implemented"
+	return *new(tally.Gauge)
 }
 
 // GetChildTimer create tagged child timer from reporter
 func (r *Reporter) GetChildTimer(tags map[string]string, n MetricName) tally.Timer {
-	childScope := r.rootScope.Tagged(tags)
-	def := r.cachedDefinitions[n]
-	if def.metricType == Timer {
-		return childScope.Tagged(def.tags).Timer(def.name)
-	}
-	GetLogger().Panicf("Cannot get child timer given %d", n)
-	return nil
+	_ = "STUB: not implemented"
+	return *new(tally.Timer)
 }
 
 // GetRootScope returns the root scope wrapped by this reporter.
-func (r *Reporter) GetRootScope() tally.Scope {
-	return r.rootScope
-}
+func (r *Reporter) GetRootScope() tally.Scope { _ = "STUB: not implemented"; return *new(tally.Scope) }

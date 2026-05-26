@@ -17,11 +17,6 @@ package list
 // #include "string.h"
 // #include "stdlib.h"
 import "C"
-import (
-	"github.com/uber/aresdb/cgoutils"
-	"github.com/uber/aresdb/utils"
-	"unsafe"
-)
 
 var (
 	nativeChunkSize                    int64 = 1 << 25 // 32MB
@@ -68,57 +63,32 @@ type slabMemoryPool struct {
 
 // NewHighLevelMemoryPool returns a default implementation of HighLevelMemoryPool.
 func NewHighLevelMemoryPool(reporter HostMemoryChangeReporter) HighLevelMemoryPool {
-	nativeMP := NewNativeMemoryPool(reporter)
-	slabAllocator :=
-		NewArena(defaultStartSlabAllocatorChunkSize, defaultSlabSize, defaultSlabGrowthFactor, nativeMP)
-	return slabMemoryPool{
-		slabAllocator:    slabAllocator,
-		nativeMemoryPool: nativeMP,
-	}
+	_ = "STUB: not implemented"
+	return *new(HighLevelMemoryPool)
 }
 
 // Allocate is the implementation of Allocate in HighLevelMemoryPool interface.
-func (mp slabMemoryPool) Allocate(size int) [2]uintptr {
-	if size == 0 {
-		return [2]uintptr{0, 0}
-	}
-	return mp.slabAllocator.Alloc(size)
-}
+func (mp slabMemoryPool) Allocate(size int) [2]uintptr { _ = "STUB: not implemented"; return nil }
 
 // Reallocate is the implementation of Reallocate in HighLevelMemoryPool interface.
 func (mp slabMemoryPool) Reallocate(oldBuf [2]uintptr, oldSize int, newSize int) [2]uintptr {
-	if oldSize == newSize {
-		return oldBuf
-	}
-
-	if oldSize != 0 {
-		mp.Free(oldBuf)
-	}
-
-	return mp.Allocate(newSize)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Free is the implementation of Free in HighLevelMemoryPool interface.
-func (mp slabMemoryPool) Free(buf [2]uintptr) {
-	if !mp.slabAllocator.DecRef(buf) {
-		utils.GetLogger().Panic("buf should be freed but not")
-	}
-}
+func (mp slabMemoryPool) Free(buf [2]uintptr) { _ = "STUB: not implemented"; return }
 
 // Interpret is the implementation of Interpret in HighLevelMemoryPool interface.
-func (mp slabMemoryPool) Interpret(offset uintptr) uintptr {
-	return offset + mp.nativeMemoryPool.GetBaseAddr()
-}
+func (mp slabMemoryPool) Interpret(offset uintptr) uintptr { _ = "STUB: not implemented"; return 0 }
 
 // Destroy is the implementation of Free in HighLevelMemoryPool interface.
-func (mp slabMemoryPool) Destroy() {
-	mp.nativeMemoryPool.Destroy()
-	mp.nativeMemoryPool = nil
-}
+func (mp slabMemoryPool) Destroy() { _ = "STUB: not implemented"; return }
 
 // GetNativeMemoryAllocator is the implementation of GetNativeMemoryAllocator in HighLevelMemoryPool interface.
 func (mp slabMemoryPool) GetNativeMemoryAllocator() NativeMemoryPool {
-	return mp.nativeMemoryPool
+	_ = "STUB: not implemented"
+	return *new(NativeMemoryPool)
 }
 
 // NativeMemoryPool is the interface to manage system memory to support high level memory pool
@@ -151,54 +121,29 @@ type singleChunkNativeMemoryPool struct {
 
 // GetBaseAddr is the implementation of GetBaseAddr in NativeMemoryPool interface.
 func (mp *singleChunkNativeMemoryPool) GetBaseAddr() uintptr {
-	return mp.block
+	_ = "STUB: not implemented"
+
+	// Malloc is the implementation of Malloc in NativeMemoryPool interface.
+	return 0
 }
 
-// Malloc is the implementation of Malloc in NativeMemoryPool interface.
 func (mp *singleChunkNativeMemoryPool) Malloc(size int) uintptr {
-	sizeCasted := int64(size)
-	remainingSize := mp.totalSize - mp.allocatedSize
-	if sizeCasted > remainingSize {
-		newSize := (mp.allocatedSize + sizeCasted + nativeChunkSize - 1) / nativeChunkSize * nativeChunkSize
-		if mp.hostMemoryReporter != nil {
-			// report memory change.
-			mp.hostMemoryReporter(int64(newSize) - int64(mp.totalSize))
-		}
-		newBlock := uintptr(cgoutils.HostAlloc(int(newSize)))
-		// copy old content.
-		if mp.block != 0 {
-			cgoutils.HostMemCpy(unsafe.Pointer(newBlock), unsafe.Pointer(mp.block), int(mp.totalSize))
-			cgoutils.HostFree(unsafe.Pointer(mp.block))
-		}
-		mp.block = newBlock
-		mp.totalSize = newSize
-		mp.nChunks = mp.totalSize / nativeChunkSize
-	}
-	addr := uintptr(mp.allocatedSize)
-	mp.allocatedSize += sizeCasted
-	return addr
+	_ = "STUB: not implemented"
+	return 0
 }
+
+// report memory change.
+
+// copy old content.
 
 // Destroy is the implementation of Destroy in NativeMemoryPool interface.
-func (mp *singleChunkNativeMemoryPool) Destroy() {
-	cgoutils.HostFree(unsafe.Pointer(mp.block))
-	if mp.hostMemoryReporter != nil {
-		mp.hostMemoryReporter(int64(-mp.totalSize))
-	}
-	mp.block = 0
-	mp.totalSize = 0
-	mp.allocatedSize = 0
-	mp.nChunks = 0
-}
+func (mp *singleChunkNativeMemoryPool) Destroy() { _ = "STUB: not implemented"; return }
 
 // GetTotalBytes is the implementation of GetTotalBytes in NativeMemoryPool interface.
-func (mp *singleChunkNativeMemoryPool) GetTotalBytes() int64 {
-	return mp.totalSize
-}
+func (mp *singleChunkNativeMemoryPool) GetTotalBytes() int64 { _ = "STUB: not implemented"; return 0 }
 
 // NewNativeMemoryPool returns a default implementation of NativeMemoryPool.
 func NewNativeMemoryPool(reporter HostMemoryChangeReporter) NativeMemoryPool {
-	return &singleChunkNativeMemoryPool{
-		hostMemoryReporter: reporter,
-	}
+	_ = "STUB: not implemented"
+	return *new(NativeMemoryPool)
 }

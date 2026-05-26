@@ -17,6 +17,7 @@ package bootstrap
 import (
 	"encoding/json"
 	"errors"
+
 	"github.com/uber/aresdb/cluster/topology"
 	"github.com/uber/aresdb/datanode/client"
 )

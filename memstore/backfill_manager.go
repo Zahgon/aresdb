@@ -17,11 +17,8 @@ package memstore
 import (
 	"sync"
 
-	"encoding/json"
-
 	memCom "github.com/uber/aresdb/memstore/common"
 	metaCom "github.com/uber/aresdb/metastore/common"
-	"github.com/uber/aresdb/utils"
 )
 
 // BackfillManager manages the records that need to be put into a backfill queue and merged with
@@ -74,166 +71,66 @@ type BackfillConfig struct {
 
 // NewBackfillManager creates a new BackfillManager instance.
 func NewBackfillManager(tableName string, shard int, config BackfillConfig) *BackfillManager {
-	backfillManager := BackfillManager{
-		TableName:      tableName,
-		Shard:          shard,
-		BackfillConfig: config,
-	}
-	backfillManager.AppendCond = sync.NewCond(&backfillManager.RWMutex)
-	return &backfillManager
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // WaitForBackfillBufferAvailability blocks until backfill buffer is available
-func (r *BackfillManager) WaitForBackfillBufferAvailability() {
-	r.Lock()
-	defer r.Unlock()
-
-	for r.CurrentBufferSize+r.BackfillingBufferSize >= r.MaxBufferSize {
-		utils.GetLogger().Debugf("Waiting for slots of backfill manager to be available."+
-			"Current buffer size=%d, backfilling buffer size=%d, max buffer size=%d",
-			r.CurrentBufferSize, r.BackfillingBufferSize, r.MaxBufferSize)
-		r.AppendCond.Wait()
-	}
-}
+func (r *BackfillManager) WaitForBackfillBufferAvailability() { _ = "STUB: not implemented"; return }
 
 // Append appends an upsert batch into the backfill queue.
 // Returns true if buffer limit has been reached and caller may need to wait
 func (r *BackfillManager) Append(upsertBatch *memCom.UpsertBatch, redoFile int64, batchOffset uint32) bool {
-	r.Lock()
-	defer r.Unlock()
-	r.CurrentRedoFile = redoFile
-	r.CurrentBatchOffset = batchOffset
-
-	// advance position even if data is not for backfill
-	if upsertBatch == nil {
-		return false
-	}
-
-	utils.GetLogger().Debugf("Table %s: Backfill batch of size %v, redoLog=%d offset=%d", r.TableName, len(upsertBatch.GetBuffer())+upsertBatch.GetAlternativeBytes(),
-		redoFile, batchOffset)
-
-	r.UpsertBatches = append(r.UpsertBatches, upsertBatch)
-	r.NumRecords += upsertBatch.NumRows
-	r.CurrentBufferSize += (int64)(len(upsertBatch.GetBuffer()) + upsertBatch.GetAlternativeBytes())
-	utils.GetReporter(r.TableName, r.Shard).GetGauge(utils.BackfillBufferFillRatio).Update(float64(r.CurrentBufferSize+r.BackfillingBufferSize) / float64(r.MaxBufferSize))
-	utils.GetReporter(r.TableName, r.Shard).GetGauge(utils.BackfillBufferSize).Update(float64(r.CurrentBufferSize + r.BackfillingBufferSize))
-	utils.GetReporter(r.TableName, r.Shard).GetGauge(utils.BackfillBufferNumRecords).Update(float64(r.NumRecords))
-
-	if r.CurrentBufferSize+r.BackfillingBufferSize >= int64(float64(r.MaxBufferSize)*0.95) {
-		utils.GetLogger().With("size", r.CurrentBufferSize+r.BackfillingBufferSize).
-			Warnf("Table %s Backfill buffer is full", r.TableName)
-		return true
-	}
-
+	_ = "STUB: not implemented"
 	return false
 }
 
+// advance position even if data is not for backfill
+
 // ReadUpsertBatch reads upsert batch in backfill queue, user should not lock schema
 func (r *BackfillManager) ReadUpsertBatch(index, start, length int, schema *memCom.TableSchema) (data [][]interface{}, columnNames []string, err error) {
-	r.RLock()
-	defer r.RUnlock()
-
-	if index < len(r.UpsertBatches) {
-		upsertBatch := r.UpsertBatches[index]
-		columnNames, err = upsertBatch.GetColumnNames(schema)
-		if err != nil {
-			return
-		}
-
-		data, err = upsertBatch.ReadData(start, length)
-		if err != nil {
-			return
-		}
-	}
-	return
+	_ = "STUB: not implemented"
+	return nil, nil, nil
 }
 
 // StartBackfill gets a slice of UpsertBatches from backfill queue and returns the
 // CurrentRedoFile and CurrentBatchOffset.
 func (r *BackfillManager) StartBackfill() ([]*memCom.UpsertBatch, int64, uint32) {
-	r.Lock()
-	defer r.Unlock()
-
-	utils.GetLogger().With("action", "Backfill", "table", r.TableName, "shard", r.Shard,
-		"lastRedoFile", r.LastRedoFile, "lastOffset", r.LastBatchOffset, "newRedoFile", r.CurrentRedoFile,
-		"newOffset", r.CurrentBatchOffset).Info("Start backfill")
-
-	// no data to backfill
-	// but CurrentRedoFile/CurrentBatchOffset may not be checkpointed yet(live batch)
-	if r.CurrentBufferSize == 0 {
-		return nil, r.CurrentRedoFile, r.CurrentBatchOffset
-	}
-
-	r.BackfillingBufferSize = r.CurrentBufferSize
-	r.CurrentBufferSize = 0
-	r.NumRecords = 0
-	batches := r.UpsertBatches
-	r.UpsertBatches = nil
-
-	return batches, r.CurrentRedoFile, r.CurrentBatchOffset
+	_ = "STUB: not implemented"
+	return nil, 0, 0
 }
+
+// no data to backfill
+// but CurrentRedoFile/CurrentBatchOffset may not be checkpointed yet(live batch)
 
 // QualifyToTriggerBackfill decides if OK to trigger size-based backfill process
-func (r *BackfillManager) QualifyToTriggerBackfill() bool {
-	r.RLock()
-	defer r.RUnlock()
-	return r.CurrentBufferSize >= r.BackfillThresholdInBytes
-}
+func (r *BackfillManager) QualifyToTriggerBackfill() bool { _ = "STUB: not implemented"; return false }
 
 // advanceOffset cleans up space and wakes up enqueue processes
 func (r *BackfillManager) advanceOffset(redoFile int64, offset uint32) {
-	r.BackfillingBufferSize = 0
-	r.LastRedoFile = redoFile
-	r.LastBatchOffset = offset
-	r.AppendCond.Broadcast()
+	_ = "STUB: not implemented"
+	return
 }
 
 // GetLatestRedoFileAndOffset returns latest redofile and its batch offset
 func (r *BackfillManager) GetLatestRedoFileAndOffset() (int64, uint32) {
-	r.RLock()
-	defer r.RUnlock()
-	return r.LastRedoFile, r.LastBatchOffset
+	_ = "STUB: not implemented"
+	return 0, 0
 }
 
 // MarshalJSON marshals a BackfillManager into json.
 func (r *BackfillManager) MarshalJSON() ([]byte, error) {
+	_ = "STUB: not implemented"
 	// Avoid json.Marshal loop calls.
-	r.RLock()
-	defer r.RUnlock()
-
-	type alias BackfillManager
-	marshalBackfillManager := struct {
-		*alias
-		NumUpsertBatches int `json:"numUpsertBatches"`
-	}{
-		alias:            (*alias)(r),
-		NumUpsertBatches: len(r.UpsertBatches),
-	}
-
-	return json.Marshal(marshalBackfillManager)
+	return nil, nil
 }
 
 // Destruct set the golang object references used by backfill manager to be nil to trigger gc ealier.
-func (r *BackfillManager) Destruct() {
-	r.UpsertBatches = nil
-}
+func (r *BackfillManager) Destruct() { _ = "STUB: not implemented"; return }
 
 // Done updates the backfill progress both in memory and in metastore.
 func (r *BackfillManager) Done(currentRedoFile int64, currentBatchOffset uint32,
 	metaStore metaCom.MetaStore) error {
-	r.Lock()
-	defer r.Unlock()
-	if currentRedoFile > r.LastRedoFile ||
-		currentRedoFile == r.LastRedoFile && currentBatchOffset > r.LastBatchOffset {
-		if err := metaStore.UpdateBackfillProgress(r.TableName, r.Shard, currentRedoFile,
-			currentBatchOffset); err != nil {
-			return err
-		}
-		utils.GetLogger().With("action", "Backfill", "table", r.TableName, "shard", r.Shard,
-			"lastRedoFile", r.LastRedoFile, "lastOffset", r.LastBatchOffset, "newRedoFile", currentRedoFile,
-			"newOffset", currentBatchOffset).Info("Finish backfill")
-		r.advanceOffset(currentRedoFile, currentBatchOffset)
-	}
-
+	_ = "STUB: not implemented"
 	return nil
 }

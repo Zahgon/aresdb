@@ -14,8 +14,6 @@
 
 package tree
 
-import "fmt"
-
 // Query is query
 type Query struct {
 	// Statement is IStatement
@@ -32,20 +30,12 @@ type Query struct {
 
 // NewQuery creates Query
 func NewQuery(location *NodeLocation, with *With, queryBody IQueryBody, order *OrderBy, limit string) *Query {
-	if queryBody == nil {
-		panic(fmt.Errorf("QueryBody is null at (line:%d, col:%d)", location.Line, location.CharPosition))
-	}
-
-	return &Query{
-		IStatement: NewStatement(location),
-		QueryBody:  queryBody,
-		With:       with,
-		OrderBy:    order,
-		Limit:      limit,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Accept accepts visitor
 func (n *Query) Accept(visitor AstVisitor, ctx interface{}) interface{} {
-	return visitor.VisitQuery(n, ctx)
+	_ = "STUB: not implemented"
+	return nil
 }

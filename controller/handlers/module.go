@@ -20,12 +20,12 @@ import (
 
 // Module is handler fx module
 var Module = fx.Provide(
-		NewHealthHandler,
-		NewConfigHandler,
-		NewSchemaHandler,
-		NewMembershipHandler,
-		NewNamespaceHandler,
-		NewAssignmentHandler,
-		NewPlacementHandler,
-		NewUIHandler,
-	)
+	NewHealthHandler,
+	NewConfigHandler,
+	NewSchemaHandler,
+	NewMembershipHandler,
+	NewNamespaceHandler,
+	NewAssignmentHandler,
+	NewPlacementHandler,
+	NewUIHandler,
+)

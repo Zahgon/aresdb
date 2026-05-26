@@ -17,40 +17,28 @@ type options struct {
 	bootstrapSessionTTL               int64
 }
 
-func (o *options) MaxConcurrentTableShards() int {
-	return o.maxConcurrentTableShards
-}
+func (o *options) MaxConcurrentTableShards() int { _ = "STUB: not implemented"; return 0 }
 
 func (o *options) SetMaxConcurrentShards(numShards int) Options {
-	o.maxConcurrentTableShards = numShards
-	return o
+	_ = "STUB: not implemented"
+	return *new(Options)
 }
 
-func (o *options) MaxConcurrentStreamsPerTableShards() int {
-	return o.maxConcurrentStreamsPerTableShard
-}
+func (o *options) MaxConcurrentStreamsPerTableShards() int { _ = "STUB: not implemented"; return 0 }
 
 func (o *options) SetMaxConcurrentStreamsPerTableShards(numStreams int) Options {
-	o.maxConcurrentStreamsPerTableShard = numStreams
-	return o
+	_ = "STUB: not implemented"
+	return *new(Options)
 }
 
 // BootstrapSessionTTL returns the ttl for bootstrap session
-func (o *options) BootstrapSessionTTL() int64 {
-	return o.bootstrapSessionTTL
-}
+func (o *options) BootstrapSessionTTL() int64 { _ = "STUB: not implemented"; return 0 }
 
 // SetBootstrapSessionTTL sets the session ttl for bootstrap session
 func (o *options) SetBootstrapSessionTTL(ttl int64) Options {
-	o.bootstrapSessionTTL = ttl
-	return o
+	_ = "STUB: not implemented"
+	return *new(Options)
 }
 
 // NewOptions returns bootstrap default options
-func NewOptions() Options {
-	return &options{
-		bootstrapSessionTTL:               defaultBootstrapSessionTTL,
-		maxConcurrentTableShards:          defaultMaxConcurrentTableShards,
-		maxConcurrentStreamsPerTableShard: defaultMaxCocurrentSessionPerTableShard,
-	}
-}
+func NewOptions() Options { _ = "STUB: not implemented"; return *new(Options) }

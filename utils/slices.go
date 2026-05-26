@@ -16,22 +16,8 @@ package utils
 
 // IndexOfStr finds the index of a target string inside a slice of strings,
 // return -1 if not found
-func IndexOfStr(strs []string, target string) int {
-	for id, str := range strs {
-		if str == target {
-			return id
-		}
-	}
-	return -1
-}
+func IndexOfStr(strs []string, target string) int { _ = "STUB: not implemented"; return 0 }
 
 // IndexOfInt finds the index of a target int inside a slice of ints,
 // return -1 if not found
-func IndexOfInt(s []int, e int) int {
-	for i, a := range s {
-		if a == e {
-			return i
-		}
-	}
-	return -1
-}
+func IndexOfInt(s []int, e int) int { _ = "STUB: not implemented"; return 0 }

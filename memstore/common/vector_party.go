@@ -15,10 +15,11 @@
 package common
 
 import (
-	"github.com/uber/aresdb/diskstore"
 	"io"
 	"os"
 	"unsafe"
+
+	"github.com/uber/aresdb/diskstore"
 )
 
 // ColumnMode represents how many vectors a vector party may have.
@@ -235,8 +236,6 @@ type ListVectorParty interface {
 
 // VectorPartyEquals covers nil VectorParty compare
 func VectorPartyEquals(v1 VectorParty, v2 VectorParty) bool {
-	if v1 == nil || v2 == nil {
-		return v1 == nil && v2 == nil
-	}
-	return v1.Equals(v2)
+	_ = "STUB: not implemented"
+	return false
 }

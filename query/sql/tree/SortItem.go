@@ -40,14 +40,12 @@ var OrderTypes = [...]string{
 
 // NewSortItem creates SortItem
 func NewSortItem(location *NodeLocation, expr IExpression, order OrderType) *SortItem {
-	return &SortItem{
-		NewNode(location),
-		expr,
-		order,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Accept accepts visitor
 func (q *SortItem) Accept(visitor AstVisitor, ctx interface{}) interface{} {
-	return visitor.VisitSortItem(q, ctx)
+	_ = "STUB: not implemented"
+	return nil
 }

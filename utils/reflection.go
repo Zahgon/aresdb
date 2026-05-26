@@ -15,19 +15,11 @@
 package utils
 
 import (
-	"reflect"
 	"regexp"
-	"runtime"
-	"strings"
 )
 
 var re = regexp.MustCompile("[^0-9a-zA-Z_\\-.]+")
 
 // GetFuncName returns the function name given a function pointer. It will only return
 // the last part of the name.
-func GetFuncName(f interface{}) string {
-	fullFuncName := runtime.FuncForPC(reflect.ValueOf(f).Pointer()).Name()
-	paths := strings.Split(fullFuncName, "/")
-	parts := strings.SplitN(paths[len(paths)-1], ".", 2)
-	return re.ReplaceAllString(parts[1], "")
-}
+func GetFuncName(f interface{}) string { _ = "STUB: not implemented"; return "" }

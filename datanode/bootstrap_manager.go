@@ -21,14 +21,12 @@
 package datanode
 
 import (
-	"github.com/uber/aresdb/cluster/topology"
-	"github.com/uber/aresdb/datanode/bootstrap"
-	"github.com/uber/aresdb/datanode/client"
-	"github.com/uber/aresdb/utils"
 	"sync"
 	"time"
 
-	xerrors "github.com/m3db/m3/src/x/errors"
+	"github.com/uber/aresdb/cluster/topology"
+	"github.com/uber/aresdb/datanode/bootstrap"
+	"github.com/uber/aresdb/datanode/client"
 )
 
 // bootstrapManagerImpl is the implementation of the interface databaseBootstrapManager
@@ -52,121 +50,33 @@ func NewBootstrapManager(origin string,
 	bootstrapOpts bootstrap.Options,
 	topo topology.Topology,
 ) BootstrapManager {
-	peerSource, err := NewPeerSource(topo, nil)
-	if err != nil {
-		utils.GetLogger().With("error", err.Error()).Fatal("failed to initialize peer source")
-	}
-
-	return &bootstrapManagerImpl{
-		origin:        origin,
-		bootstrapable: bootstrappable,
-		opts:          bootstrapOpts,
-		peerSource:    peerSource,
-		topo:          topo,
-	}
+	_ = "STUB: not implemented"
+	return *new(BootstrapManager)
 }
 
-func (m *bootstrapManagerImpl) IsBootstrapped() bool {
-	m.RLock()
-	state := m.state
-	m.RUnlock()
-	return state == bootstrap.Bootstrapped
-}
+func (m *bootstrapManagerImpl) IsBootstrapped() bool { _ = "STUB: not implemented"; return false }
 
 func (m *bootstrapManagerImpl) LastBootstrapCompletionTime() (time.Time, bool) {
-	return m.lastBootstrapCompletionTime, !m.lastBootstrapCompletionTime.IsZero()
+	_ = "STUB: not implemented"
+	return *new(time.Time), false
 }
 
-func (m *bootstrapManagerImpl) Bootstrap() error {
-	m.Lock()
-	switch m.state {
-	case bootstrap.Bootstrapping:
-		// NB(r): Already bootstrapping, now a consequent bootstrap
-		// request comes in - we queue this up to bootstrap again
-		// once the current bootstrap has completed.
-		// This is an edge case that can occur if during either an
-		// initial bootstrap or a resharding bootstrap if a new
-		// reshard occurs and we need to bootstrap more shards.
-		m.hasPending = true
-		m.Unlock()
-		utils.GetLogger().Info("bootstrap enqueued, datanode is in bootstrapping state")
-		return nil
-	default:
-		m.state = bootstrap.Bootstrapping
-	}
-	m.Unlock()
+func (m *bootstrapManagerImpl) Bootstrap() error { _ = "STUB: not implemented"; return nil }
 
-	// Keep performing bootstraps until none pending
-	multiErr := xerrors.NewMultiError()
-	for {
-		err := m.bootstrap()
-		if err != nil {
-			multiErr = multiErr.Add(err)
-		}
+// NB(r): Already bootstrapping, now a consequent bootstrap
+// request comes in - we queue this up to bootstrap again
+// once the current bootstrap has completed.
+// This is an edge case that can occur if during either an
+// initial bootstrap or a resharding bootstrap if a new
+// reshard occurs and we need to bootstrap more shards.
 
-		m.Lock()
-		currPending := m.hasPending
-		if currPending {
-			// New bootstrap calls should now enqueue another pending bootstrap
-			m.hasPending = false
-		} else {
-			m.state = bootstrap.Bootstrapped
-		}
-		m.Unlock()
+// Keep performing bootstraps until none pending
 
-		if !currPending {
-			break
-		}
-	}
+// New bootstrap calls should now enqueue another pending bootstrap
 
-	m.lastBootstrapCompletionTime = utils.Now()
-	return multiErr.FinalError()
-}
-
-func (m *bootstrapManagerImpl) bootstrap() error {
-	startDatanodeBootstrap := utils.Now()
-	topoStateSnapshot := newInitialTopologyState(m.topo)
-	err := m.bootstrapable.Bootstrap(m.peerSource, m.origin, m.topo, topoStateSnapshot, m.opts)
-	took := utils.Now().Sub(startDatanodeBootstrap)
-	if err != nil {
-		utils.GetLogger().With("datanode", m.origin).
-			With("duration", took).
-			With("error", err.Error()).
-			Info("bootstrap finished with err")
-		return err
-	}
-	utils.GetLogger().With("datanode", m.origin).
-		With("duration", took).
-		Info("bootstrap finished")
-	return nil
-}
+func (m *bootstrapManagerImpl) bootstrap() error { _ = "STUB: not implemented"; return nil }
 
 func newInitialTopologyState(topo topology.Topology) *topology.StateSnapshot {
-	topoMap := topo.Get()
-
-	var (
-		hostShardSets = topoMap.HostShardSets()
-		topologyState = &topology.StateSnapshot{
-			ShardStates: topology.ShardStates{},
-		}
-	)
-
-	for _, hostShardSet := range hostShardSets {
-		for _, currShard := range hostShardSet.ShardSet().All() {
-			shardID := topology.ShardID(currShard.ID())
-			existing, ok := topologyState.ShardStates[shardID]
-			if !ok {
-				existing = map[topology.HostID]topology.HostShardState{}
-				topologyState.ShardStates[shardID] = existing
-			}
-
-			hostID := topology.HostID(hostShardSet.Host().ID())
-			existing[hostID] = topology.HostShardState{
-				Host:       hostShardSet.Host(),
-				ShardState: currShard.State(),
-			}
-		}
-	}
-
-	return topologyState
+	_ = "STUB: not implemented"
+	return nil
 }

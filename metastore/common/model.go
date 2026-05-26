@@ -151,42 +151,20 @@ type Table struct {
 }
 
 // IsEnumColumn checks whether a column is enum column
-func (c *Column) IsEnumColumn() bool {
-	return c.Type == BigEnum || c.Type == SmallEnum
-}
+func (c *Column) IsEnumColumn() bool { _ = "STUB: not implemented"; return false }
 
 // IsEnumArrayColumn checks whether a column is of enum array column
-func (c *Column) IsEnumArrayColumn() bool {
-	return c.Type == ArrayBigEnum || c.Type == ArraySmallEnum
-}
+func (c *Column) IsEnumArrayColumn() bool { _ = "STUB: not implemented"; return false }
 
 // IsEnumBasedColumn checks whether a column whose value is enum based
 // including both simple enum columns and arry enum columns
-func (c *Column) IsEnumBasedColumn() bool {
-	return c.IsEnumArrayColumn() || c.IsEnumColumn()
-}
+func (c *Column) IsEnumBasedColumn() bool { _ = "STUB: not implemented"; return false }
 
 // IsOverwriteOnlyDataType checks whether a column is overwrite only
-func (c *Column) IsOverwriteOnlyDataType() bool {
-	switch c.Type {
-	case Uint8, Int8, Uint16, Int16, Uint32, Int32, Float32, Int64:
-		return false
-	default:
-		return true
-	}
-}
+func (c *Column) IsOverwriteOnlyDataType() bool { _ = "STUB: not implemented"; return false }
 
 // EnumCardinality returns cardinality for enum type
-func EnumCardinality(columnType string) int {
-	switch columnType {
-	case SmallEnum, ArraySmallEnum:
-		return 1 << 8
-	case BigEnum, ArrayBigEnum:
-		return 1 << 16
-	default:
-		return 0
-	}
-}
+func EnumCardinality(columnType string) int { _ = "STUB: not implemented"; return 0 }
 
 // ShardOwnership defines an instruction on whether the receiving instance
 // should start to own or disown the specified table shard.

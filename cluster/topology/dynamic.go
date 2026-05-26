@@ -22,15 +22,11 @@ package topology
 
 import (
 	"errors"
-	"github.com/m3db/m3/src/cluster/kv"
-	"github.com/m3db/m3/src/cluster/placement"
-	"github.com/m3db/m3/src/cluster/services"
-	"github.com/m3db/m3/src/cluster/shard"
-	xwatch "github.com/m3db/m3/src/x/watch"
-	aresShard "github.com/uber/aresdb/cluster/shard"
-	"github.com/uber/aresdb/common"
-	"github.com/uber/aresdb/utils"
 	"sync"
+
+	"github.com/m3db/m3/src/cluster/services"
+	xwatch "github.com/m3db/m3/src/x/watch"
+	"github.com/uber/aresdb/common"
 )
 
 var (
@@ -50,43 +46,21 @@ type dynamicInitializer struct {
 
 // NewDynamicInitializer returns a dynamic topology initializer
 func NewDynamicInitializer(opts DynamicOptions) Initializer {
-	return &dynamicInitializer{opts: opts}
+	_ = "STUB: not implemented"
+	return *new(Initializer)
 }
 
 func (i *dynamicInitializer) Init() (Topology, error) {
-	i.Lock()
-	defer i.Unlock()
-
-	if i.topo != nil {
-		return i.topo, nil
-	}
-
-	topo, err := newDynamicTopology(i.opts)
-	if err != nil {
-		return nil, err
-	}
-
-	i.topo = topo
-	return i.topo, nil
+	_ = "STUB: not implemented"
+	return *new(Topology), nil
 }
 
 func (i *dynamicInitializer) TopologyIsSet() (bool, error) {
-	services, err := i.opts.ConfigServiceClient().Services(i.opts.ServicesOverrideOptions())
-	if err != nil {
-		return false, err
-	}
-
-	_, err = services.Query(i.opts.ServiceID(), i.opts.QueryOptions())
-	if err != nil {
-		if err == kv.ErrNotFound {
-			// Valid, just means topology is not set
-			return false, nil
-		}
-
-		return false, err
-	}
-	return true, nil
+	_ = "STUB: not implemented"
+	return false, nil
 }
+
+// Valid, just means topology is not set
 
 type dynamicTopology struct {
 	sync.RWMutex
@@ -100,173 +74,42 @@ type dynamicTopology struct {
 }
 
 func newDynamicTopology(opts DynamicOptions) (DynamicTopology, error) {
-	services, err := opts.ConfigServiceClient().Services(nil)
-	if err != nil {
-		return nil, err
-	}
-
-	logger := utils.GetLogger()
-	logger.Info("waiting for dynamic topology initialization, " +
-		"if this takes a long time, make sure that a topology/placement is configured")
-	watch, err := services.Watch(opts.ServiceID(), opts.QueryOptions())
-	if err != nil {
-		return nil, err
-	}
-	<-watch.C()
-	logger.Info("initial topology / placement value received")
-
-	m, err := getMapFromUpdate(watch.Get(), opts.QueryOptions().IncludeUnhealthy())
-	if err != nil {
-		logger.With("err", err).Error("dynamic topology received invalid initial value")
-		return nil, err
-	}
-
-	watchable := xwatch.NewWatchable()
-	watchable.Update(m)
-
-	dt := &dynamicTopology{
-		opts:      opts,
-		services:  services,
-		watch:     watch,
-		watchable: watchable,
-		logger:    logger,
-	}
-	go dt.run()
-	return dt, nil
+	_ = "STUB: not implemented"
+	return *new(DynamicTopology), nil
 }
 
-func (t *dynamicTopology) isClosed() bool {
-	t.RLock()
-	closed := t.closed
-	t.RUnlock()
-	return closed
-}
+func (t *dynamicTopology) isClosed() bool { _ = "STUB: not implemented"; return false }
 
-func (t *dynamicTopology) run() {
-	for !t.isClosed() {
-		if _, ok := <-t.watch.C(); !ok {
-			t.Close()
-			break
-		}
+func (t *dynamicTopology) run() { _ = "STUB: not implemented"; return }
 
-		m, err := getMapFromUpdate(t.watch.Get(), t.opts.QueryOptions().IncludeUnhealthy())
-		if err != nil {
-			t.logger.With("err", err).Warn("dynamic topology received invalid update")
-			continue
-		}
-		t.watchable.Update(m)
-	}
-}
-
-func (t *dynamicTopology) Get() Map {
-	return t.watchable.Get().(Map)
-}
+func (t *dynamicTopology) Get() Map { _ = "STUB: not implemented"; return *new(Map) }
 
 func (t *dynamicTopology) Watch() (MapWatch, error) {
-	_, w, err := t.watchable.Watch()
-	if err != nil {
-		return nil, err
-	}
-	return NewMapWatch(w), err
+	_ = "STUB: not implemented"
+	return *new(MapWatch), nil
 }
 
-func (t *dynamicTopology) Close() {
-	t.Lock()
-	defer t.Unlock()
-
-	if t.closed {
-		return
-	}
-
-	t.closed = true
-
-	t.watch.Close()
-	t.watchable.Close()
-}
+func (t *dynamicTopology) Close() { _ = "STUB: not implemented"; return }
 
 func (t *dynamicTopology) MarkShardsAvailable(
 	instanceID string,
 	shardIDs ...uint32,
 ) error {
-	opts := placement.NewOptions()
-	ps, err := t.services.PlacementService(t.opts.ServiceID(), opts)
-	if err != nil {
-		return err
-	}
-	_, err = ps.MarkShardsAvailable(instanceID, shardIDs...)
-	return err
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func getMapFromUpdate(service services.Service, unhealthyIncluded bool) (Map, error) {
-	to, err := getStaticOptions(service, unhealthyIncluded)
-	if err != nil {
-		return nil, err
-	}
-
-	return NewStaticMap(to), nil
+	_ = "STUB: not implemented"
+	return *new(Map), nil
 }
 
 func getStaticOptions(service services.Service, unhealthyIncluded bool) (StaticOptions, error) {
-	if service == nil || service.Replication() == nil || service.Sharding() == nil || service.Instances() == nil {
-		return nil, errInvalidService
-	}
-	replicas := service.Replication().Replicas()
-	instances := service.Instances()
-	numShards := service.Sharding().NumShards()
-
-	allShardIDs, err := validateInstances(instances, unhealthyIncluded, replicas, numShards)
-	if err != nil {
-		return nil, err
-	}
-
-	allShards := make([]shard.Shard, len(allShardIDs))
-	for i, id := range allShardIDs {
-		allShards[i] = shard.NewShard(uint32(id)).SetState(shard.Available)
-	}
-
-	allShardSet := aresShard.NewShardSet(allShards)
-
-	hostShardSets := make([]HostShardSet, len(instances))
-	for i, instance := range instances {
-		hs, err := NewHostShardSetFromServiceInstance(instance)
-		if err != nil {
-			return nil, err
-		}
-		hostShardSets[i] = hs
-	}
-
-	return NewStaticOptions().
-		SetReplicas(replicas).
-		SetShardSet(allShardSet).
-		SetHostShardSets(hostShardSets), nil
+	_ = "STUB: not implemented"
+	return *new(StaticOptions), nil
 }
 
 func validateInstances(instances []services.ServiceInstance, unhealthyIncluded bool, replicas, numShards int) ([]uint32, error) {
-	m := make(map[uint32]int)
-	for _, i := range instances {
-		if i.Shards() == nil {
-			return nil, errInstanceHasNoShardsAssignment
-		}
-		for _, s := range i.Shards().All() {
-			m[s.ID()] = m[s.ID()] + 1
-		}
-	}
-	s := make([]uint32, numShards)
-	for i := range s {
-		expectShard := uint32(i)
-		count, exist := m[expectShard]
-		if !exist {
-			return nil, errMissingShard
-		}
-		if unhealthyIncluded && count < replicas {
-			return nil, errNotEnoughReplicasForShard
-		}
-		delete(m, expectShard)
-		s[i] = expectShard
-	}
-
-	if len(m) > 0 {
-		return nil, errUnexpectedShard
-	}
-	return s, nil
+	_ = "STUB: not implemented"
+	return nil, nil
 }

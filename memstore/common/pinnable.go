@@ -32,32 +32,17 @@ type Pinnable struct {
 
 // Release releases the vector party from the archive store
 // so that it can be evicted or deleted.
-func (vp *Pinnable) Release() {
-	vp.AllUsersDone.L.Lock()
-	vp.Pins--
-	if vp.Pins == 0 {
-		vp.AllUsersDone.Broadcast()
-	}
-	vp.AllUsersDone.L.Unlock()
-}
+func (vp *Pinnable) Release() { _ = "STUB: not implemented"; return }
 
 // Pin vector party for use, caller should lock archive batch before calling
 func (vp *Pinnable) Pin() {
-	vp.Pins++
+	_ = "STUB: not implemented"
+
+	// WaitForUsers wait for vector party user to finish and return true when all users are done
+	return
 }
 
-// WaitForUsers wait for vector party user to finish and return true when all users are done
-func (vp *Pinnable) WaitForUsers(blocking bool) bool {
-	if blocking {
-		for vp.Pins > 0 {
-			vp.AllUsersDone.Wait()
-		}
-		return true
-	}
-	return vp.Pins == 0
-}
+func (vp *Pinnable) WaitForUsers(blocking bool) bool { _ = "STUB: not implemented"; return false }
 
 // WaitForDiskLoad waits for vector party disk load to finish
-func (vp *Pinnable) WaitForDiskLoad() {
-	vp.Loader.Wait()
-}
+func (vp *Pinnable) WaitForDiskLoad() { _ = "STUB: not implemented"; return }

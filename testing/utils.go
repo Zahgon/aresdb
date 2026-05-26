@@ -16,10 +16,8 @@ package testing
 
 import (
 	"bytes"
-	"fmt"
+
 	"github.com/Shopify/sarama"
-	"github.com/Shopify/sarama/mocks"
-	"github.com/onsi/ginkgo"
 )
 
 // TestReadWriteSyncCloser implements a in-memory io.ReadWriteCloser and utils.ReaderSeekerCloser for testing files.
@@ -28,36 +26,38 @@ type TestReadWriteSyncCloser struct {
 }
 
 // Close implements io.ReadWriteCloser.Close.
-func (t *TestReadWriteSyncCloser) Close() error {
-	return nil
-}
+func (t *TestReadWriteSyncCloser) Close() error { _ = "STUB: not implemented"; return nil }
 
 func (t *TestReadWriteSyncCloser) Write(bytes []byte) (n int, err error) {
-	return t.Buffer.Write(bytes)
+	_ = "STUB: not implemented"
+	return 0, nil
 }
 
 func (t *TestReadWriteSyncCloser) Sync() error {
+	_ = "STUB: not implemented"
+
+	// Seek implements utils.ReaderSeekerCloser.Seek.
 	return nil
 }
 
-// Seek implements utils.ReaderSeekerCloser.Seek.
 func (t *TestReadWriteSyncCloser) Seek(offset int64, whence int) (int64, error) {
+	_ = "STUB: not implemented"
 	return 0, nil
 }
 
 type GinkgoTestReporter struct{}
 
 func (g GinkgoTestReporter) Errorf(format string, args ...interface{}) {
-	ginkgo.Fail(fmt.Sprintf(format, args...))
+	_ = "STUB: not implemented"
+	return
 }
 
 func (g GinkgoTestReporter) Fatalf(format string, args ...interface{}) {
-	ginkgo.Fail(fmt.Sprintf(format, args...))
+	_ = "STUB: not implemented"
+	return
 }
 
 func MockKafkaConsumerFunc(brokers []string) (sarama.Consumer, error) {
-	var t GinkgoTestReporter
-	config := sarama.NewConfig()
-	config.ChannelBufferSize = 2 * 5000
-	return mocks.NewConsumer(t, config), nil
+	_ = "STUB: not implemented"
+	return *new(sarama.Consumer), nil
 }

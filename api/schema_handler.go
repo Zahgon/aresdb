@@ -15,12 +15,10 @@
 package api
 
 import (
-	"encoding/json"
-	memCom "github.com/uber/aresdb/memstore/common"
-	"github.com/uber/aresdb/metastore"
 	"net/http"
 
-	apiCom "github.com/uber/aresdb/api/common"
+	memCom "github.com/uber/aresdb/memstore/common"
+
 	metaCom "github.com/uber/aresdb/metastore/common"
 	"github.com/uber/aresdb/utils"
 
@@ -30,251 +28,163 @@ import (
 // SchemaHandler handles schema http requests.
 type SchemaHandler struct {
 	// all write requests will go to metaStore.
-	metaStore metaCom.MetaStore
+	metaStore    metaCom.MetaStore
 	schemaReader memCom.TableSchemaReader
 }
 
 // NewSchemaHandler will create a new SchemaHandler with memStore and metaStore.
 func NewSchemaHandler(metaStore metaCom.MetaStore, schemaReader memCom.TableSchemaReader) *SchemaHandler {
-	return &SchemaHandler{
-		metaStore: metaStore,
-		schemaReader: schemaReader,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Register registers http handlers.
 func (handler *SchemaHandler) Register(router *mux.Router, wrappers ...utils.HTTPHandlerWrapper) {
-	router.HandleFunc("/tables", utils.ApplyHTTPWrappers(handler.ListTables, wrappers...)).Methods(http.MethodGet)
-	router.HandleFunc("/tables", utils.ApplyHTTPWrappers(handler.AddTable, wrappers...)).Methods(http.MethodPost)
-	router.HandleFunc("/tables/{table}", utils.ApplyHTTPWrappers(handler.GetTable, wrappers...)).Methods(http.MethodGet)
-	router.HandleFunc("/tables/{table}", utils.ApplyHTTPWrappers(handler.DeleteTable, wrappers...)).Methods(http.MethodDelete)
-	router.HandleFunc("/tables/{table}", utils.ApplyHTTPWrappers(handler.UpdateTableConfig, wrappers...)).Methods(http.MethodPut)
-	router.HandleFunc("/tables/{table}/columns", utils.ApplyHTTPWrappers(handler.AddColumn, wrappers...)).Methods(http.MethodPost)
-	router.HandleFunc("/tables/{table}/columns/{column}", utils.ApplyHTTPWrappers(handler.UpdateColumn, wrappers...)).Methods(http.MethodPut)
-	router.HandleFunc("/tables/{table}/columns/{column}", utils.ApplyHTTPWrappers(handler.DeleteColumn, wrappers...)).Methods(http.MethodDelete)
+	_ = "STUB: not implemented"
+	return
 }
 
 // RegisterForDebug register handlers for debug port
 func (handler *SchemaHandler) RegisterForDebug(router *mux.Router, wrappers ...utils.HTTPHandlerWrapper) {
-	router.HandleFunc("/tables", utils.ApplyHTTPWrappers(handler.ListTables, wrappers...)).Methods(http.MethodGet)
-	router.HandleFunc("/tables/{table}", utils.ApplyHTTPWrappers(handler.GetTable, wrappers...)).Methods(http.MethodGet)
+	_ = "STUB: not implemented"
+	return
 }
 
 // ListTables swagger:route GET /schema/tables listTables
 // List all table schemas
 // Consumes:
-//    - application/json
+//   - application/json
 //
 // Produces:
-//    - application/json
+//   - application/json
 //
 // Responses:
-//    default: errorResponse
-//        200: stringArrayResponse
+//
+//	default: errorResponse
+//	    200: stringArrayResponse
 func (handler *SchemaHandler) ListTables(w *utils.ResponseWriter, r *http.Request) {
-
-	response := apiCom.NewStringArrayResponse()
-
-	allTables := handler.schemaReader.GetSchemas()
-	for tableName := range allTables {
-		response.Body = append(response.Body, tableName)
-	}
-
-	w.WriteObject(response.Body)
+	_ = "STUB: not implemented"
+	return
 }
 
 // GetTable swagger:route GET /schema/tables/{table} getTable
 // get the table schema for specific table name
 //
 // Consumes:
-//    - application/json
+//   - application/json
 //
 // Produces:
-//    - application/json
+//   - application/json
 //
 // Responses:
-//    default: errorResponse
-//        200: getTableResponse
+//
+//	default: errorResponse
+//	    200: getTableResponse
 func (handler *SchemaHandler) GetTable(w *utils.ResponseWriter, r *http.Request) {
-	var getTableRequest GetTableRequest
-	var getTableResponse GetTableResponse
-
-	err := apiCom.ReadRequest(r, &getTableRequest)
-	if err != nil {
-		w.WriteError(err)
-		return
-	}
-
-	schema, err := handler.schemaReader.GetSchema(getTableRequest.TableName)
-	if err != nil {
-		w.WriteErrorWithCode(http.StatusNotFound, ErrTableDoesNotExist)
-		return
-	}
-	getTableResponse.JSONBuffer, err = json.Marshal(schema.Schema)
-	w.WriteJSONBytes(getTableResponse.JSONBuffer, err)
+	_ = "STUB: not implemented"
+	return
 }
 
 // AddTable swagger:route POST /schema/tables addTable
 // add table to table collections
 //
 // Consumes:
-//    - application/json
+//   - application/json
 //
 // Responses:
-//    default: errorResponse
-//        200: noContentResponse
+//
+//	default: errorResponse
+//	    200: noContentResponse
 func (handler *SchemaHandler) AddTable(w *utils.ResponseWriter, r *http.Request) {
-
-	var addTableRequest AddTableRequest
-	// add default table configs first
-	addTableRequest.Body.Config = metastore.DefaultTableConfig
-	err := apiCom.ReadRequest(r, &addTableRequest)
-	if err != nil {
-		w.WriteErrorWithCode(http.StatusBadRequest, err)
-		return
-	}
-
-	newTable := addTableRequest.Body
-	err = handler.metaStore.CreateTable(&newTable)
-	if err != nil {
-		w.WriteError(err)
-		return
-	}
-	w.WriteObject(nil)
+	_ = "STUB: not implemented"
+	return
 }
+
+// add default table configs first
 
 // UpdateTableConfig swagger:route PUT /schema/tables/{table} updateTableConfig
 // update config of the specified table
 //
 // Consumes:
-//    - application/json
+//   - application/json
 //
 // Responses:
-//    default: errorResponse
-//        200: noContentResponse
+//
+//	default: errorResponse
+//	    200: noContentResponse
 func (handler *SchemaHandler) UpdateTableConfig(w *utils.ResponseWriter, r *http.Request) {
-	var request UpdateTableConfigRequest
-	err := apiCom.ReadRequest(r, &request)
-	if err != nil {
-		w.WriteError(err)
-		return
-	}
-
-	err = handler.metaStore.UpdateTableConfig(request.TableName, request.Body)
-	if err != nil {
-		w.WriteError(err)
-		return
-	}
-	w.WriteObject(nil)
+	_ = "STUB: not implemented"
+	return
 }
 
 // DeleteTable swagger:route DELETE /schema/tables/{table} deleteTable
 // delete table from metaStore
 //
 // Responses:
-//    default: errorResponse
-//        200: noContentResponse
+//
+//	default: errorResponse
+//	    200: noContentResponse
 func (handler *SchemaHandler) DeleteTable(w *utils.ResponseWriter, r *http.Request) {
-	var deleteTableRequest DeleteTableRequest
-	err := apiCom.ReadRequest(r, &deleteTableRequest)
-	if err != nil {
-		w.WriteError(err)
-		return
-	}
-
-	err = handler.metaStore.DeleteTable(deleteTableRequest.TableName)
-	if err != nil {
-		// TODO: need mapping from metaStore error to api error
-		/// for metaStore error might also be user error
-		w.WriteError(err)
-		return
-	}
-
-	w.WriteObject(nil)
+	_ = "STUB: not implemented"
+	return
 }
+
+// TODO: need mapping from metaStore error to api error
+/// for metaStore error might also be user error
 
 // AddColumn swagger:route POST /schema/tables/{table}/columns addColumn
 // add a single column to existing table
 //
 // Consumes:
-//    - application/json
+//   - application/json
 //
 // Responses:
-//    default: errorResponse
-//        200: noContentResponse
+//
+//	default: errorResponse
+//	    200: noContentResponse
 func (handler *SchemaHandler) AddColumn(w *utils.ResponseWriter, r *http.Request) {
-	var addColumnRequest AddColumnRequest
-	err := apiCom.ReadRequest(r, &addColumnRequest)
-	if err != nil {
-		w.WriteErrorWithCode(http.StatusBadRequest, err)
-		return
-	}
-
-	err = handler.metaStore.AddColumn(addColumnRequest.TableName, addColumnRequest.Body.Column, addColumnRequest.Body.AddToArchivingSortOrder)
-	// TODO: validate column
-	// might better do in metaStore and here needs to return either user error or server error
-	if err != nil {
-		// TODO: need mapping from metaStore error to api error
-		/// for metaStore error might also be user error
-		w.WriteError(err)
-		return
-	}
-
-	w.WriteObject(nil)
+	_ = "STUB: not implemented"
+	return
 }
+
+// TODO: validate column
+// might better do in metaStore and here needs to return either user error or server error
+
+// TODO: need mapping from metaStore error to api error
+/// for metaStore error might also be user error
 
 // UpdateColumn swagger:route PUT /schema/tables/{table}/columns/{column} updateColumn
 // update specified column
 //
 // Consumes:
-//    - application/json
+//   - application/json
 //
 // Responses:
-//    default: errorResponse
-//        200: noContentResponse
+//
+//	default: errorResponse
+//	    200: noContentResponse
 func (handler *SchemaHandler) UpdateColumn(w *utils.ResponseWriter, r *http.Request) {
-	var updateColumnRequest UpdateColumnRequest
-	err := apiCom.ReadRequest(r, &updateColumnRequest)
-	if err != nil {
-		w.WriteError(err)
-		return
-	}
-
-	if err = handler.metaStore.UpdateColumn(updateColumnRequest.TableName,
-		updateColumnRequest.ColumnName, updateColumnRequest.Body); err != nil {
-		// TODO: need mapping from metaStore error to api error
-		// for metaStore error might also be user error
-		w.WriteError(err)
-		return
-	}
-
-	w.WriteObject(nil)
+	_ = "STUB: not implemented"
+	return
 }
+
+// TODO: need mapping from metaStore error to api error
+// for metaStore error might also be user error
 
 // DeleteColumn swagger:route DELETE /schema/tables/{table}/columns/{column} deleteColumn
 // delete columns from existing table
 //
 // Responses:
-//    default: errorResponse
-//        200: noContentResponse
+//
+//	default: errorResponse
+//	    200: noContentResponse
 func (handler *SchemaHandler) DeleteColumn(w *utils.ResponseWriter, r *http.Request) {
-	var deleteColumnRequest DeleteColumnRequest
-
-	err := apiCom.ReadRequest(r, &deleteColumnRequest)
-	if err != nil {
-		w.WriteError(err)
-		return
-	}
-
-	err = handler.metaStore.DeleteColumn(deleteColumnRequest.TableName, deleteColumnRequest.ColumnName)
-	// TODO: validate whether table exists and specified columns does not belong to primary key or time column
-	// might be better for metaStore to do this and return specified error type
-	if err != nil {
-		// TODO: need mapping from metaStore error to api error
-		// for metaStore error might also be user error
-		w.WriteError(err)
-		return
-	}
-
-	w.WriteObject(nil)
+	_ = "STUB: not implemented"
+	return
 }
+
+// TODO: validate whether table exists and specified columns does not belong to primary key or time column
+// might be better for metaStore to do this and return specified error type
+
+// TODO: need mapping from metaStore error to api error
+// for metaStore error might also be user error

@@ -15,11 +15,8 @@
 package memstore
 
 import (
-	"fmt"
 	"sync"
 	"time"
-
-	"strings"
 
 	"github.com/uber/aresdb/memstore/common"
 	"github.com/uber/aresdb/utils"
@@ -57,21 +54,7 @@ type Scheduler interface {
 }
 
 // newScheduler returns a new Scheduler.
-func newScheduler(m *memStoreImpl) *schedulerImpl {
-	s := &schedulerImpl{
-		memStore:          m,
-		schedulerStopChan: make(chan struct{}),
-		jobBundleChan:     make(chan jobBundle),
-		executorStopChan:  make(chan struct{}),
-		jobManagers:       make(map[common.JobType]jobManager),
-		jobEnableFlags:    make(map[common.JobType]bool),
-	}
-	s.jobManagers[common.ArchivingJobType] = newArchiveJobManager(s)
-	s.jobManagers[common.BackfillJobType] = newBackfillJobManager(s)
-	s.jobManagers[common.SnapshotJobType] = newSnapshotJobManager(s)
-	s.jobManagers[common.PurgeJobType] = newPurgeJobManager(s)
-	return s
-}
+func newScheduler(m *memStoreImpl) *schedulerImpl { _ = "STUB: not implemented"; return nil }
 
 // schedulerImpl is the implementation of Scheduler interface.
 type schedulerImpl struct {
@@ -91,213 +74,107 @@ type schedulerImpl struct {
 }
 
 func (scheduler *schedulerImpl) EnableJobType(jobType common.JobType, enable bool) {
-	scheduler.Lock()
-	scheduler.jobEnableFlags[jobType] = enable
-	scheduler.Unlock()
+	_ = "STUB: not implemented"
+	return
 }
 
 func (scheduler *schedulerImpl) IsJobTypeEnabled(jobType common.JobType) bool {
-	scheduler.RLock()
-	defer scheduler.RUnlock()
-	enabled, ok := scheduler.jobEnableFlags[jobType]
-	return !ok || enabled
+	_ = "STUB: not implemented"
+	return false
 }
 
 func (scheduler *schedulerImpl) reportJob(key string, mutator jobDetailMutator) {
-	scheduler.Lock()
-	defer scheduler.Unlock()
-	comps := strings.SplitN(key, "|", 3)
-	if len(comps) < 3 {
-		return
-	}
-
-	if jobManager, ok := scheduler.jobManagers[common.JobType(comps[2])]; ok {
-		jobManager.reportJobDetail(key, mutator)
-	}
+	_ = "STUB: not implemented"
+	return
 }
 
 // getIdentifier returns a unique identifier from table, shard and job type.
 func getIdentifier(tableName string, shardID int, jobType common.JobType) string {
-	return fmt.Sprintf("%s|%d|%s", tableName, shardID, jobType)
+	_ = "STUB: not implemented"
+	return ""
 }
 
 // GetJobDetails returns corresponding job details for given job type.
 func (scheduler *schedulerImpl) GetJobDetails(jobType common.JobType) interface{} {
-	if jobManager, ok := scheduler.jobManagers[jobType]; ok {
-		return jobManager.getJobDetails()
-	}
+	_ = "STUB: not implemented"
 	return nil
 }
 
 // DeleteTable deletes the job details of a table given its name and whether it's a fact table.
 func (scheduler *schedulerImpl) DeleteTable(table string, isFactTable bool) {
-	if isFactTable {
-		scheduler.jobManagers[common.ArchivingJobType].deleteTable(table)
-		scheduler.jobManagers[common.BackfillJobType].deleteTable(table)
-		scheduler.jobManagers[common.PurgeJobType].deleteTable(table)
-		return
-	}
-	scheduler.jobManagers[common.SnapshotJobType].deleteTable(table)
+	_ = "STUB: not implemented"
+	return
 }
 
 // GetJobManager retrieve the JobManager according to job type
 func (scheduler *schedulerImpl) GetJobManager(jobType common.JobType) jobManager {
-	return scheduler.jobManagers[jobType]
+	_ = "STUB: not implemented"
+	return *new(jobManager)
 }
 
 // NewArchivingJob returns a new ArchivingJob.
 func (scheduler *schedulerImpl) NewArchivingJob(tableName string, shardID int, cutoff uint32) Job {
-	return &ArchivingJob{
-		tableName: tableName,
-		shardID:   shardID,
-		cutoff:    cutoff,
-		memStore:  scheduler.memStore,
-		reporter:  scheduler.jobManagers[common.ArchivingJobType].(*archiveJobManager).reportArchiveJobDetail,
-	}
+	_ = "STUB: not implemented"
+	return *new(Job)
 }
 
 // NewBackfillJob returns a new BackfillJob.
 func (scheduler *schedulerImpl) NewBackfillJob(tableName string, shardID int) Job {
-	return &BackfillJob{
-		tableName: tableName,
-		shardID:   shardID,
-		memStore:  scheduler.memStore,
-		reporter:  scheduler.jobManagers[common.BackfillJobType].(*backfillJobManager).reportBackfillJobDetail,
-	}
+	_ = "STUB: not implemented"
+	return *new(Job)
 }
 
 // NewSnapshotJob returns a new SnapshotJob.
 func (scheduler *schedulerImpl) NewSnapshotJob(tableName string, shardID int) Job {
-	return &SnapshotJob{
-		tableName: tableName,
-		shardID:   shardID,
-		memStore:  scheduler.memStore,
-		reporter:  scheduler.jobManagers[common.SnapshotJobType].(*snapshotJobManager).reportSnapshotJobDetail,
-	}
+	_ = "STUB: not implemented"
+	return *new(Job)
 }
 
 // NewPurgeJob returns a new PurgeJob
 func (scheduler *schedulerImpl) NewPurgeJob(tableName string, shardID, batchIDStart, batchIDEnd int) Job {
-	return &PurgeJob{
-		tableName:    tableName,
-		shardID:      shardID,
-		batchIDStart: batchIDStart,
-		batchIDEnd:   batchIDEnd,
-		memStore:     scheduler.memStore,
-		reporter:     scheduler.jobManagers[common.PurgeJobType].(*purgeJobManager).reportPurgeJobDetail,
-	}
+	_ = "STUB: not implemented"
+	return *new(Job)
 }
 
 // Start starts the scheduler. It creates a new time.Timer every time to wait
 // at least schedulerInterval time instead of running at every tick so that we
 // will skip the tick if a single round takes more than one minute. This prevents
 // accessing memStore (and lock) too many times during a short period.
-func (scheduler *schedulerImpl) Start() {
-	timer := time.NewTimer(schedulerInterval)
+func (scheduler *schedulerImpl) Start() { _ = "STUB: not implemented"; return }
 
-	// Scheduler loop.
-	go func() {
-		for {
-			select {
-			case <-timer.C:
-				scheduler.run()
-				// Since we already receive the event from channel,
-				// there is no need to stop it and we can directly reset the timer.
-				timer.Reset(schedulerInterval)
-			case <-scheduler.schedulerStopChan:
-				// It will block on waiting for executor to stop.
-				scheduler.executorStopChan <- struct{}{}
-				return
-			}
-		}
-	}()
+// Scheduler loop.
 
-	// Executor loop.
-	go func() {
-		for {
-			select {
-			case jobBundle := <-scheduler.jobBundleChan:
-				job := jobBundle.Job
-				utils.GetLogger().With("job", job).Info("Received job")
-				scheduler.executeJob(&jobBundle)
-			case <-scheduler.executorStopChan:
-				return
-			}
-		}
-	}()
-}
+// Since we already receive the event from channel,
+// there is no need to stop it and we can directly reset the timer.
 
-func (scheduler *schedulerImpl) executeJob(jb *jobBundle) {
-	job := jb.Job
-	utils.GetLogger().With("job", job).Info("Running job")
-	scheduler.reportJob(job.GetIdentifier(), func(jobDetail *JobDetail) {
-		jobDetail.Status = JobRunning
-		jobDetail.LastStartTime = utils.Now().UTC()
-	})
-	err := jb.Run()
+// It will block on waiting for executor to stop.
 
-	// Set job status according to the result.
-	now := uint32(utils.Now().Unix())
-	if err != nil {
-		utils.GetLogger().With("error", err, "job", job).Error("Failed to run job due to error")
-		scheduler.reportJob(job.GetIdentifier(), func(jobDetail *JobDetail) {
-			jobDetail.LastError = err
-			jobDetail.Status = JobFailed
-			jobDetail.LastRun = utils.TimeStampToUTC(int64(now))
-		})
-	} else {
-		utils.GetLogger().With("job", job).Info("Succeeded to run job")
-		scheduler.reportJob(job.GetIdentifier(), func(jobDetail *JobDetail) {
-			jobDetail.LastError = nil
-			jobDetail.Status = JobSucceeded
-			jobDetail.LastRun = utils.TimeStampToUTC(int64(now))
-		})
-	}
+// Executor loop.
 
-	// This is a non-blocking channel sending.
-	jb.resChan <- err
-}
+func (scheduler *schedulerImpl) executeJob(jb *jobBundle) { _ = "STUB: not implemented"; return }
+
+// Set job status according to the result.
+
+// This is a non-blocking channel sending.
 
 // Stop stops the scheduler.
-func (scheduler *schedulerImpl) Stop() {
-	scheduler.schedulerStopChan <- struct{}{}
-}
+func (scheduler *schedulerImpl) Stop() { _ = "STUB: not implemented"; return }
 
 // SubmitJob will submit a job to executor and block until it starts.
 // Job submitter can decide whether to wait for job to finish and get
 // the result.
 func (scheduler *schedulerImpl) SubmitJob(job Job) (error, chan error) {
-	if !scheduler.IsJobTypeEnabled(job.JobType()) {
-		// this check is to block request from debug handler
-		return fmt.Errorf("JobType %s disabled", job.JobType()), nil
-	}
-
-	jb := jobBundle{job, make(chan error, 1)}
-	scheduler.jobBundleChan <- jb
-	utils.GetLogger().With("job", job).Info("Submitted job")
-	return nil, jb.resChan
+	_ = "STUB: not implemented"
+	return nil, nil
 }
+
+// this check is to block request from debug handler
 
 // run runs at every tick. It first generates a list of jobs to run based on current condition,
 // then it runs every job sequentially in the same process.
-func (scheduler *schedulerImpl) run() {
-	for jobType, jobManager := range scheduler.jobManagers {
-		if !scheduler.IsJobTypeEnabled(jobType) {
-			continue
-		}
-		for _, job := range jobManager.generateJobs() {
-			// Waiting for job to finish.
-			err, errChan := scheduler.SubmitJob(job)
-			if err == nil {
-				if err := <-errChan; err != nil {
-					utils.GetLogger().With("job", job).Panic("Panic due to failure to run job")
-				}
-			} else {
-				utils.GetLogger().With("job", job).Error("Fail to submit job")
-			}
-		}
-	}
-}
+func (scheduler *schedulerImpl) run() { _ = "STUB: not implemented"; return }
+
+// Waiting for job to finish.
 
 // Job defines the common interface for BackfillJob, ArchivingJob and SnapshotJob
 type Job interface {

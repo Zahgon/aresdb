@@ -10,19 +10,12 @@ type BootStrapToken struct {
 
 // AcquireToken provides a mock function with given fields: table, shard
 func (_m *BootStrapToken) AcquireToken(table string, shard uint32) bool {
-	ret := _m.Called(table, shard)
-
-	var r0 bool
-	if rf, ok := ret.Get(0).(func(string, uint32) bool); ok {
-		r0 = rf(table, shard)
-	} else {
-		r0 = ret.Get(0).(bool)
-	}
-
-	return r0
+	_ = "STUB: not implemented"
+	return false
 }
 
 // ReleaseToken provides a mock function with given fields: table, shard
 func (_m *BootStrapToken) ReleaseToken(table string, shard uint32) {
-	_m.Called(table, shard)
+	_ = "STUB: not implemented"
+	return
 }

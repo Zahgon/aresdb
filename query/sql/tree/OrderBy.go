@@ -24,13 +24,12 @@ type OrderBy struct {
 
 // NewOrderBy creates OrderBy
 func NewOrderBy(location *NodeLocation, sortItems []*SortItem) *OrderBy {
-	return &OrderBy{
-		NewNode(location),
-		sortItems,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Accept accepts visitor
 func (n *OrderBy) Accept(visitor AstVisitor, ctx interface{}) interface{} {
-	return visitor.VisitOrderBy(n, ctx)
+	_ = "STUB: not implemented"
+	return nil
 }

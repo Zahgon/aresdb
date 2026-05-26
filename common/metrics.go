@@ -17,8 +17,6 @@ package common
 import (
 	"io"
 
-	"io/ioutil"
-
 	"github.com/uber-go/tally"
 )
 
@@ -29,14 +27,13 @@ type Metrics interface {
 }
 
 // NewNoopMetrics returns a Metrics that will do nothing for reporting.
-func NewNoopMetrics() Metrics {
-	return dummyMetrics{}
-}
+func NewNoopMetrics() Metrics { _ = "STUB: not implemented"; return *new(Metrics) }
 
 type dummyMetrics struct{}
 
 // NewRootScope returns a no-op scope will do nothing for reporting metrics. The closer will also be
 // a no-op closer.
 func (dummyMetrics) NewRootScope() (tally.Scope, io.Closer, error) {
-	return tally.NoopScope, ioutil.NopCloser(nil), nil
+	_ = "STUB: not implemented"
+	return *new(tally.Scope), *new(io.Closer), nil
 }

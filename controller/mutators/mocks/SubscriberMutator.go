@@ -1,10 +1,10 @@
-//  Copyright (c) 2017-2018 Uber Technologies, Inc.
+//	Copyright (c) 2017-2018 Uber Technologies, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//     http://www.apache.org/licenses/LICENSE-2.0
+//	http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -26,65 +26,18 @@ type SubscriberMutator struct {
 
 // GetHash provides a mock function with given fields: namespace
 func (_m *SubscriberMutator) GetHash(namespace string) (string, error) {
-	ret := _m.Called(namespace)
-
-	var r0 string
-	if rf, ok := ret.Get(0).(func(string) string); ok {
-		r0 = rf(namespace)
-	} else {
-		r0 = ret.Get(0).(string)
-	}
-
-	var r1 error
-	if rf, ok := ret.Get(1).(func(string) error); ok {
-		r1 = rf(namespace)
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
+	_ = "STUB: not implemented"
+	return "", nil
 }
 
 // GetSubscriber provides a mock function with given fields: namespace, subscriberName
 func (_m *SubscriberMutator) GetSubscriber(namespace string, subscriberName string) (models.Subscriber, error) {
-	ret := _m.Called(namespace, subscriberName)
-
-	var r0 models.Subscriber
-	if rf, ok := ret.Get(0).(func(string, string) models.Subscriber); ok {
-		r0 = rf(namespace, subscriberName)
-	} else {
-		r0 = ret.Get(0).(models.Subscriber)
-	}
-
-	var r1 error
-	if rf, ok := ret.Get(1).(func(string, string) error); ok {
-		r1 = rf(namespace, subscriberName)
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
+	_ = "STUB: not implemented"
+	return *new(models.Subscriber), nil
 }
 
 // GetSubscribers provides a mock function with given fields: namespace
 func (_m *SubscriberMutator) GetSubscribers(namespace string) ([]models.Subscriber, error) {
-	ret := _m.Called(namespace)
-
-	var r0 []models.Subscriber
-	if rf, ok := ret.Get(0).(func(string) []models.Subscriber); ok {
-		r0 = rf(namespace)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).([]models.Subscriber)
-		}
-	}
-
-	var r1 error
-	if rf, ok := ret.Get(1).(func(string) error); ok {
-		r1 = rf(namespace)
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
+	_ = "STUB: not implemented"
+	return nil, nil
 }

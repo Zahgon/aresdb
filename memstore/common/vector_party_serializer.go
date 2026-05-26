@@ -16,8 +16,6 @@ package common
 
 import (
 	"github.com/uber/aresdb/diskstore"
-	"github.com/uber/aresdb/utils"
-	"os"
 )
 
 // VectorPartyHeader is the magic header written into the beginning of each vector party file.
@@ -35,20 +33,7 @@ type vectorPartyBaseSerializer struct {
 
 // CheckVectorPartySerializable check if the archive VectorParty is serializable
 func (s *vectorPartyBaseSerializer) CheckVectorPartySerializable(vp VectorParty) error {
-	if cvp, ok := vp.(CVectorParty); ok {
-		passed := true
-		switch cvp.GetMode() {
-		case AllValuesDefault:
-			passed = vp.GetNonDefaultValueCount() == 0
-		default:
-			passed = vp.GetNonDefaultValueCount() > 0
-		}
-		if !passed {
-			return utils.StackError(nil,
-				"NonDefaultValueCount %d is not valid for mode %d vector with length %d",
-				vp.GetNonDefaultValueCount(), cvp.GetMode(), vp.GetLength())
-		}
-	}
+	_ = "STUB: not implemented"
 	return nil
 }
 
@@ -67,119 +52,56 @@ type vectorPartySnapshotSerializer struct {
 // NewVectorPartyArchiveSerializer returns a new VectorPartySerializer
 func NewVectorPartyArchiveSerializer(hostMemManager HostMemoryManager, diskStore diskstore.DiskStore, table string, shardID int,
 	columnID int, batchID int, batchVersion uint32, seqNum uint32) VectorPartySerializer {
-	return &vectorPartyArchiveSerializer{
-		vectorPartyBaseSerializer{
-			table:             table,
-			shard:             shardID,
-			columnID:          columnID,
-			batchID:           batchID,
-			batchVersion:      batchVersion,
-			seqNum:            seqNum,
-			diskstore:         diskStore,
-			hostMemoryManager: hostMemManager,
-		},
-	}
+	_ = "STUB: not implemented"
+	return *new(VectorPartySerializer)
 }
 
 // NewVectorPartySnapshotSerializer returns a new VectorPartySerializer
 func NewVectorPartySnapshotSerializer(hostMemeManager HostMemoryManager, diskStore diskstore.DiskStore, table string, shardID int,
 	columnID, batchID int, batchVersion uint32, seqNum uint32, redoLogFile int64, offset uint32) VectorPartySerializer {
-	return &vectorPartySnapshotSerializer{
-		vectorPartyBaseSerializer{
-			table:             table,
-			shard:             shardID,
-			columnID:          columnID,
-			batchID:           batchID,
-			batchVersion:      batchVersion,
-			seqNum:            seqNum,
-			diskstore:         diskStore,
-			hostMemoryManager: hostMemeManager,
-		},
-		redoLogFile,
-		offset,
-	}
+	_ = "STUB: not implemented"
+	return *new(VectorPartySerializer)
 }
 
 // ReadVectorParty reads vector party from disk and set fields in passed-in vp.
 func (s *vectorPartyArchiveSerializer) ReadVectorParty(vp VectorParty) error {
-	if vp == nil {
-		return nil
-	}
-	readCloser, err := s.diskstore.OpenVectorPartyFileForRead(s.table, s.columnID, s.shard,
-		s.batchID, s.batchVersion, s.seqNum)
-	if err != nil {
-		if err == os.ErrNotExist {
-			return nil
-		}
-		return err
-	}
-
-	defer readCloser.Close()
-	return vp.Read(readCloser, s)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // WriteVectorParty writes vector party to disk
 func (s *vectorPartyArchiveSerializer) WriteVectorParty(vp VectorParty) error {
-	if vp == nil {
-		return nil
-	}
-	writer, err := s.diskstore.OpenVectorPartyFileForWrite(s.table, s.columnID, s.shard,
-		s.batchID, s.batchVersion, s.seqNum)
-	if err != nil {
-		return err
-	}
-	defer writer.Close()
-
-	if err = vp.Write(writer); err != nil {
-		return err
-	}
-	return writer.Sync()
-}
-
-// ReportVectorPartyMemoryUsage report memory usage according to underneath VectorParty property
-func (s *vectorPartyArchiveSerializer) ReportVectorPartyMemoryUsage(bytes int64) {
-	s.hostMemoryManager.ReportManagedObject(
-		s.table, s.shard, s.batchID, s.columnID, bytes)
-}
-
-// WriteVectorParty writes snapshot vector party to disk
-func (s *vectorPartySnapshotSerializer) WriteVectorParty(vp VectorParty) error {
-	if vp == nil {
-		return nil
-	}
-	writer, err := s.diskstore.OpenSnapshotVectorPartyFileForWrite(s.table, s.shard, s.redoLogFile, s.offset, s.batchID, s.columnID)
-	if err != nil {
-		return err
-	}
-	defer writer.Close()
-
-	err = vp.Write(writer)
-	if err != nil {
-		return err
-	}
-	return writer.Sync()
-}
-
-// ReadVectorParty reads snapshot vector party from disk
-func (s *vectorPartySnapshotSerializer) ReadVectorParty(vp VectorParty) error {
-	if vp == nil {
-		return nil
-	}
-	readCloser, err := s.diskstore.OpenSnapshotVectorPartyFileForRead(s.table, s.shard, s.redoLogFile, s.offset, s.batchID, s.columnID)
-	if err != nil {
-		return err
-	}
-
-	defer readCloser.Close()
-	return vp.Read(readCloser, s)
-}
-
-// CheckVectorPartySerializable check if the snapshot VectorParty is serializable, which is always true for now
-func (s *vectorPartySnapshotSerializer) CheckVectorPartySerializable(vp VectorParty) error {
+	_ = "STUB: not implemented"
 	return nil
 }
 
 // ReportVectorPartyMemoryUsage report memory usage according to underneath VectorParty property
+func (s *vectorPartyArchiveSerializer) ReportVectorPartyMemoryUsage(bytes int64) {
+	_ = "STUB: not implemented"
+	return
+}
+
+// WriteVectorParty writes snapshot vector party to disk
+func (s *vectorPartySnapshotSerializer) WriteVectorParty(vp VectorParty) error {
+	_ = "STUB: not implemented"
+	return nil
+}
+
+// ReadVectorParty reads snapshot vector party from disk
+func (s *vectorPartySnapshotSerializer) ReadVectorParty(vp VectorParty) error {
+	_ = "STUB: not implemented"
+	return nil
+}
+
+// CheckVectorPartySerializable check if the snapshot VectorParty is serializable, which is always true for now
+func (s *vectorPartySnapshotSerializer) CheckVectorPartySerializable(vp VectorParty) error {
+	_ = "STUB: not implemented"
+
+	// ReportVectorPartyMemoryUsage report memory usage according to underneath VectorParty property
+	return nil
+}
+
 func (s *vectorPartySnapshotSerializer) ReportVectorPartyMemoryUsage(bytes int64) {
-	s.hostMemoryManager.ReportUnmanagedSpaceUsageChange(bytes)
+	_ = "STUB: not implemented"
+	return
 }

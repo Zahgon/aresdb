@@ -45,28 +45,15 @@ type options struct {
 }
 
 // NewOptions creates new instrument options.
-func NewOptions() Options {
-	return &options{
-		log:          GetLogger(),
-		scope:        GetRootReporter().GetRootScope(),
-		samplingRate: defaultSamplingRate,
-	}
-}
+func NewOptions() Options { _ = "STUB: not implemented"; return *new(Options) }
 
-func (o *options) Logger() common.Logger {
-	return o.log
-}
+func (o *options) Logger() common.Logger { _ = "STUB: not implemented"; return *new(common.Logger) }
 
-func (o *options) MetricsScope() tally.Scope {
-	return o.scope
-}
+func (o *options) MetricsScope() tally.Scope { _ = "STUB: not implemented"; return *new(tally.Scope) }
 
 func (o *options) SetMetricsSamplingRate(value float64) Options {
-	opts := *o
-	opts.samplingRate = value
-	return &opts
+	_ = "STUB: not implemented"
+	return *new(Options)
 }
 
-func (o *options) MetricsSamplingRate() float64 {
-	return o.samplingRate
-}
+func (o *options) MetricsSamplingRate() float64 { _ = "STUB: not implemented"; return 0 }

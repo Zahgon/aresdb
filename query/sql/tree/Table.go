@@ -23,13 +23,12 @@ type Table struct {
 
 // NewTable creates table name
 func NewTable(location *NodeLocation, name *QualifiedName) *Table {
-	return &Table{
-		NewQueryBody(location),
-		name,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Accept accepts visitor
 func (q *Table) Accept(visitor AstVisitor, ctx interface{}) interface{} {
-	return visitor.VisitTable(q, ctx)
+	_ = "STUB: not implemented"
+	return nil
 }

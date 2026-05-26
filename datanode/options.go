@@ -15,10 +15,11 @@
 package datanode
 
 import (
+	"net/http"
+
 	"github.com/uber/aresdb/common"
 	"github.com/uber/aresdb/datanode/bootstrap"
 	"github.com/uber/aresdb/utils"
-	"net/http"
 )
 
 // options is the implementation of the interface Options
@@ -26,64 +27,67 @@ type options struct {
 	instrumentOpts utils.Options
 	bootstrapOpts  bootstrap.Options
 	httpWrappers   utils.HTTPHandlerWrapper
-	middleware   func(http.Handler) http.Handler
+	middleware     func(http.Handler) http.Handler
 	cfg            common.AresServerConfig
 }
 
 // NewOptions creates a new set of storage options with defaults
-func NewOptions() Options {
-	opts := options{
-		instrumentOpts: utils.NewOptions(),
-	}
-	return &opts
-}
+func NewOptions() Options { _ = "STUB: not implemented"; return *new(Options) }
 
 func (o *options) SetInstrumentOptions(value utils.Options) Options {
-	o.instrumentOpts = value
-	return o
+	_ = "STUB: not implemented"
+	return *new(Options)
 }
 
 func (o *options) InstrumentOptions() utils.Options {
-	return o.instrumentOpts
+	_ = "STUB: not implemented"
+	return *new(utils.Options)
 }
 
 func (o *options) BootstrapOptions() bootstrap.Options {
-	return o.bootstrapOpts
+	_ = "STUB: not implemented"
+	return *new(bootstrap.Options)
 }
 
 func (o *options) SetBootstrapOptions(bootstrapOptions bootstrap.Options) Options {
-	o.bootstrapOpts = bootstrapOptions
-	return o
+	_ = "STUB: not implemented"
+	return *new(Options)
 }
 
 func (o *options) SetServerConfig(cfg common.AresServerConfig) Options {
-	o.cfg = cfg
-	return o
+	_ = "STUB: not implemented"
+	return *new(Options)
 }
 
 func (o *options) ServerConfig() common.AresServerConfig {
-	return o.cfg
+	_ = "STUB: not implemented"
+
+	// HttpWrappers return HttpWrapper
+	return *new(common.AresServerConfig)
 }
 
-// HttpWrappers return HttpWrapper
 func (o *options) HTTPWrapper() utils.HTTPHandlerWrapper {
-	return o.httpWrappers
+	_ = "STUB: not implemented"
+	return *
+
+	// SetHTTPWrapper return HttpWrapper
+	new(utils.HTTPHandlerWrapper)
 }
 
-// SetHTTPWrapper return HttpWrapper
 func (o *options) SetHTTPWrapper(wrappers utils.HTTPHandlerWrapper) Options {
-	o.httpWrappers = wrappers
-	return o
+	_ = "STUB: not implemented"
+	return *new(Options)
 }
 
 // Middleware return middleware
 func (o *options) Middleware() func(http.Handler) http.Handler {
-	return o.middleware
+	_ = "STUB: not implemented"
+	return nil
+
+	// SetMiddleware set middleware
 }
 
-// SetMiddleware set middleware
 func (o *options) SetMiddleware(middleware func(http.Handler) http.Handler) Options {
-	o.middleware = middleware
-	return o
+	_ = "STUB: not implemented"
+	return *new(Options)
 }
-

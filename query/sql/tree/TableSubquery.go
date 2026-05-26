@@ -23,13 +23,12 @@ type TableSubquery struct {
 
 // NewTableSubquery creates TableSubquery
 func NewTableSubquery(location *NodeLocation, query *Query) *TableSubquery {
-	return &TableSubquery{
-		NewQueryBody(location),
-		query,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Accept accepts visitor
 func (q *TableSubquery) Accept(visitor AstVisitor, ctx interface{}) interface{} {
-	return visitor.VisitTableSubquery(q, ctx)
+	_ = "STUB: not implemented"
+	return nil
 }

@@ -14,8 +14,6 @@
 
 package tree
 
-import "strings"
-
 // QualifiedName is column QualifiedName
 type QualifiedName struct {
 	// Parts is list of string
@@ -26,13 +24,9 @@ type QualifiedName struct {
 
 // NewQualifiedName creates QualifiedName
 func NewQualifiedName(originalParts, parts []string) *QualifiedName {
-	return &QualifiedName{
-		Parts:         parts,
-		OriginalParts: originalParts,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // String returns string
-func (n *QualifiedName) String() string {
-	return strings.Join(n.Parts, ".")
-}
+func (n *QualifiedName) String() string { _ = "STUB: not implemented"; return "" }

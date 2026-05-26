@@ -16,9 +16,10 @@ package common
 
 import (
 	"context"
+	"net/http"
+
 	memCom "github.com/uber/aresdb/memstore/common"
 	queryCom "github.com/uber/aresdb/query/common"
-	"net/http"
 )
 
 // SchemaManager keeps table schema from all namespaces in current ENV up to date

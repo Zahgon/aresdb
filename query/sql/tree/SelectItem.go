@@ -27,13 +27,10 @@ type SelectItem struct {
 }
 
 // NewSelectItem creates SelectItem
-func NewSelectItem(location *NodeLocation) *SelectItem {
-	return &SelectItem{
-		NewNode(location),
-	}
-}
+func NewSelectItem(location *NodeLocation) *SelectItem { _ = "STUB: not implemented"; return nil }
 
 // Accept accepts visitor
 func (r *SelectItem) Accept(visitor AstVisitor, ctx interface{}) interface{} {
-	return visitor.VisitSelectItem(r, ctx)
+	_ = "STUB: not implemented"
+	return nil
 }

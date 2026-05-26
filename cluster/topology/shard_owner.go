@@ -25,27 +25,16 @@ type staticShardOwner struct {
 
 // NewTopologyShardOwner return a shard owner based on topology
 func NewTopologyShardOwner(topo Topology) ShardOwner {
-	return &topologyShardOwner{
-		topo: topo,
-	}
+	_ = "STUB: not implemented"
+	return *new(ShardOwner)
 }
 
-func (t *topologyShardOwner) GetOwnedShards() []int {
-	allShards := t.topo.Get().ShardSet().AllIDs()
-	ret := make([]int, len(allShards))
-	for i, shardID := range allShards {
-		ret[i] = int(shardID)
-	}
-	return ret
-}
+func (t *topologyShardOwner) GetOwnedShards() []int { _ = "STUB: not implemented"; return nil }
 
 // NewStaticShardOwner returns shard owner that owns static shards
 func NewStaticShardOwner(shards []int) ShardOwner {
-	return &staticShardOwner{
-		shards: shards,
-	}
+	_ = "STUB: not implemented"
+	return *new(ShardOwner)
 }
 
-func (s *staticShardOwner) GetOwnedShards() []int {
-	return s.shards
-}
+func (s *staticShardOwner) GetOwnedShards() []int { _ = "STUB: not implemented"; return nil }

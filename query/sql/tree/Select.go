@@ -26,14 +26,12 @@ type Select struct {
 
 // NewSelect creates Select
 func NewSelect(location *NodeLocation, distinct bool, selectItems []ISelectItem) *Select {
-	return &Select{
-		NewNode(location),
-		distinct,
-		selectItems,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Accept accepts visitor
 func (r *Select) Accept(visitor AstVisitor, ctx interface{}) interface{} {
-	return visitor.VisitSelect(r, ctx)
+	_ = "STUB: not implemented"
+	return nil
 }

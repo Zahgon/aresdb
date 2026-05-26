@@ -22,9 +22,8 @@ package topology
 
 import (
 	"errors"
-	"fmt"
+
 	"github.com/m3db/m3/src/cluster/services"
-	"github.com/m3db/m3/src/cluster/shard"
 	aresShard "github.com/uber/aresdb/cluster/shard"
 )
 
@@ -36,22 +35,14 @@ type host struct {
 	address string
 }
 
-func (h *host) ID() string {
-	return h.id
-}
+func (h *host) ID() string { _ = "STUB: not implemented"; return "" }
 
-func (h *host) Address() string {
-	return h.address
-}
+func (h *host) Address() string { _ = "STUB: not implemented"; return "" }
 
-func (h *host) String() string {
-	return fmt.Sprintf("Host<ID=%s, Address=%s>", h.id, h.address)
-}
+func (h *host) String() string { _ = "STUB: not implemented"; return "" }
 
 // NewHost creates a new host
-func NewHost(id, address string) Host {
-	return &host{id: id, address: address}
-}
+func NewHost(id, address string) Host { _ = "STUB: not implemented"; return *new(Host) }
 
 // hostShardSet is the implementation of the interface HostShardSet
 type hostShardSet struct {
@@ -61,27 +52,21 @@ type hostShardSet struct {
 
 // NewHostShardSet creates a new host shard set
 func NewHostShardSet(host Host, shardSet aresShard.ShardSet) HostShardSet {
-	return &hostShardSet{host, shardSet}
+	_ = "STUB: not implemented"
+	return *new(HostShardSet)
 }
 
-func (h *hostShardSet) Host() Host {
-	return h.host
-}
+func (h *hostShardSet) Host() Host { _ = "STUB: not implemented"; return *new(Host) }
 
 func (h *hostShardSet) ShardSet() aresShard.ShardSet {
-	return h.shardSet
+	_ = "STUB: not implemented"
+
+	// NewHostShardSetFromServiceInstance creates a new
+	// host shard set derived from a service instance
+	return *new(aresShard.ShardSet)
 }
 
-// NewHostShardSetFromServiceInstance creates a new
-// host shard set derived from a service instance
 func NewHostShardSetFromServiceInstance(si services.ServiceInstance) (HostShardSet, error) {
-	if si.Shards() == nil {
-		return nil, errInstanceHasNoShardsAssignment
-	}
-	all := si.Shards().All()
-	shards := make([]shard.Shard, len(all))
-	copy(shards, all)
-	shardSet := aresShard.NewShardSet(shards)
-
-	return NewHostShardSet(NewHost(si.InstanceID(), si.Endpoint()), shardSet), nil
+	_ = "STUB: not implemented"
+	return *new(HostShardSet), nil
 }

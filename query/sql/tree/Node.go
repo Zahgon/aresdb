@@ -37,23 +37,24 @@ type Node struct {
 }
 
 // NewNode creates Node
-func NewNode(location *NodeLocation) *Node {
-	return &Node{
-		Location: location,
-	}
-}
+func NewNode(location *NodeLocation) *Node { _ = "STUB: not implemented"; return nil }
 
 // SetValue sets node token value
 func (n *Node) SetValue(value string) {
-	n.value = value
+	_ = "STUB: not implemented"
+
+	// GetValue returns node token value
+	return
 }
 
-// GetValue returns node token value
 func (n *Node) GetValue() string {
-	return n.value
+	_ = "STUB: not implemented"
+
+	// Accept accepts visitor
+	return ""
 }
 
-// Accept accepts visitor
 func (n *Node) Accept(visitor AstVisitor, ctx interface{}) interface{} {
-	return visitor.visitNode(n, ctx)
+	_ = "STUB: not implemented"
+	return nil
 }

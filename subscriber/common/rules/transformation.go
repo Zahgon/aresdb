@@ -36,16 +36,13 @@ var (
 // NoOp is a transformation preserve value
 // but it can rename the source value into different alias
 func NoOp(from interface{}, ctx map[string]string) (interface{}, error) {
-	return from, nil
+	_ = "STUB: not implemented"
+
+	// Transform converts source to destination data
+	return nil, nil
 }
 
-// Transform converts source to destination data
 func (t TransformationConfig) Transform(from interface{}) (to interface{}, err error) {
-	transformFunc, found := transformFuncs[t.Type]
-	if !found {
-		transformFunc = NoOp
-	}
-
-	to, err = transformFunc(from, t.Context)
-	return
+	_ = "STUB: not implemented"
+	return nil, nil
 }

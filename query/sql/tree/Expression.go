@@ -27,13 +27,10 @@ type Expression struct {
 }
 
 // NewExpression creates Expression
-func NewExpression(location *NodeLocation) *Expression {
-	return &Expression{
-		NewNode(location),
-	}
-}
+func NewExpression(location *NodeLocation) *Expression { _ = "STUB: not implemented"; return nil }
 
 // Accept accepts visitor
 func (e *Expression) Accept(visitor AstVisitor, ctx interface{}) interface{} {
-	return visitor.VisitExpression(e, ctx)
+	_ = "STUB: not implemented"
+	return nil
 }

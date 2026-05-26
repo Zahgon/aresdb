@@ -22,16 +22,4 @@ const (
 )
 
 // ComputeHLLValue compute hll value based on hash value
-func ComputeHLLValue(hash uint64) uint32 {
-	group := uint32(hash & ((1 << groupBits) - 1))
-	var rho uint32
-	for {
-		h := hash & (1 << (rho + groupBits))
-		if rho+groupBits < 64 && h == 0 {
-			rho++
-		} else {
-			break
-		}
-	}
-	return rho<<maxGroupBits | group
-}
+func ComputeHLLValue(hash uint64) uint32 { _ = "STUB: not implemented"; return 0 }

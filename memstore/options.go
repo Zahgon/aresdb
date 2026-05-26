@@ -29,12 +29,6 @@ type Options struct {
 
 // NewOptions create new options instance
 func NewOptions(bootstrapToken common.BootStrapToken, redoLogMaster *redolog.RedoLogManagerMaster, setters ...Option) Options {
-	opts := Options{
-		bootstrapToken: bootstrapToken,
-		redoLogMaster:  redoLogMaster,
-	}
-	for _, setter := range setters {
-		setter(&opts)
-	}
-	return opts
+	_ = "STUB: not implemented"
+	return *new(Options)
 }

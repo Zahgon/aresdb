@@ -22,6 +22,7 @@ package topology
 
 import (
 	"errors"
+
 	"github.com/m3db/m3/src/cluster/client"
 	"github.com/m3db/m3/src/cluster/services"
 	m3Shard "github.com/m3db/m3/src/cluster/shard"

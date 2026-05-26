@@ -26,14 +26,12 @@ type SingleColumn struct {
 
 // NewSingleColumn creates SingleColumn
 func NewSingleColumn(location *NodeLocation, expr IExpression, alias *Identifier) *SingleColumn {
-	return &SingleColumn{
-		NewSelectItem(location),
-		alias,
-		expr,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Accept accepts visitor
 func (q *SingleColumn) Accept(visitor AstVisitor, ctx interface{}) interface{} {
-	return visitor.VisitSingleColumn(q, ctx)
+	_ = "STUB: not implemented"
+	return nil
 }

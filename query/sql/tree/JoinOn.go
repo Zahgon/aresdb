@@ -14,10 +14,6 @@
 
 package tree
 
-import (
-	"github.com/uber/aresdb/query/sql/util"
-)
-
 // JoinOn is natural join
 type JoinOn struct {
 	// IJoinCriteria is interface
@@ -26,16 +22,7 @@ type JoinOn struct {
 }
 
 // NewJoinOn creates JoinOn
-func NewJoinOn(expr IExpression) *JoinOn {
-	util.RequireNonNull(expr, "expression is null")
-	return &JoinOn{
-		Expr: expr,
-	}
-}
+func NewJoinOn(expr IExpression) *JoinOn { _ = "STUB: not implemented"; return nil }
 
 // GetNodes returns empty
-func (j *JoinOn) GetNodes() []INode {
-	return []INode{
-		j.Expr,
-	}
-}
+func (j *JoinOn) GetNodes() []INode { _ = "STUB: not implemented"; return nil }

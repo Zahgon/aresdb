@@ -15,12 +15,13 @@
 package datanode
 
 import (
+	"net/http"
+	"time"
+
 	"github.com/uber/aresdb/cluster/shard"
 	"github.com/uber/aresdb/common"
 	"github.com/uber/aresdb/datanode/bootstrap"
 	"github.com/uber/aresdb/utils"
-	"net/http"
-	"time"
 )
 
 type DataNode interface {

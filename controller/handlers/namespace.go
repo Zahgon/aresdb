@@ -15,11 +15,11 @@
 package handlers
 
 import (
-	"github.com/uber/aresdb/utils"
 	"net/http"
 
+	"github.com/uber/aresdb/utils"
+
 	"github.com/gorilla/mux"
-	apiCom "github.com/uber/aresdb/api/common"
 	mutatorCom "github.com/uber/aresdb/controller/mutators/common"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
@@ -41,52 +41,32 @@ type NamespaceHandler struct {
 
 // NewNamespaceHandler creates a new namespace handler
 func NewNamespaceHandler(p NamespaceHandlerParams) NamespaceHandler {
-	return NamespaceHandler{
-		namespaceMutator: p.NamespaceMutator,
-		logger:           p.Logger,
-	}
+	_ = "STUB: not implemented"
+	return *new(NamespaceHandler)
 }
 
 // Register adds paths to router
 func (h NamespaceHandler) Register(router *mux.Router, wrappers ...utils.HTTPHandlerWrapper) {
-	router.HandleFunc("/namespaces", utils.ApplyHTTPWrappers(h.CreateNamespace, wrappers...)).Methods(http.MethodPost)
-	router.HandleFunc("/namespaces", utils.ApplyHTTPWrappers(h.ListNamespaces, wrappers...)).Methods(http.MethodGet)
+	_ = "STUB: not implemented"
+	return
 }
 
 // CreateNamespace swagger:route POST /namespaces createNamespace
 // adds a new namespace
 //
 // Consumes:
-//    - application/json
+//   - application/json
 func (h NamespaceHandler) CreateNamespace(w *utils.ResponseWriter, r *http.Request) {
-	var req CreateNamespaceRequest
-	err := apiCom.ReadRequest(r, &req, w.SetRequest)
-	if err != nil {
-		w.WriteErrorWithCode(http.StatusBadRequest, err)
-		return
-	}
-
-	err = h.namespaceMutator.CreateNamespace(req.Body.Namespace)
-	if err != nil {
-		w.WriteErrorWithCode(http.StatusBadRequest, err)
-		return
-	}
-	w.WriteObject(nil)
+	_ = "STUB: not implemented"
+	return
 }
 
 // ListNamespaces swagger:route GET /namespaces listNamespaces
 // returns all namespaces
 //
 // Produces:
-//    - application/json
+//   - application/json
 func (h NamespaceHandler) ListNamespaces(w *utils.ResponseWriter, r *http.Request) {
-	var err error
-
-	var namespaces []string
-	namespaces, err = h.namespaceMutator.ListNamespaces()
-	if err != nil {
-		w.WriteError(err)
-		return
-	}
-	w.WriteObject(namespaces)
+	_ = "STUB: not implemented"
+	return
 }

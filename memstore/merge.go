@@ -16,10 +16,6 @@ package memstore
 
 import (
 	"github.com/uber/aresdb/memstore/common"
-	"github.com/uber/aresdb/memstore/list"
-	"github.com/uber/aresdb/memstore/vectors"
-	"github.com/uber/aresdb/utils"
-	"sync"
 )
 
 // mergeContext carries all context information used during merge
@@ -71,42 +67,14 @@ type mergeContext struct {
 // into a new batch. It's shared by pre-allocate stage and actual merge stage.
 func newMergeContext(base *ArchiveBatch, patch *archivingPatch, columnDeletions []bool, dataTypes []common.DataType,
 	defaultValues []*common.DataValue, baseRowDeleted []int) *mergeContext {
-	numColumns := len(dataTypes)
-	baseSize := 0
-	if base != nil {
-		baseSize = base.Size
-	}
-
-	ctx := &mergeContext{
-		base:            base,
-		patch:           patch,
-		numColumns:      numColumns,
-		baseSize:        baseSize,
-		totalSize:       len(patch.recordIDs) + baseSize - len(baseRowDeleted),
-		mergedLengths:   make([]int, len(patch.sortColumns)),
-		outputBegins:    make([]int, numColumns),
-		outputCounts:    make([]uint32, len(patch.sortColumns)),
-		unsortedColumns: make([]int, 0, numColumns-len(patch.sortColumns)),
-		baseRowDeleted:  baseRowDeleted,
-		columnDeletions: columnDeletions,
-		dataTypes:       dataTypes,
-		defaultValues:   defaultValues,
-	}
-	ctx.initIters()
-
-	return ctx
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // initIters initialize patch and base iterators.
-func (ctx *mergeContext) initIters() {
-	ctx.patchIters = make([]sortedColumnIterator, len(ctx.patch.sortColumns))
-	ctx.baseIters = make([]sortedColumnIterator, len(ctx.patch.sortColumns))
-	for i, columnID := range ctx.patch.sortColumns {
-		ctx.patchIters[i] = newArchivingPatchColumnIterator(ctx.patch, columnID)
-		// archive batch iterator
-		ctx.baseIters[i] = newArchiveBatchColumnIterator(ctx.base, columnID, ctx.baseRowDeleted)
-	}
-}
+func (ctx *mergeContext) initIters() { _ = "STUB: not implemented"; return }
+
+// archive batch iterator
 
 // sortedColumnIterator is the common interface to merge two sorted columns
 type sortedColumnIterator interface {
@@ -171,79 +139,48 @@ type archiveBatchColumnIterator struct {
 // newArchiveBatchColumnIterator creates a new iterator that iterates through
 // a specific range of archive batch column.
 func newArchiveBatchColumnIterator(base *ArchiveBatch, columnID int, rowsDeleted []int) sortedColumnIterator {
-	var baseVP common.ArchiveVectorParty
-	if base != nil && columnID < len(base.Columns) {
-		baseVP = base.Columns[columnID].(common.ArchiveVectorParty)
-	}
-	return &archiveBatchColumnIterator{
-		vp:          baseVP,
-		rowsDeleted: rowsDeleted,
-	}
+	_ = "STUB: not implemented"
+	return *new(sortedColumnIterator)
 }
 
-func (itr *archiveBatchColumnIterator) done() bool {
-	if itr.vp == nil {
-		return true
-	}
-	return itr.idx >= itr.vp.GetLength() || itr.currentCount >= itr.endCount
-}
+func (itr *archiveBatchColumnIterator) done() bool { _ = "STUB: not implemented"; return false }
 
-func (itr *archiveBatchColumnIterator) read() {
-	if itr.done() {
-		return
-	}
+func (itr *archiveBatchColumnIterator) read() { _ = "STUB: not implemented"; return }
 
-	// Sort columns of archive batch should be either mode 3 or mode 0.
-	mode := itr.vp.(common.CVectorParty).GetMode()
-	itr.currentRowsDeletedStart = itr.currentRowsDeletedEnd
-	if mode == common.HasCountVector {
-		itr.nextCount = itr.vp.GetCount(itr.idx)
-	} else {
-		itr.nextCount = itr.endCount
-	}
-	for itr.currentRowsDeletedEnd < len(itr.rowsDeleted) && uint32(itr.rowsDeleted[itr.currentRowsDeletedEnd]) < itr.nextCount {
-		itr.currentRowsDeletedEnd++
-	}
-	itr.val = itr.vp.GetDataValue(itr.idx)
-}
+// Sort columns of archive batch should be either mode 3 or mode 0.
 
 func (itr *archiveBatchColumnIterator) next() {
+	_ = "STUB: not implemented"
 	// move to next value
-	itr.idx++
-	itr.currentCount = itr.nextCount
-	itr.read()
-
+	return
 }
 
-func (itr *archiveBatchColumnIterator) index() int {
-	return itr.idx
-}
+func (itr *archiveBatchColumnIterator) index() int { _ = "STUB: not implemented"; return 0 }
 
 func (itr *archiveBatchColumnIterator) value() common.DataValue {
-	return itr.val
+	_ = "STUB: not implemented"
+	return *new(common.DataValue)
 }
 
 func (itr *archiveBatchColumnIterator) currentPosition() uint32 {
-	return itr.currentCount
+	_ = "STUB: not implemented"
+	return 0
 }
 
-func (itr *archiveBatchColumnIterator) nextPosition() uint32 {
-	return itr.nextCount
-}
+func (itr *archiveBatchColumnIterator) nextPosition() uint32 { _ = "STUB: not implemented"; return 0 }
 
-func (itr *archiveBatchColumnIterator) count() uint32 {
-	return itr.nextCount - itr.currentCount - uint32(itr.currentRowsDeletedEnd-itr.currentRowsDeletedStart)
-}
+func (itr *archiveBatchColumnIterator) count() uint32 { _ = "STUB: not implemented"; return 0 }
 
 func (itr *archiveBatchColumnIterator) currentSkipRows() []int {
-	return itr.rowsDeleted[itr.currentRowsDeletedStart:itr.currentRowsDeletedEnd]
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (itr *archiveBatchColumnIterator) setEndPosition(pos uint32) {
-	itr.endCount = pos
+	_ = "STUB: not implemented"
 
 	// see to the first valid value
-	itr.read()
+	return
 }
 
 type archivingPatchColumnIterator struct {
@@ -260,340 +197,141 @@ type archivingPatchColumnIterator struct {
 // newArchivingPatchColumnIterator creates a new iterator that iterates through a specific
 // range of archive batch column.
 func newArchivingPatchColumnIterator(patch *archivingPatch, columnID int) sortedColumnIterator {
-	itr := &archivingPatchColumnIterator{
-		patch:    patch,
-		columnID: columnID,
-	}
-	return itr
+	_ = "STUB: not implemented"
+	return *new(sortedColumnIterator)
 }
 
-func (itr *archivingPatchColumnIterator) done() bool {
-	return itr.idx >= itr.endIdx
-}
+func (itr *archivingPatchColumnIterator) done() bool { _ = "STUB: not implemented"; return false }
 
-func (itr *archivingPatchColumnIterator) read() {
-	if itr.done() {
-		return
-	}
+func (itr *archivingPatchColumnIterator) read() { _ = "STUB: not implemented"; return }
 
-	// Read current value.
-	itr.val = itr.patch.GetDataValue(itr.idx, itr.columnID)
+// Read current value.
 
-	// Find next value != current value.
-	for itr.nextIdx++; itr.nextIdx < itr.endIdx; itr.nextIdx++ {
-		val := itr.patch.GetDataValue(itr.nextIdx, itr.columnID)
-		if itr.val.Compare(val) != 0 {
-			break
-		}
-	}
-}
+// Find next value != current value.
 
 func (itr *archivingPatchColumnIterator) next() {
+	_ = "STUB: not implemented"
 	// Jump directly to index of next different value.
-	itr.idx = itr.nextIdx
-	itr.read()
+	return
 }
 
 func (itr *archivingPatchColumnIterator) value() common.DataValue {
-	return itr.val
+	_ = "STUB: not implemented"
+	return *new(common.DataValue)
 }
 
-func (itr *archivingPatchColumnIterator) index() int {
-	return itr.idx
-}
+func (itr *archivingPatchColumnIterator) index() int { _ = "STUB: not implemented"; return 0 }
 
 func (itr *archivingPatchColumnIterator) currentPosition() uint32 {
-	return uint32(itr.idx)
+	_ = "STUB: not implemented"
+	return 0
 }
 
-func (itr *archivingPatchColumnIterator) nextPosition() uint32 {
-	return uint32(itr.nextIdx)
-}
+func (itr *archivingPatchColumnIterator) nextPosition() uint32 { _ = "STUB: not implemented"; return 0 }
 
-func (itr *archivingPatchColumnIterator) count() uint32 {
-	return uint32(itr.nextIdx - itr.idx)
-}
+func (itr *archivingPatchColumnIterator) count() uint32 { _ = "STUB: not implemented"; return 0 }
 
 func (itr *archivingPatchColumnIterator) currentSkipRows() []int {
+	_ = "STUB: not implemented"
 	return nil
 }
 
 func (itr *archivingPatchColumnIterator) setEndPosition(pos uint32) {
-	itr.endIdx = int(pos)
-	itr.read()
+	_ = "STUB: not implemented"
+	return
 }
 
 // merge an live batch with a archive batch and store the merged data into a new archive batch.
 // It has two stages:
-// 	1. preallocate: attempt to merge two batches but only calculate how much space merged data needs.
+//  1. preallocate: attempt to merge two batches but only calculate how much space merged data needs.
 //  2. merge: based on the calculated size, allocate space and do actual merge.
+//
 // This algorithm will do merge on sorted columns first and based on the positions of last sorted column,
 // it will copy non-sorted columns data into final result.
 // The parameters will be used as cutoff and seqNum for the merged batch.
 func (ctx *mergeContext) merge(cutoff uint32, seqNum uint32) {
+	_ = "STUB: not implemented"
 	// We preallocate space in 1st pass to avoid allocate unnecessary memory.
-	ctx.mergeRecursive(0, uint32(ctx.baseSize), len(ctx.patch.recordIDs), ctx.preAllocate)
-
-	// Allocate space for merged archive batch.
-	ctx.allocate(cutoff, seqNum)
-
-	// Reset iterators to begin 2nd pass.
-	ctx.initIters()
-
-	// Do actual merge and write to output vector party.
-	ctx.mergeRecursive(0, uint32(ctx.baseSize), len(ctx.patch.recordIDs), ctx.writeOutput)
-
-	// If sort columns is empty, we need to dump all values in batch first and then dump patch values.
-	if len(ctx.patch.sortColumns) == 0 {
-		// Write base.
-		ctx.writeUnsortedColumns(0, ctx.baseSize, ctx.base, ctx.baseRowDeleted)
-
-		// Write patch.
-		ctx.writeUnsortedColumns(0, len(ctx.patch.recordIDs), ctx.patch, nil)
-	}
-
-	// Scan through all columns for mode 0 and 1 columns and remove unnecessary vectors.
-	for columnID := 0; columnID < len(ctx.merged.Columns); columnID++ {
-		column := ctx.merged.Columns[columnID]
-		column.(common.ArchiveVectorParty).Prune()
-	}
+	return
 }
+
+// Allocate space for merged archive batch.
+
+// Reset iterators to begin 2nd pass.
+
+// Do actual merge and write to output vector party.
+
+// If sort columns is empty, we need to dump all values in batch first and then dump patch values.
+
+// Write base.
+
+// Write patch.
+
+// Scan through all columns for mode 0 and 1 columns and remove unnecessary vectors.
 
 // allocate space for merged archive batch based on calculated mergedLengths.
-func (ctx *mergeContext) allocate(cutoff uint32, seqNum uint32) {
-	columns := make([]common.VectorParty, ctx.numColumns)
-	// Need to create batch in advance otherwise vector party's allUsersDone will have nil value.
-	ctx.merged = &ArchiveBatch{
-		Version: cutoff,
-		SeqNum:  seqNum,
-		Size:    ctx.totalSize,
-		BatchID: ctx.base.BatchID,
-		Shard:   ctx.base.Shard,
-		Batch:   common.Batch{RWMutex: &sync.RWMutex{}},
-	}
+func (ctx *mergeContext) allocate(cutoff uint32, seqNum uint32) { _ = "STUB: not implemented"; return }
 
-	for columnID := 0; columnID < ctx.numColumns; columnID++ {
-		dataType := ctx.dataTypes[columnID]
-		defaultValue := *ctx.defaultValues[columnID]
+// Need to create batch in advance otherwise vector party's allUsersDone will have nil value.
 
-		var bytes int64
-		if i := utils.IndexOfInt(ctx.patch.sortColumns, columnID); i >= 0 {
-			// Sort columns.
-			bytes = int64(vectors.CalculateVectorPartyBytes(dataType, ctx.mergedLengths[i], true, true))
-			columns[columnID] = newArchiveVectorParty(ctx.mergedLengths[i], dataType, defaultValue, ctx.merged.RWMutex)
-			columns[columnID].Allocate(true)
-		} else {
-			// Non-sort columns.
-			if common.IsArrayType(dataType) {
-				// array will never appear in sort columns
-				offsetBytes := int64(vectors.CalculateVectorBytes(common.Uint32, ctx.totalSize*2))
-				valueBytes := ctx.calculateArrayVectorPartyBytes(columnID, dataType)
-				bytes = offsetBytes + valueBytes
-				columns[columnID] = list.NewArchiveVectorParty(ctx.totalSize, dataType, valueBytes, ctx.merged.RWMutex)
-			} else {
-				bytes = int64(vectors.CalculateVectorPartyBytes(dataType, ctx.totalSize, true, false))
-				columns[columnID] = newArchiveVectorParty(ctx.totalSize, dataType, defaultValue, ctx.merged.RWMutex)
-			}
-			if !ctx.columnDeletions[columnID] {
-				columns[columnID].Allocate(false)
-			}
-			ctx.unsortedColumns = append(ctx.unsortedColumns, columnID)
-		}
-		if !ctx.columnDeletions[columnID] {
-			ctx.base.Shard.HostMemoryManager.ReportUnmanagedSpaceUsageChange(bytes)
-			ctx.unmanagedMemoryBytes += bytes
-		}
-	}
-	ctx.merged.Columns = columns
-}
+// Sort columns.
+
+// Non-sort columns.
+
+// array will never appear in sort columns
 
 // calculate value vector bytes needed for Array ArchiveParty
 func (ctx *mergeContext) calculateArrayVectorPartyBytes(columnID int, dataType common.DataType) int64 {
-	var totalBytes int64
+	_ = "STUB: not implemented"
+	return 0
+
 	// bytes for patch
-	for i := 0; i < len(ctx.patch.recordIDs); i++ {
-		totalBytes += int64(common.CalculateListElementBytes(dataType, ctx.patch.GetCount(i, columnID)))
-	}
-
-	// bytes for original archive patch
-	vp := ctx.base.GetVectorParty(columnID)
-	if vp == nil {
-		return totalBytes
-	}
-	if !vp.IsList() {
-		return totalBytes
-	}
-
-	rowsDeletedIndex := 0
-	listVP := vp.AsList()
-	for i := 0; i < ctx.baseSize; i++ {
-		if rowsDeletedIndex < len(ctx.baseRowDeleted) && ctx.baseRowDeleted[rowsDeletedIndex] == i {
-			// skip the deleted row
-			rowsDeletedIndex++
-			continue
-		}
-		totalBytes += int64(common.CalculateListElementBytes(dataType, int(listVP.GetElemCount(i))))
-	}
-	return totalBytes
 }
+
+// bytes for original archive patch
+
+// skip the deleted row
 
 // common function signature for both preallocate and merge.
 type mergeAction func(baseIter, patchIter sortedColumnIterator, sortColIdx, compareRes int, mergedVP common.ArchiveVectorParty)
 
 // preAllocate called during first pass.
 func (ctx *mergeContext) preAllocate(baseIter, patchIter sortedColumnIterator, sortColIdx, compareRes int, mergedVP common.ArchiveVectorParty) {
-	ctx.mergedLengths[sortColIdx]++
+	_ = "STUB: not implemented"
+	return
 }
 
 func (ctx *mergeContext) writeUnsortedColumns(start, end int, reader common.BatchReader, skipRows []int) {
+	_ = "STUB: not implemented"
 	// Base batch is possible to be nil for a particular day.
-	if reader != nil {
-		for i := start; i < end; i++ {
-			if len(skipRows) > 0 && skipRows[0] == i {
-				skipRows = skipRows[1:]
-				continue
-			}
-
-			for _, columnID := range ctx.unsortedColumns {
-				// We will skip writing to deleted columns so that it will have all null values.
-				if !ctx.columnDeletions[columnID] {
-					mergedVP := ctx.merged.Columns[columnID]
-					val := reader.GetDataValueWithDefault(int(i), columnID, *ctx.defaultValues[columnID])
-					mergedVP.SetDataValue(ctx.outputBegins[columnID], val, common.IncrementCount)
-					ctx.outputBegins[columnID]++
-				}
-			}
-		}
-	}
+	return
 }
+
+// We will skip writing to deleted columns so that it will have all null values.
 
 func (ctx *mergeContext) writeOutput(baseIter, patchIter sortedColumnIterator, sortColIdx, compareRes int, mergedVP common.ArchiveVectorParty) {
-	var val common.DataValue
-	var count uint32
-	ifWriteUnsortedColumns := sortColIdx == len(ctx.patch.sortColumns)-1
-	// if patch value is less, we read from patch
-	if compareRes < 0 {
-		val = patchIter.value()
-		count = patchIter.count()
-		ctx.outputCounts[sortColIdx] += count
-		if ifWriteUnsortedColumns {
-			ctx.writeUnsortedColumns(int(patchIter.currentPosition()), int(patchIter.nextPosition()), ctx.patch, nil)
-		}
-	} else if compareRes == 0 {
-		val = baseIter.value()
-		count = patchIter.count() + baseIter.count()
-		ctx.outputCounts[sortColIdx] += count
-		if ifWriteUnsortedColumns {
-			ctx.writeUnsortedColumns(int(baseIter.currentPosition()), int(baseIter.nextPosition()), ctx.base, baseIter.currentSkipRows())
-			ctx.writeUnsortedColumns(int(patchIter.currentPosition()), int(patchIter.nextPosition()), ctx.patch, nil)
-		}
-	} else {
-		val = baseIter.value()
-		count = baseIter.count()
-		ctx.outputCounts[sortColIdx] += count
-		if ifWriteUnsortedColumns {
-			ctx.writeUnsortedColumns(int(baseIter.currentPosition()), int(baseIter.nextPosition()), ctx.base, baseIter.currentSkipRows())
-		}
-	}
-
-	columnID := ctx.patch.sortColumns[sortColIdx]
-	// Set value on the mergedVP.
-	mergedVP.SetDataValue(ctx.outputBegins[columnID], val, common.IncrementCount, count)
-	mergedVP.SetCount(ctx.outputBegins[columnID], ctx.outputCounts[sortColIdx])
-	ctx.outputBegins[columnID]++
+	_ = "STUB: not implemented"
+	return
 }
+
+// if patch value is less, we read from patch
+
+// Set value on the mergedVP.
 
 // mergeRecursive does merge on base and patch iterators on a given sort column. baseEndPos is the end count
 // for base iter to stop. patchEndPos is the end index for patch iter to stop. Any end pos with 0 value means
 // for this iterator it's an empty range.
 func (ctx *mergeContext) mergeRecursive(sortColIdx int, baseEndPos uint32, patchEndPos int, f mergeAction) {
-	if sortColIdx >= len(ctx.patch.sortColumns) {
-		return
-	}
-
-	columnID := ctx.patch.sortColumns[sortColIdx]
-	var mergedVP common.ArchiveVectorParty
-
-	// Only used by merge stage during preallocate stage ctx.merged will be nil
-	if ctx.merged != nil {
-		mergedVP = ctx.merged.Columns[columnID].(common.ArchiveVectorParty)
-	}
-
-	baseIter := ctx.baseIters[sortColIdx]
-	baseIter.setEndPosition(baseEndPos)
-	patchIter := ctx.patchIters[sortColIdx]
-	patchIter.setEndPosition(uint32(patchEndPos))
-
-	for !baseIter.done() && !patchIter.done() {
-		// ignore values if the count is 0.
-		if baseIter.count() == 0 {
-			baseIter.next()
-			continue
-		}
-
-		if patchIter.count() == 0 {
-			patchIter.next()
-			continue
-		}
-
-		res := patchIter.value().Compare(baseIter.value())
-		f(baseIter, patchIter, sortColIdx, res, mergedVP)
-		if res < 0 {
-			// New value from patch.
-			ctx.mergeRecursive(
-				sortColIdx+1,
-				0,
-				int(patchIter.nextPosition()),
-				f,
-			)
-
-			patchIter.next()
-		} else if res == 0 {
-			ctx.mergeRecursive(
-				sortColIdx+1,
-				baseIter.nextPosition(),
-				int(patchIter.nextPosition()),
-				f,
-			)
-
-			baseIter.next()
-			patchIter.next()
-		} else {
-			ctx.mergeRecursive(
-				sortColIdx+1,
-				baseIter.nextPosition(),
-				0,
-				f,
-			)
-			baseIter.next()
-		}
-	}
-
-	for !patchIter.done() {
-		if patchIter.count() > 0 {
-			// This is equal to compareRes < 0.
-			f(baseIter, patchIter, sortColIdx, -1, mergedVP)
-			ctx.mergeRecursive(
-				sortColIdx+1,
-				0,
-				int(patchIter.nextPosition()),
-				f,
-			)
-		}
-		patchIter.next()
-	}
-
-	for !baseIter.done() {
-		if baseIter.count() > 0 {
-			// This is equal to compareRes > 0.
-			f(baseIter, patchIter, sortColIdx, 1, mergedVP)
-			ctx.mergeRecursive(
-				sortColIdx+1,
-				baseIter.nextPosition(),
-				0,
-				f,
-			)
-		}
-		baseIter.next()
-	}
+	_ = "STUB: not implemented"
+	return
 }
+
+// Only used by merge stage during preallocate stage ctx.merged will be nil
+
+// ignore values if the count is 0.
+
+// New value from patch.
+
+// This is equal to compareRes < 0.
+
+// This is equal to compareRes > 0.

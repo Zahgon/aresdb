@@ -14,10 +14,6 @@
 
 package tree
 
-import (
-	"github.com/uber/aresdb/query/sql/util"
-)
-
 // AliasedRelation is alias relation
 type AliasedRelation struct {
 	IRelation
@@ -32,17 +28,12 @@ func NewAliasedRelation(
 	relation IRelation,
 	alias *Identifier,
 	columns []*Identifier) *AliasedRelation {
-	util.RequireNonNull(relation, "relation is null")
-	util.RequireNonNull(alias, "alias is null")
-	return &AliasedRelation{
-		NewRelation(location),
-		relation,
-		alias,
-		columns,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Accept accepts visitor
 func (n *AliasedRelation) Accept(visitor AstVisitor, ctx interface{}) interface{} {
-	return visitor.VisitAliasedRelation(n, ctx)
+	_ = "STUB: not implemented"
+	return nil
 }

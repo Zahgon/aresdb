@@ -24,14 +24,12 @@ type GroupBy struct {
 
 // NewGroupBy creates GroupBy
 func NewGroupBy(location *NodeLocation, distinct bool, elements []IGroupingElement) *GroupBy {
-	return &GroupBy{
-		NewNode(location),
-		distinct,
-		elements,
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Accept accepts visitor
 func (e *GroupBy) Accept(visitor AstVisitor, ctx interface{}) interface{} {
-	return visitor.VisitGroupBy(e, ctx)
+	_ = "STUB: not implemented"
+	return nil
 }

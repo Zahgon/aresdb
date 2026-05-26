@@ -16,7 +16,6 @@ package utils
 
 import (
 	"io"
-	"io/ioutil"
 	"os"
 )
 
@@ -37,40 +36,44 @@ type OSFileSystem struct{}
 
 // ReadFile reads whole file into byte buffer
 func (OSFileSystem) ReadFile(name string) ([]byte, error) {
-	return ioutil.ReadFile(name)
+	_ = "STUB: not implemented"
+	return nil, nil
+
+	// ReadDir reads file infos under given directory
 }
 
-// ReadDir reads file infos under given directory
 func (OSFileSystem) ReadDir(dirname string) ([]os.FileInfo, error) {
-	return ioutil.ReadDir(dirname)
+	_ = "STUB: not implemented"
+	return nil, nil
+
+	// Mkdir makes directory with given name and permission
 }
 
-// Mkdir makes directory with given name and permission
 func (OSFileSystem) Mkdir(name string, perm os.FileMode) error {
-	return os.Mkdir(name, perm)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // MkdirAll makes directory with necessary parent directories in path
 func (OSFileSystem) MkdirAll(path string, perm os.FileMode) error {
-	return os.MkdirAll(path, perm)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // OpenFileForWrite opens a file for write
 func (OSFileSystem) OpenFileForWrite(name string, flag int, perm os.FileMode) (io.WriteCloser, error) {
-	return os.OpenFile(name, flag, perm)
+	_ = "STUB: not implemented"
+	return *new(io.WriteCloser), nil
 }
 
 // Remove removes a file
-func (OSFileSystem) Remove(path string) error {
-	return os.Remove(path)
-}
+func (OSFileSystem) Remove(path string) error { _ = "STUB: not implemented"; return nil }
 
 // RemoveAll removes a file and all its children
-func (OSFileSystem) RemoveAll(path string) error {
-	return os.RemoveAll(path)
-}
+func (OSFileSystem) RemoveAll(path string) error { _ = "STUB: not implemented"; return nil }
 
 // Stat tries gets file info for t
 func (OSFileSystem) Stat(path string) (os.FileInfo, error) {
-	return os.Stat(path)
+	_ = "STUB: not implemented"
+	return *new(os.FileInfo), nil
 }

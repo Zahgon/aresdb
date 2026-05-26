@@ -21,7 +21,6 @@
 package expr
 
 import (
-	"bytes"
 	"strings"
 )
 
@@ -285,78 +284,24 @@ func init() {
 }
 
 // String returns the string representation of the token.
-func (tok Token) String() string {
-	if tok >= 0 && tok < Token(len(tokens)) {
-		return tokens[tok]
-	}
-	return ""
-}
+func (tok Token) String() string { _ = "STUB: not implemented"; return "" }
 
-func (tok Token) MarshalJSON() ([]byte, error) {
-	buffer := bytes.NewBufferString(`"`)
-	buffer.WriteString(tokens[tok])
-	buffer.WriteString(`"`)
-	return buffer.Bytes(), nil
-}
+func (tok Token) MarshalJSON() ([]byte, error) { _ = "STUB: not implemented"; return nil, nil }
 
 // Precedence returns the operator precedence of the binary operator token.
-func (tok Token) Precedence() int {
-	switch tok {
-	case OR:
-		return 1
-	case AND:
-		return 2
-	case NOT:
-		return 3
-	case IN, NOT_IN, IS, EQ, NEQ, LT, LTE, GT, GTE:
-		return 4
-	case BITWISE_OR:
-		return 5
-	case BITWISE_AND:
-		return 6
-	case BITWISE_LEFT_SHIFT, BITWISE_RIGHT_SHIFT:
-		return 7
-	case ADD, SUB:
-		return 8
-	case MUL, DIV, MOD:
-		return 9
-	case BITWISE_XOR:
-		return 10
-	case UNARY_MINUS, BITWISE_NOT, FLOOR, CONVERT_TZ:
-		return 11
-	case EXCLAMATION:
-		return 12
-	}
-	return 0
-}
+func (tok Token) Precedence() int { _ = "STUB: not implemented"; return 0 }
 
-func (tok Token) isUnaryOperator() bool {
-	return tok > unary_operator_beg && tok < unary_operator_end
-}
+func (tok Token) isUnaryOperator() bool { _ = "STUB: not implemented"; return false }
 
-func (tok Token) isDerivedUnaryOperator() bool {
-	return tok > derived_unary_operator_beg && tok < derived_unary_operator_end
-}
+func (tok Token) isDerivedUnaryOperator() bool { _ = "STUB: not implemented"; return false }
 
-func (tok Token) isBinaryOperator() bool {
-	return tok > binary_operator_beg && tok < binary_operator_end
-}
+func (tok Token) isBinaryOperator() bool { _ = "STUB: not implemented"; return false }
 
 // tokstr returns a literal if provided, otherwise returns the token string.
-func tokstr(tok Token, lit string) string {
-	if lit != "" {
-		return lit
-	}
-	return tok.String()
-}
+func tokstr(tok Token, lit string) string { _ = "STUB: not implemented"; return "" }
 
 // Lookup returns the token associated with a given string.
-func Lookup(ident string) Token {
-	if tok, ok := keywords[strings.ToLower(ident)]; ok {
-		return tok
-	}
-	return IDENT
-}
+func Lookup(ident string) Token { _ = "STUB: not implemented"; return *new(Token) }
 
 // Pos specifies the line and character position of a token.
 // The Char and Line are both zero-based indexes.

@@ -15,10 +15,11 @@
 package list
 
 import (
+	"sync"
+
 	memCom "github.com/uber/aresdb/memstore/common"
 	"github.com/uber/aresdb/memstore/tests"
 	"github.com/uber/aresdb/utils"
-	"sync"
 )
 
 var (
@@ -38,65 +39,23 @@ type TestFactoryT struct {
 	tests.TestFactoryBase
 }
 
-func GetFactory() TestFactoryT {
-	return testFactory
-}
+func GetFactory() TestFactoryT { _ = "STUB: not implemented"; return *new(TestFactoryT) }
 
 func ToArrayArchiveVectorParty(vp memCom.VectorParty, locker sync.Locker) memCom.ArchiveVectorParty {
-	return vp.(memCom.ArchiveVectorParty)
+	_ = "STUB: not implemented"
+	return *new(memCom.ArchiveVectorParty)
 }
 
 func ToArrayLiveVectorParty(vp memCom.VectorParty) memCom.LiveVectorParty {
-	return vp.(memCom.LiveVectorParty)
+	_ = "STUB: not implemented"
+	return *new(memCom.LiveVectorParty)
 }
 
 func ToArrayVectorParty(rvp *tests.RawVectorParty, forLiveVP bool) (vp memCom.VectorParty, err error) {
-	dataType := memCom.DataTypeFromString(rvp.DataType)
-	if dataType == memCom.Unknown {
-		return nil, utils.StackError(nil,
-			"Unknown DataType when reading vector from file",
-		)
-	}
-
-	if len(rvp.Values) != 0 && len(rvp.Values) != rvp.Length {
-		return nil, utils.StackError(nil,
-			"List values length %d is not as expected %d",
-			len(rvp.Values),
-			rvp.Length,
-		)
-	}
-
-	// array live party
-	if forLiveVP {
-		vp = NewLiveVectorParty(rvp.Length, dataType, nil)
-		vp.Allocate(false)
-		for i, row := range rvp.Values {
-			val, err := memCom.ValueFromString(row, dataType)
-			if err != nil {
-				return nil, err
-			}
-			vp.SetDataValue(i, val, memCom.IgnoreCount)
-		}
-		return vp, nil
-	}
-
-	// array archive party
-	var totalBytes int64
-	values := make([]memCom.DataValue, rvp.Length)
-	for i, row := range rvp.Values {
-		if values[i], err = memCom.ValueFromString(row, dataType); err != nil {
-			return nil, err
-		}
-		if values[i].Valid {
-			reader := memCom.NewArrayValueReader(dataType, values[i].OtherVal)
-			totalBytes += int64(memCom.CalculateListElementBytes(dataType, reader.GetLength()))
-		}
-	}
-
-	vp = NewArchiveVectorParty(rvp.Length, dataType, totalBytes, &sync.RWMutex{})
-	vp.Allocate(false)
-	for i, val := range values {
-		vp.SetDataValue(i, val, memCom.IgnoreCount)
-	}
-	return
+	_ = "STUB: not implemented"
+	return *new(memCom.VectorParty), nil
 }
+
+// array live party
+
+// array archive party
